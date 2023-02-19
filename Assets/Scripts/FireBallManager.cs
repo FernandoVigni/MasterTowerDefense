@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBallManager : MonoBehaviour
 {
     public GameObject fireBallPrefab;
-    public int numFireBalls = 15;
+    public int numFireBalls = 1;
 
     public List<GameObject> fireBalls = new List<GameObject>();
     public int cantidaddeFireballs;
@@ -14,18 +14,26 @@ public class FireBallManager : MonoBehaviour
         // Instanciamos las 15 FireBalls y las agregamos a la lista
         for (int i = 0; i < numFireBalls; i++)
         {
-            Debug.Log("creada la " + i + "fire Ball");
-            GameObject fireBall = Instantiate(fireBallPrefab);
+            Debug.Log("creada la " + i + "° fire Ball");
+            
+            // Creamos una variable para guardar la posición en la que queremos instanciar el objeto
+            Vector3 positionToInstantiate = new Vector3(-40f, 0f, -40f); // Cambia los valores por las coordenadas que necesites
+
+            // Creamos una variable para guardar la rotación en la que queremos instanciar el objeto
+            Quaternion rotationToInstantiate = Quaternion.identity; // La rotación por defecto es la rotación nula
+
+            GameObject fireBall = Instantiate(fireBallPrefab, positionToInstantiate, rotationToInstantiate);
             //fireBall.SetActive(false);
+            fireBall.GetComponent<FireBall>().translate = false;
             fireBalls.Add(fireBall);
             cantidaddeFireballs = fireBalls.Count;
-            Debug.Log("hay en total " + cantidaddeFireballs + " Fire Balls" );
+            Debug.Log("hay en total " + cantidaddeFireballs + " Fire Balls pipipi" );
         }
     }
 
     public GameObject ChooseFirstFireBall()
     {
-        Debug.Log("la lista tiene antes de elegir la 1ra: " + cantidaddeFireballs );
+        Debug.Log("la lista tiene antes de elegir la 1ra fireBall: " + cantidaddeFireballs );
         Debug.Log("entro a seleccionar la 1er fireball");
         // Si la lista está vacía, devolvemos null
         if (fireBalls.Count == 0)

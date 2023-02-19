@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     public GameObject Tower;
-    public bool translate;
+    public bool translate = false;
     public Vector3 target;
     public int damage;
     public float speed = 5f;
@@ -28,7 +28,7 @@ public class FireBall : MonoBehaviour
     void Update()
     {
         if(translate)
-        transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
+            transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
     } 
 
     public void SetDestination()

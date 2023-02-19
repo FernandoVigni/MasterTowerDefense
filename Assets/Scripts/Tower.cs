@@ -14,17 +14,14 @@ public class Tower : MonoBehaviour
     void Update()
     {
         countDown -= Time.deltaTime;
-
-        Debug.Log(enemyList.Count);
         if(enemyList != null && enemyList.Count > 0  && countDown <= 0)
         {
-            Debug.Log("Aca valido que la lista de enemigos no esta vacia ni sea null");
             GetNearestEnemy();
             countDown = 2;
-          //  fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
-            //fireBall = fireBallManager.ChooseFirstFireBall();
-            //fireBall.GetComponent<FireBall>().SetDestination();
-            
+            fireBall.GetComponent<FireBall>().translate= true;
+            fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
+            fireBall = fireBallManager.ChooseFirstFireBall();
+            fireBall.GetComponent<FireBall>().SetDestination();
         }
     }
 
@@ -32,7 +29,6 @@ public class Tower : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("esta buscando enemigos y parece q encontro 1");
             // Agregamos el objeto "Enemy" a la lista si no está ya en ella
             if (!enemyList.Contains(other.gameObject))
             {
