@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    public FireBallManager fireBallManager;
+    public GameObject fireBall;
     private List<GameObject> enemyList = new List<GameObject>();
     public float countDown;
-    public GameObject nearEnemy;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Vector3 nearEnemy;
 
     // Update is called once per frame
     void Update()
@@ -22,8 +18,10 @@ public class Tower : MonoBehaviour
         if(enemyList != null && countDown <= 0)
         {
             nearEnemy = GetNearestEnemy();
-            countDown = 4;
-            
+            countDown = 2;
+            fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
+            fireBall = fireBallManager.ChooseFirstFireBall();
+            fireBall.GetComponent<FireBall>().SetDestination();
         }
     }
 
@@ -58,7 +56,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public GameObject GetNearestEnemy()
+    public Vector3 GetNearestEnemy()
     {
         // Ordenamos la lista de enemigos por distancia
         enemyList.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
@@ -66,12 +64,11 @@ public class Tower : MonoBehaviour
         // Devolvemos el primer enemigo de la lista, si la lista no está vacía
         if (enemyList.Count > 0)
         {
-            return enemyList[0];
+            return enemyList[0].transform.position;
         }
         else
         {
-            return null;
+            return Vector3.zero;
         }
     }
-
 }

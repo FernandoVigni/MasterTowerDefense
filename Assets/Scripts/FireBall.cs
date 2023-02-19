@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public GameObject Tower;
+    public bool translate;
+    public Vector3 target;
+    public int damage;
+    public float speed = 5f;
+
+    public void SetTarget(Vector3 target)
+    { 
+        this.target = target;
     }
 
-    // Update is called once per frame
+    public void LookAt()
+    {
+        transform.LookAt(target); // mira hacia el objetivo
+    }
+
+    public void Translate()
+    {
+        translate = true;       
+    }
+
     void Update()
     {
-        
+        if(translate)
+        transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
+    } 
+
+    public void SetDestination()
+    {
+        Translate();
+        transform.LookAt(target);
     }
 }
