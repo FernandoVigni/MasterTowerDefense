@@ -20,7 +20,7 @@ public class FireBall : MonoBehaviour
         transform.LookAt(target); // mira hacia el objetivo
     }
 
-    public void Translate()
+    public void TranslateOn()
     {
         translate = true;       
     }
@@ -33,7 +33,7 @@ public class FireBall : MonoBehaviour
 
     public void SetDestination()
     {
-        Translate();
-        transform.LookAt(target);
+        TranslateOn();
+        LookAt(); 
     }
 }

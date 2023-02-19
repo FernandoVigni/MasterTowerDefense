@@ -29,6 +29,6 @@ public class Enemy : MonoBehaviour
         distanceToTarget = Vector3.Distance(transform.position, target.position);
 
         // Imprime la distancia actual en la consola
-        Debug.Log("Distancia a la torre: " + distanceToTarget);
+        //Debug.Log("Distancia a la torre: " + distanceToTarget);
     }
 }

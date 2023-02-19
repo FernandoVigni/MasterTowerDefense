@@ -6,7 +6,7 @@ public class Tower : MonoBehaviour
 {
     public FireBallManager fireBallManager;
     public GameObject fireBall;
-    private List<GameObject> enemyList = new List<GameObject>();
+    public List<GameObject> enemyList = new List<GameObject>();
     public float countDown;
     public Vector3 nearEnemy;
 
@@ -15,13 +15,16 @@ public class Tower : MonoBehaviour
     {
         countDown -= Time.deltaTime;
 
-        if(enemyList != null && countDown <= 0)
+        Debug.Log(enemyList.Count);
+        if(enemyList != null && enemyList.Count > 0  && countDown <= 0)
         {
-            nearEnemy = GetNearestEnemy();
+            Debug.Log("Aca valido que la lista de enemigos no esta vacia ni sea null");
+            GetNearestEnemy();
             countDown = 2;
-            fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
-            fireBall = fireBallManager.ChooseFirstFireBall();
-            fireBall.GetComponent<FireBall>().SetDestination();
+          //  fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
+            //fireBall = fireBallManager.ChooseFirstFireBall();
+            //fireBall.GetComponent<FireBall>().SetDestination();
+            
         }
     }
 
@@ -29,6 +32,7 @@ public class Tower : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("esta buscando enemigos y parece q encontro 1");
             // Agregamos el objeto "Enemy" a la lista si no está ya en ella
             if (!enemyList.Contains(other.gameObject))
             {
@@ -56,19 +60,17 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public Vector3 GetNearestEnemy()
+    public void GetNearestEnemy()
     {
+        Debug.Log("Esta entrando a GetNearestEnemy.");
         // Ordenamos la lista de enemigos por distancia
         enemyList.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
 
         // Devolvemos el primer enemigo de la lista, si la lista no está vacía
         if (enemyList.Count > 0)
         {
-            return enemyList[0].transform.position;
-        }
-        else
-        {
-            return Vector3.zero;
+            Debug.Log("Esta entrando aca?");
+            nearEnemy = enemyList[0].transform.position;
         }
     }
 }
