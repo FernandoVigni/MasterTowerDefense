@@ -5,6 +5,8 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     private List<GameObject> enemyList = new List<GameObject>();
+    public float countDown;
+    public GameObject nearEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +17,14 @@ public class Tower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        countDown -= Time.deltaTime;
+
+        if(enemyList != null && countDown <= 0)
+        {
+            nearEnemy = GetNearestEnemy();
+            countDown = 4;
+            
+        }
     }
 
     private void OnTriggerStay(Collider other)
