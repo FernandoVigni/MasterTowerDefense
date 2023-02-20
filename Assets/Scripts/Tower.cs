@@ -5,10 +5,9 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public FireBallManager fireBallManager;
-    public GameObject fireBall;
     public List<GameObject> enemyList = new List<GameObject>();
     public float countDown;
-    public Vector3 nearEnemy;
+    Vector3 objetive;
 
     // Update is called once per frame
     void Update()
@@ -16,12 +15,11 @@ public class Tower : MonoBehaviour
         countDown -= Time.deltaTime;
         if(enemyList != null && enemyList.Count > 0  && countDown <= 0)
         {
-            GetNearestEnemy();
             countDown = 2;
-            fireBall.GetComponent<FireBall>().translate= true;
-            fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
-            fireBall = fireBallManager.ChooseFirstFireBall();
-            fireBall.GetComponent<FireBall>().SetDestination();
+            //Vector3 initPosition = transform.position;
+            objetive = GetNearestEnemyPosition();
+            Debug.Log(fireBallManager.fireBalls.Count);
+            fireBallManager.ShootNewFireball(objetive);
         }
     }
 
@@ -35,6 +33,8 @@ public class Tower : MonoBehaviour
                 enemyList.Add(other.gameObject);
             }
 
+            // lo que sigue a bajo hay q cambiarlo , cuando impacta hace daño y se va la bola a su pool y se desactiva el movimiento.
+        
             // Si la vida del objeto "Enemy" llega a 0, lo eliminamos de la lista
             if (other.gameObject.GetComponent<Enemy>().life <= 0)
             {
@@ -56,7 +56,7 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void GetNearestEnemy()
+    public Vector3 GetNearestEnemyPosition()
     {
         Debug.Log("Esta entrando a GetNearestEnemy.");
         // Ordenamos la lista de enemigos por distancia
@@ -66,7 +66,8 @@ public class Tower : MonoBehaviour
         if (enemyList.Count > 0)
         {
             Debug.Log("Esta entrando aca?");
-            nearEnemy = enemyList[0].transform.position;
+            return enemyList[0].transform.position;
         }
+        return Vector3.zero;
     }
 }

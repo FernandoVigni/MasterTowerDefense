@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e1f12de617bca48af8996c1c9b1447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBallPrefab: {fileID: 6706997641297824149, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
+  fireBallPrefab: {fileID: 6706997641297824145, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
     type: 3}
+  firstFireBall: {fileID: 0}
+  fireball: {fileID: 0}
   numFireBalls: 15
+  speed: 0
+  fireBalls: []
+  cantidaddeFireballs: 0
