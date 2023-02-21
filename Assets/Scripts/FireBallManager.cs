@@ -8,26 +8,23 @@ public class FireBallManager : MonoBehaviour
     public FireBall fireBallPrefab;
     public  FireBall firstFireBall;
     public FireBall fireBall;
-    public Transform spawnPoint;
-    public int numFireBalls = 15;
+    public GameObject spawnPoint;
+    public int numFireBalls;
     public float speed;
-
+    public  Vector3 positionToInstantiate;
     public List<FireBall> fireBalls = new List<FireBall>();
     public int ammountOFireBalls;
+
     void Start()
     {
         // Instanciamos las 15 FireBalls y las agregamos a la lista
         for (int i = 0; i < numFireBalls; i++)
         {
             Debug.Log("creada la " + i + "° fire Ball");
-            
             // Creamos una variable para guardar la posición en la que queremos instanciar el objeto
-            Vector3 positionToInstantiate = new Vector3(-40f, 0f, 0f); // Cambia los valores por las coordenadas que necesites
+            positionToInstantiate = new Vector3(0, 8f, 0f); // Cambia los valores por las coordenadas que necesites
 
-            // Creamos una variable para guardar la rotación en la que queremos instanciar el objeto
-            Quaternion rotationToInstantiate = Quaternion.identity; // La rotación por defecto es la rotación nula
-
-            FireBall fireBall = Instantiate(fireBallPrefab, positionToInstantiate, rotationToInstantiate);
+            FireBall fireBall = Instantiate(fireBallPrefab, positionToInstantiate,  Quaternion.identity);
             //fireBall.SetActive(false);
             fireBall.translate = false;
             fireBalls.Add(fireBall);
@@ -36,10 +33,16 @@ public class FireBallManager : MonoBehaviour
             Debug.Log("hay en total " + ammountOFireBalls + " Fire Balls pipipi" );
         }
     }
+    public void GoToSpawnPointPosition(FireBall fireBall)
+    {
+        Vector3 vector3SpawnPoint = spawnPoint.transform.position;
+        Debug.Log(vector3SpawnPoint);
+        fireBall.transform.position = vector3SpawnPoint;
+    }
 
     public void ShootNewFireball(Vector3 objetive)
     {
-        GoToSpawnPointPosition(fireBall);
+        //GoToSpawnPointPosition(fireBall);
         Debug.Log("chose FireBall");
         fireBall = ChooseFirstFireBall();
         Debug.Log("lookAt");
@@ -48,11 +51,6 @@ public class FireBallManager : MonoBehaviour
         fireBall.AbleToTranslate();
     }
 
-    public void GoToSpawnPointPosition(FireBall fireBall)
-    {
-        Vector3 vector3SpawnPoint = spawnPoint.transform.position;
-        this.fireBall.transform.position = vector3SpawnPoint;
-    }
 
     public FireBall ChooseFirstFireBall()
     {
@@ -78,15 +76,4 @@ public class FireBallManager : MonoBehaviour
         //firstFireBall.SetActive(true);
         return firstFireBall;
     }
-
-    void ExecuteFireBall(GameObject firstFireBall)
-    {
-            /*fireBall.GetComponent<FireBall>().translate= true;
-            fireBall.GetComponent<FireBall>().SetTarget(nearEnemy);
-            fireBall = fireBallManager.ChooseFirstFireBall();
-            fireBall.GetComponent<FireBall>().SetDestination();
-    */
-    }
-
-
 }

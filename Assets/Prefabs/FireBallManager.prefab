@@ -47,8 +47,10 @@ MonoBehaviour:
   fireBallPrefab: {fileID: 6706997641297824145, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
     type: 3}
   firstFireBall: {fileID: 0}
-  fireball: {fileID: 0}
+  fireBall: {fileID: 0}
+  spawnPoint: {fileID: 2739752882039498800, guid: cc4ba1fbb6f26b74bb29ed432e1fe3ea,
+    type: 3}
   numFireBalls: 15
   speed: 0
   fireBalls: []
-  cantidaddeFireballs: 0
+  ammountOFireBalls: 0

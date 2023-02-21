@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
+    public EnemyManager enemyManager;
     public bool translate = false;
     public int damage;
     public float speed = 5f;
@@ -25,4 +26,19 @@ public class FireBall : MonoBehaviour
         if(translate)
             transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
     } 
+
+    public Vector3 resetPosition = new Vector3(-40f, 0f, -40f);
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemyManager.DealDamage(enemy, damage);
+            }
+        }
+        transform.position = resetPosition;
+    }
 }

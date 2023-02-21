@@ -49,11 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireBallManager: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
     type: 3}
-  fireBall: {fileID: 6706997641297824149, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
   enemyList: []
   countDown: 2
-  nearEnemy: {x: 0, y: 0, z: 0}
+  countDownReset: 0
 --- !u!33 &5661699225113837603
 MeshFilter:
   m_ObjectHideFlags: 0

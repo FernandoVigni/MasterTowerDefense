@@ -47,9 +47,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3147eea908f4143ba2d50184818577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+    type: 3}
   translate: 1
   damage: 10
-  speed: 15
+  speed: 80
+  resetPosition: {x: -40, y: 0, z: -40}
 --- !u!33 &6706997641297824144
 MeshFilter:
   m_ObjectHideFlags: 0
