@@ -245,7 +245,7 @@ PrefabInstance:
     - target: {fileID: 3838839349917301232, guid: 7a644286a4f6a6f498306c589c3cbea8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.8
+      value: -29.4
       objectReference: {fileID: 0}
     - target: {fileID: 3838839349917301232, guid: 7a644286a4f6a6f498306c589c3cbea8,
         type: 3}
@@ -729,6 +729,11 @@ PrefabInstance:
     - target: {fileID: 5695652255115263878, guid: 992480639b9afff4caf2db5856740484,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+        type: 3}
+      propertyPath: listOfEnemiesInsideTheTowerCollider.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -51,7 +51,7 @@ MonoBehaviour:
     type: 3}
   translate: 1
   damage: 10
-  speed: 80
+  speed: 800
   resetPosition: {x: -40, y: 0, z: -40}
 --- !u!33 &6706997641297824144
 MeshFilter:

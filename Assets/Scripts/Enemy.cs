@@ -22,16 +22,16 @@ public class Enemy : MonoBehaviour
             Walk();
         
         // Calcula la distancia entre el enemigo y la torre
-                distanceBetweenEnemyAndTower = enemyManager.GetDistanceBetweenEnemyAndTower(transform.position);
+        distanceBetweenEnemyAndTower = enemyManager.GetDistanceBetweenEnemyAndTower(transform.position);
         if(life <= 0)
             Defet();
     }
 
  private void Walk()
  {
-    
     if (target != null && distanceBetweenEnemyAndTower > 2 )
     {
+        Debug.Log("Entro!!");
         transform.LookAt(target); // mira hacia el objetivo
         transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
     }
