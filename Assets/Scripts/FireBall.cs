@@ -29,15 +29,17 @@ public class FireBall : MonoBehaviour
 
     public Vector3 resetPosition = new Vector3(-40f, 0f, -40f);
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Entro a la colision con el enemigo");
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemyManager.DealDamage(enemy, damage);
+                //Debe transportarse a la zona de reposo,
+                // debe quedar inactiva o quieta
             }
         }
         transform.position = resetPosition;

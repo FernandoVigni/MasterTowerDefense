@@ -13,11 +13,6 @@ public class Enemy : MonoBehaviour
     public Transform target; // objeto de destino, en este caso la torre
     public float distanceBetweenEnemyAndTower; // variable para almacenar la distancia al objetivo
 
-    public void SetTarget()
-    {
-        target = GameObject.FindGameObjectWithTag("Tower").transform;
-    }
-
     private void Update()
     {
         if(isWalking)
@@ -38,14 +33,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void DealDamage(int damage)
-    {
-        life -= damage;
-    }
-
     private void Defet()
     {
+        enemyManager.RemoveEnemyFromInsideList(this);
         isWalking = false;
         transform.position = new Vector3(-40f, 0f, -40f);
+
     }
 }

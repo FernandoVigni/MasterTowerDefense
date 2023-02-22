@@ -25,7 +25,8 @@ public class Tower : MonoBehaviour
             objetive = enemyManager.GetNearestEnemyPosition();
             Debug.Log(objetive);
             Debug.Log(fireBallManager.fireBalls.Count);
-            fireBallManager.ShootNewFireball(objetive);    
+            fireBallManager.ShootNewFireball(objetive);   
+
         }
     }
 

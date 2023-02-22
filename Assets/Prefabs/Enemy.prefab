@@ -54,7 +54,7 @@ MonoBehaviour:
   speed: 2
   armor: 0
   isWalking: 1
-  target: {fileID: 0}
+  target: {fileID: 5661699225113837601, guid: 99c952bdec45907429ded744850f405a, type: 3}
   distanceBetweenEnemyAndTower: 0
 --- !u!33 &3838839349917301234
 MeshFilter:

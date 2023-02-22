@@ -6,7 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     public Transform positionToInstantiateWarrior;
     public Enemy enemy;
-
+    public Transform target;
     public int ammountOfEnemiesInsideTowerCollider;
     public List<Enemy> listOfEnemiesToDefeatInThisWave = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
@@ -51,10 +51,9 @@ public class EnemyManager : MonoBehaviour
         enemy.life -= damage;
     }
 
-    public void InititateEnemy(Enemy enemy)
+    public void RemoveEnemyFromInsideList(Enemy enemyToRemove)
     {
-        enemy.SetTarget();
-        enemy.isWalking = true;
+        listOfEnemiesInsideTheTowerCollider.Remove(enemyToRemove);
     }
 
     public void StartLevel(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
@@ -80,11 +79,15 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Se esta instanciando");
         Enemy newWarriorEnemy = Instantiate(enemy, positionToInstantiateWarrior.position, Quaternion.identity);
         SetWarriorStatsInEnemy(newWarriorEnemy);
-        newWarriorEnemy.SetTarget();
+        SetTarget(enemy);
         // deberia agregarse aqui los graficos del warrior.
         listOfEnemiesToDefeatInThisWave.Add(newWarriorEnemy);
     }
 
+    public void SetTarget(Enemy enemy)
+    {
+        target = GameObject.FindGameObjectWithTag("Tower").transform;
+    }
     private void SetWarriorStatsInEnemy(Enemy enemy)
     {
         enemy.life = 100;
