@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead74b14276173438c36318177f71e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfEnemiesToDefeatInThisWave: []
-  listOfEnemiesInsideTheTowerCollider: []
   positionToInstantiateWarrior: {fileID: 2458795365865140586, guid: cdce18b1e2e73a742b8984ceeefa992a,
     type: 3}
   enemy: {fileID: 3838839349917301235, guid: 7a644286a4f6a6f498306c589c3cbea8, type: 3}
+  ammountOfEnemiesInsideTowerCollider: 0
+  listOfEnemiesToDefeatInThisWave: []
+  listOfEnemiesInsideTheTowerCollider: []

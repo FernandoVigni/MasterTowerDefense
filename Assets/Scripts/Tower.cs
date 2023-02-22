@@ -9,14 +9,15 @@ public class Tower : MonoBehaviour
     public float countDown;
     public float countDownReset;
     Vector3 objetive;
-    public bool firstTimeCLear;
 
     // Update is called once per frame
     void Update()
     {
         countDown -= Time.deltaTime;
 
-        if(enemyManager.listOfEnemiesInsideTheTowerCollider != null && enemyManager.listOfEnemiesInsideTheTowerCollider.Count > 0  && countDown <= 0)
+        Debug.Log("desde la Tower contando "+ enemyManager.listOfEnemiesInsideTheTowerCollider.Count);
+
+        if(enemyManager.listOfEnemiesInsideTheTowerCollider != null && enemyManager.ammountOfEnemiesInsideTowerCollider > 0  && countDown <= 0)
         {
             countDown = countDownReset;
     
@@ -30,22 +31,12 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
         if (other.gameObject.tag == "Enemy")
         {
-
             Enemy enemy = other.GetComponent<Enemy>();
+            Debug.Log(enemy);
             Debug.Log("Chequeando si esta en la lista , sino se lo agrega");
             enemyManager.CheckEnemyContainedInsideList(enemy);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            enemyManager.RemoveEnemyFromTheInsideList(enemy);
         }
     }
 }

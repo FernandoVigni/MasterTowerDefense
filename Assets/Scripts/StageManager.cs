@@ -19,10 +19,18 @@ public class StageManager : MonoBehaviour
         StartLevelOne();
     }
 
+    void ResetBasicStats()
+    {
+        enemyManager.listOfEnemiesToDefeatInThisWave.RemoveAll(Enemy => true);
+        enemyManager.listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
+        enemyManager.ammountOfEnemiesInsideTowerCollider = 0;
+    }
+
     public void StartLevelOne()
     {
-        enemyManager.listOfEnemiesToDefeatInThisWave.Clear();
-        ammountOfWarriorsInWave = 10;
+        Debug.Log("Probando la cantidad : "+ enemyManager.listOfEnemiesToDefeatInThisWave.Count);
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 4;
         ammountOfMagesInWave = 0;
         ammountOfGiantsInWave = 0;
 

@@ -51,11 +51,8 @@ public class FireBallManager : MonoBehaviour
         fireBall.AbleToTranslate();
     }
 
-
     public FireBall ChooseFirstFireBall()
     {
-        Debug.Log("la lista tiene antes de elegir la 1ra fireBall: " + ammountOFireBalls );
-        Debug.Log("entro a seleccionar la 1er fireball");
         // Si la lista está vacía, devolvemos null
         if (fireBalls.Count <= 0)
         {

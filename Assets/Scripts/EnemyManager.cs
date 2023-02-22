@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public List<Enemy> listOfEnemiesToDefeatInThisWave = new List<Enemy>();
-    public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
     public Transform positionToInstantiateWarrior;
     public Enemy enemy;
-        
+
+    public int ammountOfEnemiesInsideTowerCollider;
+    public List<Enemy> listOfEnemiesToDefeatInThisWave = new List<Enemy>();
+    public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
+
+    void Update()
+    {   
+        ammountOfEnemiesInsideTowerCollider = listOfEnemiesInsideTheTowerCollider.Count;   
+    }
     public Vector3 GetNearestEnemyPosition()
     {
         // Ordenamos la lista de enemigos por distancia
-        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+        if(listOfEnemiesInsideTheTowerCollider.Count > 1)
+            listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
 
         // Devolvemos el primer enemigo de la lista, si la lista no está vacía
         if (listOfEnemiesInsideTheTowerCollider.Count > 0)
@@ -26,16 +33,10 @@ public class EnemyManager : MonoBehaviour
     {
         if (!listOfEnemiesInsideTheTowerCollider.Contains(enemy))
         {
+            Debug.Log("no estaba contenido");
+            listOfEnemiesToDefeatInThisWave.Remove(enemy);
             listOfEnemiesInsideTheTowerCollider.Add(enemy);
         }   
-    }
-
-    public void RemoveEnemyFromTheInsideList(Enemy enemy)
-    {
-        if (listOfEnemiesInsideTheTowerCollider.Contains(enemy))
-        {
-            listOfEnemiesInsideTheTowerCollider.Remove(enemy);          
-        }
     }
 
     public float GetDistanceBetweenEnemyAndTower(Vector3 enemyPosition)
@@ -54,12 +55,6 @@ public class EnemyManager : MonoBehaviour
     {
         enemy.SetTarget();
         enemy.isWalking = true;
-    }
-
-    public void ActivateFirstEnemyInListInitialized()
-    {
-        Enemy enemy = listOfEnemiesInsideTheTowerCollider[0];
-        InititateEnemy(enemy);
     }
 
     public void StartLevel(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
@@ -85,6 +80,7 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("Se esta instanciando");
         Enemy newWarriorEnemy = Instantiate(enemy, positionToInstantiateWarrior.position, Quaternion.identity);
         SetWarriorStatsInEnemy(newWarriorEnemy);
+        newWarriorEnemy.SetTarget();
         // deberia agregarse aqui los graficos del warrior.
         listOfEnemiesToDefeatInThisWave.Add(newWarriorEnemy);
     }
