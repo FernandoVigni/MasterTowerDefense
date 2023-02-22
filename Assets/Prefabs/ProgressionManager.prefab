@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5695652255115263872
+--- !u!1 &3324482913425749530
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5695652255115263878}
-  - component: {fileID: 5695652255115263879}
+  - component: {fileID: 5857348866703491890}
+  - component: {fileID: 324651876255689605}
   m_Layer: 0
-  m_Name: EnemyManager
+  m_Name: ProgressionManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5695652255115263878
+--- !u!4 &5857348866703491890
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5695652255115263872}
+  m_GameObject: {fileID: 3324482913425749530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.45, y: -0.06999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,20 +32,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5695652255115263879
+--- !u!114 &324651876255689605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5695652255115263872}
+  m_GameObject: {fileID: 3324482913425749530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ead74b14276173438c36318177f71e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 16908592d3effad478dbc392c53cc00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfEnemiesToDefeatInThisWave: []
-  listOfEnemiesInsideTheTowerCollider: []
-  positionToInstantiateWarrior: {fileID: 2458795365865140586, guid: cdce18b1e2e73a742b8984ceeefa992a,
-    type: 3}
-  warrior: {fileID: 6472312994817561963, guid: 46f2ccea2e949e140b2b9f3e8804bc98, type: 3}

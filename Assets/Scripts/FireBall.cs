@@ -41,4 +41,12 @@ public class FireBall : MonoBehaviour
         }
         transform.position = resetPosition;
     }
+
+    /*
+    ver el tema de la FireBall, decidir los diferentes efectos que seran las tarjetas de mejora 
+(Offensive: Speed, Damage, AreaOfExplosion, salpicaduras, quemadura, )
+(Defensive: Armor(reduce % physical damage),MagicArmor(reduce % magic Damage), life, circleOfBrea(activable), )
+(Income: IncomePerWave, IncomeXn )
+
+    */
 }

@@ -6,9 +6,11 @@ public class Enemy : MonoBehaviour
 {
     public EnemyManager enemyManager;
     public int life;
+    public float speed; // velocidad a la que se mueve el enemigo hacia la torre
+    public int armor;
     public bool isWalking = true;
-    public float speed = 5f; // velocidad a la que se mueve el enemigo hacia la torre
-    private Transform target; // objeto de destino, en este caso la torre
+
+    public Transform target; // objeto de destino, en este caso la torre
     public float distanceBetweenEnemyAndTower; // variable para almacenar la distancia al objetivo
 
     public void SetTarget()
@@ -31,7 +33,6 @@ public class Enemy : MonoBehaviour
  {
     if (target != null && distanceBetweenEnemyAndTower > 2 )
     {
-        Debug.Log("Entro!!");
         transform.LookAt(target); // mira hacia el objetivo
         transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
     }
