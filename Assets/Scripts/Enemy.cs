@@ -29,14 +29,14 @@ public class Enemy : MonoBehaviour
             Defet();
     }
 
- private void Walk()
- {
-    if (target != null && distanceBetweenEnemyAndTower > 2 )
+    private void Walk()
     {
-        transform.LookAt(target); // mira hacia el objetivo
-        transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
+        if (target != null && distanceBetweenEnemyAndTower > 2 )
+        {
+            transform.LookAt(target); // mira hacia el objetivo
+            transform.Translate(Vector3.forward * speed * Time.deltaTime); // se mueve hacia el objetivo
+        }
     }
- }
 
     public void DealDamage(int damage)
     {

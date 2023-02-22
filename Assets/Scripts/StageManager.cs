@@ -9,7 +9,6 @@ public class StageManager : MonoBehaviour
     public int level;
     public int wave;
     public float waveLimitTime;
-
     public int ammountOfWarriorsInWave;
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
@@ -20,16 +19,10 @@ public class StageManager : MonoBehaviour
         StartLevelOne();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartLevelOne()
     {
         enemyManager.listOfEnemiesToDefeatInThisWave.Clear();
-        ammountOfWarriorsInWave = 1;
+        ammountOfWarriorsInWave = 10;
         ammountOfMagesInWave = 0;
         ammountOfGiantsInWave = 0;
 

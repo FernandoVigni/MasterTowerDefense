@@ -48,4 +48,4 @@ MonoBehaviour:
   listOfEnemiesInsideTheTowerCollider: []
   positionToInstantiateWarrior: {fileID: 2458795365865140586, guid: cdce18b1e2e73a742b8984ceeefa992a,
     type: 3}
-  warrior: {fileID: 6472312994817561963, guid: 46f2ccea2e949e140b2b9f3e8804bc98, type: 3}
+  enemy: {fileID: 3838839349917301235, guid: 7a644286a4f6a6f498306c589c3cbea8, type: 3}

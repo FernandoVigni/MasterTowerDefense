@@ -4,24 +4,10 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    
-    /* Metodos:
-        GetNearestEnemyPosition()
-        CheckEnemyContainedInsideList(Enemy enemy)
-        RemoveEnemyFromTheInsideList(Enemy enemy)
-        RemoveEnemyFromTheOutsideList(Enemy enemy)
-        GetDistanceBetweenEnemyAndTower(Vector3 enemyPosition)
-        DealDamage(Enemy enemy, int damage)
-        InititateEnemy(Enemy enemy)
-        ActivateFirstEnemyInListInitialized()
-    */
-
-
-
     public List<Enemy> listOfEnemiesToDefeatInThisWave = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
     public Transform positionToInstantiateWarrior;
-    public Warrior warrior;
+    public Enemy enemy;
         
     public Vector3 GetNearestEnemyPosition()
     {
@@ -33,13 +19,12 @@ public class EnemyManager : MonoBehaviour
         {
             return listOfEnemiesInsideTheTowerCollider[0].transform.position;
         }
-        Debug.Log("La Lista de enemigos /enemyList/ estaba vacia");
         return Vector3.zero;
     }
     
     public void CheckEnemyContainedInsideList(Enemy enemy)
     {
-         if (!listOfEnemiesInsideTheTowerCollider.Contains(enemy))
+        if (!listOfEnemiesInsideTheTowerCollider.Contains(enemy))
         {
             listOfEnemiesInsideTheTowerCollider.Add(enemy);
         }   
@@ -47,7 +32,6 @@ public class EnemyManager : MonoBehaviour
 
     public void RemoveEnemyFromTheInsideList(Enemy enemy)
     {
-            // Eliminamos el objeto "Enemy" de la lista si está en ella
         if (listOfEnemiesInsideTheTowerCollider.Contains(enemy))
         {
             listOfEnemiesInsideTheTowerCollider.Remove(enemy);          
@@ -82,7 +66,7 @@ public class EnemyManager : MonoBehaviour
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)
         {
-            InstantiateWarior();
+            InstantiateWarrior();
         }
 
       /*  for (int i = 0; i < ammountOfMagesInWave; i++)
@@ -95,6 +79,15 @@ public class EnemyManager : MonoBehaviour
             InstantitateGiant();
         }*/
     }
+    
+    private void InstantiateWarrior()
+    {
+        Debug.Log("Se esta instanciando");
+        Enemy newWarriorEnemy = Instantiate(enemy, positionToInstantiateWarrior.position, Quaternion.identity);
+        SetWarriorStatsInEnemy(newWarriorEnemy);
+        // deberia agregarse aqui los graficos del warrior.
+        listOfEnemiesToDefeatInThisWave.Add(newWarriorEnemy);
+    }
 
     private void SetWarriorStatsInEnemy(Enemy enemy)
     {
@@ -103,5 +96,4 @@ public class EnemyManager : MonoBehaviour
         enemy.armor = 10;
         // si tiene alguna habilidad especial va aqui
     }
-
 }
