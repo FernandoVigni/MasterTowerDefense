@@ -32,15 +32,14 @@ public class FireBallManager : MonoBehaviour
     public void GoToSpawnPointPosition(FireBall fireBall)
     {
         Vector3 vector3SpawnPoint = spawnPoint.transform.position;
-        Debug.Log(vector3SpawnPoint);
         fireBall.transform.position = vector3SpawnPoint;
     }
 
-    public void ShootNewFireball(Vector3 objetive)
+    public void ShootNewFireball(Enemy enemy)
     {
         //GoToSpawnPointPosition(fireBall);
         fireBall = ChooseFirstFireBall();
-        fireBall.LookAt(objetive);
+        fireBall.LookAt(enemy.transform.position);
         fireBall.AbleToTranslate();
     }
 
@@ -51,8 +50,13 @@ public class FireBallManager : MonoBehaviour
             return null;
         }
         firstFireBall = fireBalls[0];
+        MoveFirstFireBallToTheEnd();
+        return firstFireBall;
+    }
+
+    public void MoveFirstFireBallToTheEnd()
+    {
         fireBalls.RemoveAt(0);
         fireBalls.Add(firstFireBall);
-        return firstFireBall;
     }
 }

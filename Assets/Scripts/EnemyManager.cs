@@ -6,72 +6,56 @@ public class EnemyManager : MonoBehaviour
 {
     public Transform positionToInstantiateWarrior;
     public Transform positionToInstantiateMage;
-    public Transform pointToInstantiateGiant;
+    public Transform positionToInstantiateGiant;
     public Warrior warrior;
     public Mage mage;
+    public Giant giant;
     public Tower tower;
-
-    public int ammountOfEnemiesInsideTowerCollider;
-    //Todo , borrar el harcodeo.
-    public Vector3 pointToTranslateEnemy;
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
-    public Vector3 GetNearestEnemyPosition()
+    public Enemy GetNearestEnemy()
     {
-        if(listOfEnemiesInsideTheTowerCollider.Count > 1)
-            listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
-
-        if (listOfEnemiesInsideTheTowerCollider.Count > 0)
-            return listOfEnemiesInsideTheTowerCollider[0].transform.position;
-            
-        return Vector3.zero;
-    }
-    
-    public void CheckEnemyContainedInsideList(Enemy enemy)
-    {
-        if (!listOfEnemiesInsideTheTowerCollider.Contains(enemy))
+        if (listOfEnemiesInsideTheTowerCollider.Count > 1)
         {
-            listOfEnemiesToDefeatInThisStage.Remove(enemy);
-            listOfEnemiesInsideTheTowerCollider.Add(enemy);
-        }   
-    }
+            listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+            return listOfEnemiesInsideTheTowerCollider[0];
+        }
+        if (listOfEnemiesInsideTheTowerCollider.Count == 1)
+            return listOfEnemiesInsideTheTowerCollider[0];
 
-    public void RemoveEnemyFromInsideList(Enemy enemyToRemove)
-    {
-        listOfEnemiesInsideTheTowerCollider.Remove(enemyToRemove);
+        return null;
     }
 
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
-        newWarriorEnemy.isWalking = false;
-        listOfEnemiesToDefeatInThisStage.Add(newWarriorEnemy);
-        MoveEnemyToInitialPosition(newWarriorEnemy);
+        EnemySet(newWarriorEnemy);
     }
 
     public void InstantiateMage()
     {
         Mage newMageEnemy = Instantiate(mage, positionToInstantiateMage.position, Quaternion.identity);
-        newMageEnemy.isWalking = false;
-        listOfEnemiesToDefeatInThisStage.Add(newMageEnemy);
-        MoveEnemyToInitialPosition(newMageEnemy);
+        EnemySet(newMageEnemy);
     }
 
-
-
-    public void MoveEnemyToInitialPosition(Enemy enemy)
+    public void InstantiateGiant()
     {
-       //esto esta mal , desarrollar
-        int angle = GetRandomAngle();
-        Vector3 centerPoint = new Vector3(0, 0, 0);
-        transform.position = pointToTranslateEnemy;
-        enemy.isWalking = true;
+        Mage newGiantEnemy = Instantiate(mage, positionToInstantiateGiant.position, Quaternion.identity);
+        EnemySet(newGiantEnemy);
     }
 
-
-    public int GetRandomAngle()
+    public void EnemySet(Enemy enemy)
     {
-        return UnityEngine.Random.Range(1, 361);
+        enemy.isWalking = false;
+        enemy.OnDeath += OnEnemyDeath;
+        listOfEnemiesToDefeatInThisStage.Add(enemy);
+    }
+    
+    public void OnEnemyDeath(Enemy enemy) 
+    {
+        listOfEnemiesToDefeatInThisStage.Remove(enemy);
+        Destroy(enemy);
+        //Chequeamos que no queden mas enemigos aqui?
     }
 }

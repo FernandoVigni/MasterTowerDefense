@@ -36,8 +36,6 @@ public class FireBall : MonoBehaviour
             if (enemy != null)
             {
                 enemy.ReceibeDamage(damage);
-                if(enemy.life <= 0)
-                    enemyManager.RemoveEnemyFromInsideList(enemy);
             }
         }
         transform.position = resetPosition;

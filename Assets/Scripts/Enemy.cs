@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     public Tower tower;
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
-
     public int physicalDamage;
     public int magicDamage;
     public int life;
@@ -29,8 +28,8 @@ public class Enemy : MonoBehaviour
     public void ReceibeDamage(int damage) 
     {
         life -= damage;
-        if (IsAlive()) 
-            OnDeath.Invoke(this);
+        if (!IsAlive()) 
+            OnDeath?.Invoke(this);
     }
 
     private bool IsAlive() 
