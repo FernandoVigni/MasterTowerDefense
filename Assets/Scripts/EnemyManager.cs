@@ -5,27 +5,26 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public Transform positionToInstantiateWarrior;
-    public Enemy enemy;
-    public Transform target;
+    public Transform positionToInstantiateMage;
+    public Transform pointToInstantiateGiant;
+    public Warrior warrior;
+    public Mage mage;
+    public Tower tower;
+
     public int ammountOfEnemiesInsideTowerCollider;
-    public List<Enemy> listOfEnemiesToDefeatInThisWave = new List<Enemy>();
+    //Todo , borrar el harcodeo.
+    public Vector3 pointToTranslateEnemy;
+    public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
-    void Update()
-    {   
-        ammountOfEnemiesInsideTowerCollider = listOfEnemiesInsideTheTowerCollider.Count;   
-    }
     public Vector3 GetNearestEnemyPosition()
     {
-        // Ordenamos la lista de enemigos por distancia
         if(listOfEnemiesInsideTheTowerCollider.Count > 1)
             listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
 
-        // Devolvemos el primer enemigo de la lista, si la lista no está vacía
         if (listOfEnemiesInsideTheTowerCollider.Count > 0)
-        {
             return listOfEnemiesInsideTheTowerCollider[0].transform.position;
-        }
+            
         return Vector3.zero;
     }
     
@@ -33,22 +32,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (!listOfEnemiesInsideTheTowerCollider.Contains(enemy))
         {
-            Debug.Log("no estaba contenido");
-            listOfEnemiesToDefeatInThisWave.Remove(enemy);
+            listOfEnemiesToDefeatInThisStage.Remove(enemy);
             listOfEnemiesInsideTheTowerCollider.Add(enemy);
         }   
-    }
-
-    public float GetDistanceBetweenEnemyAndTower(Vector3 enemyPosition)
-    {
-        float distanceBetweenEnemyAndTower;
-        Transform target = GameObject.FindGameObjectWithTag("Tower").transform;
-        return distanceBetweenEnemyAndTower = Vector3.Distance(enemyPosition, target.position);
-    }
-
-    public void DealDamage(Enemy enemy, int damage)
-    {
-        enemy.life -= damage;
     }
 
     public void RemoveEnemyFromInsideList(Enemy enemyToRemove)
@@ -56,43 +42,36 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesInsideTheTowerCollider.Remove(enemyToRemove);
     }
 
-    public void StartLevel(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
+    public void InstantiateWarrior()
     {
-        for (int i = 0; i < ammountOfWarriorsInWave; i++)
-        {
-            InstantiateWarrior();
-        }
-
-      /*  for (int i = 0; i < ammountOfMagesInWave; i++)
-        {
-            InstantiateMage();
-        }
-
-        for (int i = 0; i < ammountOfGigantsInWave; i++)
-        {
-            InstantitateGiant();
-        }*/
-    }
-    
-    private void InstantiateWarrior()
-    {
-        Debug.Log("Se esta instanciando");
-        Enemy newWarriorEnemy = Instantiate(enemy, positionToInstantiateWarrior.position, Quaternion.identity);
-        SetWarriorStatsInEnemy(newWarriorEnemy);
-        SetTarget(enemy);
-        // deberia agregarse aqui los graficos del warrior.
-        listOfEnemiesToDefeatInThisWave.Add(newWarriorEnemy);
+        Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
+        newWarriorEnemy.isWalking = false;
+        listOfEnemiesToDefeatInThisStage.Add(newWarriorEnemy);
+        MoveEnemyToInitialPosition(newWarriorEnemy);
     }
 
-    public void SetTarget(Enemy enemy)
+    public void InstantiateMage()
     {
-        target = GameObject.FindGameObjectWithTag("Tower").transform;
+        Mage newMageEnemy = Instantiate(mage, positionToInstantiateMage.position, Quaternion.identity);
+        newMageEnemy.isWalking = false;
+        listOfEnemiesToDefeatInThisStage.Add(newMageEnemy);
+        MoveEnemyToInitialPosition(newMageEnemy);
     }
-    private void SetWarriorStatsInEnemy(Enemy enemy)
+
+
+
+    public void MoveEnemyToInitialPosition(Enemy enemy)
     {
-        enemy.life = 100;
-        enemy.speed = 3;
-        enemy.armor = 10;
-        // si tiene alguna habilidad especial va aqui
+       //esto esta mal , desarrollar
+        int angle = GetRandomAngle();
+        Vector3 centerPoint = new Vector3(0, 0, 0);
+        transform.position = pointToTranslateEnemy;
+        enemy.isWalking = true;
+    }
+
+
+    public int GetRandomAngle()
+    {
+        return UnityEngine.Random.Range(1, 361);
     }
 }
