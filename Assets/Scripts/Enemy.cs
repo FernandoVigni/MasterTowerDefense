@@ -45,4 +45,11 @@ public class Enemy : MonoBehaviour
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
     }
+
+    public void OnEnemyDeath(Enemy enemy)
+    {
+        enemyManager.listOfEnemiesToDefeatInThisStage.Remove(enemy);
+        Destroy(enemy);
+        //Chequeamos que no queden mas enemigos aqui?
+    }
 }

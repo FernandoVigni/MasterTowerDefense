@@ -16,20 +16,30 @@ public class Tower : MonoBehaviour
     void Update()
     {
         countDown -= Time.deltaTime;
-        
-        if(countDown <= 0) 
-        {
-            Enemy nearestEnemy = enemyManager.GetNearestEnemyToTower();
 
+        if (countDown <= 0 && enemyManager.listOfEnemiesToDefeatInThisStage.Count > 0)
+        {
+            GetEnemiesInsideCollider();
+            Enemy nearestEnemy = GetNearestEnemy();
+            if (nearestEnemy != null)
+            {
+                countDown = countDownReset;
+                Shoot(nearestEnemy);
+            }
         }
+    }
 
-        /*
-        if(enemyManager.listOfEnemiesInsideTheTowerCollider != null && enemyManager.ammountOfEnemiesInsideTowerCollider > 0  && countDown <= 0)
+    public Enemy GetNearestEnemy()
+    {
+        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Count > 1)
         {
-            countDown = countDownReset;
-            objetive = enemyManager.GetNearestEnemyPosition();
-            fireBallManager.ShootNewFireball(objetive);   
-        }*/
+            enemyManager.listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+            return enemyManager.listOfEnemiesInsideTheTowerCollider[0];
+        }
+        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Count == 1)
+            return enemyManager.listOfEnemiesInsideTheTowerCollider[0];
+
+        return null;
     }
 
     public List<Enemy> GetEnemiesInsideCollider()
@@ -48,7 +58,7 @@ public class Tower : MonoBehaviour
 
     public void Shoot(Enemy objetive) 
     {
-        enemiesInsideCollider = GetEnemiesInsideCollider();
+         fireBallManager.ShootFireball(objetive);
     }
 
     private void OnTriggerStay(Collider other)

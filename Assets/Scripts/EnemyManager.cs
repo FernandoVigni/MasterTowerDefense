@@ -14,19 +14,6 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
-    public Enemy GetNearestEnemy()
-    {
-        if (listOfEnemiesInsideTheTowerCollider.Count > 1)
-        {
-            listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
-            return listOfEnemiesInsideTheTowerCollider[0];
-        }
-        if (listOfEnemiesInsideTheTowerCollider.Count == 1)
-            return listOfEnemiesInsideTheTowerCollider[0];
-
-        return null;
-    }
-
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
@@ -48,14 +35,7 @@ public class EnemyManager : MonoBehaviour
     public void EnemySet(Enemy enemy)
     {
         enemy.isWalking = false;
-        enemy.OnDeath += OnEnemyDeath;
+        enemy.OnDeath += enemy.OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
-    }
-    
-    public void OnEnemyDeath(Enemy enemy) 
-    {
-        listOfEnemiesToDefeatInThisStage.Remove(enemy);
-        Destroy(enemy);
-        //Chequeamos que no queden mas enemigos aqui?
     }
 }

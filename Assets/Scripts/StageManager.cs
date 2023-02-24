@@ -5,7 +5,6 @@ using UnityEngine;
 public class StageManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
-
     public int level;
     public int wave;
     public float waveLimitTime;
@@ -33,6 +32,7 @@ public class StageManager : MonoBehaviour
         ammountOfGiantsInWave = 0;
         StartLevel(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
+
     public void StartLevel(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)

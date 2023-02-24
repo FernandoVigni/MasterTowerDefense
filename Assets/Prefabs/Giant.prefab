@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7989516419504717462}
+  - component: {fileID: -590035906914972376}
   - component: {fileID: 7318535914152470964}
   - component: {fileID: 1388469980108981479}
   - component: {fileID: 5300153759580082127}
@@ -34,6 +35,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-590035906914972376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3888852749201576029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e28dd6a5a763d4c86577b657d94898, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 0}
+  enemyManager: {fileID: 0}
+  physicalDamage: 0
+  magicDamage: 0
+  life: 0
+  speed: 0
+  armor: 0
+  isWalking: 0
+  distanceToTower: 0
 --- !u!33 &7318535914152470964
 MeshFilter:
   m_ObjectHideFlags: 0
