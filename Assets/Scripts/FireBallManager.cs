@@ -16,7 +16,6 @@ public class FireBallManager : Projectile
 
     void Start()
     {
-        // Instanciamos las 15 FireBalls y las agregamos a la lista
         for (int i = 0; i < numFireBalls; i++)
         {
             positionToInstantiate = PointToStartShoot.position;
@@ -26,18 +25,19 @@ public class FireBallManager : Projectile
         }
     }
    
-    public void ShootFireball(Enemy enemy)
+    public void ShootProjectile(Enemy enemy)
     {
-        fireBall = ChooseFirstFireBall();
+        fireBall = ChooseFirstProjectile();
         fireBall.transform.position = PointToStartShoot.position;
         fireBall.LookAt(enemy);
         fireBall.StartMove();
     }
 
-    public FireBall ChooseFirstFireBall()
+    public FireBall ChooseFirstProjectile()
     {
         if (fireBalls.Count <= 0)
         {
+            Debug.Log("null");
             return null;
         }
         firstFireBall = fireBalls[0];

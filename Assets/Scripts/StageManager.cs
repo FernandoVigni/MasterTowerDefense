@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -24,8 +25,8 @@ public class StageManager : MonoBehaviour
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 2;
-        ammountOfMagesInWave = 2;
+        ammountOfWarriorsInWave = 1;
+        ammountOfMagesInWave = 0;
         ammountOfGiantsInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
@@ -50,12 +51,12 @@ public class StageManager : MonoBehaviour
        
         for (int i = 0; i < ammountOfGigantsInWave; i++)
         {
-            //enemyManager.InstantitateGiant();
+            enemyManager.InstantiateGiant();
         }
         SendEnemies();
     }
 
-    public void SendEnemies()
+    public async void SendEnemies()
     {
         int enemiesInThisLevel = enemyManager.listOfEnemiesToDefeatInThisStage.Count;
         enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
@@ -64,6 +65,7 @@ public class StageManager : MonoBehaviour
             Enemy enemy = enemyManager.listOfEnemiesToDefeatInThisStage[i];
             enemy.transform.position = PointOfSpawnOfWave.transform.position;
             enemy.StartMove();
+            await Task.Delay(2000);
         }
         
         // timer para ir mandando enemigos. 

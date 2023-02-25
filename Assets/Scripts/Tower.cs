@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
-{
-    List<Enemy> enemiesInsideCollider = new List<Enemy>();
+{ 
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
+    public Enemy objetive;
     public float countDown;
     public float countDownReset;
-    public Enemy objetive;
     private int life;
 
     // Update is called once per frame
@@ -17,15 +16,11 @@ public class Tower : MonoBehaviour
     {
         countDown -= Time.deltaTime;
 
-        if (countDown <= 0 && enemyManager.listOfEnemiesToDefeatInThisStage.Count > 0)
+        if (countDown <= 0 && enemyManager.listOfEnemiesInsideTheTowerCollider.Count > 0)
         {
-            GetEnemiesInsideCollider();
             Enemy nearestEnemy = GetNearestEnemy();
-            if (nearestEnemy != null)
-            {
-                countDown = countDownReset;
-                Shoot(nearestEnemy);
-            }
+            countDown = countDownReset;
+            Shoot(nearestEnemy);        
         }
     }
 
@@ -42,36 +37,34 @@ public class Tower : MonoBehaviour
         return null;
     }
 
-    public List<Enemy> GetEnemiesInsideCollider()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 1);
-        foreach (Collider col in colliders)
-        {
-            if (col.CompareTag("Enemy"))
-            {
-                Enemy enemy = col.GetComponent<Enemy>();
-                enemyManager.listOfEnemiesInsideTheTowerCollider.Add(enemy);
-            }
-        }
-        return enemyManager.listOfEnemiesInsideTheTowerCollider;
-    }
-
     public void Shoot(Enemy objetive) 
     {
-         fireBallManager.ShootFireball(objetive);
+         fireBallManager.ShootProjectile(objetive);
+    }
+
+    public void ReciveDamage(int damage)
+    {
+        life -= damage;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy") 
         {
             Enemy enemy = other.GetComponent<Enemy>();
-            enemyManager.listOfEnemiesInsideTheTowerCollider.Add(enemy);
-        }
+            if (!enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(enemy)) 
+            {
+                enemyManager.listOfEnemiesInsideTheTowerCollider.Add(enemy);
+            }
+        }            
     }
 
-    public void ReciveDamage(int damage) 
+    private void OnTriggerExit(Collider other)
     {
-        life -= damage;   
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(enemy))
+        {
+            enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(enemy);
+        }
     }
 }

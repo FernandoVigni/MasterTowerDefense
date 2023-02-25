@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5695652255115263872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.45, y: -0.06999999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -49,6 +49,8 @@ MonoBehaviour:
   positionToInstantiateMage: {fileID: 7957350043078701684, guid: 84d93e6db487e9d46b33e0234271f288,
     type: 3}
   positionToInstantiateGiant: {fileID: 6887298371033250150, guid: ecaf34208c071f344aaa88f4fa747016,
+    type: 3}
+  PointToDiscardEnemies: {fileID: 2787623234799378152, guid: 04c396bdb73b7074b824beb9ce7068e8,
     type: 3}
   warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}
   mage: {fileID: 8079335378970957348, guid: 50972eb53d5f58a42aee84c49da3383d, type: 3}

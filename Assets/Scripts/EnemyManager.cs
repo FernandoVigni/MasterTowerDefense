@@ -7,6 +7,7 @@ public class EnemyManager : MonoBehaviour
     public Transform positionToInstantiateWarrior;
     public Transform positionToInstantiateMage;
     public Transform positionToInstantiateGiant;
+    public Transform PointToDiscardEnemies;
     public Warrior warrior;
     public Mage mage;
     public Giant giant;
@@ -50,5 +51,8 @@ public class EnemyManager : MonoBehaviour
         return firstEnemy;
     }
 
-
+    public void MoveEnemiesToDiscardPoint(Enemy enemy) 
+    {
+        enemy.transform.position = PointToDiscardEnemies.position;
+    }
 }

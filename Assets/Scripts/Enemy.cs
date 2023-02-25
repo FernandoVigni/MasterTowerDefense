@@ -63,15 +63,35 @@ public class Enemy : MonoBehaviour
             OnDeath?.Invoke(this);
     }
 
-    public void OnEnemyDeath(Enemy enemy)
-    {
-        enemyManager.listOfEnemiesToDefeatInThisStage.Remove(enemy);
-        Destroy(enemy);
-        //Chequeamos que no queden mas enemigos aqui?
-    }
-
     public void StartMove()
     {
         isWalking = true;
+    }
+
+    public void StopMove()
+    {
+        isWalking = false;
+    }
+
+    public void OnEnemyDeath(Enemy enemy)
+    {
+        if (enemyManager.listOfEnemiesToDefeatInThisStage.Contains(this))
+        {
+            Debug.Log("lo contenia la lista del stage");
+            enemyManager.listOfEnemiesToDefeatInThisStage.Remove(this);
+        }
+
+        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(this))
+        {
+
+            Debug.Log("lo contenia la lista del inside collider");
+            enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(this);
+        }
+        /*
+        enemyManager.listOfEnemiesToDefeatInThisStage.Remove(enemy);
+        enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(enemy);*/
+        enemyManager.MoveEnemiesToDiscardPoint(this);
+        enemy.StopMove();
+        //Chequeamos que no queden mas enemigos aqui?
     }
 }
