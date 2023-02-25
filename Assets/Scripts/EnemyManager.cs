@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
         EnemySet(newWarriorEnemy);
     }
-
+    
     public void InstantiateMage()
     {
         Mage newMageEnemy = Instantiate(mage, positionToInstantiateMage.position, Quaternion.identity);
@@ -38,4 +38,17 @@ public class EnemyManager : MonoBehaviour
         enemy.OnDeath += enemy.OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
     }
+
+    public void ShufleList(List<Enemy> list) 
+    {
+        listOfEnemiesToDefeatInThisStage.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
+    }
+
+    public Enemy GetFirstEnemyOnTheList() 
+    {
+        Enemy firstEnemy = listOfEnemiesToDefeatInThisStage[0];
+        return firstEnemy;
+    }
+
+
 }

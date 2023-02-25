@@ -44,13 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e1f12de617bca48af8996c1c9b1447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireBallManager: {fileID: 0}
+  speed: 0
+  damage: 0
+  translate: 0
   fireBallPrefab: {fileID: 6706997641297824145, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
     type: 3}
   firstFireBall: {fileID: 0}
   fireBall: {fileID: 0}
   spawnPoint: {fileID: 2739752882039498800, guid: cc4ba1fbb6f26b74bb29ed432e1fe3ea,
     type: 3}
+  PointToStartShoot: {fileID: 3880319725406665723, guid: 5eb5416786170944d95526b24d42e33c,
+    type: 3}
   numFireBalls: 15
-  speed: 0
+  positionToInstantiate: {x: 0, y: 0, z: 0}
   fireBalls: []
-  ammountOFireBalls: 0

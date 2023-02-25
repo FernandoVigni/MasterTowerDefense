@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e28dd6a5a763d4c86577b657d94898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tower: {fileID: 0}
-  enemyManager: {fileID: 0}
+  tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+    type: 3}
   physicalDamage: 0
   magicDamage: 0
   life: 0

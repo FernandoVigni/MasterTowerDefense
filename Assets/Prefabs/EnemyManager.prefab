@@ -52,7 +52,7 @@ MonoBehaviour:
     type: 3}
   warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}
   mage: {fileID: 8079335378970957348, guid: 50972eb53d5f58a42aee84c49da3383d, type: 3}
-  giant: {fileID: 0}
+  giant: {fileID: -590035906914972376, guid: 65ca137745571a94b8c0ab2a9c55ce90, type: 3}
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   listOfEnemiesToDefeatInThisStage: []
   listOfEnemiesInsideTheTowerCollider: []

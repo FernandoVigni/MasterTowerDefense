@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
+    public Transform PointOfSpawnOfWave;
     public int level;
     public int wave;
     public float waveLimitTime;
@@ -15,7 +17,17 @@ public class StageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartLevelOne();
+        PreSetLevelOne();
+    }
+
+
+    public void PreSetLevelOne()
+    {
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 2;
+        ammountOfMagesInWave = 2;
+        ammountOfGiantsInWave = 0;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
 
     void ResetBasicStats()
@@ -24,16 +36,7 @@ public class StageManager : MonoBehaviour
         enemyManager.listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
     }
 
-    public void StartLevelOne()
-    {
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 2;
-        ammountOfMagesInWave = 2;
-        ammountOfGiantsInWave = 0;
-        StartLevel(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
-    }
-
-    public void StartLevel(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
+    public void LoadEnemies(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)
         {
@@ -44,10 +47,27 @@ public class StageManager : MonoBehaviour
         {
             enemyManager.InstantiateMage();
         }
-/*
+       
         for (int i = 0; i < ammountOfGigantsInWave; i++)
         {
-            InstantitateGiant();
-        }*/
+            //enemyManager.InstantitateGiant();
+        }
+        SendEnemies();
     }
+
+    public void SendEnemies()
+    {
+        int enemiesInThisLevel = enemyManager.listOfEnemiesToDefeatInThisStage.Count;
+        enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
+        for (int i = 0; i < enemiesInThisLevel; i++)
+        {
+            Enemy enemy = enemyManager.listOfEnemiesToDefeatInThisStage[i];
+            enemy.transform.position = PointOfSpawnOfWave.transform.position;
+            enemy.StartMove();
+        }
+        
+        // timer para ir mandando enemigos. 
+    }   // hay que dividir la cantidad de enemigos en el tiempo y de ahi el tiempo entre spawn
+       // activar los enemigos 
+    
 }

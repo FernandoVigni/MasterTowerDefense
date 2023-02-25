@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
+  PointOfSpawnOfWave: {fileID: 5007699918489977396, guid: e72a6b88eba07d54088d65049ec68868,
+    type: 3}
   level: 0
   wave: 0
   waveLimitTime: 0

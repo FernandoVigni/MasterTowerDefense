@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class Enemy : MonoBehaviour
 {
-    public Tower tower;
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
     public int physicalDamage;
@@ -16,20 +16,20 @@ public class Enemy : MonoBehaviour
     public int armor;
     public bool isWalking;
     public float distanceToTower;
-
-   // private IPromise deathPromes;
-
+ 
     private void Update()
     {
-        if(isWalking)
+        if (isWalking) 
+        {
+            distanceToTower = CalculateDistanceToTower();
             Walk();
+        }
     }
 
-    public void ReceibeDamage(int damage) 
+    public float CalculateDistanceToTower() 
     {
-        life -= damage;
-        if (!IsAlive()) 
-            OnDeath?.Invoke(this);
+        float distance = Vector3.Distance(transform.position, enemyManager.tower.transform.position);
+        return distance;
     }
 
     private bool IsAlive() 
@@ -39,11 +39,28 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        if (tower != null && distanceToTower > 2 )
+        if (distanceToTower > 2 )
         {
-            transform.LookAt(tower.transform.position);
+            transform.LookAt(enemyManager.tower.transform.position);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
+    }
+
+    public void SetLife(int life) 
+    {
+        this.life = life;
+    }
+
+    public void SetSpeed(float speed) 
+    {
+        this.speed = speed;
+    }
+
+    public void ReceibeDamage(int damage)
+    {
+        life -= damage;
+        if (!IsAlive())
+            OnDeath?.Invoke(this);
     }
 
     public void OnEnemyDeath(Enemy enemy)
@@ -51,5 +68,10 @@ public class Enemy : MonoBehaviour
         enemyManager.listOfEnemiesToDefeatInThisStage.Remove(enemy);
         Destroy(enemy);
         //Chequeamos que no queden mas enemigos aqui?
+    }
+
+    public void StartMove()
+    {
+        isWalking = true;
     }
 }
