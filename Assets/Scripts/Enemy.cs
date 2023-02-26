@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-    public Tower tower;
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
     public int physicalDamage;
@@ -29,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     public float CalculateDistanceToTower() 
     {
-        float distance = Vector3.Distance(transform.position, tower.transform.position);
+        float distance = Vector3.Distance(transform.position, enemyManager.tower.transform.position);
         return distance;
     }
 
@@ -42,7 +41,7 @@ public class Enemy : MonoBehaviour
     {
         if (distanceToTower > 2 )
         {
-            transform.LookAt(tower.transform.position);
+            transform.LookAt(enemyManager.tower.transform.position);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
     }

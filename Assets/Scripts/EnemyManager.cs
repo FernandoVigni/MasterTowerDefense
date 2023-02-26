@@ -11,7 +11,8 @@ public class EnemyManager : MonoBehaviour
     public Warrior warrior;
     public Mage mage;
     public Giant giant;
-  
+    public Tower tower;
+
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 

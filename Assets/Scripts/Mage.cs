@@ -21,6 +21,6 @@ public class Mage : Enemy
 
     public void EnergyBall() 
     {
-        tower.ReciveDamage(magicDamage);
+        enemyManager.tower.ReciveDamage(magicDamage);
     }
 }
