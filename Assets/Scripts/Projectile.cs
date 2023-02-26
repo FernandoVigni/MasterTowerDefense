@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
+
+
+
     public FireBallManager fireBallManager;
 
     public float speed;

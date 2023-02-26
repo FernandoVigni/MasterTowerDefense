@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0ea8101df53be4b853820d08b12e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+    type: 3}
+  listaDePrueba: []
   fireBallManager: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
     type: 3}
   speed: 0

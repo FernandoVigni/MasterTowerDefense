@@ -25,8 +25,8 @@ public class StageManager : MonoBehaviour
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 1;
-        ammountOfMagesInWave = 0;
+        ammountOfWarriorsInWave = 2;
+        ammountOfMagesInWave = 2;
         ammountOfGiantsInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
@@ -66,10 +66,6 @@ public class StageManager : MonoBehaviour
             enemy.transform.position = PointOfSpawnOfWave.transform.position;
             enemy.StartMove();
             await Task.Delay(2000);
-        }
-        
-        // timer para ir mandando enemigos. 
-    }   // hay que dividir la cantidad de enemigos en el tiempo y de ahi el tiempo entre spawn
-       // activar los enemigos 
-    
+        }       
+    }   // hay que dividir la cantidad de enemigos en el tiempo y de ahi el tiempo entre spawn    
 }

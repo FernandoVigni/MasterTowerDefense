@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    public Tower tower;
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
     public int physicalDamage;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     public float CalculateDistanceToTower() 
     {
-        float distance = Vector3.Distance(transform.position, enemyManager.tower.transform.position);
+        float distance = Vector3.Distance(transform.position, tower.transform.position);
         return distance;
     }
 
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if (distanceToTower > 2 )
         {
-            transform.LookAt(enemyManager.tower.transform.position);
+            transform.LookAt(tower.transform.position);
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
     }
@@ -75,23 +76,8 @@ public class Enemy : MonoBehaviour
 
     public void OnEnemyDeath(Enemy enemy)
     {
-        if (enemyManager.listOfEnemiesToDefeatInThisStage.Contains(this))
-        {
-            Debug.Log("lo contenia la lista del stage");
-            enemyManager.listOfEnemiesToDefeatInThisStage.Remove(this);
-        }
-
-        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(this))
-        {
-
-            Debug.Log("lo contenia la lista del inside collider");
-            enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(this);
-        }
-        /*
-        enemyManager.listOfEnemiesToDefeatInThisStage.Remove(enemy);
-        enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(enemy);*/
-        enemyManager.MoveEnemiesToDiscardPoint(this);
+        enemyManager.RemoveEnemiesFromListOfStage(enemy);
+        enemyManager.MoveEnemiesToDiscardPoint(enemy);
         enemy.StopMove();
-        //Chequeamos que no queden mas enemigos aqui?
     }
 }
