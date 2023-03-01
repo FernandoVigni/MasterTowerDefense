@@ -25,7 +25,7 @@ public class StageManager : MonoBehaviour
     {
         ResetBasicStats();
         ammountOfWarriorsInWave = 0;
-        ammountOfMagesInWave = 1;
+        ammountOfMagesInWave = 8;
         ammountOfGiantsInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
@@ -52,17 +52,17 @@ public class StageManager : MonoBehaviour
         {
             enemyManager.InstantiateGiant();
         }
+        
         SendEnemies();
     }
 
     public  async void SendEnemies()
     {
-        int enemiesInThisLevel = enemyManager.listOfEnemiesToDefeatInThisStage.Count;
-     //   enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
+        int enemiesInThisLevel = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
+        enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
         for (int i = 0; i < enemiesInThisLevel; i++)
         {
             if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
-
             { 
                 Enemy enemy = enemyManager.GetIEnemyFromStageList(i);
                 await Task.Delay(3500);
@@ -70,5 +70,5 @@ public class StageManager : MonoBehaviour
                 enemy.StartMove();
             } 
         }   
-    }   // hay que dividir la cantidad de enemigos en el tiempo y de ahi el tiempo entre spawn    
+    }   
 }

@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        int cantidadPrueba = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
         if (distanceToTower > 2)
         {
             transform.LookAt(tower.GetTowerPosition());

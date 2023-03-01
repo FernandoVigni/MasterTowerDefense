@@ -55,7 +55,7 @@ public class Tower : MonoBehaviour
         life -= damage;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy") 
         {

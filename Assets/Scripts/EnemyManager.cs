@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour
     public Warrior warrior;
     public Mage mage;
     public Giant giant;
+
+    public List<Enemy> enemyListControl = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
@@ -33,6 +35,18 @@ public class EnemyManager : MonoBehaviour
     {
         Giant newGiantEnemy = Instantiate(giant, positionToInstantiateGiant.position, Quaternion.identity);
         EnemySet(newGiantEnemy);
+    }
+
+    // Enemies To Send List
+
+    public void DuplicateEnemyList(List<Enemy> list) 
+    {
+        enemyListControl = listOfEnemiesToDefeatInThisStage;
+    }
+
+    public void RemoveEnemyInControlList(Enemy enemy) 
+    {
+        enemyListControl.Remove(enemy);
     }
 
     // Stage List Methods
@@ -63,11 +77,6 @@ public class EnemyManager : MonoBehaviour
     public void ShufleList(List<Enemy> list)
     {
         listOfEnemiesToDefeatInThisStage.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
-    }
-
-    public void RemoveEnemiesFromListOfStage(Enemy enemy)
-    {
-        listOfEnemiesToDefeatInThisStage.Remove(enemy);
     }
 
     public void RemoveAllInStage()
@@ -129,9 +138,9 @@ public class EnemyManager : MonoBehaviour
 
     public void OnEnemyDeath(Enemy enemy)
     {
-        RemoveEnemiesInsideColliderList(enemy);
-        RemoveEnemiesFromListOfStage(enemy);
         MoveEnemiesToDiscardPoint(enemy);
+        RemoveEnemiesInsideColliderList(enemy);
+        RemoveEnemyInControlList(enemy);
         enemy.StopMove();
     }
 }
