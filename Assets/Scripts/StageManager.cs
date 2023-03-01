@@ -24,7 +24,7 @@ public class StageManager : MonoBehaviour
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 0;
+        ammountOfWarriorsInWave = 8;
         ammountOfMagesInWave = 8;
         ammountOfGiantsInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
@@ -52,7 +52,6 @@ public class StageManager : MonoBehaviour
         {
             enemyManager.InstantiateGiant();
         }
-        
         SendEnemies();
     }
 
@@ -64,10 +63,12 @@ public class StageManager : MonoBehaviour
         {
             if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
             { 
-                Enemy enemy = enemyManager.GetIEnemyFromStageList(i);
-                await Task.Delay(3500);
+                Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
+                await Task.Delay(1500);
                 enemy.transform.position = PointOfSpawnOfWave.transform.position;
                 enemy.StartMove();
+                enemyManager.RemoveEnemyFromStageList(enemy);
+                enemyManager.AddEnemyToSentList(enemy);
             } 
         }   
     }   

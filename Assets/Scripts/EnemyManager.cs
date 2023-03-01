@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
     public Mage mage;
     public Giant giant;
 
-    public List<Enemy> enemyListControl = new List<Enemy>();
+    public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
@@ -37,18 +37,6 @@ public class EnemyManager : MonoBehaviour
         EnemySet(newGiantEnemy);
     }
 
-    // Enemies To Send List
-
-    public void DuplicateEnemyList(List<Enemy> list) 
-    {
-        enemyListControl = listOfEnemiesToDefeatInThisStage;
-    }
-
-    public void RemoveEnemyInControlList(Enemy enemy) 
-    {
-        enemyListControl.Remove(enemy);
-    }
-
     // Stage List Methods
     public int GetAmmountOflistOfEnemiesToDefeatInThisStage() 
     {
@@ -57,11 +45,11 @@ public class EnemyManager : MonoBehaviour
         return result;
     }
 
-    public Enemy GetIEnemyFromStageList(int i)
+    public Enemy GetFirstEnemyFromStageList()
     {
         if (listOfEnemiesToDefeatInThisStage.Count >= 1)
         {
-            Enemy iEnemy = listOfEnemiesToDefeatInThisStage[i];
+            Enemy iEnemy = listOfEnemiesToDefeatInThisStage[0];
             return iEnemy;
         }
         return null;
@@ -79,12 +67,28 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesToDefeatInThisStage.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
     }
 
-    public void RemoveAllInStage()
+    public void RemoveEnemyFromStageList(Enemy enemy) 
+    {
+        listOfEnemiesToDefeatInThisStage.Remove(enemy);
+    }
+
+    public void  RemoveAllInStage()
     {
         listOfEnemiesToDefeatInThisStage.RemoveAll(Enemy => true);
     }
 
-    //Collider List Methods
+    // Enemies Sent List Method
+    public void AddEnemyToSentList(Enemy enemy)
+    {
+        enemiesSentList.Add(enemy);
+    }
+
+    public void RemoveEnemyFromSentList(Enemy enemy) 
+    {
+        enemiesSentList.Remove(enemy);
+    }
+
+    // Collider List Methods
     public bool IsCointaind(Enemy enemy) 
     {
         return listOfEnemiesInsideTheTowerCollider.Contains(enemy);
@@ -140,7 +144,7 @@ public class EnemyManager : MonoBehaviour
     {
         MoveEnemiesToDiscardPoint(enemy);
         RemoveEnemiesInsideColliderList(enemy);
-        RemoveEnemyInControlList(enemy);
+        RemoveEnemyFromSentList(enemy);
         enemy.StopMove();
     }
 }
