@@ -15,26 +15,25 @@ public class StageManager : MonoBehaviour
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
 
-    // Start is called before the first frame update
     void Start()
     {
         PreSetLevelOne();
     }
 
-
+    //Todo Reveer el nombre de las variables
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 2;
-        ammountOfMagesInWave = 2;
+        ammountOfWarriorsInWave = 0;
+        ammountOfMagesInWave = 1;
         ammountOfGiantsInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
     }
 
     void ResetBasicStats()
     {
-        enemyManager.listOfEnemiesToDefeatInThisStage.RemoveAll(Enemy => true);
-        enemyManager.listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
+        enemyManager.RemoveAllInStage();
+        enemyManager.RemoveAllInCollider();
     }
 
     public void LoadEnemies(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
@@ -56,17 +55,20 @@ public class StageManager : MonoBehaviour
         SendEnemies();
     }
 
-
-    public async void SendEnemies()
+    public  async void SendEnemies()
     {
         int enemiesInThisLevel = enemyManager.listOfEnemiesToDefeatInThisStage.Count;
-        enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
+     //   enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
         for (int i = 0; i < enemiesInThisLevel; i++)
         {
-            Enemy enemy = enemyManager.listOfEnemiesToDefeatInThisStage[i];
-            enemy.transform.position = PointOfSpawnOfWave.transform.position;
-            enemy.StartMove();
-            await Task.Delay(2000);
-        }       
+            if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
+
+            { 
+                Enemy enemy = enemyManager.GetIEnemyFromStageList(i);
+                await Task.Delay(3500);
+                enemy.transform.position = PointOfSpawnOfWave.transform.position;
+                enemy.StartMove();
+            } 
+        }   
     }   // hay que dividir la cantidad de enemigos en el tiempo y de ahi el tiempo entre spawn    
 }

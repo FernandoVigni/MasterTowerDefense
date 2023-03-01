@@ -51,6 +51,6 @@ MonoBehaviour:
   level: 0
   wave: 0
   waveLimitTime: 0
-  ammountOfWarriorsInWave: 0
-  ammountOfMagesInWave: 0
+  ammountOfWarriorsInWave: 4
+  ammountOfMagesInWave: 4
   ammountOfGiantsInWave: 0

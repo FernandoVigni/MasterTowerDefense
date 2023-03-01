@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
+    public Tower tower;
     public int physicalDamage;
     public int magicDamage;
     public int life;
@@ -28,22 +30,33 @@ public class Enemy : MonoBehaviour
 
     public float CalculateDistanceToTower() 
     {
-        float distance = Vector3.Distance(transform.position, enemyManager.tower.transform.position);
+        float distance = Vector3.Distance(transform.position, tower.GetTowerPosition());
         return distance;
+    }
+
+    private void Walk()
+    {
+        int cantidadPrueba = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
+        if (distanceToTower > 2)
+        {
+            transform.LookAt(tower.GetTowerPosition());
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+    }
+
+    public void StartMove()
+    {
+        isWalking = true;
+    }
+
+    public void StopMove()
+    {
+        isWalking = false;
     }
 
     private bool IsAlive() 
     {
         return life > 0;
-    }
-
-    private void Walk()
-    {
-        if (distanceToTower > 2 )
-        {
-            transform.LookAt(enemyManager.tower.transform.position);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
     }
 
     public void SetLife(int life) 
@@ -60,23 +73,8 @@ public class Enemy : MonoBehaviour
     {
         life -= damage;
         if (!IsAlive())
-            OnDeath?.Invoke(this);
-    }
-
-    public void StartMove()
-    {
-        isWalking = true;
-    }
-
-    public void StopMove()
-    {
-        isWalking = false;
-    }
-
-    public void OnEnemyDeath(Enemy enemy)
-    {
-        enemyManager.RemoveEnemiesFromListOfStage(enemy);
-        enemyManager.MoveEnemiesToDiscardPoint(enemy);
-        enemy.StopMove();
+        {
+            OnDeath(this);
+        }
     }
 }

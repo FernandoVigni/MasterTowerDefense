@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -11,18 +13,16 @@ public class EnemyManager : MonoBehaviour
     public Warrior warrior;
     public Mage mage;
     public Giant giant;
-    public Tower tower;
-
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
-   
+    // Instantiate Enemies
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
         EnemySet(newWarriorEnemy);
     }
-    
+
     public void InstantiateMage()
     {
         Mage newMageEnemy = Instantiate(mage, positionToInstantiateMage.position, Quaternion.identity);
@@ -35,33 +35,103 @@ public class EnemyManager : MonoBehaviour
         EnemySet(newGiantEnemy);
     }
 
+    // Stage List Methods
+    public int GetAmmountOflistOfEnemiesToDefeatInThisStage() 
+    {
+        int result;
+        result = listOfEnemiesToDefeatInThisStage.Count;
+        return result;
+    }
+
+    public Enemy GetIEnemyFromStageList(int i)
+    {
+        if (listOfEnemiesToDefeatInThisStage.Count >= 1)
+        {
+            Enemy iEnemy = listOfEnemiesToDefeatInThisStage[i];
+            return iEnemy;
+        }
+        return null;
+    }
+
     public void EnemySet(Enemy enemy)
     {
         enemy.isWalking = false;
-        enemy.OnDeath += enemy.OnEnemyDeath;
+        enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
     }
 
-    public void ShufleList(List<Enemy> list) 
+    public void ShufleList(List<Enemy> list)
     {
         listOfEnemiesToDefeatInThisStage.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
     }
 
-    public Enemy GetFirstEnemyOnTheList() 
+    public void RemoveEnemiesFromListOfStage(Enemy enemy)
     {
-        Enemy firstEnemy = listOfEnemiesToDefeatInThisStage[0];
-        return firstEnemy;
+        listOfEnemiesToDefeatInThisStage.Remove(enemy);
     }
 
-    public void MoveEnemiesToDiscardPoint(Enemy enemy) 
+    public void RemoveAllInStage()
+    {
+        listOfEnemiesToDefeatInThisStage.RemoveAll(Enemy => true);
+    }
+
+    //Collider List Methods
+    public bool IsCointaind(Enemy enemy) 
+    {
+        return listOfEnemiesInsideTheTowerCollider.Contains(enemy);
+    }
+
+    public int GetAmmountOflistOfEnemiesInsideTheTowerCollider()
+    {
+        int ammountOfEnemies = listOfEnemiesInsideTheTowerCollider.Count;
+        return ammountOfEnemies;
+    }
+    public void SortlistOfEnemiesInsideTheTowerCollider()
+    {
+        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+    }
+
+    public Enemy GetIEnemyFromColliderList(int i)
+    {
+        if (listOfEnemiesInsideTheTowerCollider.Count >= 1)
+        {
+            Enemy iEnemy = listOfEnemiesInsideTheTowerCollider[i];
+            return iEnemy;
+        }
+        return null;
+    }
+
+    public void AddEnemyInsideColliderlist(Enemy enemy) 
+    {
+        listOfEnemiesInsideTheTowerCollider.Add(enemy);
+    }
+
+    public void RemoveEnemiesInsideColliderList(Enemy enemy)
+    {
+        listOfEnemiesInsideTheTowerCollider.Remove(enemy);
+    }
+
+    public void RemoveAllInCollider()
+    {
+        listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
+    }
+
+    //Others
+    public void MoveEnemiesToDiscardPoint(Enemy enemy)
     {
         enemy.transform.position = PointToDiscardEnemies.position;
     }
 
-    public void RemoveEnemiesFromListOfStage(Enemy enemy)
+    public void InvokeOnDeath(Enemy enemy) 
     {
-        
-        Debug.Log(listOfEnemiesToDefeatInThisStage.Count + " Contando ");
-        listOfEnemiesToDefeatInThisStage.Remove(enemy);
+        enemy.OnDeath.Invoke(enemy);  
+    }
+
+    public void OnEnemyDeath(Enemy enemy)
+    {
+        RemoveEnemiesInsideColliderList(enemy);
+        RemoveEnemiesFromListOfStage(enemy);
+        MoveEnemiesToDiscardPoint(enemy);
+        enemy.StopMove();
     }
 }

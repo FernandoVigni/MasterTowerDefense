@@ -16,25 +16,33 @@ public class Tower : MonoBehaviour
     {
         countDown -= Time.deltaTime;
 
-        if (countDown <= 0 && enemyManager.listOfEnemiesInsideTheTowerCollider.Count > 0)
+        if (countDown <= 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
-            Enemy nearestEnemy = GetNearestEnemy();
+            Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
             countDown = countDownReset;
-            Shoot(nearestEnemy);        
+            Shoot(nearestEnemyInsideCollider);        
         }
     }
 
-    public Enemy GetNearestEnemy()
+    public Enemy GetNearestEnemyInsideCollider()
     {
-        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Count > 1)
+        if (enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 1)
         {
-            enemyManager.listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
-            return enemyManager.listOfEnemiesInsideTheTowerCollider[0];
+            enemyManager.SortlistOfEnemiesInsideTheTowerCollider();
+            return enemyManager.GetIEnemyFromColliderList(0);
         }
-        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Count == 1)
-            return enemyManager.listOfEnemiesInsideTheTowerCollider[0];
+        if (enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() == 1)
+        {
+            Enemy IEnemy = enemyManager.GetIEnemyFromColliderList(0);
+            return IEnemy;
+        }
+        else
+            return null;
+    }
 
-        return null;
+    public Vector3 GetTowerPosition() 
+    {
+        return transform.position;
     }
 
     public void Shoot(Enemy objetive) 
@@ -52,19 +60,10 @@ public class Tower : MonoBehaviour
         if (other.gameObject.tag == "Enemy") 
         {
             Enemy enemy = other.GetComponent<Enemy>();
-            if (!enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(enemy)) 
+            if (!enemyManager.IsCointaind(enemy)) 
             {
-                enemyManager.listOfEnemiesInsideTheTowerCollider.Add(enemy);
+                enemyManager.AddEnemyInsideColliderlist(enemy);
             }
         }            
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        Enemy enemy = other.GetComponent<Enemy>();
-        if (enemyManager.listOfEnemiesInsideTheTowerCollider.Contains(enemy))
-        {
-            enemyManager.listOfEnemiesInsideTheTowerCollider.Remove(enemy);
-        }
     }
 }
