@@ -14,8 +14,9 @@ public class EnemyManager : MonoBehaviour
     public Mage mage;
     public Giant giant;
 
-    public List<Enemy> enemiesSentList = new List<Enemy>();
+    public List<Enemy> listOfEnemiesDefeated = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
+    public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
     // Instantiate Enemies
@@ -88,6 +89,14 @@ public class EnemyManager : MonoBehaviour
         enemiesSentList.Remove(enemy);
     }
 
+    //Enemies Defet List
+
+    public void AddEnemyToListOfEnemyDefeated(Enemy enemy)
+    {
+        if (!listOfEnemiesDefeated.Contains(enemy))
+           listOfEnemiesDefeated.Add(enemy);
+    }
+
     // Collider List Methods
     public bool IsCointaind(Enemy enemy) 
     {
@@ -143,6 +152,7 @@ public class EnemyManager : MonoBehaviour
     public void OnEnemyDeath(Enemy enemy)
     {
         MoveEnemiesToDiscardPoint(enemy);
+        AddEnemyToListOfEnemyDefeated(enemy);
         RemoveEnemiesInsideColliderList(enemy);
         RemoveEnemyFromSentList(enemy);
         enemy.StopMove();
