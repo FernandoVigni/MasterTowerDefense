@@ -7,12 +7,8 @@ public class Giant : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetLife(500);
+        SetSpeed(5);
+        transform.localScale = new Vector3(transform.localScale.z * 1.5f, transform.localScale.y * 2f, transform.localScale.x * 1.5f);
     }
 }

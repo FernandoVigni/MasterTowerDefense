@@ -44,17 +44,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead74b14276173438c36318177f71e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionToInstantiateWarrior: {fileID: 2458795365865140586, guid: cdce18b1e2e73a742b8984ceeefa992a,
-    type: 3}
-  positionToInstantiateMage: {fileID: 7957350043078701684, guid: 84d93e6db487e9d46b33e0234271f288,
-    type: 3}
-  positionToInstantiateGiant: {fileID: 6887298371033250150, guid: ecaf34208c071f344aaa88f4fa747016,
+  positionToInstantiateEnemies: {fileID: 2902207644395976252, guid: 35836ab01ee488d4fa1775e8075c28c9,
     type: 3}
   PointToDiscardEnemies: {fileID: 2787623234799378152, guid: 04c396bdb73b7074b824beb9ce7068e8,
     type: 3}
   warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}
   mage: {fileID: 8079335378970957348, guid: 50972eb53d5f58a42aee84c49da3383d, type: 3}
   giant: {fileID: -590035906914972376, guid: 65ca137745571a94b8c0ab2a9c55ce90, type: 3}
-  tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
+  kamikaze: {fileID: -6269581979103499410, guid: 2bb0aeae17a3cd749a54ce4b48aaf0c1,
+    type: 3}
+  listOfEnemiesDefeated: []
   listOfEnemiesToDefeatInThisStage: []
+  enemiesSentList: []
   listOfEnemiesInsideTheTowerCollider: []

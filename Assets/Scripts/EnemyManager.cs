@@ -5,14 +5,18 @@ using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
-{
+{/*
     public Transform positionToInstantiateWarrior;
     public Transform positionToInstantiateMage;
     public Transform positionToInstantiateGiant;
+    */
+    public Transform positionToInstantiateEnemies;
     public Transform PointToDiscardEnemies;
+
     public Warrior warrior;
     public Mage mage;
     public Giant giant;
+    public Kamikaze kamikaze;
 
     public List<Enemy> listOfEnemiesDefeated = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
@@ -20,22 +24,51 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
     // Instantiate Enemies
+    /*
+    public void InstantiateEnemy(Type enemyType) 
+    {
+        Enemy newEnemy = (Enemy)Activator.CreateInstance(enemyType);
+        EnemySet(newEnemy);
+    }
+    */
+
+    /*
+// Crear un objeto de juego (GameObject) en la escena de Unity
+GameObject newWarriorObject = new GameObject("NewWarrior");
+
+// Asociar el componente Enemy a este objeto de juego
+newWarriorObject.AddComponent<Enemy>();
+
+// Asociar la instancia de Warrior creada anteriormente a este objeto de juego
+newWarriorObject.GetComponent<Enemy>().SetEnemyType(newWarrior);
+
+// Colocar el objeto de juego en una posición adecuada en el mundo del juego
+newWarriorObject.transform.position = new Vector3(0, 0, 0);
+     * -----------------------
+     * 
+     * */
     public void InstantiateWarrior()
     {
-        Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateWarrior.position, Quaternion.identity);
+        Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateEnemies.position, Quaternion.identity);
         EnemySet(newWarriorEnemy);
     }
 
     public void InstantiateMage()
     {
-        Mage newMageEnemy = Instantiate(mage, positionToInstantiateMage.position, Quaternion.identity);
+        Mage newMageEnemy = Instantiate(mage, positionToInstantiateEnemies.position, Quaternion.identity);
         EnemySet(newMageEnemy);
     }
 
     public void InstantiateGiant()
     {
-        Giant newGiantEnemy = Instantiate(giant, positionToInstantiateGiant.position, Quaternion.identity);
+        Giant newGiantEnemy = Instantiate(giant, positionToInstantiateEnemies.position, Quaternion.identity);
         EnemySet(newGiantEnemy);
+    }
+
+    public void InstantiateKamikaze()
+    {
+        Kamikaze newKamikazeEnemy = Instantiate(kamikaze, positionToInstantiateEnemies.position, Quaternion.identity);
+        EnemySet(newKamikazeEnemy);
     }
 
     // Stage List Methods
@@ -73,7 +106,7 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesToDefeatInThisStage.Remove(enemy);
     }
 
-    public void  RemoveAllInStage()
+    public void RemoveAllInStage()
     {
         listOfEnemiesToDefeatInThisStage.RemoveAll(Enemy => true);
     }
@@ -90,11 +123,15 @@ public class EnemyManager : MonoBehaviour
     }
 
     //Enemies Defet List
-
     public void AddEnemyToListOfEnemyDefeated(Enemy enemy)
     {
         if (!listOfEnemiesDefeated.Contains(enemy))
            listOfEnemiesDefeated.Add(enemy);
+    }
+
+    public void RemoveAllEnemiesDefeated() 
+    {
+        listOfEnemiesDefeated.RemoveAll(Enemy => true) ;
     }
 
     // Collider List Methods

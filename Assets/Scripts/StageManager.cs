@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ public class StageManager : MonoBehaviour
     public int ammountOfWarriorsInWave;
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
+    public int ammountOfKamikazesInWave;
 
     void Start()
     {
@@ -24,10 +26,11 @@ public class StageManager : MonoBehaviour
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 8;
-        ammountOfMagesInWave = 8;
-        ammountOfGiantsInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave);
+        ammountOfWarriorsInWave = 2;
+        ammountOfMagesInWave = 2;
+        ammountOfGiantsInWave = 2;
+        ammountOfKamikazesInWave = 2;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
     }
 
     void ResetBasicStats()
@@ -36,21 +39,32 @@ public class StageManager : MonoBehaviour
         enemyManager.RemoveAllInCollider();
     }
 
-    public void LoadEnemies(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGigantsInWave)
+    public void LoadEnemies(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGiantsInWave, int ammountOfKamikazesInWave)
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)
         {
+          /*  Type warriorType = typeof(Warrior);
+            Enemy newWarrior = (Enemy)Activator.CreateInstance(warriorType);
+            enemyManager.EnemySet(newWarrior);*/
             enemyManager.InstantiateWarrior();
         }
 
         for (int i = 0; i < ammountOfMagesInWave; i++)
         {
+            // enemyManager.InstantiateEnemy(typeof(Mage));
             enemyManager.InstantiateMage();
         }
        
-        for (int i = 0; i < ammountOfGigantsInWave; i++)
+        for (int i = 0; i < ammountOfGiantsInWave; i++)
         {
+            // enemyManager.InstantiateEnemy(typeof(Giant));
             enemyManager.InstantiateGiant();
+        }
+
+        for (int i = 0; i < ammountOfKamikazesInWave; i++)
+        {
+            // enemyManager.InstantiateEnemy(typeof(Giant));
+            enemyManager.InstantiateKamikaze();
         }
         SendEnemies();
     }
@@ -58,18 +72,19 @@ public class StageManager : MonoBehaviour
     public  async void SendEnemies()
     {
         int enemiesInThisLevel = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
-        enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
         for (int i = 0; i < enemiesInThisLevel; i++)
         {
             if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
-            { 
+            {
+                enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
                 await Task.Delay(1500);
                 enemy.transform.position = PointOfSpawnOfWave.transform.position;
+                enemy.LookAt();
                 enemy.StartMove();
                 enemyManager.RemoveEnemyFromStageList(enemy);
                 enemyManager.AddEnemyToSentList(enemy);
             } 
         }   
-    }   
+    }       
 }

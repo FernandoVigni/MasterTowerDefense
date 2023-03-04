@@ -5,22 +5,24 @@ using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class Enemy : MonoBehaviour
 {
     public Action<Enemy> OnDeath;
     public EnemyManager enemyManager;
     public Tower tower;
+
     public int physicalDamage;
     public int magicDamage;
     public int life;
-    public float speed;
     public int armor;
     public bool isWalking;
+    public float speed;
     public float distanceToTower;
- 
-    private void Update()
-    {
+   
+    void Update()
+    {  
+     
+        distanceToTower = CalculateDistanceToTower();
         if (isWalking) 
         {
             distanceToTower = CalculateDistanceToTower();
@@ -29,7 +31,7 @@ public class Enemy : MonoBehaviour
     }
 
     public float CalculateDistanceToTower() 
-    {
+    { 
         float distance = Vector3.Distance(transform.position, tower.GetTowerPosition());
         return distance;
     }
@@ -38,9 +40,13 @@ public class Enemy : MonoBehaviour
     {
         if (distanceToTower > 2)
         {
-            transform.LookAt(tower.GetTowerPosition());
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
+    }
+
+    public void LookAt()
+    {
+        transform.LookAt(tower.GetTowerPosition());
     }
 
     public void StartMove()
