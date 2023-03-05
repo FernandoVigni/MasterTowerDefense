@@ -5,6 +5,14 @@ using System.Threading.Tasks;
 
 public class Warrior : Enemy
 {
+    private void Start()
+    {
+        SetIncomeValue(10);
+        SetLife(80);
+        SetSpeed(15);
+        SetMagicArmor(10);
+    }
+
     public async void Roar()
     {
         isWalking = false;

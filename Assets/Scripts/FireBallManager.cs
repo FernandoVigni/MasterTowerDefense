@@ -6,7 +6,7 @@ using UnityEngine;
 public class FireBallManager : Projectile
 {
     public FireBall fireBallPrefab;
-    public  FireBall firstFireBall;
+    public FireBall firstFireBall;
     public FireBall fireBall;
     public GameObject spawnPoint;
     public Transform PointToStartShoot;

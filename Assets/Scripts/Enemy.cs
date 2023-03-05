@@ -14,24 +14,27 @@ public class Enemy : MonoBehaviour
     public int physicalDamage;
     public int magicDamage;
     public int life;
-    public int armor;
+    public int magicArmor;
+    public int incomeValueOnDeath;
     public bool isWalking;
     public float speed;
     public float distanceToTower;
-   
+
     void Update()
-    {  
-     
+    {
+
         distanceToTower = CalculateDistanceToTower();
-        if (isWalking) 
+        if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
             Walk();
         }
     }
 
-    public float CalculateDistanceToTower() 
-    { 
+
+
+    public float CalculateDistanceToTower()
+    {
         float distance = Vector3.Distance(transform.position, tower.GetTowerPosition());
         return distance;
     }
@@ -59,19 +62,29 @@ public class Enemy : MonoBehaviour
         isWalking = false;
     }
 
-    private bool IsAlive() 
+    private bool IsAlive()
     {
         return life > 0;
     }
 
-    public void SetLife(int life) 
+    public void SetLife(int life)
     {
         this.life = life;
     }
 
-    public void SetSpeed(float speed) 
+    public void SetSpeed(float speed)
     {
         this.speed = speed;
+    }
+
+    public void SetMagicArmor(int magicArmorValue) 
+    {
+        magicArmor = magicArmorValue;
+    }
+
+    public void SetIncomeValue(int value)
+    {
+        incomeValueOnDeath = value;
     }
 
     public void ReceibeDamage(int damage)

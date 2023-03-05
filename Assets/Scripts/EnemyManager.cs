@@ -23,6 +23,8 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
+
+    // revisar instance . instance create
     // Instantiate Enemies
     /*
     public void InstantiateEnemy(Type enemyType) 
