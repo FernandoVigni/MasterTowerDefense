@@ -16,7 +16,6 @@ public class EnemyManager : MonoBehaviour
     public Giant giant;
     public Kamikaze kamikaze;
 
-    public List<Enemy> listOfEnemiesDefeated = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
@@ -103,18 +102,7 @@ public class EnemyManager : MonoBehaviour
         enemiesSentList.Remove(enemy);
     }
 
-    //Enemies Defet List
-    public void AddEnemyToListOfEnemyDefeated(Enemy enemy)
-    {
-        if (!listOfEnemiesDefeated.Contains(enemy))
-           listOfEnemiesDefeated.Add(enemy);
-    }
-
-    public void RemoveAllEnemiesDefeated() 
-    {
-        listOfEnemiesDefeated.RemoveAll(Enemy => true) ;
-    }
-
+    
     // Collider List Methods
     public bool IsCointaind(Enemy enemy) 
     {
