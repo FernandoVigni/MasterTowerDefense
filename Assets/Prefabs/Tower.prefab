@@ -52,6 +52,7 @@ MonoBehaviour:
     type: 3}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
+  objetive: {fileID: 0}
   countDown: 2
   countDownReset: 0
 --- !u!33 &5661699225113837603

@@ -8,8 +8,10 @@ public class Mage : Enemy
 {
     void Start()
     {
+        SetIncomeValue(10);
         SetLife(80);
         SetSpeed(15);
+        SetMagicArmor(10);
     }
 
     public async void SuperCharge() 
