@@ -1,17 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
-{/*
-    public Transform positionToInstantiateWarrior;
-    public Transform positionToInstantiateMage;
-    public Transform positionToInstantiateGiant;
-    */
+{
     public Transform positionToInstantiateEnemies;
     public Transform PointToDiscardEnemies;
+    public int currentLevel;
 
     public Warrior warrior;
     public Mage mage;
@@ -23,32 +21,6 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
-
-    // revisar instance . instance create
-    // Instantiate Enemies
-    /*
-    public void InstantiateEnemy(Type enemyType) 
-    {
-        Enemy newEnemy = (Enemy)Activator.CreateInstance(enemyType);
-        EnemySet(newEnemy);
-    }
-    */
-
-    /*
-// Crear un objeto de juego (GameObject) en la escena de Unity
-GameObject newWarriorObject = new GameObject("NewWarrior");
-
-// Asociar el componente Enemy a este objeto de juego
-newWarriorObject.AddComponent<Enemy>();
-
-// Asociar la instancia de Warrior creada anteriormente a este objeto de juego
-newWarriorObject.GetComponent<Enemy>().SetEnemyType(newWarrior);
-
-// Colocar el objeto de juego en una posición adecuada en el mundo del juego
-newWarriorObject.transform.position = new Vector3(0, 0, 0);
-     * -----------------------
-     * 
-     * */
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateEnemies.position, Quaternion.identity);
@@ -73,6 +45,12 @@ newWarriorObject.transform.position = new Vector3(0, 0, 0);
         EnemySet(newKamikazeEnemy);
     }
 
+
+    public void SetCurrentLevel(int currentLevel) 
+    {
+        this.currentLevel = currentLevel;
+    }
+
     // Stage List Methods
     public int GetAmmountOflistOfEnemiesToDefeatInThisStage() 
     {
@@ -93,6 +71,7 @@ newWarriorObject.transform.position = new Vector3(0, 0, 0);
 
     public void EnemySet(Enemy enemy)
     {
+        enemy.SetCurrentLevel(currentLevel);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
@@ -190,10 +169,8 @@ newWarriorObject.transform.position = new Vector3(0, 0, 0);
 
     public void OnEnemyDeath(Enemy enemy)
     {
-        MoveEnemiesToDiscardPoint(enemy);
-        AddEnemyToListOfEnemyDefeated(enemy);
         RemoveEnemiesInsideColliderList(enemy);
         RemoveEnemyFromSentList(enemy);
-        enemy.StopMove();
+        enemy.DestroyEnemy();
     }
 }

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8068091515336307205}
   - component: {fileID: 2958495666370127204}
   - component: {fileID: 3017474322361287410}
+  - component: {fileID: 6996666312021651649}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Enemy
@@ -140,6 +141,26 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &6996666312021651649
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307627663213121248}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 3dc717adf98c7b043a3e77ed0130d470, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0a15c11dbbde189499421a0ca9e248fa, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &4863335481109373621
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,6 +173,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FreeLichHP
       objectReference: {fileID: 0}
+    - target: {fileID: 1977831345391741025, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.43
+      objectReference: {fileID: 0}
     - target: {fileID: 1977831345391741055, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
         type: 3}
       propertyPath: m_RootOrder
@@ -160,7 +186,7 @@ PrefabInstance:
     - target: {fileID: 1977831345391741055, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 1977831345391741055, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
         type: 3}

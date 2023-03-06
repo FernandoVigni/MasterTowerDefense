@@ -12,6 +12,7 @@ public class StageManager : MonoBehaviour
     public int level;
     public int wave;
     public float waveLimitTime;
+    public int currentLevel;
     public int ammountOfWarriorsInWave;
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
@@ -19,19 +20,78 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        PreSetLevelOne();
+        SetLevelOne();
     }
 
-    //Todo Reveer el nombre de las variables
-    public void PreSetLevelOne()
+    public void EndLevel() 
     {
+       // if(enemyManager.lis)    
+    }
+
+    public int GetCurrentLevel() 
+    {
+        return currentLevel;
+    }
+
+    public void SetLevelOne()
+    {
+        currentLevel = 1;
+        enemyManager.SetCurrentLevel(currentLevel);
         ResetBasicStats();
-        ammountOfWarriorsInWave = 15;
-        ammountOfMagesInWave = 15;
-        ammountOfGiantsInWave = 8;
-        ammountOfKamikazesInWave = 22;
+        ammountOfWarriorsInWave = 10;
+        ammountOfMagesInWave = 2;
+        ammountOfGiantsInWave = 0;
+        ammountOfKamikazesInWave = 0;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
     }
+
+
+    public void SetLevelTwo()
+    {
+        currentLevel = 2;
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 10;
+        ammountOfMagesInWave = 8;
+        ammountOfGiantsInWave = 0;
+        ammountOfKamikazesInWave = 0;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+    }
+
+    public void SetLevelTree()
+    {
+        currentLevel = 3;
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 4;
+        ammountOfMagesInWave = 15;
+        ammountOfGiantsInWave = 0;
+        ammountOfKamikazesInWave = 0;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+    }
+
+
+    public void SetLevelfour()
+    {
+        currentLevel = 4;
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 2;
+        ammountOfMagesInWave = 12;
+        ammountOfGiantsInWave = 1;
+        ammountOfKamikazesInWave = 0;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+    }
+
+    public void SetLevelfive()
+    {
+        currentLevel = 5;
+        ResetBasicStats();
+        ammountOfWarriorsInWave = 8;
+        ammountOfMagesInWave = 8;
+        ammountOfGiantsInWave = 2;
+        ammountOfKamikazesInWave = 0;
+        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+    }
+
+
 
     void ResetBasicStats()
     {
@@ -43,27 +103,21 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)
         {
-          /*  Type warriorType = typeof(Warrior);
-            Enemy newWarrior = (Enemy)Activator.CreateInstance(warriorType);
-            enemyManager.EnemySet(newWarrior);*/
             enemyManager.InstantiateWarrior();
         }
 
         for (int i = 0; i < ammountOfMagesInWave; i++)
         {
-            // enemyManager.InstantiateEnemy(typeof(Mage));
             enemyManager.InstantiateMage();
         }
        
         for (int i = 0; i < ammountOfGiantsInWave; i++)
         {
-            // enemyManager.InstantiateEnemy(typeof(Giant));
             enemyManager.InstantiateGiant();
         }
 
         for (int i = 0; i < ammountOfKamikazesInWave; i++)
         {
-            // enemyManager.InstantiateEnemy(typeof(Giant));
             enemyManager.InstantiateKamikaze();
         }
         SendEnemies();

@@ -19,20 +19,22 @@ public class Enemy : MonoBehaviour
     public bool isWalking;
     public float speed;
     public float distanceToTower;
+    public int currentLevel;
 
     void Update()
     {
-
-        distanceToTower = CalculateDistanceToTower();
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
             Walk();
         }
     }
-
-
-
+    
+    public void SetCurrentLevel(int currentLevel) 
+    {
+        this.currentLevel = currentLevel;
+    }
+    
     public float CalculateDistanceToTower()
     {
         float distance = Vector3.Distance(transform.position, tower.GetTowerPosition());
@@ -69,22 +71,27 @@ public class Enemy : MonoBehaviour
 
     public void SetLife(int life)
     {
-        this.life = life;
+        this.life = life * currentLevel;
     }
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed;
+        this.speed = speed * currentLevel;
     }
 
     public void SetMagicArmor(int magicArmorValue) 
     {
-        magicArmor = magicArmorValue;
+        magicArmor = magicArmorValue * currentLevel;
     }
 
     public void SetIncomeValue(int value)
     {
-        incomeValueOnDeath = value;
+        incomeValueOnDeath = value * currentLevel;
+    }
+
+    public void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 
     public void ReceibeDamage(int damage)
