@@ -7,7 +7,7 @@ public class Giant : Enemy
     // Start is called before the first frame update
     void Start()
     {
-        SetIncomeValue(10);
+        SetIncomeValue(100);
         SetLife(500);
         SetSpeed(5);
         SetMagicArmor(10);

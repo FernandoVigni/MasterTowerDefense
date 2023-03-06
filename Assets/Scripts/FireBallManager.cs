@@ -9,17 +9,15 @@ public class FireBallManager : Projectile
     public FireBall firstFireBall;
     public FireBall fireBall;
     public GameObject spawnPoint;
-    public Transform PointToStartShoot;
     public int numFireBalls;
-    public  Vector3 positionToInstantiate;
+    public  Transform positionToInstantiateProjectil;
     public List<FireBall> fireBalls = new List<FireBall>();
 
     void Start()
     {
         for (int i = 0; i < numFireBalls; i++)
         {
-            positionToInstantiate = PointToStartShoot.position;
-            FireBall fireBall = Instantiate(fireBallPrefab, positionToInstantiate,  Quaternion.identity);
+            FireBall fireBall = Instantiate(fireBallPrefab, positionToInstantiateProjectil.position,  Quaternion.identity);
             fireBall.translate = false;
             fireBalls.Add(fireBall);
         }
@@ -28,7 +26,6 @@ public class FireBallManager : Projectile
     public void ShootProjectile(Enemy enemy)
     {
         fireBall = ChooseFirstProjectile();
-        fireBall.transform.position = PointToStartShoot.position;
         fireBall.LookAt(enemy);
         fireBall.StartMove();
     }
@@ -49,5 +46,10 @@ public class FireBallManager : Projectile
     {
         fireBalls.RemoveAt(0);
         fireBalls.Add(fireBall);
+    }
+    public void MoveToInitialZone(Projectile projectile)
+    {
+        projectile.transform.rotation = Quaternion.identity;
+        projectile.transform.position = positionToInstantiateProjectil.position;
     }
 }

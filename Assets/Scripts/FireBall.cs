@@ -9,12 +9,17 @@ public class FireBall : Projectile
 
     private void Start()
     {
-        this.damage = fireBallDamage;
-        this.speed = fireBallSpeed;
+        SetSpeed(40);
+        SetDamage(80);
     }
 
     public int ExplosiveContact() 
     {
         return 0;    
+    }
+
+    public void OnDeath() 
+    {
+        
     }
 }

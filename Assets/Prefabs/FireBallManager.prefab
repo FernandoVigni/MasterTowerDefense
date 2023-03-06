@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4194202449366409848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.035028458, y: -5.061407, z: -3.3169518}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireBallManager: {fileID: 0}
-  speed: 0
+  speed: 200
   damage: 0
   translate: 0
   fireBallPrefab: {fileID: 6706997641297824145, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
@@ -54,8 +54,7 @@ MonoBehaviour:
   fireBall: {fileID: 0}
   spawnPoint: {fileID: 2739752882039498800, guid: cc4ba1fbb6f26b74bb29ed432e1fe3ea,
     type: 3}
-  PointToStartShoot: {fileID: 3880319725406665723, guid: 5eb5416786170944d95526b24d42e33c,
-    type: 3}
   numFireBalls: 15
-  positionToInstantiate: {x: 0, y: 0, z: 0}
+  positionToInstantiateProjectil: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
+    type: 3}
   fireBalls: []

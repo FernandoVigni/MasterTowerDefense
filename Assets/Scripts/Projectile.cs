@@ -5,11 +5,7 @@ using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
-
-
-
     public FireBallManager fireBallManager;
-
     public float speed;
     public int damage;
     public bool translate = false;
@@ -19,7 +15,16 @@ public class Projectile : MonoBehaviour
         if (translate)
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+    public void SetSpeed(int speed) 
+    {
+        this.speed = speed;
+    }
 
+    public void SetDamage(int damage) 
+    {
+        this.damage = damage;
+    }
+    
     public void StartMove()
     {
         translate = true;
@@ -35,11 +40,6 @@ public class Projectile : MonoBehaviour
         transform.LookAt(enemy.transform.position);
     }
 
-    public void MoveToInitialZone()
-    {
-        this.transform.position = fireBallManager.positionToInstantiate;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
@@ -48,11 +48,11 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.CompareTag("Enemy"))
             {
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
-                MoveToInitialZone();
+                fireBallManager.MoveToInitialZone(this);
             }
             else
             {
-                MoveToInitialZone();
+                fireBallManager.MoveToInitialZone(this);
             }
         }
     }

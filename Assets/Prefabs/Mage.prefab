@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8079335378970957348}
   - component: {fileID: 8255083094660878121}
   - component: {fileID: 8068091515336307205}
-  - component: {fileID: 2298805374714596061}
   - component: {fileID: 2958495666370127204}
+  - component: {fileID: 3017474322361287410}
   m_Layer: 0
   m_Name: Mage
   m_TagString: Enemy
@@ -110,19 +110,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2298805374714596061
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307627663213121248}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2958495666370127204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -139,6 +126,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &3017474322361287410
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307627663213121248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 10
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &4863335481109373621
 PrefabInstance:
   m_ObjectHideFlags: 0
