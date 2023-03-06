@@ -26,10 +26,10 @@ public class StageManager : MonoBehaviour
     public void PreSetLevelOne()
     {
         ResetBasicStats();
-        ammountOfWarriorsInWave = 2;
-        ammountOfMagesInWave = 2;
-        ammountOfGiantsInWave = 2;
-        ammountOfKamikazesInWave = 2;
+        ammountOfWarriorsInWave = 15;
+        ammountOfMagesInWave = 15;
+        ammountOfGiantsInWave = 8;
+        ammountOfKamikazesInWave = 22;
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
     }
 

@@ -8,7 +8,7 @@ public class Warrior : Enemy
     private void Start()
     {
         SetIncomeValue(10);
-        SetLife(80);
+        SetLife(100);
         SetSpeed(15);
         SetMagicArmor(10);
     }

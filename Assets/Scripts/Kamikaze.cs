@@ -9,8 +9,8 @@ public class Kamikaze : Enemy
     private void Start()
     {
         SetIncomeValue(15);
-        SetLife(80);
-        SetSpeed(15);
+        SetLife(50);
+        SetSpeed(20);
         SetMagicArmor(10);
     }
 

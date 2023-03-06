@@ -8,8 +8,8 @@ public class Giant : Enemy
     void Start()
     {
         SetIncomeValue(10);
-        SetLife(80);
-        SetSpeed(15);
+        SetLife(500);
+        SetSpeed(5);
         SetMagicArmor(10);
     }
 }
