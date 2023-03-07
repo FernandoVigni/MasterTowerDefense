@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class IncomeManager : MonoBehaviour
 {
+    public StageManager stageManager;
+    public float gold;
 
-    /*
-     Este sera el objeto encargado de manejar el oro del juego.
-    al morir un enemigo aqui se gestiona el aumento del oro
-    al terminar la ronda aqui se suma el premio por terminarlo.
-     */
-
-
-
-    // Start is called before the first frame update
-    void Start()
+    public void RecibeGold(float gold) 
     {
-        
+      //  this.gold += gold;
+
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ReciveBagOfGold(float bagOfGold)
     {
-        
+       // gold += bagOfGold;
     }
 }

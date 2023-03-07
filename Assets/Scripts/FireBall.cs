@@ -10,7 +10,7 @@ public class FireBall : Projectile
     private void Start()
     {
         SetSpeed(40);
-        SetDamage(10);
+        SetDamage(50);
     }
 
     public int ExplosiveContact() 

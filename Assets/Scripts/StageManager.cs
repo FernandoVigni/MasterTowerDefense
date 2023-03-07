@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public IncomeManager IncomeManager;
     public EnemyManager enemyManager;
     public Transform PointOfSpawnOfWave;
     public int level;
@@ -17,6 +18,7 @@ public class StageManager : MonoBehaviour
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
     public int ammountOfKamikazesInWave;
+    public float bagOfGold = 1000;
 
     void Start()
     {
@@ -25,7 +27,7 @@ public class StageManager : MonoBehaviour
 
     public void EndLevel() 
     {
-       // if(enemyManager.lis)    
+        IncomeManager.ReciveBagOfGold(bagOfGold);
     }
 
     public float GetCurrentLevel() 
@@ -45,10 +47,10 @@ public class StageManager : MonoBehaviour
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
     }
 
-
     public void SetLevelTwo()
     {
         coefficient = 1;
+        enemyManager.SetCurrentCoefficient(coefficient);
         ResetBasicStats();
         ammountOfWarriorsInWave = 10;
         ammountOfMagesInWave = 8;
@@ -60,6 +62,7 @@ public class StageManager : MonoBehaviour
     public void SetLevelTree()
     {
         coefficient = 1.2f;
+        enemyManager.SetCurrentCoefficient(coefficient);
         ResetBasicStats();
         ammountOfWarriorsInWave = 4;
         ammountOfMagesInWave = 15;
@@ -68,10 +71,10 @@ public class StageManager : MonoBehaviour
         LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
     }
 
-
     public void SetLevelFour()
     {
         coefficient = 1.5f;
+        enemyManager.SetCurrentCoefficient(coefficient);
         ResetBasicStats();
         ammountOfWarriorsInWave = 2;
         ammountOfMagesInWave = 12;
@@ -131,7 +134,6 @@ public class StageManager : MonoBehaviour
         {
             if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
             {
-
                 enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
                 await Task.Delay(1500);

@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
         if (translate)
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
+
     public void SetSpeed(int speed) 
     {
         this.speed = speed;

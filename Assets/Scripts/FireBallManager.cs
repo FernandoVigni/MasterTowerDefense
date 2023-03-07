@@ -47,6 +47,7 @@ public class FireBallManager : Projectile
         fireBalls.RemoveAt(0);
         fireBalls.Add(fireBall);
     }
+
     public void MoveToInitialZone(Projectile projectile)
     {
         projectile.transform.rotation = Quaternion.identity;

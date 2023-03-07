@@ -7,6 +7,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
 {
+    public StageManager stageManager;
+    public IncomeManager incomeManager;
     public Transform positionToInstantiateEnemies;
     public Transform PointToDiscardEnemies;
     public float coefficient;
@@ -101,7 +103,6 @@ public class EnemyManager : MonoBehaviour
         enemiesSentList.Remove(enemy);
     }
 
-    
     // Collider List Methods
     public bool IsCointaind(Enemy enemy) 
     {
@@ -113,6 +114,7 @@ public class EnemyManager : MonoBehaviour
         int ammountOfEnemies = listOfEnemiesInsideTheTowerCollider.Count;
         return ammountOfEnemies;
     }
+
     public void SortlistOfEnemiesInsideTheTowerCollider()
     {
         listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
@@ -154,6 +156,12 @@ public class EnemyManager : MonoBehaviour
     {
         RemoveEnemiesInsideColliderList(enemy);
         RemoveEnemyFromSentList(enemy);
+        incomeManager.RecibeGold(enemy.incomeValueOnDeath);
         enemy.DestroyEnemy();
+
+        if (listOfEnemiesToDefeatInThisStage.Count <= 0 && enemiesSentList.Count <= 0)
+        {
+            stageManager.EndLevel();
+        }
     }
 }
