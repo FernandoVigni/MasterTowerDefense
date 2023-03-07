@@ -11,15 +11,15 @@ public class Enemy : MonoBehaviour
     public EnemyManager enemyManager;
     public Tower tower;
 
-    public int physicalDamage;
-    public int magicDamage;
-    public int life;
-    public int magicArmor;
-    public int incomeValueOnDeath;
+    public float physicalDamage;
+    public float magicDamage;
+    public float life;
+    public float magicArmor;
+    public float incomeValueOnDeath;
     public bool isWalking;
     public float speed;
     public float distanceToTower;
-    public int currentLevel;
+    public float coefficient;
 
     void Update()
     {
@@ -30,9 +30,13 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public void SetCurrentLevel(int currentLevel) 
+    public void recalculateWithTheCoefficientOfTheLevel(float coefficient) 
     {
-        this.currentLevel = currentLevel;
+        life *= coefficient;
+        speed *= coefficient;
+        physicalDamage *= coefficient;
+        magicDamage *= coefficient;
+        magicArmor *= coefficient;
     }
     
     public float CalculateDistanceToTower()
@@ -71,22 +75,22 @@ public class Enemy : MonoBehaviour
 
     public void SetLife(int life)
     {
-        this.life = life * currentLevel;
+        this.life = life;
     }
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed * currentLevel;
+        this.speed = speed;
     }
 
-    public void SetMagicArmor(int magicArmorValue) 
+    public void SetMagicArmor(float magicArmorValue) 
     {
-        magicArmor = magicArmorValue * currentLevel;
+        magicArmor = magicArmorValue;
     }
 
     public void SetIncomeValue(int value)
     {
-        incomeValueOnDeath = value * currentLevel;
+        incomeValueOnDeath = value;
     }
 
     public void DestroyEnemy()

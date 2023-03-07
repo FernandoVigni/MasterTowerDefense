@@ -12,7 +12,7 @@ public class StageManager : MonoBehaviour
     public int level;
     public int wave;
     public float waveLimitTime;
-    public int currentLevel;
+    public float coefficient;
     public int ammountOfWarriorsInWave;
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
@@ -20,7 +20,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        SetLevelOne();
+        SetLevelFour();
     }
 
     public void EndLevel() 
@@ -28,15 +28,15 @@ public class StageManager : MonoBehaviour
        // if(enemyManager.lis)    
     }
 
-    public int GetCurrentLevel() 
+    public float GetCurrentLevel() 
     {
-        return currentLevel;
+        return coefficient;
     }
 
     public void SetLevelOne()
     {
-        currentLevel = 1;
-        enemyManager.SetCurrentLevel(currentLevel);
+        coefficient = 1;
+        enemyManager.SetCurrentCoefficient(coefficient);
         ResetBasicStats();
         ammountOfWarriorsInWave = 10;
         ammountOfMagesInWave = 2;
@@ -48,7 +48,7 @@ public class StageManager : MonoBehaviour
 
     public void SetLevelTwo()
     {
-        currentLevel = 2;
+        coefficient = 1;
         ResetBasicStats();
         ammountOfWarriorsInWave = 10;
         ammountOfMagesInWave = 8;
@@ -59,7 +59,7 @@ public class StageManager : MonoBehaviour
 
     public void SetLevelTree()
     {
-        currentLevel = 3;
+        coefficient = 1.2f;
         ResetBasicStats();
         ammountOfWarriorsInWave = 4;
         ammountOfMagesInWave = 15;
@@ -69,9 +69,9 @@ public class StageManager : MonoBehaviour
     }
 
 
-    public void SetLevelfour()
+    public void SetLevelFour()
     {
-        currentLevel = 4;
+        coefficient = 1.5f;
         ResetBasicStats();
         ammountOfWarriorsInWave = 2;
         ammountOfMagesInWave = 12;
@@ -82,7 +82,7 @@ public class StageManager : MonoBehaviour
 
     public void SetLevelfive()
     {
-        currentLevel = 5;
+        coefficient = 5;
         ResetBasicStats();
         ammountOfWarriorsInWave = 8;
         ammountOfMagesInWave = 8;
@@ -120,6 +120,7 @@ public class StageManager : MonoBehaviour
         {
             enemyManager.InstantiateKamikaze();
         }
+
         SendEnemies();
     }
 
@@ -130,9 +131,11 @@ public class StageManager : MonoBehaviour
         {
             if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
             {
+
                 enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
                 await Task.Delay(1500);
+                enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
                 enemy.transform.position = PointOfSpawnOfWave.transform.position;
                 enemy.LookAt();
                 enemy.StartMove();

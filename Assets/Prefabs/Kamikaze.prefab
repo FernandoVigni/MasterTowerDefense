@@ -53,13 +53,14 @@ MonoBehaviour:
     type: 3}
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   physicalDamage: 0
-  magicDamage: 800
-  life: 1
+  magicDamage: 0
+  life: 0
   magicArmor: 0
   incomeValueOnDeath: 0
   isWalking: 0
-  speed: 20
+  speed: 0
   distanceToTower: 0
+  coefficient: 0
 --- !u!33 &8111173480128293153
 MeshFilter:
   m_ObjectHideFlags: 0

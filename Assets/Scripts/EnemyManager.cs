@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
 {
     public Transform positionToInstantiateEnemies;
     public Transform PointToDiscardEnemies;
-    public int currentLevel;
+    public float coefficient;
 
     public Warrior warrior;
     public Mage mage;
@@ -44,10 +44,9 @@ public class EnemyManager : MonoBehaviour
         EnemySet(newKamikazeEnemy);
     }
 
-
-    public void SetCurrentLevel(int currentLevel) 
+    public void SetCurrentCoefficient(float currentLevel) 
     {
-        this.currentLevel = currentLevel;
+        this.coefficient = currentLevel;
     }
 
     // Stage List Methods
@@ -70,7 +69,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemySet(Enemy enemy)
     {
-        enemy.SetCurrentLevel(currentLevel);
+        //enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
@@ -145,10 +144,6 @@ public class EnemyManager : MonoBehaviour
     }
 
     //Others
-    public void MoveEnemiesToDiscardPoint(Enemy enemy)
-    {
-        enemy.transform.position = PointToDiscardEnemies.position;
-    }
 
     public void InvokeOnDeath(Enemy enemy) 
     {

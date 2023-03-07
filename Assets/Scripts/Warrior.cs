@@ -23,7 +23,7 @@ public class Warrior : Enemy
 
     public async void AxAttack()
     {
-        int AxAttackDamage = physicalDamage * 2;
+        float AxAttackDamage = physicalDamage * 2;
         tower.ReciveDamage(AxAttackDamage);
         await Task.Delay(1000);
     }

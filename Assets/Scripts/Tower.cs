@@ -9,7 +9,7 @@ public class Tower : MonoBehaviour
     public Enemy objetive;
     public float countDown;
     public float countDownReset;
-    private int life;
+    private float life;
 
     // Update is called once per frame
     void Update()
@@ -50,7 +50,7 @@ public class Tower : MonoBehaviour
          fireBallManager.ShootProjectile(objetive);
     }
 
-    public void ReciveDamage(int damage)
+    public void ReciveDamage(float damage)
     {
         life -= damage;
     }

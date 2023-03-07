@@ -48,12 +48,8 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.CompareTag("Enemy"))
             {
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
-                fireBallManager.MoveToInitialZone(this);
             }
-            else
-            {
-                fireBallManager.MoveToInitialZone(this);
-            }
+            fireBallManager.MoveToInitialZone(this);
         }
     }
 }
