@@ -22,107 +22,77 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        SetLevelFour();
+        SetLevelOne();
     }
 
     public void EndLevel() 
     {
+        Debug.Log("Termino el nivel");
         IncomeManager.ReciveBagOfGold(bagOfGold);
     }
 
-    public float GetCurrentLevel() 
+    public void SetEnemies(int warrios, int mages, int giants, int kamikazes)
     {
-        return coefficient;
+        ammountOfWarriorsInWave = warrios;
+        ammountOfMagesInWave = mages;
+        ammountOfGiantsInWave = giants;
+        ammountOfKamikazesInWave = kamikazes;
     }
 
     public void SetLevelOne()
     {
-        coefficient = 1;
+        coefficient = 1.25f;
         enemyManager.SetCurrentCoefficient(coefficient);
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 10;
-        ammountOfMagesInWave = 2;
-        ammountOfGiantsInWave = 0;
-        ammountOfKamikazesInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+        SetEnemies(10, 2, 0, 0);
+        LoadEnemies();
     }
 
     public void SetLevelTwo()
     {
         coefficient = 1;
         enemyManager.SetCurrentCoefficient(coefficient);
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 10;
-        ammountOfMagesInWave = 8;
-        ammountOfGiantsInWave = 0;
-        ammountOfKamikazesInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+        SetEnemies(10, 8, 0, 0);
+        LoadEnemies();
     }
+
+
 
     public void SetLevelTree()
     {
         coefficient = 1.2f;
         enemyManager.SetCurrentCoefficient(coefficient);
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 4;
-        ammountOfMagesInWave = 15;
-        ammountOfGiantsInWave = 0;
-        ammountOfKamikazesInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+        SetEnemies(2, 10, 0, 0);
+        LoadEnemies();
     }
 
     public void SetLevelFour()
     {
         coefficient = 1.5f;
         enemyManager.SetCurrentCoefficient(coefficient);
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 2;
-        ammountOfMagesInWave = 12;
-        ammountOfGiantsInWave = 1;
-        ammountOfKamikazesInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+        SetEnemies(2, 12, 1, 0);
+        LoadEnemies();
     }
 
     public void SetLevelfive()
     {
         coefficient = 5;
-        ResetBasicStats();
-        ammountOfWarriorsInWave = 8;
-        ammountOfMagesInWave = 8;
-        ammountOfGiantsInWave = 2;
-        ammountOfKamikazesInWave = 0;
-        LoadEnemies(ammountOfWarriorsInWave, ammountOfMagesInWave, ammountOfGiantsInWave, ammountOfKamikazesInWave);
+        SetEnemies(8, 8, 2, 0);
+        LoadEnemies();
     }
 
-
-
-    void ResetBasicStats()
-    {
-        enemyManager.RemoveAllInStage();
-        enemyManager.RemoveAllInCollider();
-    }
-
-    public void LoadEnemies(int ammountOfWarriorsInWave,int ammountOfMagesInWave, int ammountOfGiantsInWave, int ammountOfKamikazesInWave)
+    public void LoadEnemies()
     {
         for (int i = 0; i < ammountOfWarriorsInWave; i++)
-        {
-            enemyManager.InstantiateWarrior();
-        }
+            {enemyManager.InstantiateWarrior();}
 
         for (int i = 0; i < ammountOfMagesInWave; i++)
-        {
-            enemyManager.InstantiateMage();
-        }
+            {enemyManager.InstantiateMage();}
        
         for (int i = 0; i < ammountOfGiantsInWave; i++)
-        {
-            enemyManager.InstantiateGiant();
-        }
+            {enemyManager.InstantiateGiant();}
 
         for (int i = 0; i < ammountOfKamikazesInWave; i++)
-        {
-            enemyManager.InstantiateKamikaze();
-        }
+            {enemyManager.InstantiateKamikaze();}
 
         SendEnemies();
     }

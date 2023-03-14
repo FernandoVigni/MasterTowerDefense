@@ -13,7 +13,4 @@ public class Kamikaze : Enemy
         SetSpeed(20);
         SetMagicArmor(10);
     }
-
-
-
 }
