@@ -10,8 +10,8 @@ public class Tower : MonoBehaviour
     public float countDown;
     public float countDownReset;
     private float life;
+    public float gold;
 
-    // Update is called once per frame
     void Update()
     {
         countDown -= Time.deltaTime;
@@ -22,6 +22,11 @@ public class Tower : MonoBehaviour
             countDown = countDownReset;
             Shoot(nearestEnemyInsideCollider);        
         }
+    }
+
+    public void RecibeGold(float gold)
+    {
+        this.gold += gold;
     }
 
     public Enemy GetNearestEnemyInsideCollider()

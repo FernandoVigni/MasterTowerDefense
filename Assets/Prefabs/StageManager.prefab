@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 233fabccac21715449c0d8cdf84c5c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IncomeManager: {fileID: 7909107167705370171, guid: dd81243b2774fc84cb2d10292015515e,
+  incomeManager: {fileID: 7909107167705370171, guid: dd81243b2774fc84cb2d10292015515e,
     type: 3}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
@@ -54,8 +54,8 @@ MonoBehaviour:
   wave: 0
   waveLimitTime: 0
   coefficient: 0
-  ammountOfWarriorsInWave: 4
-  ammountOfMagesInWave: 4
+  ammountOfWarriorsInWave: 0
+  ammountOfMagesInWave: 0
   ammountOfGiantsInWave: 0
   ammountOfKamikazesInWave: 0
   bagOfGold: 0

@@ -7,28 +7,38 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public IncomeManager IncomeManager;
+    private void Awake()
+    {
+        enemyManager = FindObjectOfType<EnemyManager>();
+    }
+
     public EnemyManager enemyManager;
     public Transform PointOfSpawnOfWave;
+
     public int level;
     public int wave;
     public float waveLimitTime;
-    public float coefficient;
+    public float coefficient = 2;
+    public float bagOfGold;
+
     public int ammountOfWarriorsInWave;
     public int ammountOfMagesInWave;
     public int ammountOfGiantsInWave;
     public int ammountOfKamikazesInWave;
-    public float bagOfGold = 1000;
 
     void Start()
     {
         SetLevelOne();
     }
 
-    public void EndLevel() 
+    public float GetAmountBagOfGold() 
     {
-        Debug.Log("Termino el nivel");
-        IncomeManager.ReciveBagOfGold(bagOfGold);
+        return bagOfGold;
+    }
+
+    public void SetBagOfGold(float bagOfGold) 
+    {
+        this.bagOfGold = bagOfGold;
     }
 
     public void SetEnemies(int warrios, int mages, int giants, int kamikazes)
@@ -43,7 +53,9 @@ public class StageManager : MonoBehaviour
     {
         coefficient = 1.25f;
         enemyManager.SetCurrentCoefficient(coefficient);
-        SetEnemies(10, 2, 0, 0);
+        SetBagOfGold(1000f);
+        SetEnemies(0, 0, 4, 8);
+        //incomeManager.RecibeBagOfGold(bagOfGold);
         LoadEnemies();
     }
 
@@ -51,16 +63,16 @@ public class StageManager : MonoBehaviour
     {
         coefficient = 1;
         enemyManager.SetCurrentCoefficient(coefficient);
+        SetBagOfGold(1000f);
         SetEnemies(10, 8, 0, 0);
         LoadEnemies();
     }
-
-
 
     public void SetLevelTree()
     {
         coefficient = 1.2f;
         enemyManager.SetCurrentCoefficient(coefficient);
+        SetBagOfGold(1500f);
         SetEnemies(2, 10, 0, 0);
         LoadEnemies();
     }
@@ -69,6 +81,7 @@ public class StageManager : MonoBehaviour
     {
         coefficient = 1.5f;
         enemyManager.SetCurrentCoefficient(coefficient);
+        SetBagOfGold(2000f);
         SetEnemies(2, 12, 1, 0);
         LoadEnemies();
     }
@@ -76,6 +89,8 @@ public class StageManager : MonoBehaviour
     public void SetLevelfive()
     {
         coefficient = 5;
+        enemyManager.SetCurrentCoefficient(coefficient);
+        SetBagOfGold(2500f);
         SetEnemies(8, 8, 2, 0);
         LoadEnemies();
     }

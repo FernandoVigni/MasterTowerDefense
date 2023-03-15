@@ -346,7 +346,6 @@ Transform:
   - {fileID: 984004370}
   - {fileID: 1855041533}
   - {fileID: 1740501064}
-  - {fileID: 564249734}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -434,12 +433,6 @@ MonoBehaviour:
   objetive: {fileID: 0}
   countDown: 0
   countDownReset: 0.3
---- !u!4 &564249734 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1217984978}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &617336510 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
@@ -689,80 +682,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1217984978
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 483152744}
-    m_Modifications:
-    - target: {fileID: 7909107167705370164, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_Name
-      value: IncomeManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370170, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7909107167705370171, guid: dd81243b2774fc84cb2d10292015515e,
-        type: 3}
-      propertyPath: gold
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dd81243b2774fc84cb2d10292015515e, type: 3}
 --- !u!1001 &1423621067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -836,6 +755,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -590035906914972376, guid: 65ca137745571a94b8c0ab2a9c55ce90,
         type: 3}
+    - target: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+        type: 3}
+      propertyPath: incomeManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
         type: 3}
       propertyPath: listOfEnemiesInsideTheTowerCollider.Array.size
@@ -1656,6 +1580,11 @@ PrefabInstance:
       propertyPath: enemyManager
       value: 
       objectReference: {fileID: 1423621068}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: incomeManager
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}
       propertyPath: waveLimitTime

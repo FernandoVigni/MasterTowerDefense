@@ -53,11 +53,11 @@ MonoBehaviour:
   PointToDiscardEnemies: {fileID: 2787623234799378152, guid: 04c396bdb73b7074b824beb9ce7068e8,
     type: 3}
   coefficient: 0
-  warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}
-  mage: {fileID: 8079335378970957348, guid: 50972eb53d5f58a42aee84c49da3383d, type: 3}
-  giant: {fileID: -590035906914972376, guid: 65ca137745571a94b8c0ab2a9c55ce90, type: 3}
   kamikaze: {fileID: -6269581979103499410, guid: 2bb0aeae17a3cd749a54ce4b48aaf0c1,
     type: 3}
-  listOfEnemiesToDefeatInThisStage: []
+  warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}
+  giant: {fileID: -590035906914972376, guid: 65ca137745571a94b8c0ab2a9c55ce90, type: 3}
+  mage: {fileID: 8079335378970957348, guid: 50972eb53d5f58a42aee84c49da3383d, type: 3}
   enemiesSentList: []
+  listOfEnemiesToDefeatInThisStage: []
   listOfEnemiesInsideTheTowerCollider: []

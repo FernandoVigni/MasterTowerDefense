@@ -8,7 +8,7 @@ public class Mage : Enemy
 {
     void Start()
     {
-        SetIncomeValue(10);
+        SetGoldValue(10);
         SetLife(80);
         SetSpeed(15);
         SetMagicArmor(10);

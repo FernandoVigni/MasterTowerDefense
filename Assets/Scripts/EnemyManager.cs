@@ -7,19 +7,25 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        stageManager = FindObjectOfType<StageManager>(); 
+        tower = FindObjectOfType<Tower>();
+    }
+
+    public Tower tower;
     public StageManager stageManager;
-    public IncomeManager incomeManager;
     public Transform positionToInstantiateEnemies;
     public Transform PointToDiscardEnemies;
     public float coefficient;
 
-    public Warrior warrior;
-    public Mage mage;
-    public Giant giant;
     public Kamikaze kamikaze;
+    public Warrior warrior;
+    public Giant giant;
+    public Mage mage;
 
-    public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> enemiesSentList = new List<Enemy>();
+    public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
     public void InstantiateWarrior()
@@ -156,12 +162,13 @@ public class EnemyManager : MonoBehaviour
     {
         RemoveEnemiesInsideColliderList(enemy);
         RemoveEnemyFromSentList(enemy);
-        incomeManager.RecibeGold(enemy.incomeValueOnDeath);
+        tower.RecibeGold(enemy.goldValueOnDeath);
         enemy.DestroyEnemy();
 
         if (listOfEnemiesToDefeatInThisStage.Count <= 0 && enemiesSentList.Count <= 0)
         {
-            stageManager.EndLevel();
+            float bagOfGold = stageManager.GetAmountBagOfGold();
+            tower.RecibeGold(bagOfGold);
         }
     }
 }

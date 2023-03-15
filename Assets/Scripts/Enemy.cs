@@ -7,15 +7,19 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+    private void Awake()
+    {
+        tower = FindObjectOfType<Tower>();
+    }
+
     public Action<Enemy> OnDeath;
-    public EnemyManager enemyManager;
     public Tower tower;
 
     public float physicalDamage;
     public float magicDamage;
     public float life;
     public float magicArmor;
-    public float incomeValueOnDeath;
+    public float goldValueOnDeath;
     public bool isWalking;
     public float speed;
     public float distanceToTower;
@@ -88,9 +92,9 @@ public class Enemy : MonoBehaviour
         magicArmor = magicArmorValue;
     }
 
-    public void SetIncomeValue(int value)
+    public void SetGoldValue(int value)
     {
-        incomeValueOnDeath = value;
+        goldValueOnDeath = value;
     }
 
     public void DestroyEnemy()
