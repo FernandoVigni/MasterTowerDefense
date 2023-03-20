@@ -9,6 +9,8 @@ public class Giant : Enemy
         SetGoldValue(100);
         SetLife(500);
         SetSpeed(5);
+        SetMagicDamage(0);
+        SetPhysicalDamage(200);
         SetMagicArmor(10);
     }
 }

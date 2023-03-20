@@ -46,11 +46,18 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         {
             StopMove();
+            fireBallManager.MoveToInitialZone(this);
+
             if (other.gameObject.CompareTag("Enemy"))
             {
+                Debug.Log("Enemy");
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
-            fireBallManager.MoveToInitialZone(this);
+
+            // Nunca reconoce el Ground
+            if (other.gameObject.CompareTag("Ground"))
+                { Debug.Log("Ground"); }
+
         }
     }
 }

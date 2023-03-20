@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
         tower = FindObjectOfType<Tower>();
     }
 
+    public bool isExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
 
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     
     public void recalculateWithTheCoefficientOfTheLevel(float coefficient) 
     {
+        goldValueOnDeath *= coefficient;
         life *= coefficient;
         speed *= coefficient;
         physicalDamage *= coefficient;
@@ -92,6 +94,16 @@ public class Enemy : MonoBehaviour
         magicArmor = magicArmorValue;
     }
 
+    public void SetMagicDamage(float magicDamage)
+    {
+        this.magicDamage = magicDamage;
+    }
+
+    public void SetPhysicalDamage(float physicalDamage)
+    {
+        this.physicalDamage = physicalDamage;
+    }
+
     public void SetGoldValue(int value)
     {
         goldValueOnDeath = value;
@@ -105,9 +117,11 @@ public class Enemy : MonoBehaviour
     public void ReceibeDamage(int damage)
     {
         life -= damage;
-        if (!IsAlive())
+        if (!IsAlive() && !isExecuted)
         {
-            OnDeath(this);
+            isExecuted = true;
+            //OnDeath(this);
+            OnDeath.Invoke(this);
         }
     }
 }

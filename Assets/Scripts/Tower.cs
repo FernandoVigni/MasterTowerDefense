@@ -26,6 +26,7 @@ public class Tower : MonoBehaviour
 
     public void RecibeGold(float gold)
     {
+        Debug.Log("+" + gold);
         this.gold += gold;
     }
 

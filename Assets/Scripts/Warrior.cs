@@ -10,6 +10,8 @@ public class Warrior : Enemy
         SetGoldValue(10);
         SetLife(100);
         SetSpeed(15);
+        SetMagicDamage(150);
+        SetPhysicalDamage(0);
         SetMagicArmor(10);
     }
 

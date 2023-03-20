@@ -11,6 +11,8 @@ public class Mage : Enemy
         SetGoldValue(10);
         SetLife(80);
         SetSpeed(15);
+        SetMagicDamage(0);
+        SetPhysicalDamage(100);
         SetMagicArmor(10);
     }
 

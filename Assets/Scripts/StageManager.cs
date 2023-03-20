@@ -53,9 +53,8 @@ public class StageManager : MonoBehaviour
     {
         coefficient = 1.25f;
         enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(1000f);
-        SetEnemies(0, 0, 4, 8);
-        //incomeManager.RecibeBagOfGold(bagOfGold);
+        SetBagOfGold(2000f);
+        SetEnemies(1, 0, 0, 0);
         LoadEnemies();
     }
 

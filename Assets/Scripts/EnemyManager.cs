@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour
 
     public void EnemySet(Enemy enemy)
     {
-        //enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
+        enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
@@ -150,13 +150,7 @@ public class EnemyManager : MonoBehaviour
     {
         listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
     }
-
     //Others
-
-    public void InvokeOnDeath(Enemy enemy) 
-    {
-        enemy.OnDeath.Invoke(enemy);  
-    }
 
     public void OnEnemyDeath(Enemy enemy)
     {
