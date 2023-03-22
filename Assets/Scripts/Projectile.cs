@@ -43,13 +43,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        StopMove();
+        fireBallManager.MoveToInitialZone(this);
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         {
-            
-
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log("Enemy");
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
 
@@ -57,9 +56,8 @@ public class Projectile : MonoBehaviour
             if (other.gameObject.CompareTag("Ground"))
                 { Debug.Log("Ground"); }
             
-            StopMove();
-            fireBallManager.MoveToInitialZone(this);
-
         }
     }
+
+
 }
