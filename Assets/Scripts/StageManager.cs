@@ -12,10 +12,10 @@ public class StageManager : MonoBehaviour
 
     int[] amountOfBagOfGoldByLevel = { 1000, 1200, 1300, 2000, 2500 };
     float[] coefficientsByLevel = { 1f, 1.2f, 1.5f, 1.75f, 2f, 2.5f };
-    int[] amountOfWarriosByLevel = { 1, 10, 15, 20, 5 };
-    int[] amountOfGiantsByLevel = { 1, 7, 6, 8, 3 };
-    int[] amountOfMagesByLevel = { 1, 8, 2, 5, 5 };
-    int[] amountOfKamikazesByLevel = { 1, 0, 0, 0, 0 };
+    int[] amountOfWarriosByLevel = { 12, 10, 15, 20, 5 };
+    int[] amountOfGiantsByLevel = { 4, 7, 6, 8, 3 };
+    int[] amountOfMagesByLevel = { 7, 8, 2, 5, 5 };
+    int[] amountOfKamikazesByLevel = { 8, 0, 0, 0, 0 };
 
     public int level;
     public int wave;

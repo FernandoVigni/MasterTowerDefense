@@ -55,9 +55,6 @@ public class Projectile : MonoBehaviour
             // Nunca reconoce el Ground
             if (other.gameObject.CompareTag("Ground"))
                 { Debug.Log("Ground"); }
-            
         }
     }
-
-
 }
