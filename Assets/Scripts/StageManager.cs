@@ -7,28 +7,36 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
+    public EnemyManager enemyManager;
+    public Transform pointOfSpawnOfWave;
+
+    int[] amountOfBagOfGoldByLevel = { 1000, 1200, 1300, 2000, 2500 };
+    float[] coefficientsByLevel = { 1f, 1.2f, 1.5f, 1.75f, 2f, 2.5f };
+    int[] amountOfWarriosByLevel = { 4, 10, 15, 20, 5 };
+    int[] amountOfGiantsByLevel = { 4, 7, 6, 8, 3 };
+    int[] amountOfMagesByLevel = { 4, 8, 2, 5, 5 };
+    int[] amountOfKamikazesByLevel = { 4, 0, 0, 0, 0 };
+
+    public int level;
+    public int wave;
+    public float waveLimitTime;
+    public float bagOfGold;
+
+    void Start()
+    {
+        SetLevel(0);
+    }
+
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
     }
 
-    public EnemyManager enemyManager;
-    public Transform PointOfSpawnOfWave;
-
-    public int level;
-    public int wave;
-    public float waveLimitTime;
-    public float coefficient = 2;
-    public float bagOfGold;
-
-    public int ammountOfWarriorsInWave;
-    public int ammountOfMagesInWave;
-    public int ammountOfGiantsInWave;
-    public int ammountOfKamikazesInWave;
-
-    void Start()
+    public void SetLevel(int curentLevel)
     {
-        SetLevelOne();
+        SetBagOfGold(amountOfBagOfGoldByLevel[curentLevel]);
+        enemyManager.SetCurrentCoefficient(coefficientsByLevel[curentLevel]);
+        LoadEnemies(curentLevel);
     }
 
     public float GetAmountBagOfGold() 
@@ -41,71 +49,18 @@ public class StageManager : MonoBehaviour
         this.bagOfGold = bagOfGold;
     }
 
-    public void SetEnemies(int warrios, int mages, int giants, int kamikazes)
+    public void LoadEnemies(int currentLevel)
     {
-        ammountOfWarriorsInWave = warrios;
-        ammountOfMagesInWave = mages;
-        ammountOfGiantsInWave = giants;
-        ammountOfKamikazesInWave = kamikazes;
-    }
-
-    public void SetLevelOne()
-    {
-        coefficient = 1.25f;
-        enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(2000f);
-        SetEnemies(1, 0, 0, 0);
-        LoadEnemies();
-    }
-
-    public void SetLevelTwo()
-    {
-        coefficient = 1;
-        enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(1000f);
-        SetEnemies(10, 8, 0, 0);
-        LoadEnemies();
-    }
-
-    public void SetLevelTree()
-    {
-        coefficient = 1.2f;
-        enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(1500f);
-        SetEnemies(2, 10, 0, 0);
-        LoadEnemies();
-    }
-
-    public void SetLevelFour()
-    {
-        coefficient = 1.5f;
-        enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(2000f);
-        SetEnemies(2, 12, 1, 0);
-        LoadEnemies();
-    }
-
-    public void SetLevelfive()
-    {
-        coefficient = 5;
-        enemyManager.SetCurrentCoefficient(coefficient);
-        SetBagOfGold(2500f);
-        SetEnemies(8, 8, 2, 0);
-        LoadEnemies();
-    }
-
-    public void LoadEnemies()
-    {
-        for (int i = 0; i < ammountOfWarriorsInWave; i++)
+        for (int i = 0; i < amountOfWarriosByLevel[currentLevel]; i++)
             {enemyManager.InstantiateWarrior();}
 
-        for (int i = 0; i < ammountOfMagesInWave; i++)
+        for (int i = 0; i < amountOfMagesByLevel[currentLevel]; i++)
             {enemyManager.InstantiateMage();}
        
-        for (int i = 0; i < ammountOfGiantsInWave; i++)
+        for (int i = 0; i < amountOfGiantsByLevel[currentLevel]; i++)
             {enemyManager.InstantiateGiant();}
 
-        for (int i = 0; i < ammountOfKamikazesInWave; i++)
+        for (int i = 0; i < amountOfKamikazesByLevel[currentLevel]; i++)
             {enemyManager.InstantiateKamikaze();}
 
         SendEnemies();
@@ -116,14 +71,14 @@ public class StageManager : MonoBehaviour
         int enemiesInThisLevel = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
         for (int i = 0; i < enemiesInThisLevel; i++)
         {
-            if (enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage() >= 1);
+            if (enemiesInThisLevel > 0);
             {
                 enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
                 await Task.Delay(1500);
-                enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
-                enemy.transform.position = PointOfSpawnOfWave.transform.position;
-                enemy.LookAt();
+              //  enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
+                enemy.transform.position = pointOfSpawnOfWave.transform.position;
+                enemy.LookTower();
                 enemy.StartMove();
                 enemyManager.RemoveEnemyFromStageList(enemy);
                 enemyManager.AddEnemyToSentList(enemy);

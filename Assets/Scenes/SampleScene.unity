@@ -1535,6 +1535,11 @@ PrefabInstance:
       objectReference: {fileID: 302098141}
     - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}
+      propertyPath: pointOfSpawnOfWave
+      value: 
+      objectReference: {fileID: 302098141}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
       propertyPath: ammountOfMagesInWave
       value: 0
       objectReference: {fileID: 0}
@@ -1546,6 +1551,76 @@ PrefabInstance:
     - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}
       propertyPath: ammountOfWarriorsInWave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: coefficientsByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfMagesByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfGiantsByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfWarriosByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfMagesByLevel.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfMagesByLevel.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfBagOfGoldByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfGiantsByLevel.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfGiantsByLevel.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfKamikazesByLevel.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfWarriosByLevel.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfWarriosByLevel.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfKamikazesByLevel.Array.data[0]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
+      propertyPath: amountOfKamikazesByLevel.Array.data[1]
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -31,25 +31,25 @@ public class EnemyManager : MonoBehaviour
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateEnemies.position, Quaternion.identity);
-        EnemySet(newWarriorEnemy);
+        SetEnemy(newWarriorEnemy);
     }
 
     public void InstantiateMage()
     {
         Mage newMageEnemy = Instantiate(mage, positionToInstantiateEnemies.position, Quaternion.identity);
-        EnemySet(newMageEnemy);
+        SetEnemy(newMageEnemy);
     }
 
     public void InstantiateGiant()
     {
         Giant newGiantEnemy = Instantiate(giant, positionToInstantiateEnemies.position, Quaternion.identity);
-        EnemySet(newGiantEnemy);
+        SetEnemy(newGiantEnemy);
     }
 
     public void InstantiateKamikaze()
     {
         Kamikaze newKamikazeEnemy = Instantiate(kamikaze, positionToInstantiateEnemies.position, Quaternion.identity);
-        EnemySet(newKamikazeEnemy);
+        SetEnemy(newKamikazeEnemy);
     }
 
     public void SetCurrentCoefficient(float currentLevel) 
@@ -75,7 +75,7 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    public void EnemySet(Enemy enemy)
+    public void SetEnemy(Enemy enemy)
     {
         enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
         enemy.isWalking = false;

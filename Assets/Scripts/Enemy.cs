@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
         tower = FindObjectOfType<Tower>();
     }
 
-    public bool isExecuted = false;
+    public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
 
@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
+    
     public void recalculateWithTheCoefficientOfTheLevel(float coefficient) 
     {
         goldValueOnDeath *= coefficient;
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
         magicDamage *= coefficient;
         magicArmor *= coefficient;
     }
+  
     
     public float CalculateDistanceToTower()
     {
@@ -59,7 +61,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void LookAt()
+    public void LookTower()
     {
         transform.LookAt(tower.GetTowerPosition());
     }
@@ -117,10 +119,9 @@ public class Enemy : MonoBehaviour
     public void ReceibeDamage(int damage)
     {
         life -= damage;
-        if (!IsAlive() && !isExecuted)
+        if (!IsAlive() && !OnDeathWasExecuted)
         {
-            isExecuted = true;
-            //OnDeath(this);
+            OnDeathWasExecuted = true;
             OnDeath.Invoke(this);
         }
     }
