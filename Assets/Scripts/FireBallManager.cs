@@ -26,6 +26,7 @@ public class FireBallManager : Projectile
     public void ShootProjectile(Enemy enemy)
     {
         fireBall = ChooseFirstProjectile();
+        fireBall.transform.position = positionToInstantiateProjectil.position;
         fireBall.LookAt(enemy);
         fireBall.StartMove();
     }
