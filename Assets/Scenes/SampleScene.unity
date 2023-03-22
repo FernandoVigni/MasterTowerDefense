@@ -1153,7 +1153,7 @@ PrefabInstance:
     - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
         type: 3}
       propertyPath: numFireBalls
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7613e17262e74442b8f9971af14dade, type: 3}

@@ -51,10 +51,6 @@ public class Projectile : MonoBehaviour
             {
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
-
-            // Nunca reconoce el Ground
-            if (other.gameObject.CompareTag("Ground"))
-                { Debug.Log("Ground"); }
         }
     }
 }

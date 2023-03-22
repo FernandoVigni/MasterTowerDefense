@@ -10,14 +10,14 @@ public class StageManager : MonoBehaviour
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
 
-    int[] amountOfBagOfGoldByLevel = { 1000, 1200, 1300, 2000, 2500 };
-    float[] coefficientsByLevel = { 1f, 1.2f, 1.5f, 1.75f, 2f, 2.5f };
+    float[] coefficientsByLevel = { 2f, 1.2f, 1.5f, 1.75f, 2f, 2.5f };
+    int[] amountOfBagOfGoldByLevel = { 1000, 1200, 1300, 2000, 2500 };    
     int[] amountOfWarriosByLevel = { 12, 10, 15, 20, 5 };
     int[] amountOfGiantsByLevel = { 4, 7, 6, 8, 3 };
     int[] amountOfMagesByLevel = { 7, 8, 2, 5, 5 };
     int[] amountOfKamikazesByLevel = { 8, 0, 0, 0, 0 };
 
-    public int level;
+    public int currentLevel;
     public int wave;
     public float waveLimitTime;
     public float bagOfGold;
@@ -25,12 +25,18 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         SetLevel(0);
+        currentLevel = 0;
     }
 
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
     }
+
+            public float GetCoefficient()
+            {
+                return coefficientsByLevel[currentLevel];
+            }
 
     public void SetLevel(int curentLevel)
     {
@@ -76,7 +82,6 @@ public class StageManager : MonoBehaviour
                 enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
                 await Task.Delay(1500);
-              //  enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
                 enemy.transform.position = pointOfSpawnOfWave.transform.position;
                 enemy.LookTower();
                 enemy.StartMove();

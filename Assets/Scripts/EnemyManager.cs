@@ -52,9 +52,9 @@ public class EnemyManager : MonoBehaviour
         SetEnemy(newKamikazeEnemy);
     }
 
-    public void SetCurrentCoefficient(float currentLevel) 
+    public void SetCurrentCoefficient(float currentCoefficient) 
     {
-        this.coefficient = currentLevel;
+        this.coefficient = currentCoefficient;
     }
 
     // Stage List Methods
@@ -77,7 +77,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SetEnemy(Enemy enemy)
     {
-        enemy.recalculateWithTheCoefficientOfTheLevel(coefficient);
+        enemy.SetCoefficient(coefficient);  
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisStage.Add(enemy);
@@ -123,7 +123,8 @@ public class EnemyManager : MonoBehaviour
 
     public void SortlistOfEnemiesInsideTheTowerCollider()
     {
-        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position).CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
+            .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
     }
 
     public Enemy GetIEnemyFromColliderList(int i)

@@ -14,6 +14,7 @@ public class Mage : Enemy
         SetMagicDamage(0);
         SetPhysicalDamage(100);
         SetMagicArmor(10);
+        recalculateWithTheCoefficientOfTheLevel(coefficient);
     }
 
     public async void SuperCharge() 

@@ -111,6 +111,11 @@ public class Enemy : MonoBehaviour
         goldValueOnDeath = value;
     }
 
+    public void SetCoefficient(float coefficient) 
+    {
+        this.coefficient = coefficient;
+    }
+
     public void DestroyEnemy()
     {
         Destroy(gameObject);
