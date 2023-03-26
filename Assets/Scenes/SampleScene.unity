@@ -1457,6 +1457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}
+      propertyPath: spawnDistanceToTower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
+        type: 3}
       propertyPath: ammountOfGigantsInWave
       value: 0
       objectReference: {fileID: 0}
