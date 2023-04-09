@@ -35,8 +35,7 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    
-    public void recalculateWithTheCoefficientOfTheLevel(float coefficient) 
+    public void recalculateWithTheCoefficient(float coefficient) 
     {
         goldValueOnDeath *= coefficient;
         life *= coefficient;

@@ -11,12 +11,13 @@ public class EnemyManager : MonoBehaviour
     {
         stageManager = FindObjectOfType<StageManager>(); 
         tower = FindObjectOfType<Tower>();
+       // levelSelectorManager = FindObjectOfType<LevelSelectorManager>();
     }
 
-    public Tower tower;
-    public StageManager stageManager;
+   // public LevelSelectorManager levelSelectorManager;
     public Transform positionToInstantiateEnemies;
-    public Transform PointToDiscardEnemies;
+    public StageManager stageManager;
+    public Tower tower;
     public float coefficient;
 
     public Kamikaze kamikaze;
@@ -123,6 +124,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SortlistOfEnemiesInsideTheTowerCollider()
     {
+        // Preguntarle al chat como hago para validar que alguno quedo en nullo y si lo hay como se quita.
         listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
             .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
     }
@@ -155,15 +157,28 @@ public class EnemyManager : MonoBehaviour
 
     public void OnEnemyDeath(Enemy enemy)
     {
-        RemoveEnemiesInsideColliderList(enemy);
         RemoveEnemyFromSentList(enemy);
+        RemoveEnemiesInsideColliderList(enemy);
         tower.RecibeGold(enemy.goldValueOnDeath);
-        enemy.DestroyEnemy();
 
         if (listOfEnemiesToDefeatInThisStage.Count <= 0 && enemiesSentList.Count <= 0)
         {
             float bagOfGold = stageManager.GetAmountBagOfGold();
             tower.RecibeGold(bagOfGold);
+            //levelSelectorManager.IncreseMaxLevelAviable();
+            // ir al selector de Niveles
+        }
+        enemy.DestroyEnemy();
+    }
+
+    // Validar si la lista quedo en condiciones. 
+    // para esto recorro toda la lista y si algun enemigo esta null lo elimino de la lista.
+    public void ValidateNullsInList() 
+    {
+        for (int i = 0; i < listOfEnemiesInsideTheTowerCollider.Count; i++)
+        {
+           // if (listOfEnemiesInsideTheTowerCollider[i] == null)
+                //listOfEnemiesInsideTheTowerCollider. // remover el elemento i de la lista.
         }
     }
 }

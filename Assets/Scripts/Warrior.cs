@@ -13,7 +13,7 @@ public class Warrior : Enemy
         SetMagicDamage(150);
         SetPhysicalDamage(0);
         SetMagicArmor(10);
-        recalculateWithTheCoefficientOfTheLevel(coefficient);
+        recalculateWithTheCoefficient(coefficient);
     }
 
     public async void Roar()

@@ -12,6 +12,6 @@ public class Giant : Enemy
         SetMagicDamage(0);
         SetPhysicalDamage(200);
         SetMagicArmor(10);
-        recalculateWithTheCoefficientOfTheLevel(coefficient);
+        recalculateWithTheCoefficient(coefficient);
     }
 }

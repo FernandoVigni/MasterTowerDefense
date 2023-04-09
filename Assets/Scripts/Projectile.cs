@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     }
 
     public void LookAt(Enemy enemy)
-    {
+    {   
         transform.LookAt(enemy.transform.position);
     }
 

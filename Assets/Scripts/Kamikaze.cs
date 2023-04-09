@@ -13,6 +13,6 @@ public class Kamikaze : Enemy
         SetMagicDamage(300);
         SetPhysicalDamage(0);
         SetMagicArmor(10);
-        recalculateWithTheCoefficientOfTheLevel(coefficient);
+        recalculateWithTheCoefficient(coefficient);
     }
 }

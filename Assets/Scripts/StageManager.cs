@@ -13,10 +13,10 @@ public class StageManager : MonoBehaviour
 
     float[] coefficientsByLevel = { 1f, 1.2f, 1.5f, 1.75f, 2f, 2.5f };
     int[] amountOfBagOfGoldByLevel = { 1000, 1200, 1300, 2000, 2500 };    
-    int[] amountOfWarriosByLevel = { 12, 10, 15, 20, 5 };
-    int[] amountOfGiantsByLevel = { 4, 7, 6, 8, 3 };
-    int[] amountOfMagesByLevel = { 7, 8, 2, 5, 5 };
-    int[] amountOfKamikazesByLevel = { 8, 0, 0, 0, 0 };
+    int[] amountOfWarriosByLevel = { 10, 10, 15, 20, 5 };
+    int[] amountOfGiantsByLevel = {4, 7, 6, 8, 3 };
+    int[] amountOfMagesByLevel = { 8, 8, 2, 5, 5 };
+    int[] amountOfKamikazesByLevel = { 7, 0, 0, 0, 0 };
 
     public int currentLevel;
     public int wave;
@@ -24,10 +24,9 @@ public class StageManager : MonoBehaviour
     public float bagOfGold;
     public float spawnDistanceToTower;
 
-    void Start()
+    private void Start()
     {
         SetLevel(0);
-        currentLevel = 0;
     }
 
     private void Awake()
@@ -81,7 +80,7 @@ public class StageManager : MonoBehaviour
                 await Task.Delay(1500);
 
                 // 1) random 0 - 360      90
-                int randonAngle = GetRandomNumberBetween360();
+                int randonAngle = GetRandomNumber(30, 140);
 
                 // 2) calculo sin         
                 double x = GetSineOfAnAngle(randonAngle);
@@ -92,12 +91,7 @@ public class StageManager : MonoBehaviour
                 float floatY = (float)y;
 
                 Vector3 spawnPositionRandom = new Vector3(floatX, 0, floatY);
-                Debug.Log(spawnPositionRandom);
-
-
                 enemy.transform.position = spawnPositionRandom;
-
-                
                 enemy.LookTower();
                 enemy.StartMove();
                 enemyManager.RemoveEnemyFromStageList(enemy);
@@ -124,10 +118,9 @@ public class StageManager : MonoBehaviour
         return cosValue;
     }
 
-    public int GetRandomNumberBetween360()
+    public int GetRandomNumber(int min, int max)
     {
-        int randomNumber = UnityEngine.Random.Range(0, 360);
+        int randomNumber = UnityEngine.Random.Range(min, max);
         return randomNumber;
     }
-
 }
