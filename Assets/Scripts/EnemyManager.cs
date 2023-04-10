@@ -186,7 +186,7 @@ public class EnemyManager : MonoBehaviour
                 await Task.Delay(delayToInstantiateEnemy);
 
                 // 1) random 0 - 360      90
-                int randonAngle = GetRandomNumber(30, 140);
+                int randonAngle = GetRandomNumber(90, 180);
 
                 // 2) calculo sin         
                 double x = GetSineOfAnAngle(randonAngle);

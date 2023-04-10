@@ -38,8 +38,7 @@ public class Projectile : MonoBehaviour
 
     public void LookAt(Enemy enemy)
     {   
-        if(enemy != null)
-            transform.LookAt(enemy.transform.position);
+        transform.LookAt(enemy.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)
