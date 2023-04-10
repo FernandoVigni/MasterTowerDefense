@@ -22,7 +22,8 @@ public class StageManager : MonoBehaviour
     public int wave;
     public float waveLimitTime;
     public float bagOfGold;
-    public float spawnDistanceToTower;
+    public float distanceToInstanciateEnemyToTower;
+    public int delayToInstantiateEnemy;
 
     private void Start()
     {
@@ -77,20 +78,20 @@ public class StageManager : MonoBehaviour
             {
                 enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
                 Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
-                await Task.Delay(1500);
+                await Task.Delay(delayToInstantiateEnemy);
 
                 // 1) random 0 - 360      90
                 int randonAngle = GetRandomNumber(30, 140);
 
                 // 2) calculo sin         
                 double x = GetSineOfAnAngle(randonAngle);
-                float floatX = (float)x;
+                float floatX = (float)x * distanceToInstanciateEnemyToTower;
 
                 // 3) calculo cos         
-                double y = GetCosOfAnAngle(randonAngle);
-                float floatY = (float)y;
+                double z = GetCosOfAnAngle(randonAngle);
+                float floatZ = (float)z * distanceToInstanciateEnemyToTower;
 
-                Vector3 spawnPositionRandom = new Vector3(floatX, 0, floatY);
+                Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
                 enemy.transform.position = spawnPositionRandom;
                 enemy.LookTower();
                 enemy.StartMove();
@@ -104,7 +105,7 @@ public class StageManager : MonoBehaviour
     {
         double angleInRadians = angle * Math.PI / 180;
         double sineValue = Math.Sin(angleInRadians);
-        sineValue = sineValue * spawnDistanceToTower;
+        sineValue = sineValue * distanceToInstanciateEnemyToTower;
         sineValue = Math.Round(sineValue, 2);
         return sineValue;
     }
@@ -113,7 +114,7 @@ public class StageManager : MonoBehaviour
     {
         double angleInRadians = angle * Math.PI / 180;
         double cosValue = Math.Cos(angleInRadians);
-        cosValue = cosValue * spawnDistanceToTower;
+        cosValue = cosValue * distanceToInstanciateEnemyToTower;
         cosValue = Math.Round(cosValue, 2);
         return cosValue;
     }

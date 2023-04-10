@@ -55,6 +55,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 2739752882039498800, guid: cc4ba1fbb6f26b74bb29ed432e1fe3ea,
     type: 3}
   numFireBalls: 15
-  positionToInstantiateProjectil: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
+  positionToMoveProjectil: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
     type: 3}
   fireBalls: []
