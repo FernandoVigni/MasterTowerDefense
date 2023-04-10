@@ -22,8 +22,7 @@ public class StageManager : MonoBehaviour
     public int wave;
     public float waveLimitTime;
     public float bagOfGold;
-    public float distanceToInstanciateEnemyToTower;
-    public int delayToInstantiateEnemy;
+
 
     private void Start()
     {
@@ -66,62 +65,6 @@ public class StageManager : MonoBehaviour
         for (int i = 0; i < amountOfKamikazesByLevel[currentLevel]; i++)
             {enemyManager.InstantiateKamikaze();}
 
-        SendEnemies();
-    }
-
-    public  async void SendEnemies()
-    {
-        int enemiesInThisLevel = enemyManager.GetAmmountOflistOfEnemiesToDefeatInThisStage();
-        for (int i = 0; i < enemiesInThisLevel; i++)
-        {
-            if (enemiesInThisLevel > 0);
-            {
-                enemyManager.ShufleList(enemyManager.listOfEnemiesToDefeatInThisStage);
-                Enemy enemy = enemyManager.GetFirstEnemyFromStageList();
-                await Task.Delay(delayToInstantiateEnemy);
-
-                // 1) random 0 - 360      90
-                int randonAngle = GetRandomNumber(30, 140);
-
-                // 2) calculo sin         
-                double x = GetSineOfAnAngle(randonAngle);
-                float floatX = (float)x * distanceToInstanciateEnemyToTower;
-
-                // 3) calculo cos         
-                double z = GetCosOfAnAngle(randonAngle);
-                float floatZ = (float)z * distanceToInstanciateEnemyToTower;
-
-                Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
-                enemy.transform.position = spawnPositionRandom;
-                enemy.LookTower();
-                enemy.StartMove();
-                enemyManager.RemoveEnemyFromStageList(enemy);
-                enemyManager.AddEnemyToSentList(enemy);
-            } 
-        }   
-    }
-
-    public double GetSineOfAnAngle(int angle) 
-    {
-        double angleInRadians = angle * Math.PI / 180;
-        double sineValue = Math.Sin(angleInRadians);
-        sineValue = sineValue * distanceToInstanciateEnemyToTower;
-        sineValue = Math.Round(sineValue, 2);
-        return sineValue;
-    }
-
-    public double GetCosOfAnAngle(int angle)
-    {
-        double angleInRadians = angle * Math.PI / 180;
-        double cosValue = Math.Cos(angleInRadians);
-        cosValue = cosValue * distanceToInstanciateEnemyToTower;
-        cosValue = Math.Round(cosValue, 2);
-        return cosValue;
-    }
-
-    public int GetRandomNumber(int min, int max)
-    {
-        int randomNumber = UnityEngine.Random.Range(min, max);
-        return randomNumber;
+        enemyManager.SendEnemies();
     }
 }

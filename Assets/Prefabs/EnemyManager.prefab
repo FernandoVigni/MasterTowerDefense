@@ -44,15 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ead74b14276173438c36318177f71e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageManager: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
-    type: 3}
-  incomeManager: {fileID: 7909107167705370171, guid: dd81243b2774fc84cb2d10292015515e,
-    type: 3}
   positionToInstantiateEnemies: {fileID: 2902207644395976252, guid: 35836ab01ee488d4fa1775e8075c28c9,
     type: 3}
-  PointToDiscardEnemies: {fileID: 2787623234799378152, guid: 04c396bdb73b7074b824beb9ce7068e8,
+  stageManager: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
     type: 3}
+  tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   coefficient: 0
+  distanceToInstanciateEnemyToTower: 0
+  delayToInstantiateEnemy: 0
   kamikaze: {fileID: -6269581979103499410, guid: 2bb0aeae17a3cd749a54ce4b48aaf0c1,
     type: 3}
   warrior: {fileID: 6317857294658267085, guid: 86164ed0f3492d64d953d719e51dd7a5, type: 3}

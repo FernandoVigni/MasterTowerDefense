@@ -22,7 +22,7 @@ public class FireBallManager : Projectile
             fireBalls.Add(fireBall);
         }
     }
-   
+
     public void ShootProjectile(Enemy enemy)
     {
         fireBall = ChooseFirstProjectile();

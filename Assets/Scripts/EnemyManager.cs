@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
+using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -19,6 +20,8 @@ public class EnemyManager : MonoBehaviour
     public StageManager stageManager;
     public Tower tower;
     public float coefficient;
+    public float distanceToInstanciateEnemyToTower;
+    public int delayToInstantiateEnemy;
 
     public Kamikaze kamikaze;
     public Warrior warrior;
@@ -125,8 +128,8 @@ public class EnemyManager : MonoBehaviour
     public void SortlistOfEnemiesInsideTheTowerCollider()
     {
         // Preguntarle al chat como hago para validar que alguno quedo en nullo y si lo hay como se quita.
-        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
-            .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+       // listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
+           // .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
     }
 
     public Enemy GetIEnemyFromColliderList(int i)
@@ -171,14 +174,59 @@ public class EnemyManager : MonoBehaviour
         enemy.DestroyEnemy();
     }
 
-    // Validar si la lista quedo en condiciones. 
-    // para esto recorro toda la lista y si algun enemigo esta null lo elimino de la lista.
-    public void ValidateNullsInList() 
+    public async void SendEnemies()
     {
-        for (int i = 0; i < listOfEnemiesInsideTheTowerCollider.Count; i++)
+        int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisStage();
+        for (int i = 0; i < enemiesInThisLevel; i++)
         {
-           // if (listOfEnemiesInsideTheTowerCollider[i] == null)
-                //listOfEnemiesInsideTheTowerCollider. // remover el elemento i de la lista.
+            if (enemiesInThisLevel > 0) ;
+            {
+                ShufleList(listOfEnemiesToDefeatInThisStage);
+                Enemy enemy = GetFirstEnemyFromStageList();
+                await Task.Delay(delayToInstantiateEnemy);
+
+                // 1) random 0 - 360      90
+                int randonAngle = GetRandomNumber(30, 140);
+
+                // 2) calculo sin         
+                double x = GetSineOfAnAngle(randonAngle);
+                float floatX = (float)x * distanceToInstanciateEnemyToTower;
+
+                // 3) calculo cos         
+                double z = GetCosOfAnAngle(randonAngle);
+                float floatZ = (float)z * distanceToInstanciateEnemyToTower;
+
+                Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
+                enemy.transform.position = spawnPositionRandom;
+                enemy.LookTower();
+                enemy.StartMove();
+                RemoveEnemyFromStageList(enemy);
+                AddEnemyToSentList(enemy);
+            }
         }
+    }
+
+    public double GetSineOfAnAngle(int angle)
+    {
+        double angleInRadians = angle * Math.PI / 180;
+        double sineValue = Math.Sin(angleInRadians);
+        sineValue = sineValue * distanceToInstanciateEnemyToTower;
+        sineValue = Math.Round(sineValue, 2);
+        return sineValue;
+    }
+
+    public double GetCosOfAnAngle(int angle)
+    {
+        double angleInRadians = angle * Math.PI / 180;
+        double cosValue = Math.Cos(angleInRadians);
+        cosValue = cosValue * distanceToInstanciateEnemyToTower;
+        cosValue = Math.Round(cosValue, 2);
+        return cosValue;
+    }
+
+    public int GetRandomNumber(int min, int max)
+    {
+        int randomNumber = UnityEngine.Random.Range(min, max);
+        return randomNumber;
     }
 }
