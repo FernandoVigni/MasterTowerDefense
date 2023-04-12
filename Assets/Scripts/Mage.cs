@@ -19,12 +19,18 @@ public class Mage : Enemy
 
     public async void SuperCharge() 
     {
-        await Task.Delay(2500);
+        await Task.Delay(1500);
         // animacion de cargando energia
         magicDamage *= 3;
     }
 
-    public void EnergyBall() 
+    //EJEMPLO POLIMORFISMO
+    public override void BossScream() 
+    {
+        SuperCharge();
+    }
+
+     public void EnergyBall() 
     {
         tower.ReciveDamage(magicDamage);
     }

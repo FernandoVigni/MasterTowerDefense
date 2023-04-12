@@ -18,7 +18,7 @@ public class MainCamera : MonoBehaviour
 
     private void Update()
     {
-        transform.LookAt(tower.transform.position);
+        transform.LookAt(new Vector3(tower.transform.position.x, (tower.transform.position.y + 16), tower.transform.position.z));
     }
 
     void SetCameraSize()

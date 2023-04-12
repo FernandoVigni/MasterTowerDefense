@@ -120,6 +120,10 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+    //EJEMPLO POLIMORFISMO
+    public virtual void BossScream() 
+    { }
+
     public void ReceibeDamage(int damage)
     {
         life -= damage;
