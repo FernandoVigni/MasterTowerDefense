@@ -15,4 +15,15 @@ public class Kamikaze : Enemy
         SetMagicArmor(10);
         recalculateWithTheCoefficient(coefficient);
     }
+
+    //EJEMPLO POLIMORFISMO
+    public override void BossScream()
+    {
+        SpeedIncreased();
+    }
+
+    public void SpeedIncreased()
+    {
+        speed *= 1.3f;
+    }
 }

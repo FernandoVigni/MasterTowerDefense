@@ -128,8 +128,8 @@ public class EnemyManager : MonoBehaviour
     public void SortlistOfEnemiesInsideTheTowerCollider()
     {
         // Preguntarle al chat como hago para validar que alguno quedo en nullo y si lo hay como se quita.
-       // listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
-           // .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+        listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
+            .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
     }
 
     public Enemy GetIEnemyFromColliderList(int i)

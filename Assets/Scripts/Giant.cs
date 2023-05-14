@@ -14,4 +14,15 @@ public class Giant : Enemy
         SetMagicArmor(10);
         recalculateWithTheCoefficient(coefficient);
     }
+
+    //EJEMPLO POLIMORFISMO
+    public override void BossScream()
+    {
+        MagicArmorIncreased();
+    }
+
+    public void MagicArmorIncreased() 
+    {
+        magicArmor *= 1.3f;
+    }
 }

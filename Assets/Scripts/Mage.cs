@@ -17,20 +17,19 @@ public class Mage : Enemy
         recalculateWithTheCoefficient(coefficient);
     }
 
-    public async void SuperCharge() 
-    {
-        await Task.Delay(1500);
-        // animacion de cargando energia
-        magicDamage *= 3;
-    }
-
     //EJEMPLO POLIMORFISMO
     public override void BossScream() 
     {
         SuperCharge();
     }
 
-     public void EnergyBall() 
+    public void SuperCharge()
+    {
+        // animacion de cargando energia
+        magicDamage *= 3;
+    }
+
+    public void EnergyBall() 
     {
         tower.ReciveDamage(magicDamage);
     }

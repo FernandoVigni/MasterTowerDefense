@@ -24,10 +24,14 @@ public class Warrior : Enemy
         isWalking = true;
     }
 
-    public async void AxAttack()
+    public override void BossScream()
     {
-        float AxAttackDamage = physicalDamage * 2;
-        tower.ReciveDamage(AxAttackDamage);
-        await Task.Delay(1000);
+        AxeAttack();
+    }
+
+    public void AxeAttack()
+    {
+        float AxeAttackDamageIncresed = physicalDamage * 2;
+        tower.ReciveDamage(AxeAttackDamageIncresed);
     }
 }
