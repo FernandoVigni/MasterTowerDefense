@@ -10,6 +10,7 @@ public class Runner : Enemy
         SetGoldValue(2);
         SetLife(50);
         SetSpeed(20);
+        SetAtackSpeed(30);
 
         SetMagicDamage(0);
         SetMagicArmor(10);

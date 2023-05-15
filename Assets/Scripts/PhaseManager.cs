@@ -47,8 +47,8 @@ public class PhaseManager : MonoBehaviour
 
     public void StartPhase() 
     {
-        SetBagOfGold(amountOfBagOfGoldByPhase[currentPhase]);
-        LoadEnemies(currentPhase);
+        SetBagOfGold();
+        LoadEnemies();
     }
 
     public bool nextPhase() 
@@ -64,22 +64,19 @@ public class PhaseManager : MonoBehaviour
         int amountOfPhases = amountOfWarriosByPhase.Length;
         return amountOfPhases;
     }
-    public void SetBagOfGold(float bagOfGold)
+    public void SetBagOfGold()
     {
-        this.bagOfGold = bagOfGold;
+        bagOfGold = amountOfBagOfGoldByPhase[currentPhase];
     }
 
-    public void SetBagOfGold(int curentPhase)
-    {
-        SetBagOfGold((float)amountOfBagOfGoldByPhase[curentPhase]);
-    }
+
 
     public float GetAmountBagOfGold() 
     {
         return bagOfGold;
     }
 
-    public void LoadEnemies(int currentPhase)
+    public void LoadEnemies()
     {
         for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
             {enemyManager.InstantiateWarrior();}

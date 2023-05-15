@@ -166,12 +166,11 @@ public class EnemyManager : MonoBehaviour
 
         if (listOfEnemiesToDefeatInThisPhase.Count <= 0 && enemiesSentList.Count <= 0)
         {
-            Debug.Log("Do you obtain in this phase: " + recivedGoldInThisPhase + " Gold");
-            recivedGoldInThisPhase = 0;
-
             float bagOfGold = phaseManager.GetAmountBagOfGold();
-            
             tower.RecibeGold(bagOfGold);
+
+            Debug.Log("You obtain in this phase: " + recivedGoldInThisPhase + " Gold");
+            recivedGoldInThisPhase = 0;
 
             if (phaseManager.nextPhase())
                 { phaseManager.SetPhasePlusOne(); }

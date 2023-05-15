@@ -7,16 +7,9 @@ public class Giant : Enemy
     void Start()
     {
         SetGoldValue(3);
-        SetLife(500);
-        SetSpeed(5);
-        SetMagicDamage(0);
-        SetPhysicalDamage(200);
-        SetMagicArmor(10);
-        recalculateStatsWithTheCoefficient(coefficient);
-
-        SetGoldValue(3);
         SetLife(300);
         SetSpeed(10);
+        SetAtackSpeed(30);
 
         SetMagicDamage(0);
         SetMagicArmor(10);

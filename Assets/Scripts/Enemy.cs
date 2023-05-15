@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     public float magicDamage;
     public float magicArmor;
     public int goldValueOnDeath;
+    public float atackSpeed;
 
     public bool isWalking;
     public float distanceToTower;
@@ -88,6 +89,11 @@ public class Enemy : MonoBehaviour
     public void SetSpeed(float speed)
     {
         this.speed = speed;
+    }
+
+    public void SetAtackSpeed(float atackSpeed) 
+    {
+        this.atackSpeed = atackSpeed;
     }
 
     public void SetMagicArmor(float magicArmorValue) 
