@@ -7,13 +7,17 @@ public class Runner : Enemy
 {
     void Start()
     {
-        SetGoldValue(15);
+        SetGoldValue(2);
         SetLife(50);
         SetSpeed(20);
-        SetMagicDamage(300);
-        SetPhysicalDamage(0);
+
+        SetMagicDamage(0);
         SetMagicArmor(10);
-        recalculateWithTheCoefficient(coefficient);
+
+        SetPhysicalDamage(20);
+        SetPhysicalArmor(10);
+
+        recalculateStatsWithTheCoefficient(coefficient);
     }
 
     //EJEMPLO POLIMORFISMO

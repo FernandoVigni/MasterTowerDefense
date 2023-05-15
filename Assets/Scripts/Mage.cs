@@ -8,13 +8,17 @@ public class Mage : Enemy
 {
     void Start()
     {
-        SetGoldValue(20);
+        SetGoldValue(1);
         SetLife(80);
         SetSpeed(15);
-        SetMagicDamage(0);
-        SetPhysicalDamage(100);
+
+        SetMagicDamage(100);
         SetMagicArmor(10);
-        recalculateWithTheCoefficient(coefficient);
+
+        SetPhysicalDamage(0);
+        SetPhysicalArmor(10);
+
+        recalculateStatsWithTheCoefficient(coefficient);
     }
 
     //EJEMPLO POLIMORFISMO

@@ -10,26 +10,25 @@ public class EnemyManager : MonoBehaviour
 {
     private void Awake()
     {
-        stageManager = FindObjectOfType<StageManager>(); 
+        phaseManager = FindObjectOfType<PhaseManager>(); 
         tower = FindObjectOfType<Tower>();
-       // levelSelectorManager = FindObjectOfType<LevelSelectorManager>();
     }
 
-   // public LevelSelectorManager levelSelectorManager;
     public Transform positionToInstantiateEnemies;
-    public StageManager stageManager;
+    public PhaseManager phaseManager;
     public Tower tower;
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
+    public int phase = 0;
 
-    public Runner runner;
     public Warrior warrior;
-    public Giant giant;
     public Mage mage;
+    public Runner runner;
+    public Giant giant;
 
     public List<Enemy> enemiesSentList = new List<Enemy>();
-    public List<Enemy> listOfEnemiesToDefeatInThisStage = new List<Enemy>();
+    public List<Enemy> listOfEnemiesToDefeatInThisPhase = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
     public void InstantiateWarrior()
@@ -56,25 +55,19 @@ public class EnemyManager : MonoBehaviour
         SetEnemy(newGiantEnemy);
     }
 
-
-    public void SetCurrentCoefficient(float currentCoefficient) 
-    {
-        this.coefficient = currentCoefficient;
-    }
-
     // Stage List Methods
-    public int GetAmmountOflistOfEnemiesToDefeatInThisStage() 
+    public int GetAmmountOflistOfEnemiesToDefeatInThisPhase() 
     {
         int result;
-        result = listOfEnemiesToDefeatInThisStage.Count;
+        result = listOfEnemiesToDefeatInThisPhase.Count;
         return result;
     }
 
-    public Enemy GetFirstEnemyFromStageList()
+    public Enemy GetFirstEnemyFromPhaseList()
     {
-        if (listOfEnemiesToDefeatInThisStage.Count >= 1)
+        if (listOfEnemiesToDefeatInThisPhase.Count >= 1)
         {
-            Enemy iEnemy = listOfEnemiesToDefeatInThisStage[0];
+            Enemy iEnemy = listOfEnemiesToDefeatInThisPhase[0];
             return iEnemy;
         }
         return null;
@@ -82,25 +75,27 @@ public class EnemyManager : MonoBehaviour
 
     public void SetEnemy(Enemy enemy)
     {
+        coefficient = phaseManager.GetCoefficient();
         enemy.SetCoefficient(coefficient);  
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
-        listOfEnemiesToDefeatInThisStage.Add(enemy);
+        listOfEnemiesToDefeatInThisPhase.Add(enemy);
     }
 
+    // List Methods
     public void ShufleList(List<Enemy> list)
     {
-        listOfEnemiesToDefeatInThisStage.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
+        listOfEnemiesToDefeatInThisPhase.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
     }
 
-    public void RemoveEnemyFromStageList(Enemy enemy) 
+    public void RemoveEnemyFromPhase(Enemy enemy) 
     {
-        listOfEnemiesToDefeatInThisStage.Remove(enemy);
+        listOfEnemiesToDefeatInThisPhase.Remove(enemy);
     }
 
     public void RemoveAllInStage()
     {
-        listOfEnemiesToDefeatInThisStage.RemoveAll(Enemy => true);
+        listOfEnemiesToDefeatInThisPhase.RemoveAll(Enemy => true);
     }
 
     // Enemies Sent List Method
@@ -157,34 +152,44 @@ public class EnemyManager : MonoBehaviour
     {
         listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
     }
+
     //Others
+    public int recivedGoldInThisPhase;
 
     public void OnEnemyDeath(Enemy enemy)
     {
         RemoveEnemyFromSentList(enemy);
         RemoveEnemiesInsideColliderList(enemy);
-        tower.RecibeGold(enemy.goldValueOnDeath);
 
-        if (listOfEnemiesToDefeatInThisStage.Count <= 0 && enemiesSentList.Count <= 0)
+        tower.RecibeGold(enemy.goldValueOnDeath);
+        recivedGoldInThisPhase += enemy.goldValueOnDeath;
+
+        if (listOfEnemiesToDefeatInThisPhase.Count <= 0 && enemiesSentList.Count <= 0)
         {
-            float bagOfGold = stageManager.GetAmountBagOfGold();
-            tower.RecibeGold(bagOfGold);
-            //levelSelectorManager.IncreseMaxLevelAviable();
-            // ir al selector de Niveles
+            Debug.Log("Do you obtain in this phase: " + recivedGoldInThisPhase + " Gold");
+            recivedGoldInThisPhase = 0;
+
+            float bagOfGold = phaseManager.GetAmountBagOfGold();
             
+            tower.RecibeGold(bagOfGold);
+
+            if (phaseManager.nextPhase())
+                { phaseManager.SetPhasePlusOne(); }
+            else
+                { /*End Phases*/ }
         }
         enemy.DestroyEnemy();
     }
 
     public async void SendEnemies()
     {
-        int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisStage();
+        int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisPhase();
         for (int i = 0; i < enemiesInThisLevel; i++)
         {
-            if (enemiesInThisLevel > 0) ;
+            if (enemiesInThisLevel > 0)
             {
-                ShufleList(listOfEnemiesToDefeatInThisStage);
-                Enemy enemy = GetFirstEnemyFromStageList();
+                ShufleList(listOfEnemiesToDefeatInThisPhase);
+                Enemy enemy = GetFirstEnemyFromPhaseList();
                 await Task.Delay(delayToInstantiateEnemy);
 
                 // 1) random 0 - 360      90
@@ -202,17 +207,18 @@ public class EnemyManager : MonoBehaviour
                 enemy.transform.position = spawnPositionRandom;
                 enemy.LookTower();
                 enemy.StartMove();
-                RemoveEnemyFromStageList(enemy);
+                RemoveEnemyFromPhase(enemy);
                 AddEnemyToSentList(enemy);
             }
         }
     }
 
+    // Trigonometry to choose a random point on a circle circumference.
     public double GetSineOfAnAngle(int angle)
     {
         double angleInRadians = angle * Math.PI / 180;
         double sineValue = Math.Sin(angleInRadians);
-        sineValue = sineValue * distanceToInstanciateEnemyToTower;
+        sineValue *= distanceToInstanciateEnemyToTower;
         sineValue = Math.Round(sineValue, 2);
         return sineValue;
     }

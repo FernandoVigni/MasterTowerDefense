@@ -7,13 +7,17 @@ public class Warrior : Enemy
 {
     private void Start()
     {
-        SetGoldValue(10);
+        SetGoldValue(1);
         SetLife(100);
         SetSpeed(15);
+
         SetMagicDamage(150);
-        SetPhysicalDamage(0);
         SetMagicArmor(10);
-        recalculateWithTheCoefficient(coefficient);
+
+        SetPhysicalDamage(0);
+        SetPhysicalArmor(10);
+
+        recalculateStatsWithTheCoefficient(coefficient);
     }
 
     public async void Roar()

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DragonGreenBoss : Enemy
 {
-    public bool firstScream;
+    public bool Scream;
+
     private void Start()
     {
         MoveToTower();
@@ -12,9 +13,9 @@ public class DragonGreenBoss : Enemy
 
     private void Update()
     {
-        if(distanceToTower <= 100 && firstScream == true)
+        if(distanceToTower <= 100 && Scream == true)
         {
-            firstScream= false;
+            Scream= false;
             Screm();
         }
     }
