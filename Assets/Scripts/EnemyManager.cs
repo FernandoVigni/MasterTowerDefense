@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
 
-    public Kamikaze kamikaze;
+    public Runner runner;
     public Warrior warrior;
     public Giant giant;
     public Mage mage;
@@ -44,17 +44,18 @@ public class EnemyManager : MonoBehaviour
         SetEnemy(newMageEnemy);
     }
 
+    public void InstantiateRunner()
+    {
+        Runner newRunnerEnemy = Instantiate(runner, positionToInstantiateEnemies.position, Quaternion.identity);
+        SetEnemy(newRunnerEnemy);
+    }
+
     public void InstantiateGiant()
     {
         Giant newGiantEnemy = Instantiate(giant, positionToInstantiateEnemies.position, Quaternion.identity);
         SetEnemy(newGiantEnemy);
     }
 
-    public void InstantiateKamikaze()
-    {
-        Kamikaze newKamikazeEnemy = Instantiate(kamikaze, positionToInstantiateEnemies.position, Quaternion.identity);
-        SetEnemy(newKamikazeEnemy);
-    }
 
     public void SetCurrentCoefficient(float currentCoefficient) 
     {
@@ -170,6 +171,7 @@ public class EnemyManager : MonoBehaviour
             tower.RecibeGold(bagOfGold);
             //levelSelectorManager.IncreseMaxLevelAviable();
             // ir al selector de Niveles
+            
         }
         enemy.DestroyEnemy();
     }

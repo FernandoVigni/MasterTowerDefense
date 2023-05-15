@@ -43,7 +43,6 @@ public class Enemy : MonoBehaviour
         magicDamage *= coefficient;
         magicArmor *= coefficient;
     }
-  
     
     public float CalculateDistanceToTower()
     {
@@ -121,7 +120,9 @@ public class Enemy : MonoBehaviour
 
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() 
-    { }
+    {
+    
+    }
 
     public void ReceibeDamage(int damage)
     {

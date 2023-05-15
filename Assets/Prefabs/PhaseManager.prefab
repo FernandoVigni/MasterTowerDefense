@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 186162859297556835}
   - component: {fileID: 4664192944080898721}
   m_Layer: 0
-  m_Name: LevelSelectorManager
+  m_Name: PhaseManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

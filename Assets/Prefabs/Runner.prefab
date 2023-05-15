@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8111173480128293159}
   - component: {fileID: 5516111858456654801}
   m_Layer: 0
-  m_Name: Kamikaze
+  m_Name: Runner
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

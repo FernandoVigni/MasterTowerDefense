@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelSelectorManager : MonoBehaviour
+public class PhaseManager : MonoBehaviour
 {
     StageManager stageManager;
     int maxLevelAviableToPlay;
@@ -15,7 +15,7 @@ public class LevelSelectorManager : MonoBehaviour
 
     private void Start()
     {
-        StartLevel(4);
+        StartPhase(1);
     }
 
     public void IncreseMaxLevelAviable() 
@@ -24,8 +24,8 @@ public class LevelSelectorManager : MonoBehaviour
             maxLevelAviableToPlay += 1;
     }
 
-    public void StartLevel(int level)
+    public void StartPhase(int phase)
     {
-        stageManager.SetLevel(level);
+        stageManager.SetCoefficientAndBagOfGold(phase);
     }
 }
