@@ -46,16 +46,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e24a9780512458a46ad134a365e97150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
-  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
-    type: 3}
-  physicalDamage: 0
-  magicDamage: 0
   life: 0
   speed: 0
-  armor: 0
+  physicalDamage: 0
+  physicalArmor: 0
+  magicDamage: 0
+  magicArmor: 0
+  goldValueOnDeath: 0
+  atackSpeed: 0
   isWalking: 1
   distanceToTower: 0
+  coefficient: 0
+  recivedGoldInThisPhase: 0
 --- !u!33 &3838839349917301234
 MeshFilter:
   m_ObjectHideFlags: 0

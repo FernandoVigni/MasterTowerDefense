@@ -13,31 +13,33 @@ public class PhaseManager : MonoBehaviour
     public Transform pointOfSpawnOfWave;
 
     //----------
-    int[] coefficient = { 1, 1, 1, 1 };
+    int[] coefficient = { 1, 1, 1, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 2, 5, 5 };
-    int[] amountOfWarriosByPhase = { 30, 10, 15, 15 };
-    int[] amountOfMagesByPhase = { 10, 15, 15, 15 };
+    int[] amountOfWarriosByPhase = { 30, 10, 15, 15, };
+    int[] amountOfMagesByPhase = { 10, 20, 15, 15 };
     int[] amountOfRunnersByPhase = { 0, 30, 0, 0 };
     int[] amountOfGiantsByPhase = { 3, 3, 6, 6 };
+    int[] amountOfBosses = { 0, 0, 0, 1 };
     //----------
 
-    public int currentPhase= 0;
+    public int currentPhase;
     public float waveLimitTime;
-    public float bagOfGold;
+
 
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
     }
 
+    private void Start()
+    {
+        currentPhase = 0;
+        StartPhase();
+    }
+
     public int GetCoefficient() 
     {
         return coefficient[currentPhase];
-    }
-
-    private void Start()
-    {
-        StartPhase();
     }
 
     public void SetPhasePlusOne()
@@ -47,13 +49,12 @@ public class PhaseManager : MonoBehaviour
 
     public void StartPhase() 
     {
-        SetBagOfGold();
         LoadEnemies();
     }
 
     public bool nextPhase() 
     {
-        if (currentPhase <= amountOfBagOfGoldByPhase.Length)
+        if (currentPhase < amountOfBagOfGoldByPhase.Length)
             { return true ; }
         else
             { return false; }
@@ -64,32 +65,30 @@ public class PhaseManager : MonoBehaviour
         int amountOfPhases = amountOfWarriosByPhase.Length;
         return amountOfPhases;
     }
-    public void SetBagOfGold()
-    {
-        bagOfGold = amountOfBagOfGoldByPhase[currentPhase];
-    }
-
-
 
     public float GetAmountBagOfGold() 
     {
-        return bagOfGold;
+        return amountOfBagOfGoldByPhase[currentPhase];
     }
 
     public void LoadEnemies()
     {
-        for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
-            {enemyManager.InstantiateWarrior();}
+        if (amountOfWarriosByPhase.Length >= currentPhase)
+        {
 
-        for (int i = 0; i < amountOfMagesByPhase[currentPhase]; i++)
-            {enemyManager.InstantiateMage();}
-       
-        for (int i = 0; i < amountOfGiantsByPhase[currentPhase]; i++)
-            {enemyManager.InstantiateGiant();}
+            for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
+            { enemyManager.InstantiateWarrior(); }
 
-        for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
-            {enemyManager.InstantiateRunner();}
+            for (int i = 0; i < amountOfMagesByPhase[currentPhase]; i++)
+            { enemyManager.InstantiateMage(); }
 
-        enemyManager.SendEnemies();
+            for (int i = 0; i < amountOfGiantsByPhase[currentPhase]; i++)
+            { enemyManager.InstantiateGiant(); }
+
+            for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
+            { enemyManager.InstantiateRunner(); }
+
+            enemyManager.SendEnemies();
+        }
     }
 }

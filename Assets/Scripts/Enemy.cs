@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,11 +10,13 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         tower = FindObjectOfType<Tower>();
+        animator = GetComponent<Animator>();    
     }
 
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
+    public Animator animator;
 
     public float life;
     public float speed;
@@ -33,6 +36,9 @@ public class Enemy : MonoBehaviour
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
+            if (distanceToTower > 110)
+                { DestroyEnemy(); }
+
             Walk();
         }
     }
@@ -131,11 +137,10 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+
     //EJEMPLO POLIMORFISMO
-    public virtual void BossScream() 
-    {
-    
-    }
+    public virtual void BossScream() { }
 
    public int recivedGoldInThisPhase; 
     public void ReceibeDamage(int damage)

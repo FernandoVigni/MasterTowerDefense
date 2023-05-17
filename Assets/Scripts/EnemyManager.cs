@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -20,12 +21,12 @@ public class EnemyManager : MonoBehaviour
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
-    public int phase = 0;
-
+    
     public Warrior warrior;
     public Mage mage;
     public Runner runner;
     public Giant giant;
+    public Boss boss;
 
     public List<Enemy> enemiesSentList = new List<Enemy>();
     public List<Enemy> listOfEnemiesToDefeatInThisPhase = new List<Enemy>();
@@ -85,7 +86,7 @@ public class EnemyManager : MonoBehaviour
     // List Methods
     public void ShufleList(List<Enemy> list)
     {
-        listOfEnemiesToDefeatInThisPhase.Sort((x, y) => UnityEngine.Random.Range(-1, 1));
+        listOfEnemiesToDefeatInThisPhase.Sort((x, y) => UnityEngine.Random.Range(0, 2));
     }
 
     public void RemoveEnemyFromPhase(Enemy enemy) 
@@ -121,12 +122,45 @@ public class EnemyManager : MonoBehaviour
         return ammountOfEnemies;
     }
 
-    public void SortlistOfEnemiesInsideTheTowerCollider()
+    //---------------------------------------
+   /* public void SortlistOfEnemiesInsideTheTowerCollider()
     {
         // Preguntarle al chat como hago para validar que alguno quedo en nullo y si lo hay como se quita.
         listOfEnemiesInsideTheTowerCollider.Sort((a, b) => Vector3.Distance(a.transform.position, transform.position)
             .CompareTo(Vector3.Distance(b.transform.position, transform.position)));
+    }*/
+
+    //--------
+    
+    public void SortlistOfEnemiesInsideTheTowerCollider()
+    {
+        // Preguntarle al chat como hago para validar que alguno quedo en nullo y si lo hay como se quita.
+        listOfEnemiesInsideTheTowerCollider.Sort(new DistanceComparer(transform.position));
     }
+
+    private class DistanceComparer : IComparer<Enemy>
+    {
+        private readonly Vector3 centerPoint;
+
+        public DistanceComparer(Vector3 centerPoint)
+        {
+            this.centerPoint = centerPoint;
+        }
+
+        public int Compare(Enemy a, Enemy b)
+        {
+            if (a != null || b != null && a.isActiveAndEnabled)
+            {
+                float distanceA = Vector3.Distance(a.transform.position, centerPoint);
+                float distanceB = Vector3.Distance(b.transform.position, centerPoint);
+  
+                return (int)distanceA.CompareTo(distanceB);
+            }
+            return 150;
+        }
+    }
+        
+    //---------------------------------------
 
     public Enemy GetIEnemyFromColliderList(int i)
     {
@@ -173,9 +207,17 @@ public class EnemyManager : MonoBehaviour
             recivedGoldInThisPhase = 0;
 
             if (phaseManager.nextPhase())
-                { phaseManager.SetPhasePlusOne(); }
+            {
+                Debug.Log("esta terminando la Phase: " + phaseManager.currentPhase);
+                phaseManager.SetPhasePlusOne();
+                Debug.Log("Inicia la phase: " + phaseManager.currentPhase);
+                enemy.DestroyEnemy();
+                phaseManager.StartPhase();
+            }
             else
-                { /*End Phases*/ }
+                {
+                Debug.Log("End of all Phases");
+                /*End Phases*/ }
         }
         enemy.DestroyEnemy();
     }
