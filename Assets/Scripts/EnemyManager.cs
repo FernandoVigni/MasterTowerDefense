@@ -21,7 +21,7 @@ public class EnemyManager : MonoBehaviour
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
-    
+
     public Warrior warrior;
     public Mage mage;
     public Runner runner;
@@ -233,8 +233,12 @@ public class EnemyManager : MonoBehaviour
                 Enemy enemy = GetFirstEnemyFromPhaseList();
                 await Task.Delay(delayToInstantiateEnemy);
 
-                // 1) random 0 - 360      90
-                int randonAngle = GetRandomNumber(90, 180);
+                // 1) random 
+                int randonAngle = GetRandomNumber(0, 19);
+                if (randonAngle < 10) 
+                    { randonAngle += 105; }
+                else
+                    { randonAngle += 140;  }
 
                 // 2) calculo sin         
                 double x = GetSineOfAnAngle(randonAngle);
@@ -248,6 +252,7 @@ public class EnemyManager : MonoBehaviour
                 enemy.transform.position = spawnPositionRandom;
                 enemy.LookTower();
                 enemy.StartMove();
+              //  enemy.animator.Play("Run", 0, 0f);
                 RemoveEnemyFromPhase(enemy);
                 AddEnemyToSentList(enemy);
             }

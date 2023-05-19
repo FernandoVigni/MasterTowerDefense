@@ -9,8 +9,8 @@ public class Enemy : MonoBehaviour
 {
     private void Awake()
     {
-        tower = FindObjectOfType<Tower>();
-        animator = GetComponent<Animator>();    
+        tower = FindObjectOfType<Tower>();  
+        Animator animator = GetComponentInChildren<Animator>();
     }
 
     public bool OnDeathWasExecuted = false;

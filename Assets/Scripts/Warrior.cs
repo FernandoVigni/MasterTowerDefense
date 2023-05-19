@@ -7,7 +7,7 @@ public class Warrior : Enemy
 {
     private void Start()
     {
-        Animator animator = GetComponentInChildren<Animator>();
+
         SetGoldValue(1);
         SetLife(100);
         SetSpeed(15);
@@ -20,7 +20,6 @@ public class Warrior : Enemy
         SetPhysicalArmor(10);
 
         recalculateStatsWithTheCoefficient(coefficient);
-        animator.Play("Run");
     }
 
     public async void Roar()
