@@ -30,4 +30,9 @@ public class Boss : Enemy
         }
         return false;
     }
+
+    public void validateDistanteToRoar() 
+    {
+        
+    }
 }
