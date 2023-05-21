@@ -5,20 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
-    [SerializeField] private GameObject optionsButton;
+    [SerializeField] private GameObject buttonOptions;
     [SerializeField] private GameObject menuPause;
-    public void Pause()
+    [SerializeField] private GameObject goldStatus;
+  public void Pause()
     {
         Time.timeScale = 0f;
-        optionsButton.SetActive(false);
+        buttonOptions.SetActive(false);
         menuPause.SetActive(true);
+        goldStatus.SetActive(false);
     }
 
     public void Resume() 
     {
         Time.timeScale = 1f;
-        optionsButton.SetActive(true);
+        buttonOptions.SetActive(true);
         menuPause.SetActive(false);
+        goldStatus.SetActive(true);
     }
 
     public void ReturnToMainMenu() 
