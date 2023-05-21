@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuOptions : MonoBehaviour
 {
@@ -18,5 +19,10 @@ public class MenuOptions : MonoBehaviour
         Time.timeScale = 1f;
         optionsButton.SetActive(true);
         menuPause.SetActive(false);
+    }
+
+    public void ReturnToMainMenu() 
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

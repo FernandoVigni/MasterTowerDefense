@@ -27,8 +27,10 @@ public class Tower : MonoBehaviour
 
     public void RecibeGold(float gold)
     {
-        Debug.Log("+" + gold);
-        this.gold += gold;
+    /*    Debug.Log("+" + gold);
+        this.gold += gold;  */
+
+        GameHandlerBetweenScenes.Instance.coinCount += gold;
     }
 
     public Enemy GetNearestEnemyInsideCollider()
