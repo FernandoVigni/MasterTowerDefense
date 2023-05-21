@@ -742,17 +742,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.002918
+      value: -13.017532
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.122295
+      value: 9.971237
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.607185
+      value: -12.578125
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
@@ -3444,7 +3444,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4111,7 +4111,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 17.48}
-    m_Scale: {x: 5, y: 30, z: 1}
+    m_Scale: {x: 30, y: 30, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4309,7 +4309,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -9874,7 +9874,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 17.48}
-    m_Scale: {x: 5, y: 30, z: 1}
+    m_Scale: {x: 30, y: 30, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -10072,7 +10072,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -27926,17 +27926,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.785385
+      value: -32.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.151063
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.929062
+      value: -23.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
@@ -28176,17 +28176,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -43.877003
+      value: -39.89162
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.636266
+      value: 2.4852066
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -44.01864
+      value: -38.98958
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1ab1153967310ac49ae280253595b257,
         type: 3}
