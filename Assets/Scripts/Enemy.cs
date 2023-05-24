@@ -7,18 +7,20 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+
     private void Awake()
     {
         tower = FindObjectOfType<Tower>();  
-        Animator animator = GetComponentInChildren<Animator>();
+     //   Animator anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+      //  anim = GetComponent<Animator>();
+
     }
 
-    protected Animator anim;
+
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
@@ -146,6 +148,8 @@ public class Enemy : MonoBehaviour
 
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
+
+
 
    public int recivedGoldInThisPhase; 
     public void ReceibeDamage(int damage)

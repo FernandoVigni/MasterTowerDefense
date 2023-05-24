@@ -20,6 +20,8 @@ public class Warrior : Enemy
         SetPhysicalArmor(10);
 
         recalculateStatsWithTheCoefficient(coefficient);
+       //      Animator anim = GetComponentInChildren<Animator>(); ;
+        //anim.SetBool("Walk", true);
     }
 
     public async void Roar()

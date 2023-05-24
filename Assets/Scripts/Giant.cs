@@ -18,7 +18,7 @@ public class Giant : Enemy
         SetPhysicalArmor(10);
 
         recalculateStatsWithTheCoefficient(coefficient);
-        anim.SetFloat("Walk", 1f);
+        //anim.SetFloat("Walk", 1.5f);
     }
 
     //EJEMPLO POLIMORFISMO

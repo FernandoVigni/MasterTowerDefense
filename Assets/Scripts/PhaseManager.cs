@@ -11,7 +11,7 @@ public class PhaseManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
-    public GameObject menu;
+    private MainMenu mainMenu; 
 
     //----------
     int[] coefficient = { 1, 1, 1, 2 };
@@ -31,12 +31,12 @@ public class PhaseManager : MonoBehaviour
     {
         enemyManager = FindObjectOfType<EnemyManager>();
 
-      //  menu = MainMenu.Instance.optionsInGameMenu;
-        //menu.SetActive(true);
     }
 
     private void Start()
     {
+        mainMenu = FindObjectOfType<MainMenu>();
+        mainMenu.optionsInGameMenu.SetActive(true);
         currentPhase = 0;
         StartPhase();
     }

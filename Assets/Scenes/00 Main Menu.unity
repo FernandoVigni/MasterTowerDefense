@@ -3492,6 +3492,7 @@ MonoBehaviour:
   volumen: {fileID: 2005666068}
   goldStatus: {fileID: 701616356}
   buttonOptions: {fileID: 1782375250}
+  optionsInGameMenu: {fileID: 764334030}
 --- !u!1 &1014142897
 GameObject:
   m_ObjectHideFlags: 0
