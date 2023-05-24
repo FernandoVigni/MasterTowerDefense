@@ -31422,7 +31422,7 @@ PrefabInstance:
     - target: {fileID: 5620552746365094499, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}
       propertyPath: m_Name
-      value: StageManager
+      value: PhaseManager
       objectReference: {fileID: 0}
     - target: {fileID: 7159526482867946109, guid: e27fd975c771a3446b795a744f617af9,
         type: 3}

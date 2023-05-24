@@ -13,10 +13,15 @@ public class Enemy : MonoBehaviour
         Animator animator = GetComponentInChildren<Animator>();
     }
 
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
+    protected Animator anim;
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
-    public Animator animator;
 
     public float life;
     public float speed;
