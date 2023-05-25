@@ -36,8 +36,10 @@ public class MainMenu : MonoBehaviour
             // Here Load Screen
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
         mainMenu.SetActive(false);
-        optionsInGameMenu.SetActive(true);
+        buttonOptions.SetActive(true);
+        goldStatus.SetActive(true);
     }
 
     public void Pause()
@@ -65,6 +67,8 @@ public class MainMenu : MonoBehaviour
     public void Home()
     {
         contact.SetActive(false);
+        confirmation.SetActive(false);
+        volumen.SetActive(false);
     }
 
     public void CheckReturnToMainMenu() 
@@ -90,7 +94,7 @@ public class MainMenu : MonoBehaviour
 
     public void Volumen() 
     {
-        
+        volumen.SetActive(true);
     }
 
     public void Exit()

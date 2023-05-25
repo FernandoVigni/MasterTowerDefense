@@ -2564,7 +2564,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &701616357
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2865,7 +2865,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &764334031
 Transform:
   m_ObjectHideFlags: 0
@@ -3624,7 +3624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 934742025}
   contact: {fileID: 779229000}
-  volumen: {fileID: 2005666068}
+  volumen: {fileID: 1418651770}
   goldStatus: {fileID: 701616356}
   buttonOptions: {fileID: 1782375250}
   optionsInGameMenu: {fileID: 764334030}
@@ -5210,7 +5210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1782375251
 RectTransform:
   m_ObjectHideFlags: 0
