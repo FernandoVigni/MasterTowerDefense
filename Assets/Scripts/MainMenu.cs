@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject buttonOptions;
     [SerializeField] public GameObject optionsInGameMenu;
     [SerializeField] public GameObject menuOptions;
-
+    [SerializeField] public GameObject confirmation;
 
     public static MainMenu Instance;
 
@@ -67,12 +67,24 @@ public class MainMenu : MonoBehaviour
         contact.SetActive(false);
     }
 
+    public void CheckReturnToMainMenu() 
+    {
+        confirmation.SetActive(true);
+    }
+
+    public void CloseConfirmation() 
+    {
+        confirmation.SetActive(false);
+    }
     public void ReturnToMainMenu()
     {
-        volumen.SetActive(false);
-        contact.SetActive(false);
-        buttonOptions.SetActive(true);
-        goldStatus.SetActive(true);
+    //    volumen.SetActive(false);
+      //  contact.SetActive(false);
+        buttonOptions.SetActive(false);
+        goldStatus.SetActive(false);
+        menuOptions.SetActive(false);
+        confirmation.SetActive(false);
+        mainMenu.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
