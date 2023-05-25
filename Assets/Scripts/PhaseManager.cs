@@ -30,7 +30,6 @@ public class PhaseManager : MonoBehaviour
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
-
     }
 
     private void Start()
@@ -53,6 +52,7 @@ public class PhaseManager : MonoBehaviour
     public void StartPhase() 
     {
         LoadEnemies();
+        canva.loading.SetActive(false);
     }
 
     public bool nextPhase() 

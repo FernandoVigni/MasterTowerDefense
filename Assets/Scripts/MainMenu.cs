@@ -13,6 +13,10 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject optionsInGameMenu;
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
+    [SerializeField] public GameObject victory;
+    [SerializeField] public GameObject lose;
+    [SerializeField] public GameObject loading;
+
 
     public static MainMenu Instance;
 
@@ -31,15 +35,16 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-
-
-            // Here Load Screen
-
+        Time.timeScale = 0f;
+        loading.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Time.timeScale = 1f;
+ 
+
         mainMenu.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
+        Time.timeScale = 1f;
+        //loading.SetActive(false);
     }
 
     public void Pause()
@@ -89,7 +94,19 @@ public class MainMenu : MonoBehaviour
         menuOptions.SetActive(false);
         confirmation.SetActive(false);
         mainMenu.SetActive(true);
+        victory.SetActive(false);
+        lose.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void Victory() 
+    {
+        victory.SetActive(true);
+    }
+
+    public void Lose() 
+    {
+        lose.SetActive(true);
     }
 
     public void Volumen() 
