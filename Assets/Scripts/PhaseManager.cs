@@ -11,7 +11,7 @@ public class PhaseManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
-    private MainMenu mainMenu; 
+    private MainMenu canva; 
 
     //----------
     int[] coefficient = { 1, 1, 1, 2 };
@@ -35,8 +35,7 @@ public class PhaseManager : MonoBehaviour
 
     private void Start()
     {
-        mainMenu = FindObjectOfType<MainMenu>();
-        mainMenu.optionsInGameMenu.SetActive(true);
+        canva = FindObjectOfType<MainMenu>();
         currentPhase = 0;
         StartPhase();
     }

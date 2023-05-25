@@ -11,14 +11,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject goldStatus;
     [SerializeField] private GameObject buttonOptions;
     [SerializeField] public GameObject optionsInGameMenu;
-    public static MainMenu Instance;
+    [SerializeField] public GameObject menuOptions;
 
+
+    public static MainMenu Instance;
 
     private void Awake()
     {
         if (Instance == null)
         {
-            Instance = this;
+            Instance = this;    
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -26,7 +28,6 @@ public class MainMenu : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     public void Play()
     {
@@ -36,6 +37,7 @@ public class MainMenu : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         mainMenu.SetActive(false);
+        optionsInGameMenu.SetActive(true);
     }
 
     public void Pause()
@@ -43,15 +45,16 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
-        volumen.SetActive(true);
+        optionsInGameMenu.SetActive(true);
+        menuOptions.SetActive(true);
     }
 
     public void Resume()
     {
-        Time.timeScale = 1f;
-        volumen.SetActive(false);
+        menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
+        Time.timeScale = 1f;
     }
 
     public void Contact()
@@ -71,7 +74,6 @@ public class MainMenu : MonoBehaviour
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-
     }
 
     public void Volumen() 
