@@ -16,11 +16,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject victory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
+    private AudioManager audioManager;
 
     public static MainMenu Instance;
 
     private void Awake()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();
+
         if (Instance == null)
         {
             Instance = this;    
@@ -34,6 +37,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
+        audioManager.PlaySFX("Button");
         Time.timeScale = 0f;
         loading.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -48,28 +52,34 @@ public class MainMenu : MonoBehaviour
 
     public void Pause()
     {
+        audioManager.PlaySFX("Button");
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
         optionsInGameMenu.SetActive(true);
         menuOptions.SetActive(true);
+        //Bajar el Volumen
     }
 
     public void Resume()
     {
+        audioManager.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
         Time.timeScale = 1f;
+        //subir el volumen que baje
     }
 
     public void Contact()
     {
+        audioManager.PlaySFX("Button");
         contact.SetActive(true);
     }
 
     public void Home()
     {
+        audioManager.PlaySFX("Button");
         contact.SetActive(false);
         confirmation.SetActive(false);
         volumen.SetActive(false);
@@ -77,17 +87,20 @@ public class MainMenu : MonoBehaviour
 
     public void CheckReturnToMainMenu() 
     {
+        audioManager.PlaySFX("Button");
         confirmation.SetActive(true);
     }
 
     public void CloseConfirmation() 
     {
+        audioManager.PlaySFX("Button");
         confirmation.SetActive(false);
     }
     public void ReturnToMainMenu()
     {
-    //    volumen.SetActive(false);
-      //  contact.SetActive(false);
+        audioManager.PlaySFX("Button");
+        //    volumen.SetActive(false);
+        //  contact.SetActive(false);
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
         menuOptions.SetActive(false);
@@ -95,7 +108,10 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(true);
         victory.SetActive(false);
         lose.SetActive(false);
+        //subir el volumen que baje
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        audioManager.PlayMusic("MainMenu");
+
     }
 
     public void Victory() 
@@ -110,11 +126,13 @@ public class MainMenu : MonoBehaviour
 
     public void Volumen() 
     {
+        audioManager.PlaySFX("Button");
         volumen.SetActive(true);
     }
 
     public void Exit()
     {
+        audioManager.PlaySFX("Button");
         Debug.Log("Exit...");
         Application.Quit();
     }

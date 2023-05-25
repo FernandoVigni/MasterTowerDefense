@@ -12,6 +12,7 @@ public class PhaseManager : MonoBehaviour
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
     private MainMenu canva;
+    private AudioManager audioManager;
     public PortalsManager portals;
 
     //----------
@@ -36,8 +37,9 @@ public class PhaseManager : MonoBehaviour
     private void Start()
     {
         canva = FindObjectOfType<MainMenu>();
+        audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
-        //StartPhase();
+        StartPhase();
     }
 
     public void TurnOnPortals() 
@@ -66,6 +68,9 @@ public class PhaseManager : MonoBehaviour
     {
         LoadEnemies();
         canva.loading.SetActive(false);
+        portals.TurnOnLeftPortal();
+        portals.TurnOnRightPortal();
+        audioManager.PlayMusic("InGame");
     }
 
     public bool nextPhase() 

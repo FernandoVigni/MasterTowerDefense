@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        PlayMusic("InGameMusic");
+        PlayMusic("MainMenu");
     }
 
     public void PlayMusic(string name) 

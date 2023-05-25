@@ -990,9 +990,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
-  - name: InGameMusic
+  - name: MainMenu
     clip: {fileID: 8300000, guid: a50e8b34c0ca17b4891cda5198f957b7, type: 3}
-  sfxSounds: []
+  - name: InGame
+    clip: {fileID: 8300000, guid: 5da33cee52b03e344b8a51208fe7e1eb, type: 3}
+  sfxSounds:
+  - name: Button
+    clip: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
   musicSource: {fileID: 873386585}
   sfxSource: {fileID: 370157038}
 --- !u!4 &173216129
