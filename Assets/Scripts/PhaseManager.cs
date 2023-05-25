@@ -11,7 +11,8 @@ public class PhaseManager : MonoBehaviour
 {
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
-    private MainMenu canva; 
+    private MainMenu canva;
+    public PortalsManager portals;
 
     //----------
     int[] coefficient = { 1, 1, 1, 2 };
@@ -36,7 +37,19 @@ public class PhaseManager : MonoBehaviour
     {
         canva = FindObjectOfType<MainMenu>();
         currentPhase = 0;
-        StartPhase();
+        //StartPhase();
+    }
+
+    public void TurnOnPortals() 
+    {
+        portals.TurnOnLeftPortal();
+        portals.TurnOnRightPortal();
+    }
+
+    public void TurnOffPortals() 
+    {
+        portals.TurnOffLeftPortal();
+        portals.TurnOffRightPortal();
     }
 
     public int GetCoefficient() 

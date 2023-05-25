@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
 
-
     public static MainMenu Instance;
 
     private void Awake()
