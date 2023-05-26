@@ -1,8 +1,4 @@
-using JetBrains.Annotations;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Notifications.iOS;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -18,7 +14,7 @@ public class AudioManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
@@ -29,13 +25,13 @@ public class AudioManager : MonoBehaviour
         PlayMusic("MainMenu");
     }
 
-    public void PlayMusic(string name) 
+    public void PlayMusic(string name)
     {
-        
-       // public static AudioManager Instance;
+
+        // public static AudioManager Instance;
 
         Sound sound = Array.Find(musicSounds, x => x.name == name);
-        if (sound == null) 
+        if (sound == null)
         {
             Debug.Log("Sound not found");
         }
@@ -46,7 +42,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(string name) 
+    public void PlaySFX(string name)
     {
         Sound sound = Array.Find(sfxSounds, x => x.name == name);
         if (sound == null)
@@ -59,4 +55,25 @@ public class AudioManager : MonoBehaviour
             sfxSource.Play();
         }
     }
+
+    public void ToggleMusic()
+    {
+        musicSource.mute = !musicSource.mute;
+    }
+
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+    }
+
+    public void MusicVolumen(float volume)
+    {
+        musicSource.volume = volume;
+    }
+
+    public void SFXVolumen(float volume)
+    {
+        sfxSource.volume = volume;
+    }
+
 }

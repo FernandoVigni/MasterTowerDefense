@@ -130,6 +130,15 @@ public class MainMenu : MonoBehaviour
         volumen.SetActive(true);
     }
 
+
+
+
+
+
+
+
+
+
     public void Exit()
     {
         audioManager.PlaySFX("Button");
