@@ -9,6 +9,14 @@ public class UiVolumenController : MonoBehaviour
     [SerializeField] private Slider musicSlider, sfxSlider;
     [SerializeField] private TextMeshProUGUI volumenMusicTextUI, volumenSFXTextUI;
 
+    private void Start()
+    {
+        AudioManager.Instance.MusicVolumen(0.2f);
+        AudioManager.Instance.SFXVolumen(0.2f);
+        musicSlider.value = 0.2f;
+        sfxSlider.value = 0.2f;
+    }
+
     public void ToggleMusic() 
     {
         AudioManager.Instance.ToggleMusic();

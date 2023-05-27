@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AudioManager : MonoBehaviour
 {
@@ -55,23 +56,35 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleMusic()
     {
-        musicSource.mute = !musicSource.mute;
-    /*cambiar a si el vol es = 0 
-        if (musicSource.mute) 
+        if (musicSource.volume <= 0)
         {
             MainMenu.Instance.musicButtonOn.SetActive(false);
             MainMenu.Instance.musicButtonOff.SetActive(true);
-        }*/
-    }
+        }
+        else
+        {
+            if (musicSource.mute)
+            {
+                musicSource.mute = false;
+                MainMenu.Instance.musicButtonOn.SetActive(true);
+                MainMenu.Instance.musicButtonOff.SetActive(false);
 
-    public void ToggleSFX()
-    {
-        sfxSource.mute = !sfxSource.mute;
+            }
+            else 
+            {
+                musicSource.mute = true;
+                MainMenu.Instance.musicButtonOn.SetActive(false);
+                MainMenu.Instance.musicButtonOff.SetActive(true);
+            }
+        }
     }
 
     public void MusicVolumen(float volume)
     {
+        MainMenu.Instance.musicButtonOff.SetActive(true);
+        musicSource.mute = false;
         musicSource.volume = volume;
+
         if (volume <= 0)
         {
             MainMenu.Instance.musicButtonOn.SetActive(false);
@@ -83,6 +96,23 @@ public class AudioManager : MonoBehaviour
             MainMenu.Instance.musicButtonOff.SetActive(false);
         }
     }
+
+    public void ToggleSFX()
+    {
+        sfxSource.mute = !sfxSource.mute;
+        if (sfxSource.mute)
+        {
+            MainMenu.Instance.sfxButtonOn.SetActive(false);
+            MainMenu.Instance.sfxButtonOff.SetActive(true);
+        }
+        else
+        {
+            MainMenu.Instance.sfxButtonOn.SetActive(true);
+            MainMenu.Instance.sfxButtonOff.SetActive(false);
+        }
+    }
+
+    
 
     public void SFXVolumen(float volume)
     {
