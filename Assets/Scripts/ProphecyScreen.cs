@@ -30,7 +30,7 @@ public class ProphecyScreen : MonoBehaviour
     {
         await Task.Delay(4500);
         TextThree.SetActive(true);
-        await Task.Delay(4000);
+        await Task.Delay(1500);
         ChangeButton();
     }
 
