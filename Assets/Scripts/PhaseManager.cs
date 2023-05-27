@@ -39,7 +39,6 @@ public class PhaseManager : MonoBehaviour
         canva = FindObjectOfType<MainMenu>();
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
-        StartPhase();
     }
 
     public void TurnOnPortals() 
@@ -68,8 +67,6 @@ public class PhaseManager : MonoBehaviour
     {
         LoadEnemies();
         canva.loading.SetActive(false);
-        portals.TurnOnLeftPortal();
-        portals.TurnOnRightPortal();
         audioManager.PlayMusic("InGame");
     }
 

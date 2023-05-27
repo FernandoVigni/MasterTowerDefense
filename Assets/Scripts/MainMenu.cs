@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject victory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
+    [SerializeField] public ProphecyScreen prophecyScreen;
+
     private AudioManager audioManager;
 
     public static MainMenu Instance;
@@ -35,19 +39,24 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void Play()
+    public async void Play()
     {
         audioManager.PlaySFX("Button");
         Time.timeScale = 0f;
         loading.SetActive(true);
+        mainMenu.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
  
+        await Task.Delay(5000);
+        prophecyScreen.gameObject.SetActive(true);
+        loading.SetActive(false);
+        await prophecyScreen.PlayTextOne();
+        
 
-        mainMenu.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
+
         Time.timeScale = 1f;
-        //loading.SetActive(false);
     }
 
     public void Pause()
@@ -111,7 +120,6 @@ public class MainMenu : MonoBehaviour
         //subir el volumen que baje
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         audioManager.PlayMusic("MainMenu");
-
     }
 
     public void Victory() 
@@ -129,15 +137,6 @@ public class MainMenu : MonoBehaviour
         audioManager.PlaySFX("Button");
         volumen.SetActive(true);
     }
-
-
-
-
-
-
-
-
-
 
     public void Exit()
     {
