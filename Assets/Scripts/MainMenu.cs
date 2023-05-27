@@ -19,9 +19,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
     [SerializeField] public ProphecyScreen prophecyScreen;
+    [SerializeField] public GameObject musicButtonOn;
+    [SerializeField] public GameObject musicButtonOff;
+    [SerializeField] public GameObject sfxButtonOn;
+    [SerializeField] public GameObject sfxButtonOff;    
 
     private AudioManager audioManager;
-
     public static MainMenu Instance;
 
     private void Awake()

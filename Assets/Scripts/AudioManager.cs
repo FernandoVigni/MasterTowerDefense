@@ -27,9 +27,6 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string name)
     {
-
-        // public static AudioManager Instance;
-
         Sound sound = Array.Find(musicSounds, x => x.name == name);
         if (sound == null)
         {
@@ -59,6 +56,12 @@ public class AudioManager : MonoBehaviour
     public void ToggleMusic()
     {
         musicSource.mute = !musicSource.mute;
+    /*cambiar a si el vol es = 0 
+        if (musicSource.mute) 
+        {
+            MainMenu.Instance.musicButtonOn.SetActive(false);
+            MainMenu.Instance.musicButtonOff.SetActive(true);
+        }*/
     }
 
     public void ToggleSFX()
@@ -69,11 +72,31 @@ public class AudioManager : MonoBehaviour
     public void MusicVolumen(float volume)
     {
         musicSource.volume = volume;
+        if (volume <= 0)
+        {
+            MainMenu.Instance.musicButtonOn.SetActive(false);
+            MainMenu.Instance.musicButtonOff.SetActive(true);
+        }
+        else 
+        {
+            MainMenu.Instance.musicButtonOn.SetActive(true);
+            MainMenu.Instance.musicButtonOff.SetActive(false);
+        }
     }
 
     public void SFXVolumen(float volume)
     {
         sfxSource.volume = volume;
+        if (volume <= 0)
+        {
+            MainMenu.Instance.sfxButtonOn.SetActive(false);
+            MainMenu.Instance.sfxButtonOff.SetActive(true);
+        }
+        else 
+        {
+            MainMenu.Instance.sfxButtonOn.SetActive(true);
+            MainMenu.Instance.sfxButtonOff.SetActive(false);
+        }
     }
 
 }
