@@ -99,30 +99,42 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleSFX()
     {
-        sfxSource.mute = !sfxSource.mute;
-        if (sfxSource.mute)
+        
+        if (sfxSource.volume <= 0)
         {
             MainMenu.Instance.sfxButtonOn.SetActive(false);
             MainMenu.Instance.sfxButtonOff.SetActive(true);
         }
         else
         {
-            MainMenu.Instance.sfxButtonOn.SetActive(true);
-            MainMenu.Instance.sfxButtonOff.SetActive(false);
+            if (sfxSource.mute)
+            {
+                sfxSource.mute = false;
+                MainMenu.Instance.sfxButtonOn.SetActive(true);
+                MainMenu.Instance.sfxButtonOff.SetActive(false);
+
+            }
+            else
+            {
+                sfxSource.mute = true;
+                MainMenu.Instance.sfxButtonOn.SetActive(false);
+                MainMenu.Instance.sfxButtonOff.SetActive(true);
+            }
         }
     }
 
-    
-
     public void SFXVolumen(float volume)
     {
+        MainMenu.Instance.sfxButtonOff.SetActive(true);
+        sfxSource.mute = false;
         sfxSource.volume = volume;
+
         if (volume <= 0)
         {
             MainMenu.Instance.sfxButtonOn.SetActive(false);
             MainMenu.Instance.sfxButtonOff.SetActive(true);
         }
-        else 
+        else
         {
             MainMenu.Instance.sfxButtonOn.SetActive(true);
             MainMenu.Instance.sfxButtonOff.SetActive(false);

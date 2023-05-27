@@ -30,10 +30,13 @@ public class UiVolumenController : MonoBehaviour
     public void MusicVolumen() 
     {
         AudioManager.Instance.MusicVolumen(musicSlider.value);
+        int musicVolumen = Mathf.RoundToInt(AudioManager.Instance.musicSource.volume * 100);
+        volumenMusicTextUI.text = musicVolumen.ToString();
     }
     public void SFXVolumen()
     {
         AudioManager.Instance.SFXVolumen(sfxSlider.value);
+        int sfxVolumen = Mathf.RoundToInt(AudioManager.Instance.sfxSource.volume * 100);
+        volumenSFXTextUI.text = sfxVolumen.ToString();
     }
-
 }
