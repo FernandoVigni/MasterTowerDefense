@@ -11,16 +11,27 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GameObject skipButton;
     [SerializeField] public GameObject letsGoButton;
 
+    public void StartProphecyScene() 
+    {
+        TextOne.SetActive(false);
+        TextTwo.SetActive(false);
+        TextThree.SetActive(false);
+        skipButton.SetActive(false);
+        letsGoButton.SetActive(false);
+        PlayTextOne();
+
+    }
+
     public async Task PlayTextOne() 
     {
-        await Task.Delay(3500);
+        await Task.Delay(2500);
         TextOne.SetActive(true);
         await PlayTextTwo();
     }
     
     public async Task PlayTextTwo() 
     {
-        await Task.Delay(4500);
+        await Task.Delay(3500);
         skipButton.SetActive(true);
         TextTwo.SetActive(true);
         await PlayTextThree();

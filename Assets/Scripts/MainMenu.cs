@@ -37,6 +37,9 @@ public class MainMenu : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        buttonOptions.SetActive(false);
+        goldStatus.SetActive(false);
     }
 
     public async void Play()
@@ -50,8 +53,9 @@ public class MainMenu : MonoBehaviour
         await Task.Delay(5000);
         prophecyScreen.gameObject.SetActive(true);
         loading.SetActive(false);
-        await prophecyScreen.PlayTextOne();
-        
+        prophecyScreen.StartProphecyScene();
+
+
 
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
