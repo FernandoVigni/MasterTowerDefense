@@ -58,8 +58,6 @@ public class MainMenu : MonoBehaviour
         loading.SetActive(false);
         prophecyScreen.StartProphecyScene();
 
-
-
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
 

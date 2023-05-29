@@ -9,6 +9,8 @@ using UnityEngine.UIElements;
 
 public class PhaseManager : MonoBehaviour
 {
+    public static PhaseManager Instance;
+
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
     private MainMenu canva;
@@ -32,6 +34,16 @@ public class PhaseManager : MonoBehaviour
     private void Awake()
     {
         enemyManager = FindObjectOfType<EnemyManager>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -65,8 +77,10 @@ public class PhaseManager : MonoBehaviour
 
     public void StartPhase() 
     {
+        portals.TurnOnLeftPortal();
+        portals.TurnOnRightPortal();
         LoadEnemies();
-        canva.loading.SetActive(false);
+        //canva.loading.SetActive(false);
         audioManager.PlayMusic("InGame");
     }
 

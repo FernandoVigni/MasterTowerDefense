@@ -19,7 +19,6 @@ public class ProphecyScreen : MonoBehaviour
         skipButton.SetActive(false);
         letsGoButton.SetActive(false);
         PlayTextOne();
-
     }
 
     public async Task PlayTextOne() 
@@ -49,5 +48,16 @@ public class ProphecyScreen : MonoBehaviour
     {
         skipButton.SetActive(false);
         letsGoButton.SetActive(true);
+    }
+
+    public void StartGame() 
+    {
+        TextOne.SetActive(false);
+        TextTwo.SetActive(false);
+        TextThree.SetActive(false);
+        skipButton.SetActive(false);
+        letsGoButton.SetActive(false);
+        MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
+        PhaseManager.Instance.StartPhase();
     }
 }
