@@ -25,11 +25,11 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfRunnersByPhase = { 0, 30, 0, 0 };
     int[] amountOfGiantsByPhase = { 3, 3, 6, 6 };
     int[] amountOfBosses = { 0, 0, 0, 1 };
+    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2" };   
     //----------
 
     public int currentPhase;
     public float waveLimitTime;
-
 
     private void Awake()
     {
@@ -51,6 +51,9 @@ public class PhaseManager : MonoBehaviour
         canva = FindObjectOfType<MainMenu>();
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
+        audioManager.PlayMusic("MainMenu");
+        SetPhasePlusOne();
+
     }
 
     public void TurnOnPortals() 
@@ -75,13 +78,20 @@ public class PhaseManager : MonoBehaviour
         currentPhase += 1;
     }
 
+    public string GetCurrentPhaseName()
+    {
+        string name = songsNames[currentPhase];
+        return name;
+    }
+
     public void StartPhase() 
     {
         portals.TurnOnLeftPortal();
         portals.TurnOnRightPortal();
+        string name = songsNames[currentPhase];
+
+        audioManager.PlayMusic(GetCurrentPhaseName());
         LoadEnemies();
-        //canva.loading.SetActive(false);
-        audioManager.PlayMusic("InGame");
     }
 
     public bool nextPhase() 

@@ -1706,9 +1706,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: MainMenu
-    clip: {fileID: 8300000, guid: a50e8b34c0ca17b4891cda5198f957b7, type: 3}
-  - name: InGame
-    clip: {fileID: 8300000, guid: 5da33cee52b03e344b8a51208fe7e1eb, type: 3}
+    clip: {fileID: 8300000, guid: 9cb64cf1ff4b7754dbf39c2cec08d42d, type: 3}
+  - name: Phase0
+    clip: {fileID: 8300000, guid: 079f1138a7d3f47478347c299bde0072, type: 3}
+  - name: Phase1
+    clip: {fileID: 8300000, guid: 71f1b02d195b29e41b5760ce0d39ac24, type: 3}
   sfxSounds:
   - name: Button
     clip: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}
