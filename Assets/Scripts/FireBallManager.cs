@@ -20,8 +20,8 @@ public class FireBallManager : Projectile
             FireBall fireBall = Instantiate(fireBallPrefab, positionToMoveProjectil.position,  Quaternion.identity);
             fireBall.translate = false;
             fireBalls.Add(fireBall);
-            }
         }
+    }
 
     public void ShootProjectile(Enemy enemy)
     {

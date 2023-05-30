@@ -38,9 +38,9 @@ public class ProphecyScreen : MonoBehaviour
 
     public async Task PlayTextThree() 
     {
-        await Task.Delay(4500);
+        await Task.Delay(2000);
         TextThree.SetActive(true);
-        await Task.Delay(1500);
+        await Task.Delay(0500);
         ChangeButton();
     }
 

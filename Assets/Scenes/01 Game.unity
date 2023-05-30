@@ -31252,6 +31252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
         type: 3}
+      propertyPath: fireBall
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
+        type: 3}
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 1900563736}
@@ -31260,6 +31265,17 @@ PrefabInstance:
       propertyPath: numFireBalls
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
+        type: 3}
+      propertyPath: firstFireBall
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
+        type: 3}
+      propertyPath: fireBallPrefab
+      value: 
+      objectReference: {fileID: 8379674264655678160, guid: 5d7f7a06b7bf7f34ca9371abe4a6b1d5,
+        type: 3}
     - target: {fileID: 4194202449366409849, guid: a7613e17262e74442b8f9971af14dade,
         type: 3}
       propertyPath: fireBallManager
@@ -31526,7 +31542,7 @@ PrefabInstance:
     - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
         type: 3}
       propertyPath: countDownReset
-      value: 0.3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
         type: 3}

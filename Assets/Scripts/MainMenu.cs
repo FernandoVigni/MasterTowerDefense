@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
  
-        await Task.Delay(5000);
+        await Task.Delay(2000);
         prophecyScreen.gameObject.SetActive(true);
         loading.SetActive(false);
         prophecyScreen.StartProphecyScene();

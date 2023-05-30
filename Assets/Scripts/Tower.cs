@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
-        countDown -= Time.deltaTime;
+        countDown = countDown - Time.deltaTime;
 
         if (countDown <= 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CamaraDontDestroy : MonoBehaviour
 {
-    private static CamaraDontDestroy instance;
+  /*  private static CamaraDontDestroy instance;
     [SerializeField] private Camera renderCamera;
 
     private void Awake()
@@ -31,5 +31,5 @@ public class CamaraDontDestroy : MonoBehaviour
             canvas.renderMode = RenderMode.ScreenSpaceCamera;
             canvas.worldCamera = renderCamera;
         }
-    }
+    }*/
 }
