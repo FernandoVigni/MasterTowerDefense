@@ -1711,6 +1711,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 079f1138a7d3f47478347c299bde0072, type: 3}
   - name: Phase1
     clip: {fileID: 8300000, guid: 71f1b02d195b29e41b5760ce0d39ac24, type: 3}
+  - name: Phase2
+    clip: {fileID: 8300000, guid: b2744e880d852814495257633f66d66a, type: 3}
+  - name: Lose
+    clip: {fileID: 8300000, guid: b1819cd0ab7b0884a81f2ff0bec86701, type: 3}
+  - name: Victory
+    clip: {fileID: 8300000, guid: aaeeb957911024f4dab8048a1c3cf9fe, type: 3}
+  - name: PhaseBoss
+    clip: {fileID: 8300000, guid: f831eede88460a84bb998b201a7b687b, type: 3}
   sfxSounds:
   - name: Button
     clip: {fileID: 8300000, guid: cad11a4481c77fe4aabeb5563cb0bd6c, type: 3}

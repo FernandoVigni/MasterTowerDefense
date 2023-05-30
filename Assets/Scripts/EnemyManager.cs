@@ -213,6 +213,7 @@ public class EnemyManager : MonoBehaviour
                 phaseManager.SetPhasePlusOne();
                 enemy.DestroyEnemy();
                 phaseManager.StartPhase();
+                Debug.Log("Inicia la phase: " + phaseManager.currentPhase);
             }
             else
                 {

@@ -25,7 +25,7 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfRunnersByPhase = { 0, 30, 0, 0 };
     int[] amountOfGiantsByPhase = { 3, 3, 6, 6 };
     int[] amountOfBosses = { 0, 0, 0, 1 };
-    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase1" };   
+    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss" };   
     //----------
 
     public int currentPhase;
@@ -86,8 +86,7 @@ public class PhaseManager : MonoBehaviour
         portals.TurnOnLeftPortal();
         portals.TurnOnRightPortal();
         LoadEnemies();
-        SetPhasePlusOne();
-        string name = songsNames[currentPhase];
+        string name = songsNames[currentPhase+1];
         audioManager.PlayMusic(name);
     }
 
