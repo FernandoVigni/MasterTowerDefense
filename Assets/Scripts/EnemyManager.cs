@@ -209,8 +209,8 @@ public class EnemyManager : MonoBehaviour
             if (phaseManager.nextPhase())
             {
                 Debug.Log("esta terminando la Phase: " + phaseManager.currentPhase);
-                phaseManager.SetPhasePlusOne();
                 Debug.Log("Inicia la phase: " + phaseManager.currentPhase);
+                phaseManager.SetPhasePlusOne();
                 enemy.DestroyEnemy();
                 phaseManager.StartPhase();
             }

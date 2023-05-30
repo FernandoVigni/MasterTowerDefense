@@ -9187,7 +9187,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816585612}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -81.45363, y: 14.415508, z: 56.64742}
+  m_LocalPosition: {x: -83.5, y: 14.415508, z: 56.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9902,7 +9902,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 17.48}
-    m_Scale: {x: 30, y: 30, z: 1}
+    m_Scale: {x: 13, y: 45, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -25492,7 +25492,7 @@ PrefabInstance:
     - target: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22
+      value: 30.1
       objectReference: {fileID: 0}
     - target: {fileID: 4757456108752527210, guid: 3c062ac691df625459ad627d20778eae,
         type: 3}
