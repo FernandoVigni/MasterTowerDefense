@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBallManager : Projectile
+public class FireBallManager : MonoBehaviour
 {
     public FireBall fireBallPrefab;
     public FireBall firstFireBall;

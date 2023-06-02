@@ -3008,24 +3008,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &495633271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495633268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffd7afc2b4e1e546883ec714ebd0401, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fireBallManager: {fileID: 2042297273}
-  enemyManager: {fileID: 1423621068}
-  objetive: {fileID: 0}
-  countDown: 0
-  countDownReset: 0.3
-  gold: 0
 --- !u!4 &495704865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7992715529498157145, guid: 0cc0db2b14252644da9f1f74ed0c8f90,
@@ -14694,7 +14676,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 4.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &924050041 stripped
 Transform:
@@ -31542,7 +31524,7 @@ PrefabInstance:
     - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
         type: 3}
       propertyPath: countDownReset
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
         type: 3}

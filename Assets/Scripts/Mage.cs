@@ -8,17 +8,6 @@ public class Mage : Enemy
 {
     void Start()
     {
-        SetGoldValue(1);
-        SetLife(80);
-        SetSpeed(15);
-        SetAtackSpeed(10);
-
-        SetMagicDamage(100);
-        SetMagicArmor(10);
-
-        SetPhysicalDamage(0);
-        SetPhysicalArmor(10);
-
         recalculateStatsWithTheCoefficient(coefficient);
         //anim.SetFloat("Walk", 1.5f);
     }

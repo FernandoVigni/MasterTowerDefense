@@ -6,17 +6,6 @@ public class Giant : Enemy
 {
     void Start()
     {
-        SetGoldValue(3);
-        SetLife(300);
-        SetSpeed(10);
-        SetAtackSpeed(30);
-
-        SetMagicDamage(0);
-        SetMagicArmor(10);
-
-        SetPhysicalDamage(75);
-        SetPhysicalArmor(10);
-
         recalculateStatsWithTheCoefficient(coefficient);
         //anim.SetFloat("Walk", 1.5f);
     }

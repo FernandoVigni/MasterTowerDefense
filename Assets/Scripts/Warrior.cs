@@ -7,18 +7,6 @@ public class Warrior : Enemy
 {
     private void Start()
     {
-
-        SetGoldValue(1);
-        SetLife(100);
-        SetSpeed(15);
-        SetAtackSpeed(10);
-
-        SetMagicDamage(150);
-        SetMagicArmor(10);
-
-        SetPhysicalDamage(0);
-        SetPhysicalArmor(10);
-
         recalculateStatsWithTheCoefficient(coefficient);
        //      Animator anim = GetComponentInChildren<Animator>(); ;
         //anim.SetBool("Walk", true);

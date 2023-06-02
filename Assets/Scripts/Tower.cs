@@ -16,12 +16,12 @@ public class Tower : MonoBehaviour
     {
         countDown = countDown - Time.deltaTime;
 
-        if (countDown <= 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
+        if (countDown < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
             Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
             countDown = countDownReset;
-            if(nearestEnemyInsideCollider != null)
-                Shoot(nearestEnemyInsideCollider);        
+            if (nearestEnemyInsideCollider != null) ;
+             Shoot(nearestEnemyInsideCollider);        
         }
     }
 
