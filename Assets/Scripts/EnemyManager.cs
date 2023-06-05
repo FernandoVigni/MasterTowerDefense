@@ -11,12 +11,10 @@ public class EnemyManager : MonoBehaviour
 {
     private void Awake()
     {
-        phaseManager = FindObjectOfType<PhaseManager>(); 
         tower = FindObjectOfType<Tower>();
     }
 
     public Transform positionToInstantiateEnemies;
-    public PhaseManager phaseManager;
     public Tower tower;
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
@@ -76,7 +74,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SetEnemy(Enemy enemy)
     {
-        coefficient = phaseManager.GetCoefficient();
+        coefficient = PhaseManager.Instance.GetCoefficient();
         enemy.SetCoefficient(coefficient);  
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
@@ -195,25 +193,25 @@ public class EnemyManager : MonoBehaviour
         RemoveEnemyFromSentList(enemy);
         RemoveEnemiesInsideColliderList(enemy);
 
-        tower.RecibeGold(enemy.goldValueOnDeath);
+        PhaseManager.Instance.RecibeGold(enemy.goldValueOnDeath);
         recivedGoldInThisPhase += enemy.goldValueOnDeath;
 
         if (listOfEnemiesToDefeatInThisPhase.Count <= 0 && enemiesSentList.Count <= 0)
         {
-            float bagOfGold = phaseManager.GetAmountBagOfGold();
-            tower.RecibeGold(bagOfGold);
+            float bagOfGold = PhaseManager.Instance.GetAmountBagOfGold();
+            PhaseManager.Instance.GetAmountBagOfGold();
 
             Debug.Log("You obtain in this phase: " + recivedGoldInThisPhase + " Gold");
             recivedGoldInThisPhase = 0;
 
-            if (phaseManager.nextPhase())
+            if (PhaseManager.Instance.nextPhase())
             {
-                Debug.Log("esta terminando la Phase: " + phaseManager.currentPhase);
-                Debug.Log("Inicia la phase: " + phaseManager.currentPhase);
-                phaseManager.SetPhasePlusOne();
+                Debug.Log("esta terminando la Phase: " + PhaseManager.Instance.currentPhase);
+                Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
+                PhaseManager.Instance.SetPhasePlusOne();
                 enemy.DestroyEnemy();
-                phaseManager.StartPhase();
-                Debug.Log("Inicia la phase: " + phaseManager.currentPhase);
+                PhaseManager.Instance.StartPhase();
+                Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
             }
             else
                 {

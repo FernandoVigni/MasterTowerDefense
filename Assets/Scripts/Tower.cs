@@ -20,17 +20,14 @@ public class Tower : MonoBehaviour
         {
             Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
             countDown = countDownReset;
-            if (nearestEnemyInsideCollider != null) ;
+            if (nearestEnemyInsideCollider != null);
              Shoot(nearestEnemyInsideCollider);        
         }
     }
 
     public void RecibeGold(float gold)
     {
-    /*    Debug.Log("+" + gold);
-        this.gold += gold;  */
-
-        GameHandlerBetweenScenes.Instance.coinCount += gold;
+        PhaseManager.Instance.coinCount += gold;
     }
 
     public Enemy GetNearestEnemyInsideCollider()
@@ -46,7 +43,7 @@ public class Tower : MonoBehaviour
             return IEnemy;
         }
         else
-            return null;
+        return null;
     }
 
     public Vector3 GetTowerPosition() 

@@ -13,9 +13,10 @@ public class PhaseManager : MonoBehaviour
 
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
-    private MainMenu canva;
+    public float coinCount = 0;
     private AudioManager audioManager;
     public PortalsManager portals;
+    [SerializeField] private GameObject game;
 
     //----------
     int[] coefficient = { 1, 1, 1, 2 };
@@ -48,9 +49,13 @@ public class PhaseManager : MonoBehaviour
 
     private void Start()
     {
-        canva = FindObjectOfType<MainMenu>();
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
+    }
+
+    public void RecibeGold(float gold) 
+    {
+        coinCount += gold;
     }
 
     public void TurnOnPortals() 
@@ -83,11 +88,13 @@ public class PhaseManager : MonoBehaviour
 
     public void StartPhase() 
     {
-        portals.TurnOnLeftPortal();
+        game.SetActive(true);
+       // portals.TurnOnLeftPortal();
         portals.TurnOnRightPortal();
         LoadEnemies();
-        string name = songsNames[currentPhase+1];
+        string name = songsNames[currentPhase + 1];
         audioManager.PlayMusic(name);
+        MainCamera.instance.SetCameraLookingToPortalTwo();
     }
 
     public bool nextPhase() 
@@ -113,7 +120,6 @@ public class PhaseManager : MonoBehaviour
     {
         if (amountOfWarriosByPhase.Length >= currentPhase)
         {
-
             for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
             { enemyManager.InstantiateWarrior(); }
 

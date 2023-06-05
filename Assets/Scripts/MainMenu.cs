@@ -22,7 +22,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject musicButtonOn;
     [SerializeField] public GameObject musicButtonOff;
     [SerializeField] public GameObject sfxButtonOn;
-    [SerializeField] public GameObject sfxButtonOff;    
+    [SerializeField] public GameObject sfxButtonOff;
+    [SerializeField] public GameObject game;
 
     private AudioManager audioManager;
     public static MainMenu Instance;
@@ -43,6 +44,12 @@ public class MainMenu : MonoBehaviour
 
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
+        
+    }
+
+    public void SetRenderCamera() 
+    {
+        GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
 
     public async void Play()
@@ -51,8 +58,8 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
         loading.SetActive(true);
         mainMenu.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
- 
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         await Task.Delay(2000);
         prophecyScreen.gameObject.SetActive(true);
         loading.SetActive(false);

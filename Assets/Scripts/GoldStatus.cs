@@ -11,7 +11,7 @@ public class GoldStatus : MonoBehaviour
 
     private void Update()
     {
-        gold = GameHandlerBetweenScenes.Instance.coinCount;
-        textMesh.text = GameHandlerBetweenScenes.Instance.coinCount.ToString();
+        gold = PhaseManager.Instance.coinCount;
+        textMesh.text = PhaseManager.Instance.coinCount.ToString();
     }
 }

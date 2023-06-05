@@ -1,9 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class MainCamera : MonoBehaviour
 {
+    public static MainCamera instance;
+    public CinemachineVirtualCamera camera1;
+    public CinemachineVirtualCamera camera2;
+    private CinemachineBrain cinemachineBrain;
+
+
+
+    private void Awake()
+    {
+        cinemachineBrain = GetComponent<CinemachineBrain>();
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private const float TARGET_ASPECT_RATIO = 9f / 16f; // Relación de aspecto objetivo (en este ejemplo, 9:16)
     private const float TARGET_HEIGHT = 10f; // Altura de la cámara para la relación de aspecto objetivo
 
@@ -12,14 +35,25 @@ public class MainCamera : MonoBehaviour
 
     void Start()
     {
+        //ActivateCamera(camera1);
         cam = GetComponent<Camera>();
         SetCameraSize();
     }
 
-    private void Update()
+   
+    public void ActivateCamera(CinemachineVirtualCamera camera)
     {
-        transform.LookAt(new Vector3(tower.transform.position.x, (tower.transform.position.y + 16), tower.transform.position.z));
+        // Desactivar todas las cámaras
+        cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.SetActive(false);
+
+        // Activar la cámara deseada
+        camera.gameObject.SetActive(true);
     }
+
+    /*   private void Update()
+       {
+           transform.LookAt(new Vector3(tower.transform.position.x, (tower.transform.position.y + 16), tower.transform.position.z));
+       }*/
 
     void SetCameraSize()
     {
@@ -37,4 +71,21 @@ public class MainCamera : MonoBehaviour
             cam.orthographicSize *= scaleHeight; // Aplicar la escala a la altura de la cámara
         }
     }
+
+    //-------------------------------
+
+    public void SetCameraLookingToPortalOne()
+    {
+        transform.position = new Vector3(-42, 82, -12);
+        transform.rotation = Quaternion.Euler(44, 92, 0);
+    }
+
+
+    public void SetCameraLookingToPortalTwo()
+    {
+        transform.position = new Vector3(-12, 70, 37);
+        transform.rotation = Quaternion.Euler(37, 150, -10);
+    }
+
+
 }

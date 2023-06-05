@@ -5,7 +5,7 @@ using TMPro;
 
 public class GameHandlerBetweenScenes : MonoBehaviour
 {
-    public static GameHandlerBetweenScenes Instance;
+  /*  public static GameHandlerBetweenScenes Instance;
     public float coinCount = 0;
    
     private void Awake()
@@ -19,5 +19,5 @@ public class GameHandlerBetweenScenes : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 }

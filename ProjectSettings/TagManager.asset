@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Projectile
   - Canvas
+  - Game
   layers:
   - Default
   - TransparentFX

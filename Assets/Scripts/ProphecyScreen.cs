@@ -57,7 +57,10 @@ public class ProphecyScreen : MonoBehaviour
         TextThree.SetActive(false);
         skipButton.SetActive(false);
         letsGoButton.SetActive(false);
+        MainMenu.Instance.game.SetActive(true);
+        MainCamera.instance.SetCameraLookingToPortalOne();
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
+        
         PhaseManager.Instance.StartPhase();
     }
 }
