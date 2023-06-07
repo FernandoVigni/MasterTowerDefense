@@ -54,4 +54,10 @@ public class FireBallManager : MonoBehaviour
         projectile.transform.rotation = Quaternion.identity;
         projectile.transform.position = positionToMoveProjectil.position;
     }
+
+    public void RemoveAllFireballs()
+    {
+        fireBalls.RemoveAll(FireBall => true);
+    }
+
 }

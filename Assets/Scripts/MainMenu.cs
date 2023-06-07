@@ -26,11 +26,15 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject game;
 
     private AudioManager audioManager;
+    private EnemyManager enemyManager;
+    private FireBallManager fireBallManager;
     public static MainMenu Instance;
 
     private void Awake()
     {
         audioManager = FindAnyObjectByType<AudioManager>();
+        enemyManager = FindAnyObjectByType<EnemyManager>();
+        fireBallManager = FindAnyObjectByType<FireBallManager>();
 
         if (Instance == null)
         {
@@ -117,20 +121,51 @@ public class MainMenu : MonoBehaviour
         audioManager.PlaySFX("Button");
         confirmation.SetActive(false);
     }
+
+    public void CleanUiInGame() 
+    {
+        buttonOptions.SetActive(false);
+        goldStatus.SetActive(false);
+    }
+
+    private void CloseMenuesUi() 
+    {
+        menuOptions.SetActive(false);
+        confirmation.SetActive(false);
+    }
+
+    private void TurnOffScenario() 
+    {
+        game.SetActive(false);
+    }
+
+    private void TurnOnMainMenu() 
+    {
+        mainMenu.SetActive(true);
+    }
+
     public void ReturnToMainMenu()
     {
         audioManager.PlaySFX("Button");
+
         //    volumen.SetActive(false);
         //  contact.SetActive(false);
-        buttonOptions.SetActive(false);
-        goldStatus.SetActive(false);
-        menuOptions.SetActive(false);
-        confirmation.SetActive(false);
-        mainMenu.SetActive(true);
-        victory.SetActive(false);
-        lose.SetActive(false);
-        //subir el volumen que baje
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+        //Clean ENemys List
+        //Clear FIreballs
+        Time.timeScale = 0f;
+        fireBallManager.RemoveAllFireballs();
+        enemyManager.RemoveAllInCollider();
+        enemyManager.RemoveAllInStage();
+        CleanUiInGame();
+        CloseMenuesUi();
+        TurnOffScenario();
+        TurnOnMainMenu();
+
+        //victory.SetActive(false);
+        //lose.SetActive(false);
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         audioManager.PlayMusic("MainMenu");
     }
 
