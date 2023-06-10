@@ -143,12 +143,6 @@ public class MainMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         audioManager.PlaySFX("Button");
-
-        //    volumen.SetActive(false);
-        //  contact.SetActive(false);
-
-        //Clean ENemys List
-        //Clear FIreballs
         Time.timeScale = 0f;
         fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
@@ -157,11 +151,6 @@ public class MainMenu : MonoBehaviour
         CloseMenuesUi();
         TurnOffScenario();
         TurnOnMainMenu();
-
-        //victory.SetActive(false);
-        //lose.SetActive(false);
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         audioManager.PlayMusic("MainMenu");
     }
 
