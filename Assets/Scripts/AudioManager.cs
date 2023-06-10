@@ -99,7 +99,6 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleSFX()
     {
-        
         if (sfxSource.volume <= 0)
         {
             MainMenu.Instance.sfxButtonOn.SetActive(false);
@@ -112,7 +111,6 @@ public class AudioManager : MonoBehaviour
                 sfxSource.mute = false;
                 MainMenu.Instance.sfxButtonOn.SetActive(true);
                 MainMenu.Instance.sfxButtonOff.SetActive(false);
-
             }
             else
             {
@@ -140,5 +138,4 @@ public class AudioManager : MonoBehaviour
             MainMenu.Instance.sfxButtonOff.SetActive(false);
         }
     }
-
 }

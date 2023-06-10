@@ -94,46 +94,6 @@ public class Enemy : MonoBehaviour
         return life > 0;
     }
 
-    public void SetLife(int life)
-    {
-        this.life = life;
-    }
-
-    public void SetSpeed(float speed)
-    {
-        this.speed = speed;
-    }
-
-    public void SetAtackSpeed(float atackSpeed) 
-    {
-        this.atackSpeed = atackSpeed;
-    }
-
-    public void SetMagicArmor(float magicArmorValue) 
-    {
-        magicArmor = magicArmorValue;
-    }
-
-    public void SetPhysicalArmor(float physicalArmorValue)
-    {
-        magicArmor = physicalArmorValue;
-    }
-
-    public void SetMagicDamage(float magicDamage)
-    {
-        this.magicDamage = magicDamage;
-    }
-
-    public void SetPhysicalDamage(float physicalDamage)
-    {
-        this.physicalDamage = physicalDamage;
-    }
-
-    public void SetGoldValue(int value)
-    {
-        goldValueOnDeath = value;
-    }
-
     public void SetCoefficient(float coefficient) 
     {
         this.coefficient = coefficient;
@@ -144,14 +104,10 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 
-
-
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
 
-
-
-   public int recivedGoldInThisPhase; 
+    public int recivedGoldInThisPhase; 
     public void ReceibeDamage(int damage)
     {
         life -= damage;

@@ -45,10 +45,8 @@ public class MainMenu : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
-        
     }
 
     public void SetRenderCamera() 
@@ -62,8 +60,6 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
         loading.SetActive(true);
         mainMenu.SetActive(false);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
         await Task.Delay(2000);
         prophecyScreen.gameObject.SetActive(true);
         loading.SetActive(false);

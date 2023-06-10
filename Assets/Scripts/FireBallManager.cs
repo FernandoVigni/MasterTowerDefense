@@ -57,7 +57,12 @@ public class FireBallManager : MonoBehaviour
 
     public void RemoveAllFireballs()
     {
-        fireBalls.RemoveAll(FireBall => true);
+        for (int i = fireBalls.Count - 1; i >= 0; i--)
+        {
+            FireBall fireBall = fireBalls[i];
+            fireBalls.RemoveAt(i);
+            // Eliminar la Fireball
+            Destroy(fireBall);
+        }
     }
-
 }

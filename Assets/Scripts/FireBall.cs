@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class FireBall : Projectile
 {
-    public int ExplosiveContact() 
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        return 0;    
-    }
-
-    public void OnDeath() 
-    {
-        
+        // hacer explotar 
     }
 }

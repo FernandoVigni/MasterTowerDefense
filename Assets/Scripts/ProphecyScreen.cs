@@ -5,42 +5,57 @@ using System.Threading.Tasks;
 
 public class ProphecyScreen : MonoBehaviour
 {
-    [SerializeField] public GameObject TextOne;
-    [SerializeField] public GameObject TextTwo;
-    [SerializeField] public GameObject TextThree;
+    [SerializeField] public GameObject textOne;
+    [SerializeField] public GameObject textTwo;
+    [SerializeField] public GameObject textThree;
+    [SerializeField] public GameObject textOneVisible;
+    [SerializeField] public GameObject textTwoVisible;
+    [SerializeField] public GameObject textThreeVisible;
     [SerializeField] public GameObject skipButton;
     [SerializeField] public GameObject letsGoButton;
+    public Animator animator;
 
-    public void StartProphecyScene() 
+    private void Start()
     {
-        TextOne.SetActive(false);
-        TextTwo.SetActive(false);
-        TextThree.SetActive(false);
+        animator = GetComponent<Animator>();
+        textOneVisible.SetActive(false);
+        textTwoVisible.SetActive(false);
+        textThreeVisible.SetActive(false);
+    }
+    public void StartProphecyScene()
+    {
+
+
         skipButton.SetActive(false);
         letsGoButton.SetActive(false);
         PlayTextOne();
     }
-
-    public async Task PlayTextOne() 
+    
+    public async Task PlayTextOne()
     {
-        await Task.Delay(2500);
-        TextOne.SetActive(true);
+        animator.SetBool("AppearTextOne", true);
+        await Task.Delay(3500);
+        textOneVisible.SetActive(true);
+        animator.SetBool("AppearTextOne", false);
         await PlayTextTwo();
     }
-    
+
     public async Task PlayTextTwo() 
     {
+        animator.SetBool("AppearTextTwo", true);
         await Task.Delay(3500);
         skipButton.SetActive(true);
-        TextTwo.SetActive(true);
+        textTwoVisible.SetActive(true);
+        animator.SetBool("AppearTextTwo", false);
         await PlayTextThree();
     }
 
     public async Task PlayTextThree() 
     {
-        await Task.Delay(2000);
-        TextThree.SetActive(true);
-        await Task.Delay(1500);
+        animator.SetBool("AppearTextThree", true);
+        await Task.Delay(3500);
+        textThreeVisible.SetActive(true);
+        animator.SetBool("AppearTextThree", false);
         ChangeButton();
     }
 
@@ -52,9 +67,9 @@ public class ProphecyScreen : MonoBehaviour
 
     public void StartGame() 
     {
-        TextOne.SetActive(false);
-        TextTwo.SetActive(false);
-        TextThree.SetActive(false);
+        textOneVisible.SetActive(false); 
+        textTwoVisible.SetActive(false); 
+        textThreeVisible.SetActive(false);
         skipButton.SetActive(false);
         letsGoButton.SetActive(false);
         MainMenu.Instance.game.SetActive(true);
