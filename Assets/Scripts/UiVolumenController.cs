@@ -13,8 +13,8 @@ public class UiVolumenController : MonoBehaviour
     {
         AudioManager.Instance.MusicVolumen(0.2f);
         AudioManager.Instance.SFXVolumen(0.2f);
-        musicSlider.value = 0.2f;
-        sfxSlider.value = 0.2f;
+        musicSlider.value = 0.8f;
+        sfxSlider.value = 0.8f;
     }
 
     public void ToggleMusic() 
