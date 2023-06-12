@@ -145,19 +145,13 @@ public class MainMenu : MonoBehaviour
     public void ReturnToMainMenu()
     {
         audioManager.PlaySFX("Button");
-        Time.timeScale = 1f;
         //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
-        CleanUiInGame();
-        CloseMenuesUi();
-        TurnOffScenario();
-        TurnOnMainMenu();
-        TurnOnSparksPlayButton();
-        audioManager.PlayMusic("MainMenu");
+        EnterInMainMenu();
     }
 
-    public void FirstEnterInMainMenu()
+    public void EnterInMainMenu()
     {
         Time.timeScale = 1f;
         CleanUiInGame();

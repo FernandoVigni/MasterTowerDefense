@@ -11,20 +11,26 @@ public class AdvicomIntro : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        // MainMenu.Instance.FirstEnterInMainMenu();
-        //EnterMainMenu();
+        animator.SetBool("AdvicomFadeIn", true);
         AdvicomFadeOut();
-    }
-    public async Task EnterMainMenu()
-    {
-        await Task.Delay(7000);
-        MainMenu.Instance.FirstEnterInMainMenu();
+
     }
 
     public async Task AdvicomFadeOut() 
     {
-        await Task.Delay(4000);
+        await Task.Delay(8000);
         animator.SetBool("AdvicomFadeOut", true);
+        OpenMainMenu();
+    }
+
+    public async Task OpenMainMenu()
+    {
+        await Task.Delay(3000);
+        animator.SetBool("AdvicomFadeOut", false);
+        MainMenu.Instance.EnterInMainMenu();
+        animator.SetBool("BlackBanckgroundFadeOut", true);
+        await Task.Delay(3000);
+        this.gameObject.SetActive(false);
     }
 
 }
