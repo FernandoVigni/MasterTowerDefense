@@ -29,7 +29,7 @@ public class AdvicomIntro : MonoBehaviour
         animator.SetBool("AdvicomFadeOut", false);
         MainMenu.Instance.EnterInMainMenu();
         animator.SetBool("BlackBanckgroundFadeOut", true);
-        await Task.Delay(3000);
+        await Task.Delay(1000);
         this.gameObject.SetActive(false);
     }
 

@@ -184,8 +184,9 @@ public class MainMenu : MonoBehaviour
         saprksPlay.SetActive(false);
     }
 
-    public void TurnOnSparksPlayButton()
+    public async Task TurnOnSparksPlayButton()
     {
+        await Task.Delay(1500);
         saprksPlay.SetActive(true);
     }
 
