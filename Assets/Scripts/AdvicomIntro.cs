@@ -25,7 +25,7 @@ public class AdvicomIntro : MonoBehaviour
 
     public async Task OpenMainMenu()
     {
-        await Task.Delay(3000);
+        await Task.Delay(2000);
         animator.SetBool("AdvicomFadeOut", false);
         MainMenu.Instance.EnterInMainMenu();
         animator.SetBool("BlackBanckgroundFadeOut", true);
