@@ -13,6 +13,8 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GameObject textThreeVisible;
     [SerializeField] public GameObject letsGoButton;
     [SerializeField] public GameObject letsGoButtonVisible;
+    [SerializeField] public GameObject SparksSystem;
+
     public Animator animator;
 
     private void Start()
@@ -22,6 +24,7 @@ public class ProphecyScreen : MonoBehaviour
         textTwoVisible.SetActive(false);
         textThreeVisible.SetActive(false);
         letsGoButtonVisible.SetActive(false);
+        SparksSystem.SetActive(false);
     }
 
     public void StartProphecyScene()
@@ -31,6 +34,7 @@ public class ProphecyScreen : MonoBehaviour
     
     public async Task PlayTextOne()
     {
+        await Task.Delay(1500);
         animator.SetBool("AppearTextOne", true);
         await Task.Delay(3500);
         textOneVisible.SetActive(true);
@@ -46,7 +50,6 @@ public class ProphecyScreen : MonoBehaviour
         await Task.Delay(1500);
         textTwoVisible.SetActive(true);
         animator.SetBool("AppearTextTwo", false);
-        
         await PlayTextThree();
     }
 
@@ -64,20 +67,25 @@ public class ProphecyScreen : MonoBehaviour
         animator.SetBool("AppearLetsGoButton", true);
         await Task.Delay(3500);
         letsGoButtonVisible.SetActive(true);
+        SparksSystem.SetActive(true);
         animator.SetBool("AppearLetsGoButton", false);
+    }
 
+    public void SetInvisibleTexts() 
+    {
+        textOneVisible.SetActive(false);
+        textTwoVisible.SetActive(false);
+        textThreeVisible.SetActive(false);
     }
 
     public void StartGame() 
     {
-        textOneVisible.SetActive(false); 
-        textTwoVisible.SetActive(false); 
-        textThreeVisible.SetActive(false);
+        SetInvisibleTexts();
+        SparksSystem.SetActive(false);
         letsGoButtonVisible.SetActive(false);
         MainMenu.Instance.game.SetActive(true);
         MainCamera.instance.SetCameraLookingToPortalOne();
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
-        
         PhaseManager.Instance.StartPhase();
     }
 }

@@ -230,30 +230,34 @@ public class EnemyManager : MonoBehaviour
             {
                 ShufleList(listOfEnemiesToDefeatInThisPhase);
                 Enemy enemy = GetFirstEnemyFromPhaseList();
-                await Task.Delay(delayToInstantiateEnemy);
 
-                // 1) random 
-                int randonAngle = GetRandomNumber(0, 19);
-                if (randonAngle < 10) 
+                if (enemy != null)
+                {
+                    await Task.Delay(delayToInstantiateEnemy);
+
+                    // 1) random 
+                    int randonAngle = GetRandomNumber(0, 19);
+                    if (randonAngle < 10)
                     { randonAngle += 105; }
-                else
-                    { randonAngle += 140;  }
+                    else
+                    { randonAngle += 140; }
 
-                // 2) calculo sin         
-                double x = GetSineOfAnAngle(randonAngle);
-                float floatX = (float)x * distanceToInstanciateEnemyToTower;
+                    // 2) calculo sin         
+                    double x = GetSineOfAnAngle(randonAngle);
+                    float floatX = (float)x * distanceToInstanciateEnemyToTower;
 
-                // 3) calculo cos         
-                double z = GetCosOfAnAngle(randonAngle);
-                float floatZ = (float)z * distanceToInstanciateEnemyToTower;
+                    // 3) calculo cos         
+                    double z = GetCosOfAnAngle(randonAngle);
+                    float floatZ = (float)z * distanceToInstanciateEnemyToTower;
 
-                Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
-                enemy.transform.position = spawnPositionRandom;
-                enemy.LookTower();
-                enemy.StartMove();
-              //  enemy.animator.Play("Run", 0, 0f);
-                RemoveEnemyFromPhase(enemy);
-                AddEnemyToSentList(enemy);
+                    Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
+                    enemy.transform.position = spawnPositionRandom;
+                    enemy.LookTower();
+                    enemy.StartMove();
+                    //  enemy.animator.Play("Run", 0, 0f);
+                    RemoveEnemyFromPhase(enemy);
+                    AddEnemyToSentList(enemy);
+                }
             }
         }
     }
