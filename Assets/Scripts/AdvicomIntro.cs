@@ -9,6 +9,8 @@ public class AdvicomIntro : MonoBehaviour
     public GameObject SkineEffectLogo;
     public GameObject mainMenuTurnOff;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
