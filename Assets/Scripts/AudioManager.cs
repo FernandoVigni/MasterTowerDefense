@@ -63,7 +63,6 @@ public class AudioManager : MonoBehaviour
                 musicSource.mute = false;
                 MainMenu.Instance.musicButtonOn.SetActive(true);
                 MainMenu.Instance.musicButtonOff.SetActive(false);
-
             }
             else 
             {

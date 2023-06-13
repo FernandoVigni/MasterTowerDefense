@@ -27,14 +27,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject saprksPlay;
     [SerializeField] public GameObject saprksLetsGoButton;
 
-    private AudioManager audioManager;
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
     public static MainMenu Instance;
 
     private void Awake()
     {
-        audioManager = FindAnyObjectByType<AudioManager>();
+    
         enemyManager = FindAnyObjectByType<EnemyManager>();
         fireBallManager = FindAnyObjectByType<FireBallManager>();
 
@@ -58,7 +57,7 @@ public class MainMenu : MonoBehaviour
 
     public async void Play()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         loading.SetActive(true);
         TurnOffSparksPlayButton();
@@ -74,7 +73,7 @@ public class MainMenu : MonoBehaviour
 
     public void Pause()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
@@ -84,7 +83,7 @@ public class MainMenu : MonoBehaviour
 
     public void Resume()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
@@ -94,13 +93,13 @@ public class MainMenu : MonoBehaviour
     public void Contact()
     {
         TurnOffSparksPlayButton();
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         contact.SetActive(true);
     }
 
     public void Home()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         contact.SetActive(false);
         confirmation.SetActive(false);
         volumen.SetActive(false);
@@ -109,13 +108,13 @@ public class MainMenu : MonoBehaviour
 
     public void CheckReturnToMainMenu() 
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(true);
     }
 
     public void CloseConfirmation() 
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
     }
 
@@ -144,7 +143,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
@@ -158,8 +157,8 @@ public class MainMenu : MonoBehaviour
         CloseMenuesUi();
         TurnOffScenario();
         TurnOnMainMenu();
+        AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
-        audioManager.PlayMusic("MainMenu");
     }
 
     public void Victory() 
@@ -175,7 +174,7 @@ public class MainMenu : MonoBehaviour
     public void Volumen() 
     {
         TurnOffSparksPlayButton();
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         volumen.SetActive(true);
     }
 
@@ -186,13 +185,12 @@ public class MainMenu : MonoBehaviour
 
     public async Task TurnOnSparksPlayButton()
     {
-        await Task.Delay(1500);
         saprksPlay.SetActive(true);
     }
 
     public void Exit()
     {
-        audioManager.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         Debug.Log("Exit...");
         Application.Quit();
     }
