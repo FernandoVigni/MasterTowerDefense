@@ -27,5 +27,4 @@ public class GoldStatus : MonoBehaviour
     {
         return PlayerPrefs.GetFloat(variableGold, 0f);
     }
-
 }
