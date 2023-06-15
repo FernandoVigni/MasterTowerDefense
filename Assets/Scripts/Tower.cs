@@ -25,11 +25,6 @@ public class Tower : MonoBehaviour
         }
     }
 
-    public void RecibeGold(float gold)
-    {
-        PhaseManager.Instance.coinCount += gold;
-    }
-
     public Enemy GetNearestEnemyInsideCollider()
     {
         if (enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 1)

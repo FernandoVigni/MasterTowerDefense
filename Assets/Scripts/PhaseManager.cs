@@ -13,9 +13,9 @@ public class PhaseManager : MonoBehaviour
 
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
-    public float coinCount = 0;
     private AudioManager audioManager;
     public PortalsManager portals;
+
     [SerializeField] private GameObject game;
 
     //----------
@@ -51,11 +51,6 @@ public class PhaseManager : MonoBehaviour
     {
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
-    }
-
-    public void RecibeGold(float gold) 
-    {
-        coinCount += gold;
     }
 
     public void TurnOnPortals() 

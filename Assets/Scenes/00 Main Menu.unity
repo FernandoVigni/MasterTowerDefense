@@ -32423,7 +32423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 525447981}
-  gold: 0
+  currentGold: 0
 --- !u!114 &701616359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43207,7 +43207,7 @@ Transform:
   - {fileID: 486778086}
   - {fileID: 508425465}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1311124706
 GameObject:
@@ -49876,6 +49876,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1478303509}
   m_CullTransparentMesh: 1
+--- !u!1 &1478706553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1478706555}
+  - component: {fileID: 1478706554}
+  m_Layer: 0
+  m_Name: GoldManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1478706554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478706553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 786487217}
+  currentGold: 0
+--- !u!4 &1478706555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478706553}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.285475, y: 29.135345, z: -3.028944}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485816859
 GameObject:
   m_ObjectHideFlags: 0
@@ -64365,6 +64411,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
         type: 3}
+      propertyPath: goldStatus
+      value: 
+      objectReference: {fileID: 1478706554}
+    - target: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+        type: 3}
       propertyPath: phaseManager
       value: 
       objectReference: {fileID: 895140841}
@@ -65530,7 +65581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textMesh: {fileID: 272363425}
-  gold: 0
+  currentGold: 0
 --- !u!114 &2026644091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70473,9 +70524,8 @@ GameObject:
   - component: {fileID: 2074822301}
   - component: {fileID: 2074822303}
   - component: {fileID: 2074822302}
-  - component: {fileID: 2074822304}
   m_Layer: 5
-  m_Name: GoldStatus
+  m_Name: GoldUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70500,7 +70550,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 250, y: 1735}
+  m_AnchoredPosition: {x: 249.9984, y: 1734.9974}
   m_SizeDelta: {x: 613.7805, y: 277.6623}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2074822302
@@ -70541,20 +70591,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074822300}
   m_CullTransparentMesh: 1
---- !u!114 &2074822304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074822300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 786487217}
-  gold: 0
 --- !u!1 &2080826152
 GameObject:
   m_ObjectHideFlags: 0

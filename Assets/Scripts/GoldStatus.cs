@@ -7,11 +7,25 @@ public class GoldStatus : MonoBehaviour
 {
     [SerializeField]
     public TextMeshProUGUI textMesh;
-    public float gold;
+    public float currentGold;
+    private const string variableGold = "Gold";
 
     private void Update()
     {
-        gold = PhaseManager.Instance.coinCount;
-        textMesh.text = PhaseManager.Instance.coinCount.ToString();
+        currentGold = GetGoldAmmount();
+        textMesh.text = currentGold.ToString();
     }
+
+    public void RecibeGold(float goldToIncrese)
+    {
+        currentGold += goldToIncrese;
+        PlayerPrefs.SetFloat(variableGold, currentGold);
+        PlayerPrefs.Save();
+    }
+
+    private float GetGoldAmmount()
+    {
+        return PlayerPrefs.GetFloat(variableGold, 0f);
+    }
+
 }
