@@ -6,11 +6,15 @@ using Cinemachine;
 public class MainCamera : MonoBehaviour
 {
     public static MainCamera instance;
-    public CinemachineVirtualCamera camera1;
-    public CinemachineVirtualCamera camera2;
     private CinemachineBrain cinemachineBrain;
-
-
+    public CinemachineVirtualCamera camera360;
+    public CinemachineVirtualCamera cameraPortals;
+    public CinemachineVirtualCamera cameraChaman;
+    public CinemachineVirtualCamera camera3PersonTower;
+    public CinemachineVirtualCamera cameraFrontRunner;
+    public CinemachineVirtualCamera camera3PersonRunner;
+    public CinemachineVirtualCamera cameraNecromancer;
+    public CinemachineVirtualCamera cameraEnemyesUpgrade;
 
     private void Awake()
     {
@@ -40,7 +44,6 @@ public class MainCamera : MonoBehaviour
         SetCameraSize();
     }
 
-   
     public void ActivateCamera(CinemachineVirtualCamera camera)
     {
         // Desactivar todas las cámaras
@@ -49,12 +52,6 @@ public class MainCamera : MonoBehaviour
         // Activar la cámara deseada
         camera.gameObject.SetActive(true);
     }
-
-    /*   private void Update()
-       {
-           transform.LookAt(new Vector3(tower.transform.position.x, (tower.transform.position.y + 16), tower.transform.position.z));
-       }*/
-
     void SetCameraSize()
     {
         float currentAspectRatio = (float)Screen.width / Screen.height; // Relación de aspecto actual de la pantalla
@@ -80,12 +77,9 @@ public class MainCamera : MonoBehaviour
         transform.rotation = Quaternion.Euler(44, 92, 0);
     }
 
-
     public void SetCameraLookingToPortalTwo()
     {
         transform.position = new Vector3(-12, 70, 37);
         transform.rotation = Quaternion.Euler(37, 150, -10);
     }
-
-
 }

@@ -19,12 +19,12 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] private GameObject game;
 
     //----------
-    int[] coefficient = { 1, 1, 1, 2 };
+    int[] coefficient =              { 1, 1, 1, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 2, 5, 5 };
-    int[] amountOfWarriosByPhase = { 30, 10, 15, 15, };
-    int[] amountOfMagesByPhase = { 10, 20, 15, 15 };
-    int[] amountOfRunnersByPhase = { 0, 30, 0, 0 };
-    int[] amountOfGiantsByPhase = { 3, 3, 6, 6 };
+    int[] amountOfWarriosByPhase =   { 5, 3, 5, 5 };
+    int[] amountOfMagesByPhase =     { 2, 5, 5, 5 };
+    int[] amountOfRunnersByPhase =   { 0, 40, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 2, 2, 6, 3 };
     int[] amountOfBosses = { 0, 0, 0, 1 };
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss" };   
     //----------
