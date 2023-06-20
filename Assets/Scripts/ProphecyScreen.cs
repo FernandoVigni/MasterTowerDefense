@@ -87,5 +87,7 @@ public class ProphecyScreen : MonoBehaviour
         MainCamera.instance.SetCameraLookingToPortalOne();
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
         PhaseManager.Instance.StartPhase();
+        MainCamera.instance.timelineDirector.Stop();
+        MainCamera.instance.timelineDirector.Play();
     }
 }

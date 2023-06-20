@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using Cinemachine;
+using UnityEngine.Timeline;
 
 public class MainCamera : MonoBehaviour
 {
     public static MainCamera instance;
     private CinemachineBrain cinemachineBrain;
+    public PlayableDirector timelineDirector;
+
     public CinemachineVirtualCamera camera360;
     public CinemachineVirtualCamera cameraPortals;
     public CinemachineVirtualCamera cameraChaman;
-    public CinemachineVirtualCamera camera3PersonTower;
+    public CinemachineVirtualCamera camera3PersonTowerLeft;
+    public CinemachineVirtualCamera camera3PersonTowerRight;
     public CinemachineVirtualCamera cameraFrontRunner;
     public CinemachineVirtualCamera camera3PersonRunner;
     public CinemachineVirtualCamera cameraNecromancer;
@@ -42,6 +47,8 @@ public class MainCamera : MonoBehaviour
         //ActivateCamera(camera1);
         cam = GetComponent<Camera>();
         SetCameraSize();
+        timelineDirector = GetComponent<PlayableDirector>();
+ 
     }
 
     public void ActivateCamera(CinemachineVirtualCamera camera)
