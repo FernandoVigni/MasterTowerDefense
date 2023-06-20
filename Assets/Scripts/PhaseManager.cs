@@ -52,19 +52,7 @@ public class PhaseManager : MonoBehaviour
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
     }
-
-    public void TurnOnPortals() 
-    {
-        portals.TurnOnLeftPortal();
-        portals.TurnOnRightPortal();
-    }
-
-    public void TurnOffPortals() 
-    {
-        portals.TurnOffLeftPortal();
-        portals.TurnOffRightPortal();
-    }
-
+    
     public int GetCoefficient() 
     {
         return coefficient[currentPhase];
@@ -89,7 +77,6 @@ public class PhaseManager : MonoBehaviour
         LoadEnemies();
         string name = songsNames[currentPhase + 1];
         audioManager.PlayMusic(name);
-        MainCamera.instance.SetCameraLookingToPortalTwo();
     }
 
     public bool nextPhase() 

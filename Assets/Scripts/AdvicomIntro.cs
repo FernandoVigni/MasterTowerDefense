@@ -12,6 +12,7 @@ public class AdvicomIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //MainCamera.instance.timelineDirector.Stop();
         animator = GetComponent<Animator>();
         animator.SetBool("AdvicomFadeIn", true);
         SkineEffectLogo.SetActive(false);

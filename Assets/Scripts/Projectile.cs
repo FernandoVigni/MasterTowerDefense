@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,8 +31,13 @@ public class Projectile : MonoBehaviour
     {
         translate = true;
     }
+    private void StopMove()
+    {
+        translate = false;
+    }
 
-    public void StopMove()
+    public void 
+        Move()
     {
         translate = false;
     }

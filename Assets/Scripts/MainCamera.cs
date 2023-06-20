@@ -10,17 +10,22 @@ public class MainCamera : MonoBehaviour
     public static MainCamera instance;
     private CinemachineBrain cinemachineBrain;
     public PlayableDirector timelineDirector;
+    
+    [Header("Phase One")]
+    public GameObject camera360ToChaman;
+    public GameObject cameraChamanToPortals;  
+    public GameObject cameraPortalsToChaman;
+    public GameObject cameraChamanToTowerRight;
 
-    public CinemachineVirtualCamera camera360;
-    public CinemachineVirtualCamera cameraPortals;
-    public CinemachineVirtualCamera cameraChaman;
-    public CinemachineVirtualCamera camera3PersonTowerLeft;
-    public CinemachineVirtualCamera camera3PersonTowerRight;
-    public CinemachineVirtualCamera cameraFrontRunner;
-    public CinemachineVirtualCamera camera3PersonRunner;
-    public CinemachineVirtualCamera cameraNecromancer;
-    public CinemachineVirtualCamera cameraEnemyesUpgrade;
+    [Header("TODO")]
+    public GameObject camera3PersonTowerLeft;
+    public GameObject camera3PersonTowerRight;
+    public GameObject cameraFrontRunner;
+    public GameObject camera3PersonRunner;
+    public GameObject cameraNecromancer;
+    public GameObject cameraEnemyesUpgrade;
 
+    
     private void Awake()
     {
         cinemachineBrain = GetComponent<CinemachineBrain>();
@@ -48,17 +53,14 @@ public class MainCamera : MonoBehaviour
         cam = GetComponent<Camera>();
         SetCameraSize();
         timelineDirector = GetComponent<PlayableDirector>();
- 
+
     }
 
-    public void ActivateCamera(CinemachineVirtualCamera camera)
+    public void ActivateCamera(GameObject camera)
     {
-        // Desactivar todas las cámaras
-        cinemachineBrain.ActiveVirtualCamera.VirtualCameraGameObject.SetActive(false);
-
-        // Activar la cámara deseada
         camera.gameObject.SetActive(true);
     }
+
     void SetCameraSize()
     {
         float currentAspectRatio = (float)Screen.width / Screen.height; // Relación de aspecto actual de la pantalla
@@ -74,19 +76,5 @@ public class MainCamera : MonoBehaviour
         {
             cam.orthographicSize *= scaleHeight; // Aplicar la escala a la altura de la cámara
         }
-    }
-
-    //-------------------------------
-
-    public void SetCameraLookingToPortalOne()
-    {
-        transform.position = new Vector3(-42, 82, -12);
-        transform.rotation = Quaternion.Euler(44, 92, 0);
-    }
-
-    public void SetCameraLookingToPortalTwo()
-    {
-        transform.position = new Vector3(-12, 70, 37);
-        transform.rotation = Quaternion.Euler(37, 150, -10);
     }
 }

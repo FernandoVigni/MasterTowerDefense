@@ -7,6 +7,19 @@ public class PortalsManager : MonoBehaviour
     [SerializeField] public GameObject leftPortal;
     [SerializeField] public GameObject rightPortal;
 
+
+    public void TurnOnPortals()
+    {
+        TurnOnLeftPortal();
+        TurnOnRightPortal();
+    }
+
+    public void TurnOffPortals()
+    {
+        TurnOffLeftPortal();
+        TurnOffRightPortal();
+    }
+
     public void TurnOnLeftPortal() 
     {
         leftPortal.SetActive(true);
@@ -26,4 +39,6 @@ public class PortalsManager : MonoBehaviour
     {
         rightPortal.SetActive(false);
     }
+
+
 }

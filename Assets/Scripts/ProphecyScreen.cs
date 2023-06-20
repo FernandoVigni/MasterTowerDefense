@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using UnityEngine.Playables;
 
 public class ProphecyScreen : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GameObject letsGoButton;
     [SerializeField] public GameObject letsGoButtonVisible;
     [SerializeField] public GameObject SparksSystem;
+    [SerializeField] public PortalsManager portals;
+    [SerializeField] public GameObject rocksToDestroy;
 
     public Animator animator;
 
@@ -31,7 +34,7 @@ public class ProphecyScreen : MonoBehaviour
     {
         PlayTextOne();
     }
-    
+
     public async Task PlayTextOne()
     {
         await Task.Delay(1500);
@@ -42,18 +45,18 @@ public class ProphecyScreen : MonoBehaviour
         await PlayTextTwo();
     }
 
-    public async Task PlayTextTwo() 
+    public async Task PlayTextTwo()
     {
         animator.SetBool("AppearTextTwo", true);
         await Task.Delay(1500);
- 
+
         await Task.Delay(1500);
         textTwoVisible.SetActive(true);
         animator.SetBool("AppearTextTwo", false);
         await PlayTextThree();
     }
 
-    public async Task PlayTextThree() 
+    public async Task PlayTextThree()
     {
         animator.SetBool("AppearTextThree", true);
         await Task.Delay(2500);
@@ -62,7 +65,7 @@ public class ProphecyScreen : MonoBehaviour
         TurnOnLetsGoButton();
     }
 
-    public async Task TurnOnLetsGoButton() 
+    public async Task TurnOnLetsGoButton()
     {
         animator.SetBool("AppearLetsGoButton", true);
         await Task.Delay(3500);
@@ -71,23 +74,30 @@ public class ProphecyScreen : MonoBehaviour
         animator.SetBool("AppearLetsGoButton", false);
     }
 
-    public void SetInvisibleTexts() 
+    public void SetInvisibleTexts()
     {
         textOneVisible.SetActive(false);
         textTwoVisible.SetActive(false);
         textThreeVisible.SetActive(false);
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
         SetInvisibleTexts();
         SparksSystem.SetActive(false);
         letsGoButtonVisible.SetActive(false);
+
+  
+
         MainMenu.Instance.game.SetActive(true);
-        MainCamera.instance.SetCameraLookingToPortalOne();
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
-        PhaseManager.Instance.StartPhase();
-        MainCamera.instance.timelineDirector.Stop();
-        MainCamera.instance.timelineDirector.Play();
+        
+        // aqui va toda la cinematica
+        MainCamera.instance.camera360ToChaman.SetActive(true);
+
+        portals.TurnOffPortals();
+        rocksToDestroy.SetActive(true);
+
+        PhaseManager.Instance.StartPhase();  
     }
 }
