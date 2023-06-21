@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject game;
     [SerializeField] public GameObject saprksPlay;
     [SerializeField] public GameObject saprksLetsGoButton;
+    [SerializeField] public GameObject firstHability;
 
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;

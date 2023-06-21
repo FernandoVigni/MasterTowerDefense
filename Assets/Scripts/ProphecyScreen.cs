@@ -82,6 +82,7 @@ public class ProphecyScreen : MonoBehaviour
     public void StartGame()
     {
         SetInvisibleTexts();
+        MainCamera.instance.SetOffCamerasPhaseOne();
         SparksSystem.SetActive(false);
         letsGoButtonVisible.SetActive(false);
         MainMenu.Instance.game.SetActive(true);
@@ -110,5 +111,11 @@ public class ProphecyScreen : MonoBehaviour
         PhaseManager.Instance.StartPhase();
         await Task.Delay(4000);
         MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
+        await Task.Delay(5000);
+        MainMenu.Instance.firstHability.SetActive(true);
+        await Task.Delay(10000);
+        MainMenu.Instance.firstHability.SetActive(false);
     }
+
+    
 }

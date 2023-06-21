@@ -10,10 +10,10 @@ public class MainCamera : MonoBehaviour
     public static MainCamera instance;
     private CinemachineBrain cinemachineBrain;
     public PlayableDirector timelineDirector;
-    
+
     [Header("Phase One")]
     public GameObject camera360ToChaman;
-    public GameObject cameraChamanToPortals;  
+    public GameObject cameraChamanToPortals;
     public GameObject cameraPortalsToChaman;
     public GameObject cameraChamanToTowerLeft;
 
@@ -25,6 +25,13 @@ public class MainCamera : MonoBehaviour
     public GameObject cameraNecromancer;
     public GameObject cameraEnemyesUpgrade;
 
+    public void SetOffCamerasPhaseOne() 
+    {
+        camera360ToChaman.SetActive(false);
+        cameraChamanToPortals.SetActive(false);
+        cameraPortalsToChaman.SetActive(false);
+        cameraChamanToTowerLeft.SetActive(false);
+    }
     
     private void Awake()
     {
