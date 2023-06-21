@@ -91,7 +91,7 @@ public class ProphecyScreen : MonoBehaviour
         ActivateAnimationSecuence();
 
         portals.TurnOffPortals();
-        rocksToDestroy.SetActive(true);
+        //rocksToDestroy.SetActive(false);
     }
 
     public async Task ActivateAnimationSecuence() 
@@ -104,9 +104,9 @@ public class ProphecyScreen : MonoBehaviour
         await Task.Delay(6000);
         rocksToDestroy.SetActive(false);
         MainCamera.instance.cameraPortalsToChaman.SetActive(true);
-        await Task.Delay(3000);
+        await Task.Delay(1000);
         meteorites.SetActive(false);
-        await Task.Delay(3000);
+        await Task.Delay(6000);
         PhaseManager.Instance.StartPhase();
         await Task.Delay(4000);
         MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
