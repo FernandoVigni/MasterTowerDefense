@@ -33956,13 +33956,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895728229}
   m_LocalRotation: {x: -0.0010306106, y: 0.9824347, z: -0.18432923, w: 0.029048767}
-  m_LocalPosition: {x: 2.59, y: 33.44, z: 27.98}
-  m_LocalScale: {x: 0.9999999, y: 0.99999994, z: 0.99999976}
+  m_LocalPosition: {x: 2.5900006, y: 33.440002, z: 27.980005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 628953009}
-  m_Father: {fileID: 1852454424}
-  m_RootOrder: 5
+  m_Father: {fileID: 1006602914}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 21.231, y: 176.466, z: -0.783}
 --- !u!114 &895728231
 MonoBehaviour:
@@ -39621,6 +39621,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &952861616 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c,
+    type: 3}
+  m_PrefabInstance: {fileID: 554316135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &966597050
 GameObject:
   m_ObjectHideFlags: 0
@@ -40092,7 +40098,7 @@ GameObject:
   - component: {fileID: 998834013}
   - component: {fileID: 998834012}
   m_Layer: 0
-  m_Name: CameraChamanToTowerRight
+  m_Name: CameraChamanToTowerLeft
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -40137,9 +40143,11 @@ PlayableDirector:
     - e6bb9f7f9cd6c7c4589292417c8f0e9d: {fileID: 117614330}
     - dab4ee1b42ae68c47874917db7dcccc7: {fileID: 895728231}
     - e59c5915886869744a3a3320a0766beb: {fileID: 998834013}
+    - a1231dc7666a42e40baec84cce39dbfe: {fileID: 1172861999}
     - ae07135c501dc1040a186b5ad6928d7d: {fileID: 998834013}
     - af6aea552d9971a41a9815989a07c9bc: {fileID: 998834013}
     - fbe43bca4f5119c49a1b24a3361a3499: {fileID: 895728231}
+    - 77967cf447d82694a97a367b2cca3d17: {fileID: 1502168762}
     - f85bfd91c2a2a1e418fa9f7f3b9fab4b: {fileID: 1172861999}
     - 558dab7006e328a499a1d32cf55e246b: {fileID: 895728231}
     - 7d72366030510774da90a948bfc11eea: {fileID: 998834013}
@@ -40386,7 +40394,7 @@ Transform:
   m_Children:
   - {fileID: 1754253852}
   - {fileID: 1852454424}
-  - {fileID: 1172861998}
+  - {fileID: 895728230}
   - {fileID: 1516259500}
   - {fileID: 347117510}
   - {fileID: 905756955}
@@ -41573,7 +41581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1136869768
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41784,13 +41792,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172861997}
   m_LocalRotation: {x: -0.0028570287, y: 0.83316356, z: -0.0748753, w: 0.5479271}
-  m_LocalPosition: {x: -27.7, y: 28.83, z: 19.79}
+  m_LocalPosition: {x: -27.699995, y: 28.829996, z: 19.789997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 281669799}
-  m_Father: {fileID: 1006602914}
-  m_RootOrder: 2
+  m_Father: {fileID: 1852454424}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 6.987, y: 113.032, z: -5.018}
 --- !u!114 &1172861999
 MonoBehaviour:
@@ -48887,8 +48895,9 @@ MonoBehaviour:
   letsGoButton: {fileID: 272363942}
   letsGoButtonVisible: {fileID: 1585851459}
   SparksSystem: {fileID: 1963875960}
-  portals: {fileID: 65346150}
+  portals: {fileID: 65346152}
   rocksToDestroy: {fileID: 486778085}
+  meteorites: {fileID: 952861616}
   animator: {fileID: 1428673970}
 --- !u!95 &1428673970
 Animator:
@@ -54322,9 +54331,11 @@ PlayableDirector:
     - cbdb8fddde566e54f9d3045b3be8f36e: {fileID: 1502168762}
     - e6bb9f7f9cd6c7c4589292417c8f0e9d: {fileID: 117614330}
     - dab4ee1b42ae68c47874917db7dcccc7: {fileID: 895728231}
+    - a1231dc7666a42e40baec84cce39dbfe: {fileID: 117614330}
     - ae07135c501dc1040a186b5ad6928d7d: {fileID: 1502168762}
     - a11e9d5c4326b6f47960bc40b1830e28: {fileID: 117614330}
     - a2d8ec9112acbdf4085da51b85a9ce3b: {fileID: 117614330}
+    - 77967cf447d82694a97a367b2cca3d17: {fileID: 1502168762}
     - 558dab7006e328a499a1d32cf55e246b: {fileID: 117614330}
 --- !u!1 &1507880133
 GameObject:
@@ -63176,7 +63187,7 @@ MonoBehaviour:
   camera360ToChaman: {fileID: 1600585798}
   cameraChamanToPortals: {fileID: 1502168760}
   cameraPortalsToChaman: {fileID: 117614329}
-  cameraChamanToTowerRight: {fileID: 998834010}
+  cameraChamanToTowerLeft: {fileID: 0}
   camera3PersonTowerLeft: {fileID: 0}
   camera3PersonTowerRight: {fileID: 0}
   cameraFrontRunner: {fileID: 0}
@@ -64741,7 +64752,7 @@ Transform:
   - {fileID: 1502168761}
   - {fileID: 117614331}
   - {fileID: 998834011}
-  - {fileID: 895728230}
+  - {fileID: 1172861998}
   m_Father: {fileID: 1006602914}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

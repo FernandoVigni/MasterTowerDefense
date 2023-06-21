@@ -227,7 +227,7 @@ public class EnemyManager : MonoBehaviour
                     await Task.Delay(delayToInstantiateEnemy);
 
                     // 1) random 
-                    int randonAngle = GetRandomNumber(0, 19);
+                    int randonAngle = GetRandomNumber(0, 9);
                     if (randonAngle < 10)
                     { randonAngle += 105; }
                     else

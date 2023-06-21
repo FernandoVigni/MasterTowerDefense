@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Threading.Tasks;
-using UnityEngine.Playables;
+using UnityEngine;
 
 public class ProphecyScreen : MonoBehaviour
 {
@@ -17,7 +14,7 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GameObject SparksSystem;
     [SerializeField] public PortalsManager portals;
     [SerializeField] public GameObject rocksToDestroy;
-
+    [SerializeField] public GameObject meteorites;
     public Animator animator;
 
     private void Start()
@@ -33,6 +30,7 @@ public class ProphecyScreen : MonoBehaviour
     public void StartProphecyScene()
     {
         PlayTextOne();
+        meteorites.SetActive(false);
     }
 
     public async Task PlayTextOne()
@@ -86,18 +84,31 @@ public class ProphecyScreen : MonoBehaviour
         SetInvisibleTexts();
         SparksSystem.SetActive(false);
         letsGoButtonVisible.SetActive(false);
-
-  
-
         MainMenu.Instance.game.SetActive(true);
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
-        
+
         // aqui va toda la cinematica
-        MainCamera.instance.camera360ToChaman.SetActive(true);
+        ActivateAnimationSecuence();
 
         portals.TurnOffPortals();
         rocksToDestroy.SetActive(true);
+    }
 
-        PhaseManager.Instance.StartPhase();  
+    public async Task ActivateAnimationSecuence() 
+    {
+        MainCamera.instance.camera360ToChaman.SetActive(true);
+        await Task.Delay(8000);
+        meteorites.SetActive(true);
+        await Task.Delay(2000);
+        MainCamera.instance.cameraChamanToPortals.SetActive(true);
+        await Task.Delay(6000);
+        rocksToDestroy.SetActive(false);
+        MainCamera.instance.cameraPortalsToChaman.SetActive(true);
+        await Task.Delay(3000);
+        meteorites.SetActive(false);
+        await Task.Delay(3000);
+        PhaseManager.Instance.StartPhase();
+        await Task.Delay(4000);
+        MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
     }
 }

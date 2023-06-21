@@ -15,7 +15,7 @@ public class MainCamera : MonoBehaviour
     public GameObject camera360ToChaman;
     public GameObject cameraChamanToPortals;  
     public GameObject cameraPortalsToChaman;
-    public GameObject cameraChamanToTowerRight;
+    public GameObject cameraChamanToTowerLeft;
 
     [Header("TODO")]
     public GameObject camera3PersonTowerLeft;
