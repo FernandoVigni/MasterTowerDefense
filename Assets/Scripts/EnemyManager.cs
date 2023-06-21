@@ -229,9 +229,9 @@ public class EnemyManager : MonoBehaviour
                     // 1) random 
                     int randonAngle = GetRandomNumber(0, 9);
                     if (randonAngle < 10)
-                    { randonAngle += 105; }
+                    { randonAngle += 95; }
                     else
-                    { randonAngle += 140; }
+                    { randonAngle += 150; }
 
                     // 2) calculo sin         
                     double x = GetSineOfAnAngle(randonAngle);
