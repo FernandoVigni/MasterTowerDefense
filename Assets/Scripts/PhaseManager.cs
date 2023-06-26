@@ -72,11 +72,11 @@ public class PhaseManager : MonoBehaviour
     public void StartPhase() 
     {
         game.SetActive(true);
-       // portals.TurnOnLeftPortal();
         portals.TurnOnLeftPortal();
         LoadEnemies();
         string name = songsNames[currentPhase + 1];
         audioManager.PlayMusic(name);
+        MainMenu.Instance.shoot.SetActive(true);
     }
 
     public bool nextPhase() 

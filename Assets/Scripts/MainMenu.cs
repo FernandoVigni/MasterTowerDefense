@@ -26,7 +26,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject game;
     [SerializeField] public GameObject saprksPlay;
     [SerializeField] public GameObject saprksLetsGoButton;
-    [SerializeField] public GameObject firstHability;
+    [SerializeField] public GameObject shoot;
+    [SerializeField] public GameObject randomHability;
 
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
@@ -78,6 +79,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
         goldStatus.SetActive(false);
+        //shoot.SetActive(false);
         optionsInGameMenu.SetActive(true);
         menuOptions.SetActive(true);
     }
@@ -88,6 +90,7 @@ public class MainMenu : MonoBehaviour
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
+        //shoot.SetActive(true);
         Time.timeScale = 1f;
     }
 

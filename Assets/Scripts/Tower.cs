@@ -15,14 +15,25 @@ public class Tower : MonoBehaviour
     void Update()
     {
         countDown = countDown - Time.deltaTime;
+        /*
+        if (countDown < 2 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0 && Input.GetButtonDown("Shot"))
+        {
+            ShootNearestEnemy();
+        }*/
 
         if (countDown < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
-            Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
-            countDown = countDownReset;
-            if (nearestEnemyInsideCollider != null);
-             Shoot(nearestEnemyInsideCollider);        
+            Debug.Log("Disparando");
+            ShootNearestEnemy();
         }
+    }
+
+    public void ShootNearestEnemy()
+    {
+        Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
+        countDown = countDownReset;
+        if (nearestEnemyInsideCollider != null) ;
+        Shoot(nearestEnemyInsideCollider);
     }
 
     public Enemy GetNearestEnemyInsideCollider()

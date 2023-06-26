@@ -112,10 +112,8 @@ public class ProphecyScreen : MonoBehaviour
         await Task.Delay(4000);
         MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
         await Task.Delay(5000);
-        MainMenu.Instance.firstHability.SetActive(true);
+        MainMenu.Instance.randomHability.SetActive(true);
         await Task.Delay(10000);
-        MainMenu.Instance.firstHability.SetActive(false);
+        MainMenu.Instance.randomHability.SetActive(false);
     }
-
-    
 }
