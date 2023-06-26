@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
 
     public void RunAnimation()
     {
-        animator.SetBool("Run", true);
+        //animator.SetBool("Run", true);
     }
 
     public void recalculateStatsWithTheCoefficient(float coefficient) 
