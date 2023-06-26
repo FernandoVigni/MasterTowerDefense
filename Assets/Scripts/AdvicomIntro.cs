@@ -12,37 +12,49 @@ public class AdvicomIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //MainCamera.instance.timelineDirector.Stop();
         animator = GetComponent<Animator>();
         animator.SetBool("AdvicomFadeIn", true);
-        SkineEffectLogo.SetActive(false);
-        mainMenuTurnOff.SetActive(false);
-        AdvicomFadeOut();
+        ShineLogo();
     }
 
-    public void ShineLogo() 
-    {
-        SkineEffectLogo.SetActive(true);
-    }
-
-    public async Task AdvicomFadeOut() 
+    public async Task ShineLogo()
     {
         await Task.Delay(3200);
-        ShineLogo();
+        SkineEffectLogo.SetActive(true);
+        PlaySFXShineLogo();
+    }
+
+    public async Task PlaySFXShineLogo()
+    {
         await Task.Delay(1000);
         AudioManager.Instance.PlaySFX("ShineLogo");
+        AdvicomFadeOut();
+    }
+    public async Task AdvicomFadeOut()
+    {
         await Task.Delay(1000);
         animator.SetBool("AdvicomFadeOut", true);
         OpenMainMenu();
     }
 
-    public async Task OpenMainMenu()
+    public void OpenMainMenu()
+    {
+        SetBoolAdvicomFadeOutFalse();
+    }
+
+    public async Task SetBoolAdvicomFadeOutFalse()
     {
         await Task.Delay(3000);
         animator.SetBool("AdvicomFadeOut", false);
-        MainMenu.Instance.EnterInMainMenu();
-        animator.SetBool("BlackBanckgroundFadeOut", true);
-        this.gameObject.SetActive(false);
+        SetBoolBlackBanckgroundFadeOutTrue();
     }
 
+    public async Task SetBoolBlackBanckgroundFadeOutTrue()
+    {
+        animator.SetBool("BlackBanckgroundFadeOut", true);
+        SkineEffectLogo.SetActive(false);
+        mainMenuTurnOff.SetActive(false);
+        this.gameObject.SetActive(false);
+        MainMenu.Instance.EnterInMainMenu();
+    }
 }
