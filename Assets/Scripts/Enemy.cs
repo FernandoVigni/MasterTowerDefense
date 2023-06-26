@@ -7,23 +7,10 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-
-    private void Awake()
-    {
-        tower = FindObjectOfType<Tower>();  
-     //   Animator anim = GetComponentInChildren<Animator>();
-    }
-
-    private void Start()
-    {
-      //  anim = GetComponent<Animator>();
-
-    }
-
-
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
+    private Animator animator;
 
     public float life;
     public float speed;
@@ -38,6 +25,12 @@ public class Enemy : MonoBehaviour
     public float distanceToTower;
     public float coefficient;
 
+    private void Awake()
+    {
+        tower = FindObjectOfType<Tower>();
+      //  animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if (isWalking)
@@ -49,7 +42,12 @@ public class Enemy : MonoBehaviour
             Walk();
         }
     }
-    
+
+    public void RunAnimation()
+    {
+        animator.SetBool("Run", true);
+    }
+
     public void recalculateStatsWithTheCoefficient(float coefficient) 
     {
         goldValueOnDeath = (int)((float)goldValueOnDeath * coefficient);

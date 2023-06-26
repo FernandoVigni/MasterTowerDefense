@@ -245,7 +245,9 @@ public class EnemyManager : MonoBehaviour
                     enemy.transform.position = spawnPositionRandom;
                     enemy.LookTower();
                     enemy.StartMove();
-                    //  enemy.animator.Play("Run", 0, 0f);
+                    enemy.RunAnimation();   
+                    //enemy.animator.Play("Run");
+
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
                 }

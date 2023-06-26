@@ -8,21 +8,15 @@ public class Warrior : Enemy
     private void Start()
     {
         recalculateStatsWithTheCoefficient(coefficient);
-       //      Animator anim = GetComponentInChildren<Animator>(); ;
-        //anim.SetBool("Walk", true);
     }
 
     public async void Roar()
     {
         isWalking = false;
-     //   animator.Play("IdleAction");
-        //animator . hacer mas grande 
         await Task.Delay(1000);
         physicalDamage *= 2;
-
         transform.localScale = new Vector3(3f, 3f, 3f);
-            isWalking = true;
-      //  animator.Play("Walk");
+        isWalking = true;
     }
 
     public override void BossScream()
