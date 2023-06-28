@@ -198,16 +198,17 @@ public class EnemyManager : MonoBehaviour
             if (PhaseManager.Instance.nextPhase())
             {
                 Debug.Log("esta terminando la Phase: " + PhaseManager.Instance.currentPhase);
-                Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
                 PhaseManager.Instance.SetPhasePlusOne();
                 enemy.DestroyEnemy();
-                PhaseManager.Instance.StartPhase();
+                //Ver si aqui se podrian buscart todos los enemyesws y borrarlos HF
+                PhaseManager.Instance.PlayMusic();
                 Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
             }
             else
-                {
+            {
                 Debug.Log("End of all Phases");
-                /*End Phases*/ }
+                /*End Phases*/ 
+            }
         }
         enemy.DestroyEnemy();
     }

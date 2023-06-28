@@ -19,11 +19,18 @@ public class MainCamera : MonoBehaviour
 
     [Header("TODO")]
     public GameObject camera3PersonTowerLeft;
-    public GameObject camera3PersonTowerRight;
-    public GameObject cameraFrontRunner;
-    public GameObject camera3PersonRunner;
+
+
+
     public GameObject cameraNecromancer;
     public GameObject cameraEnemyesUpgrade;
+
+    [Header("Phase Two")]
+    public GameObject cameraFrontRunner;
+    public GameObject camera3PersonRunner;
+    //Chaman to portal pero usar la de la phase One
+    public GameObject camera3PersonTowerRight;
+
 
     public void SetOffCamerasPhaseOne() 
     {

@@ -7,7 +7,7 @@ public class Runner : Enemy
 {
     void Start()
     {
-        recalculateStatsWithTheCoefficient(coefficient);
+        //recalculateStatsWithTheCoefficient(coefficient);
         //anim.SetFloat("Walk", 2f);
     }
 

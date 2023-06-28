@@ -15,8 +15,12 @@ public class PhaseManager : MonoBehaviour
     public Transform pointOfSpawnOfWave;
     private AudioManager audioManager;
     public PortalsManager portals;
+    public GameObject rocksToDestroy;
+    private GameObject game;
+    public GameObject meteorites;
+    public int currentPhase;
+    public float waveLimitTime;
 
-    [SerializeField] private GameObject game;
 
     //----------
     int[] coefficient =              { 1, 1, 1, 2 };
@@ -26,11 +30,13 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfRunnersByPhase =   { 0, 40, 0, 0 };
     int[] amountOfGiantsByPhase =    { 2, 2, 6, 3 };
     int[] amountOfBosses = { 0, 0, 0, 1 };
-    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss" };   
+
+    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
+    // PlaceHolders de , "AnimationPhase´s"
+    //string[] songsNames = { "MainMenu","AnimationPhase0", "Phase0", "AnimationPhase1", "Phase1", "AnimationPhase2", "Phase2", "AnimationPhaseBoss", "PhaseBoss" };
+
     //----------
 
-    public int currentPhase;
-    public float waveLimitTime;
 
     private void Awake()
     {
@@ -69,14 +75,52 @@ public class PhaseManager : MonoBehaviour
         return name;
     }
 
-    public void StartPhase() 
+    public void PlayMusic() 
     {
-        game.SetActive(true);
-        portals.TurnOnLeftPortal();
-        LoadEnemies();
         string name = songsNames[currentPhase + 1];
         audioManager.PlayMusic(name);
+
+    }
+
+    public async Task ActivateAnimationPhaseOne()
+    {
+        MainCamera.instance.camera360ToChaman.SetActive(true);
+        await Task.Delay(8000);
+        meteorites.SetActive(true);
+        await Task.Delay(2000);
+        MainCamera.instance.cameraChamanToPortals.SetActive(true);
+        await Task.Delay(6000);
+        rocksToDestroy.SetActive(false);
+        MainCamera.instance.cameraPortalsToChaman.SetActive(true);
+        await Task.Delay(1000);
+        meteorites.SetActive(false);
+        await Task.Delay(6000);
+        PlayMusic();
         MainMenu.Instance.shoot.SetActive(true);
+        await Task.Delay(4000);
+        MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
+
+        LoadEnemies();
+
+    }
+
+    public async Task ActivateAnimationPhaseTwo()
+    {
+        MainCamera.instance.cameraFrontRunner.SetActive(true);
+        await Task.Delay(8000);
+        meteorites.SetActive(true);
+        await Task.Delay(2000);
+        MainCamera.instance.camera3PersonRunner.SetActive(true);
+        await Task.Delay(6000);
+        rocksToDestroy.SetActive(false);
+        MainCamera.instance.cameraChamanToPortals.SetActive(true);
+        //prender el right portal
+        await Task.Delay(6000);
+        PlayMusic();
+        await Task.Delay(4000);
+        MainCamera.instance.camera3PersonTowerRight.SetActive(true);
+
+        LoadEnemies();
     }
 
     public bool nextPhase() 
