@@ -15,7 +15,10 @@ public class PhaseManager : MonoBehaviour
     public Transform pointOfSpawnOfWave;
     private AudioManager audioManager;
     public PortalsManager portals;
-    public GameObject rocksToDestroy;
+    public GameObject leftRocksToDestroy;
+    public GameObject rightRocksToDestroy;
+    public GameObject leftExplosion;
+    public GameObject rightExplosion;
     private GameObject game;
     public GameObject meteorites;
     public int currentPhase;
@@ -90,7 +93,17 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(2000);
         MainCamera.instance.cameraChamanToPortals.SetActive(true);
         await Task.Delay(6000);
-        rocksToDestroy.SetActive(false);
+        leftExplosion.SetActive(true);
+        await Task.Delay(1500);
+        leftRocksToDestroy.SetActive(false);
+        await Task.Delay(1000);
+        leftExplosion.SetActive(false);
+        rightExplosion.SetActive(true);
+        await Task.Delay(1500);
+        rightRocksToDestroy.SetActive(false);
+        await Task.Delay(1000);
+        rightExplosion.SetActive(false);
+
         MainCamera.instance.cameraPortalsToChaman.SetActive(true);
         await Task.Delay(1000);
         meteorites.SetActive(false);
@@ -112,9 +125,9 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(2000);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
         await Task.Delay(6000);
-        rocksToDestroy.SetActive(false);
         MainCamera.instance.cameraChamanToPortals.SetActive(true);
-        //prender el right portal
+
+        portals.TurnOnRightPortal();
         await Task.Delay(6000);
         PlayMusic();
         await Task.Delay(4000);

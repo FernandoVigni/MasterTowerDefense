@@ -200,8 +200,9 @@ public class EnemyManager : MonoBehaviour
                 Debug.Log("esta terminando la Phase: " + PhaseManager.Instance.currentPhase);
                 PhaseManager.Instance.SetPhasePlusOne();
                 enemy.DestroyEnemy();
+                PhaseManager.Instance.ActivateAnimationPhaseTwo();
                 //Ver si aqui se podrian buscart todos los enemyesws y borrarlos HF
-                PhaseManager.Instance.PlayMusic();
+               // PhaseManager.Instance.PlayMusic();
                 Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
             }
             else
