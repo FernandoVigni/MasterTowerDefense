@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1269638561396116175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.505442, y: -1.1377006, z: -2.1915288}
-  m_LocalScale: {x: 2.2, y: 2.2, z: 2.2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 729056334033049167}
@@ -52,7 +52,7 @@ MonoBehaviour:
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   life: 100
-  speed: 8
+  speed: 17
   physicalDamage: 100
   physicalArmor: 10
   magicDamage: 0

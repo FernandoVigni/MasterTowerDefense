@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
-            if (distanceToTower > 110)
+            if (distanceToTower > 250)
                 { DestroyEnemy(); }
 
             Walk();
@@ -66,7 +66,12 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        if (distanceToTower > 2)
+        if (distanceToTower > 55 && GetComponent<Mage>() == null)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
+
+        if (distanceToTower > 80 && GetComponent<Mage>() != null) 
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }

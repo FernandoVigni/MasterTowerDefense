@@ -17,6 +17,10 @@ public class EnemyManager : MonoBehaviour
     public Transform positionToInstantiateEnemies;
     public Tower tower;
     public GoldStatus goldStatus;
+    public GameObject pointALeftPortal;
+    public GameObject pointBLeftPortal;
+    public GameObject pointARightPortal;
+    public GameObject pointBRightPortal;
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
@@ -214,7 +218,7 @@ public class EnemyManager : MonoBehaviour
         enemy.DestroyEnemy();
     }
 
-    public async void SendEnemies()
+    public async void SendEnemiesLeftPortal()
     {
         int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisPhase();
         for (int i = 0; i < enemiesInThisLevel; i++)
@@ -226,59 +230,34 @@ public class EnemyManager : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    await Task.Delay(delayToInstantiateEnemy);
-
-                    // 1) random 
-                    int randonAngle = GetRandomNumber(0, 9);
-                    if (randonAngle < 10)
-                    { randonAngle += 95; }
-                    else
-                    { randonAngle += 150; }
-
-                    // 2) calculo sin         
-                    double x = GetSineOfAnAngle(randonAngle);
-                    float floatX = (float)x * distanceToInstanciateEnemyToTower;
-
-                    // 3) calculo cos         
-                    double z = GetCosOfAnAngle(randonAngle);
-                    float floatZ = (float)z * distanceToInstanciateEnemyToTower;
-
-                    Vector3 spawnPositionRandom = new Vector3(floatX, 4, floatZ);
-                    enemy.transform.position = spawnPositionRandom;
+                    Vector3 leftSpawnPositionRandom = new Vector3();
+                    leftSpawnPositionRandom = GenerateRandomPointLeftPortal();
+                    enemy.transform.position = leftSpawnPositionRandom;
                     enemy.LookTower();
                     enemy.StartMove();
-                    enemy.RunAnimation();   
-                    //enemy.animator.Play("Run");
-
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
+                    await Task.Delay(1500);
                 }
             }
         }
     }
 
-    // Trigonometry to choose a random point on a circle circumference.
-    public double GetSineOfAnAngle(int angle)
+    public Vector3 GenerateRandomPointLeftPortal()
     {
-        double angleInRadians = angle * Math.PI / 180;
-        double sineValue = Math.Sin(angleInRadians);
-        sineValue *= distanceToInstanciateEnemyToTower;
-        sineValue = Math.Round(sineValue, 2);
-        return sineValue;
+        float randomX = UnityEngine.Random.Range(pointALeftPortal.transform.position.x, pointBLeftPortal.transform.position.x);
+        float randomY = UnityEngine.Random.Range(pointALeftPortal.transform.position.y, pointBLeftPortal.transform.position.y);
+        float randomZ = UnityEngine.Random.Range(pointALeftPortal.transform.position.z, pointBLeftPortal.transform.position.z);
+
+        return new Vector3(randomX, randomY, randomZ);
     }
 
-    public double GetCosOfAnAngle(int angle)
+    public Vector3 GenerateRandomPointRightPortal()
     {
-        double angleInRadians = angle * Math.PI / 180;
-        double cosValue = Math.Cos(angleInRadians);
-        cosValue = cosValue * distanceToInstanciateEnemyToTower;
-        cosValue = Math.Round(cosValue, 2);
-        return cosValue;
-    }
+        float randomX = UnityEngine.Random.Range(pointARightPortal.transform.position.x, pointBRightPortal.transform.position.x);
+        float randomY = UnityEngine.Random.Range(pointARightPortal.transform.position.y, pointBRightPortal.transform.position.y);
+        float randomZ = UnityEngine.Random.Range(pointARightPortal.transform.position.z, pointBRightPortal.transform.position.z);
 
-    public int GetRandomNumber(int min, int max)
-    {
-        int randomNumber = UnityEngine.Random.Range(min, max);
-        return randomNumber;
+        return new Vector3(randomX, randomY, randomZ);
     }
 }

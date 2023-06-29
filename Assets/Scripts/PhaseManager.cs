@@ -94,26 +94,26 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanToPortals.SetActive(true);
         await Task.Delay(6000);
         leftExplosion.SetActive(true);
-        await Task.Delay(1500);
+        await Task.Delay(1200);
         leftRocksToDestroy.SetActive(false);
         await Task.Delay(1000);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(true);
-        await Task.Delay(1500);
+        await Task.Delay(1200);
         rightRocksToDestroy.SetActive(false);
+        meteorites.SetActive(false);
         await Task.Delay(1000);
         rightExplosion.SetActive(false);
-
         MainCamera.instance.cameraPortalsToChaman.SetActive(true);
-        await Task.Delay(1000);
-        meteorites.SetActive(false);
         await Task.Delay(6000);
         PlayMusic();
+        portals.TurnOnLeftPortal();
         MainMenu.Instance.shoot.SetActive(true);
-        await Task.Delay(4000);
+        await Task.Delay(2000);
         MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
 
         LoadEnemies();
+        enemyManager.SendEnemiesLeftPortal();
 
     }
 
@@ -155,10 +155,11 @@ public class PhaseManager : MonoBehaviour
         return amountOfBagOfGoldByPhase[currentPhase];
     }
 
-    public void LoadEnemies()
+    public async void LoadEnemies()
     {
         if (amountOfWarriosByPhase.Length >= currentPhase)
         {
+            await Task.Delay(300);
             for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
             { enemyManager.InstantiateWarrior(); }
 
@@ -171,7 +172,7 @@ public class PhaseManager : MonoBehaviour
             for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
             { enemyManager.InstantiateRunner(); }
 
-            enemyManager.SendEnemies();
+            //enemyManager.SendEnemiesLeftPortal();
         }
     }
 }

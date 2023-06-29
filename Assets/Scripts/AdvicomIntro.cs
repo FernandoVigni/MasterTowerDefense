@@ -15,6 +15,7 @@ public class AdvicomIntro : MonoBehaviour
         animator = GetComponent<Animator>();
         animator.SetBool("AdvicomFadeIn", true);
         ShineLogo();
+
     }
 
     public async Task ShineLogo()
