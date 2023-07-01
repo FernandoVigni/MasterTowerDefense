@@ -146,6 +146,8 @@ public class PhaseManager : MonoBehaviour
         portals.TurnOffLeftPortal();
         PlayMusic();
         LoadEnemies();
+        enemyManager.SendEnemiesRightPortal();
+
     }
 
     public bool nextPhase() 

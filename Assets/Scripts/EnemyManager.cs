@@ -243,6 +243,31 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public async void SendEnemiesRightPortal()
+    {
+        int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisPhase();
+        for (int i = 0; i < enemiesInThisLevel; i++)
+        {
+            if (enemiesInThisLevel > 0)
+            {
+                ShufleList(listOfEnemiesToDefeatInThisPhase);
+                Enemy enemy = GetFirstEnemyFromPhaseList();
+
+                if (enemy != null)
+                {
+                    Vector3 rightSpawnPositionRandom = new Vector3();
+                    rightSpawnPositionRandom = GenerateRandomPointRightPortal();
+                    enemy.transform.position = rightSpawnPositionRandom;
+                    enemy.LookTower();
+                    enemy.StartMove();
+                    RemoveEnemyFromPhase(enemy);
+                    AddEnemyToSentList(enemy);
+                    await Task.Delay(1500);
+                }
+            }
+        }
+    }
+
     public Vector3 GenerateRandomPointLeftPortal()
     {
         float randomX = UnityEngine.Random.Range(pointALeftPortal.transform.position.x, pointBLeftPortal.transform.position.x);
