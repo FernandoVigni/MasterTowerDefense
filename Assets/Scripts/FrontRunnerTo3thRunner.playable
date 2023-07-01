@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3428310235353528388
+--- !u!114 &-5674658210097714376
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DisplayName: 
   VirtualCamera:
-    exposedName: 35df7590c6aa946458513f282ccb9f86
+    exposedName: ae355429e796ee449aa896d53cbd7eed
+    defaultValue: {fileID: 0}
+--- !u!114 &-379452824682276775
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
+  m_Name: CinemachineShot
+  m_EditorClassIdentifier: 
+  DisplayName: 
+  VirtualCamera:
+    exposedName: b2b025c71b83b6348998b4275cd921b5
     defaultValue: {fileID: 0}
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,14 +77,14 @@ MonoBehaviour:
   - m_Version: 1
     m_Start: 0
     m_ClipIn: 0
-    m_Asset: {fileID: -3428310235353528388}
-    m_Duration: 3.3333333333333335
+    m_Asset: {fileID: -5674658210097714376}
+    m_Duration: 2.4833333333333334
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6981096763562592485}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 3.216666666666667
+    m_BlendOutDuration: 2.3000000000000003
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -108,17 +124,17 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: RunnerFront
+    m_DisplayName: Runner3thPerson
   - m_Version: 1
-    m_Start: 0.11666666666666667
+    m_Start: 0.18333333333333332
     m_ClipIn: 0
-    m_Asset: {fileID: 8515163826076045931}
-    m_Duration: 3.3666666666666667
+    m_Asset: {fileID: -379452824682276775}
+    m_Duration: 2.816666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6981096763562592485}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 3.216666666666667
+    m_BlendInDuration: 2.3000000000000003
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
@@ -159,22 +175,6 @@ MonoBehaviour:
     m_PreExtrapolationMode: 0
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
-    m_DisplayName: Runner3thPerson
+    m_DisplayName: CameraChamanAndPortal
   m_Markers:
     m_Objects: []
---- !u!114 &8515163826076045931
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90fb794a295e73545af71bcdb7375791, type: 3}
-  m_Name: CinemachineShot
-  m_EditorClassIdentifier: 
-  DisplayName: 
-  VirtualCamera:
-    exposedName: c02292a75f9d9144092da29cfbbb0bd5
-    defaultValue: {fileID: 0}

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
-  life: 300
+  life: 100
   speed: 22
   physicalDamage: 75
   physicalArmor: 10
