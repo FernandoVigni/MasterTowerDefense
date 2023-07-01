@@ -80,14 +80,14 @@ public class ProphecyScreen : MonoBehaviour
     public void StartGame()
     {
         SetInvisibleTexts();
-        MainCamera.instance.SetOffCamerasPhaseOne();
+        //MainCamera.instance.SetOffCamerasPhaseOne();
         SparksSystem.SetActive(false);
         letsGoButtonVisible.SetActive(false);
         MainMenu.Instance.game.SetActive(true);
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
 
         // aqui va toda la cinematica
-        PhaseManager.Instance.ActivateAnimationPhaseOne();
+        PhaseManager.instance.ActivateAnimationPhaseOne();
 
 
         //rocksToDestroy.SetActive(false);

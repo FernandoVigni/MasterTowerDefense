@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public class PhaseManager : MonoBehaviour
 {
-    public static PhaseManager Instance;
+    public static PhaseManager instance;
 
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
@@ -23,6 +23,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject meteorites;
     public int currentPhase;
     public float waveLimitTime;
+
 
 
     //----------
@@ -45,9 +46,9 @@ public class PhaseManager : MonoBehaviour
     {
         enemyManager = FindObjectOfType<EnemyManager>();
 
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -61,7 +62,13 @@ public class PhaseManager : MonoBehaviour
         audioManager = FindAnyObjectByType<AudioManager>(); 
         currentPhase = 0;
     }
-    
+
+    public void TurnOnRocksToDestroy()
+    {
+        leftRocksToDestroy.SetActive(true);
+        rightRocksToDestroy.SetActive(true);
+    }
+
     public int GetCoefficient() 
     {
         return coefficient[currentPhase];
@@ -82,16 +89,18 @@ public class PhaseManager : MonoBehaviour
     {
         string name = songsNames[currentPhase + 1];
         audioManager.PlayMusic(name);
-
     }
 
     public async Task ActivateAnimationPhaseOne()
     {
-        MainCamera.instance.camera360ToChaman.SetActive(true);
+        PhaseManager.instance.portals.TurnOffPortals();
+        MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
+
         await Task.Delay(8000);
         meteorites.SetActive(true);
         await Task.Delay(2000);
-        MainCamera.instance.cameraChamanToPortals.SetActive(true);
+        MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
+        MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(true);
         await Task.Delay(6000);
         leftExplosion.SetActive(true);
         await Task.Delay(1200);
@@ -102,16 +111,17 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1200);
         rightRocksToDestroy.SetActive(false);
         meteorites.SetActive(false);
-        await Task.Delay(1000);
+        await Task.Delay(1200);
         rightExplosion.SetActive(false);
-        MainCamera.instance.cameraPortalsToChaman.SetActive(true);
-        await Task.Delay(6000);
+        MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
+        MainCamera.instance.portalsEndInChaman.SetActive(true);
+        await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
+        await Task.Delay(2500);
         MainMenu.Instance.shoot.SetActive(true);
-        await Task.Delay(2000);
-        MainCamera.instance.cameraChamanToTowerLeft.SetActive(true);
-
+        MainCamera.instance.portalsEndInChaman.SetActive(false);
+        MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         LoadEnemies();
         enemyManager.SendEnemiesLeftPortal();
 
@@ -120,17 +130,18 @@ public class PhaseManager : MonoBehaviour
     public async Task ActivateAnimationPhaseTwo()
     {
         MainCamera.instance.cameraFrontRunner.SetActive(true);
-        await Task.Delay(8000);
-        meteorites.SetActive(true);
-        await Task.Delay(2000);
-        MainCamera.instance.camera3PersonRunner.SetActive(true);
-        await Task.Delay(6000);
-        MainCamera.instance.cameraChamanToPortals.SetActive(true);
 
+        await Task.Delay(3000);
+        MainCamera.instance.camera3PersonRunner.SetActive(true);
+
+        await Task.Delay(5000);
+        MainCamera.instance.cameraChamanAndPortal.SetActive(true);
+        await Task.Delay(3000);
+ 
         portals.TurnOnRightPortal();
-        await Task.Delay(6000);
+        portals.TurnOffLeftPortal();
+        await Task.Delay(3000);
         PlayMusic();
-        await Task.Delay(4000);
         MainCamera.instance.camera3PersonTowerRight.SetActive(true);
 
         LoadEnemies();
@@ -155,11 +166,10 @@ public class PhaseManager : MonoBehaviour
         return amountOfBagOfGoldByPhase[currentPhase];
     }
 
-    public async void LoadEnemies()
+    public void LoadEnemies()
     {
         if (amountOfWarriosByPhase.Length >= currentPhase)
         {
-            await Task.Delay(300);
             for (int i = 0; i < amountOfWarriosByPhase[currentPhase]; i++)
             { enemyManager.InstantiateWarrior(); }
 

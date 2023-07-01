@@ -59,6 +59,10 @@ public class MainMenu : MonoBehaviour
 
     public async void Play()
     {
+       // MainCamera.instance.TurnOffAllCameras();
+        shoot.SetActive(false);
+        //PhaseManager.instance.TurnOnRocksToDestroy();
+
         AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         loading.SetActive(true);

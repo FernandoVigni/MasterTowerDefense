@@ -79,7 +79,7 @@ public class EnemyManager : MonoBehaviour
 
     public void SetEnemy(Enemy enemy)
     {
-        coefficient = PhaseManager.Instance.GetCoefficient();
+        coefficient = PhaseManager.instance.GetCoefficient();
         enemy.SetCoefficient(coefficient);  
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
@@ -193,21 +193,21 @@ public class EnemyManager : MonoBehaviour
 
         if (listOfEnemiesToDefeatInThisPhase.Count <= 0 && enemiesSentList.Count <= 0)
         {
-            float bagOfGold = PhaseManager.Instance.GetAmountBagOfGold();
-            PhaseManager.Instance.GetAmountBagOfGold();
+            float bagOfGold = PhaseManager.instance.GetAmountBagOfGold();
+            PhaseManager.instance.GetAmountBagOfGold();
 
             Debug.Log("You obtain in this phase: " + recivedGoldInThisPhase + " Gold");
             recivedGoldInThisPhase = 0;
 
-            if (PhaseManager.Instance.nextPhase())
+            if (PhaseManager.instance.nextPhase())
             {
-                Debug.Log("esta terminando la Phase: " + PhaseManager.Instance.currentPhase);
-                PhaseManager.Instance.SetPhasePlusOne();
                 enemy.DestroyEnemy();
-                PhaseManager.Instance.ActivateAnimationPhaseTwo();
+                Debug.Log("esta terminando la Phase: " + PhaseManager.instance.currentPhase);
                 //Ver si aqui se podrian buscart todos los enemyesws y borrarlos HF
-               // PhaseManager.Instance.PlayMusic();
-                Debug.Log("Inicia la phase: " + PhaseManager.Instance.currentPhase);
+                // PhaseManager.Instance.PlayMusic();
+                PhaseManager.instance.SetPhasePlusOne();
+                Debug.Log("Inicia la phase: " + PhaseManager.instance.currentPhase);
+                PhaseManager.instance.ActivateAnimationPhaseTwo();
             }
             else
             {

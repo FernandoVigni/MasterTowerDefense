@@ -12,32 +12,42 @@ public class MainCamera : MonoBehaviour
     public PlayableDirector timelineDirector;
 
     [Header("Phase One")]
-    public GameObject camera360ToChaman;
-    public GameObject cameraChamanToPortals;
-    public GameObject cameraPortalsToChaman;
-    public GameObject cameraChamanToTowerLeft;
-
-    [Header("TODO")]
-    public GameObject camera3PersonTowerLeft;
-
-
-
-    public GameObject cameraNecromancer;
-    public GameObject cameraEnemyesUpgrade;
+    public GameObject cameraBaseEndInChaman;
+    public GameObject cameraChamanBaseEndInPortals;
+    public GameObject portalsEndInChaman;
+    public GameObject cameraChamanEndInTowerLeft;
+    public GameObject towerLeft;
 
     [Header("Phase Two")]
     public GameObject cameraFrontRunner;
     public GameObject camera3PersonRunner;
-    //Chaman to portal pero usar la de la phase One
+    public GameObject cameraChamanAndPortal;
     public GameObject camera3PersonTowerRight;
+
+
+    [Header("TODO")]
+        public GameObject cameraNecromancer;
+    public GameObject cameraEnemyesUpgrade;
+
+    public void TurnOffAllCameras() 
+    {
+       cameraBaseEndInChaman.SetActive(false);
+       cameraChamanBaseEndInPortals.SetActive(false);;
+       cameraChamanBaseEndInPortals.SetActive(false);;
+       towerLeft.SetActive(false);;
+
+        cameraFrontRunner.SetActive(false);
+        camera3PersonRunner.SetActive(false);
+        cameraChamanAndPortal.SetActive(false);
+        camera3PersonTowerRight.SetActive(false);
+    }
 
 
     public void SetOffCamerasPhaseOne() 
     {
-        camera360ToChaman.SetActive(false);
-        cameraChamanToPortals.SetActive(false);
-        cameraPortalsToChaman.SetActive(false);
-        cameraChamanToTowerLeft.SetActive(false);
+        cameraBaseEndInChaman.SetActive(false);
+        cameraChamanBaseEndInPortals.SetActive(false);
+        towerLeft.SetActive(false);
     }
     
     private void Awake()
