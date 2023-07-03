@@ -16,9 +16,10 @@ public class MainCamera : MonoBehaviour
     public GameObject cameraChamanBaseEndInPortals;
     public GameObject portalsEndInChaman;
     public GameObject cameraChamanEndInTowerLeft;
-    public GameObject towerLeft;
+
 
     [Header("Phase Two")]
+    public GameObject towerLeft;
     public GameObject cameraFrontRunner;
     public GameObject camera3PersonRunner;
     public GameObject cameraChamanAndPortal;

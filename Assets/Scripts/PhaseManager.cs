@@ -22,6 +22,7 @@ public class PhaseManager : MonoBehaviour
     private GameObject game;
     public GameObject meteorites;
     public Runner runner;
+    private Tower towerScript;
     public int currentPhase;
     public float waveLimitTime;
 
@@ -29,11 +30,11 @@ public class PhaseManager : MonoBehaviour
 
     //----------
     int[] coefficient =              { 1, 1, 1, 2 };
-    int[] amountOfBagOfGoldByPhase = { 1, 2, 5, 5 };
-    int[] amountOfWarriosByPhase =   { 1, 3, 5, 5 };
-    int[] amountOfMagesByPhase =     { 1, 5, 5, 5 };
-    int[] amountOfRunnersByPhase =   { 1, 40, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 1, 2, 6, 3 };
+    int[] amountOfBagOfGoldByPhase = { 1, 1, 5, 5 };
+    int[] amountOfWarriosByPhase =   { 1, 1, 5, 5 };
+    int[] amountOfMagesByPhase =     { 1, 1, 5, 5 };
+    int[] amountOfRunnersByPhase =   { 0, 5, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 1, 1, 6, 3 };
     int[] amountOfBosses = { 0, 0, 0, 1 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
@@ -98,7 +99,7 @@ public class PhaseManager : MonoBehaviour
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
 
-        await Task.Delay(8000);
+        await Task.Delay(6000);
         meteorites.SetActive(true);
         await Task.Delay(2000);
         MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
@@ -110,10 +111,10 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1600);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(true);
-        await Task.Delay(600);
+        await Task.Delay(400);
         rightRocksToDestroy.SetActive(false);
         meteorites.SetActive(false);
-        await Task.Delay(1800);
+        await Task.Delay(2000);
         rightExplosion.SetActive(false);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
         MainCamera.instance.portalsEndInChaman.SetActive(true);
@@ -131,23 +132,28 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        runner.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
-        await Task.Delay(10000);
+        await Task.Delay(6000);
         MainCamera.instance.towerLeft.SetActive(false);
         MainCamera.instance.cameraFrontRunner.SetActive(true);
+        runner.isWalking = true;
         await Task.Delay(5000);
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
-        await Task.Delay(5000);
+        PlayMusic();
+        LoadEnemies();
+        await Task.Delay(1000);
+        runner.gameObject.SetActive(false);
+        await Task.Delay(2000);
+
+        portals.TurnOnRightPortal();
+        portals.TurnOffLeftPortal();
+        enemyManager.SendEnemiesRightPortal();
+        await Task.Delay(3000);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(5000);
-        portals.TurnOnRightPortal();
-        portals.TurnOffLeftPortal();
-        PlayMusic();
-        LoadEnemies();
-        enemyManager.SendEnemiesRightPortal();
-
     }
 
     public bool nextPhase() 
