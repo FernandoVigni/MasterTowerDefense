@@ -23,12 +23,14 @@ public class PhaseManager : MonoBehaviour
     private GameObject game;
     public GameObject meteorites;
     public GameObject flashMeteorites;
+    public GameObject DeathExplosion;
     public Runner runner;
     private Tower towerScript;
     public Necromancer necromaner;
     public int currentPhase;
     public float waveLimitTime;
-
+    public GameObject enemiesPhaseOne;
+    public GameObject enemiesPhaseTwo;
 
 
     //----------
@@ -104,7 +106,7 @@ public class PhaseManager : MonoBehaviour
 
         await Task.Delay(6000);
         meteorites.SetActive(true);
-        await Task.Delay(2000);
+        await Task.Delay(3200);
         MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(true);
         await Task.Delay(6000);
@@ -141,6 +143,7 @@ public class PhaseManager : MonoBehaviour
     {
         runner.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
+        runner.Scream();
         await Task.Delay(4000);
         MainCamera.instance.towerLeft.SetActive(false);
         MainCamera.instance.cameraFrontRunner.SetActive(true);
@@ -167,15 +170,18 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        enemiesPhaseOne.SetActive(true);
+        enemiesPhaseTwo.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(false);
         MainCamera.instance.camera3PersonTowerRight.SetActive(true);
         await Task.Delay(3000);
-
-        necromaner.Atack();
-        Debug.Log("anim necromancer");
-        await Task.Delay(3000);
-        // animacion bichos lvl up
-        Debug.Log("bichos lvl up");
+        necromaner.Atack();      
+        DeathExplosion.SetActive(true);
+        await Task.Delay(300);
+        enemiesPhaseOne.SetActive(false);
+        enemiesPhaseTwo.SetActive(true);
+        await Task.Delay(1000);
+        DeathExplosion.SetActive(false);
         await Task.Delay(3000);
         necromaner.Idle();
         MainCamera.instance.camera3PersonTowerRight.SetActive(false);

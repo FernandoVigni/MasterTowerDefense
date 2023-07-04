@@ -12,17 +12,9 @@ public class Necromancer : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
-    {
-
-    }
-
-    public async Task Atack()
+    public void Atack()
     {
         animator.SetBool("Atack", true);
-        await Task.Delay(6000);
-        animator.SetBool("Atack", false);
-        animator.SetBool("Idle", true);
     }
 
     public void Idle() 

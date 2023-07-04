@@ -28,7 +28,8 @@ public class MainCamera : MonoBehaviour
     [Header("Phase Three")]
     public GameObject camera3PersonTowerRight;
     public GameObject cameraNecromancer;
-    public GameObject cameraEnemyesUpgrade;
+
+    [Header("Phase Four")]
     public GameObject camera3PersonTowerRightPhaseThree;
 
     public void TurnOffAllCameras() 
