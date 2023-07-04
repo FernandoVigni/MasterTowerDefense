@@ -23,12 +23,13 @@ public class MainCamera : MonoBehaviour
     public GameObject cameraFrontRunner;
     public GameObject camera3PersonRunner;
     public GameObject cameraChamanAndPortal;
+
+
+    [Header("Phase Three")]
     public GameObject camera3PersonTowerRight;
-
-
-    [Header("TODO")]
-        public GameObject cameraNecromancer;
+    public GameObject cameraNecromancer;
     public GameObject cameraEnemyesUpgrade;
+    public GameObject camera3PersonTowerRightPhaseThree;
 
     public void TurnOffAllCameras() 
     {

@@ -206,8 +206,14 @@ public class EnemyManager : MonoBehaviour
                 //Ver si aqui se podrian buscart todos los enemyesws y borrarlos HF
                 // PhaseManager.Instance.PlayMusic();
                 PhaseManager.instance.SetPhasePlusOne();
-                Debug.Log("Inicia la phase: " + PhaseManager.instance.currentPhase);
-                PhaseManager.instance.ActivateAnimationPhaseTwo();
+                Debug.Log("Inicia la phase: " + PhaseManager.instance.currentPhase + 1);
+
+
+
+                PhaseManager.instance.StartPhase();
+            
+            
+            
             }
             else
             {
