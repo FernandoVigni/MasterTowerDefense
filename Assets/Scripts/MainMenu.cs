@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject saprksLetsGoButton;
     [SerializeField] public GameObject shoot;
     [SerializeField] public GameObject randomHability;
+    [SerializeField] public GameObject magicCircles;
 
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
@@ -63,10 +64,12 @@ public class MainMenu : MonoBehaviour
         //AudioManager.Instance.PlaySFX("Button");
         //PhaseManager.instance.SetCurrentPhase0();
         //Time.timeScale = 0f;
-        //loading.SetActive(true);
-       // TurnOffSparksPlayButton();
+        loading.SetActive(true);
+        magicCircles.SetActive(true);
+        TurnOffSparksPlayButton();
         mainMenu.SetActive(false);
-        await Task.Delay(2000);
+        await Task.Delay(5500);
+        magicCircles.SetActive(false);
         loading.SetActive(false);
         prophecyScreen.gameObject.SetActive(true);
         prophecyScreen.StartProphecyScene();

@@ -57,9 +57,12 @@ public class Tower : MonoBehaviour
         return transform.position;
     }
 
-    public void Shoot(Enemy objetive) 
+    public void Shoot(Enemy objetive)
     {
-         fireBallManager.ShootProjectile(objetive);
+        if (objetive != null)
+        {
+            fireBallManager.ShootProjectile(objetive);
+        }
     }
 
     public void ReciveDamage(float damage)
