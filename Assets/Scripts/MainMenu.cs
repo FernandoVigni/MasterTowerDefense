@@ -61,7 +61,7 @@ public class MainMenu : MonoBehaviour
     public async void Play()
     {
         //shoot.SetActive(false);
-        //AudioManager.Instance.PlaySFX("Button");
+        AudioManager.Instance.PlaySFX("Button");
         //PhaseManager.instance.SetCurrentPhase0();
         //Time.timeScale = 0f;
         loading.SetActive(true);

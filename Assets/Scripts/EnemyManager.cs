@@ -207,13 +207,7 @@ public class EnemyManager : MonoBehaviour
                 // PhaseManager.Instance.PlayMusic();
                 PhaseManager.instance.SetPhasePlusOne();
                 Debug.Log("Inicia la phase: " + PhaseManager.instance.currentPhase + 1);
-
-
-
-                PhaseManager.instance.StartPhase();
-            
-            
-            
+                PhaseManager.instance.StartPhase();  
             }
             else
             {
