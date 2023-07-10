@@ -51,7 +51,6 @@ public class FireBallManager : MonoBehaviour
 
     public void MoveToInitialZone(Projectile projectile)
     {
-        projectile.transform.rotation = Quaternion.identity;
         projectile.transform.position = positionToMoveProjectil.position;
     }
 

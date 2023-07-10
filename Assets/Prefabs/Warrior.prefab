@@ -52,7 +52,7 @@ MonoBehaviour:
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   life: 100
-  speed: 17
+  speed: 15
   physicalDamage: 100
   physicalArmor: 10
   magicDamage: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   isWalking: 0
   distanceToTower: 0
   coefficient: 0
+  scale: {x: 0, y: 0, z: 0}
   recivedGoldInThisPhase: 0
 --- !u!33 &2621024165215467745
 MeshFilter:

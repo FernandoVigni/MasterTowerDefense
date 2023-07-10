@@ -67,6 +67,7 @@ public class Enemy : MonoBehaviour
             scale.x *= (coefficient * 0.75f);
             scale.y *= (coefficient * 0.75f);
             scale.z *= (coefficient * 0.75f);
+            // Cambiar los materiales para que se vea mas fuerte
         }
     }
 
