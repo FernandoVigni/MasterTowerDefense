@@ -25,10 +25,12 @@ public class Enemy : MonoBehaviour
     public float distanceToTower;
     public float coefficient;
 
+    public Vector3 scale;
+
     private void Awake()
     {
         tower = FindObjectOfType<Tower>();
-      //  animator = GetComponent<Animator>();
+        //  animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -37,7 +39,9 @@ public class Enemy : MonoBehaviour
         {
             distanceToTower = CalculateDistanceToTower();
             if (distanceToTower > 250)
-                { ReceibeDamage(1000000); }
+            {
+                ReceibeDamage(1000000);
+            }
 
             Walk();
         }
@@ -48,7 +52,7 @@ public class Enemy : MonoBehaviour
         //animator.SetBool("Run", true);
     }
 
-    public void recalculateStatsWithTheCoefficient(float coefficient) 
+    public void recalculateStatsWithTheCoefficient(float coefficient)
     {
         goldValueOnDeath = (int)((float)goldValueOnDeath * coefficient);
         life *= coefficient;
@@ -56,8 +60,16 @@ public class Enemy : MonoBehaviour
         physicalDamage *= coefficient;
         magicDamage *= coefficient;
         magicArmor *= coefficient;
+
+        // Incrementar las escalas X, Y, Z con el coeficiente
+        if (coefficient == 2)
+        {
+            scale.x *= (coefficient * 0.75f);
+            scale.y *= (coefficient * 0.75f);
+            scale.z *= (coefficient * 0.75f);
+        }
     }
-    
+
     public float CalculateDistanceToTower()
     {
         float distance = Vector3.Distance(transform.position, tower.GetTowerPosition());
@@ -71,7 +83,7 @@ public class Enemy : MonoBehaviour
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        if (distanceToTower > 80 && GetComponent<Mage>() != null) 
+        if (distanceToTower > 80 && GetComponent<Mage>() != null)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
@@ -97,7 +109,7 @@ public class Enemy : MonoBehaviour
         return life > 0;
     }
 
-    public void SetCoefficient(float coefficient) 
+    public void SetCoefficient(float coefficient)
     {
         this.coefficient = coefficient;
     }
@@ -110,7 +122,7 @@ public class Enemy : MonoBehaviour
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
 
-    public int recivedGoldInThisPhase; 
+    public int recivedGoldInThisPhase;
     public void ReceibeDamage(int damage)
     {
         life -= damage;

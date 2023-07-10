@@ -24,7 +24,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject meteorites;
     public GameObject flashMeteorites;
     public GameObject DeathExplosion;
-    public Runner runner;
+    public Runner runnerForAnimation;
     private Tower towerScript;
     public Necromancer necromaner;
     public int currentPhase;
@@ -34,13 +34,13 @@ public class PhaseManager : MonoBehaviour
 
 
     //----------
-    int[] coefficient = { 1, 1, 1, 2 };
-    int[] amountOfBagOfGoldByPhase = { 1, 1, 5, 5 };
-    int[] amountOfWarriosByPhase = { 1, 1, 5, 5 };
-    int[] amountOfMagesByPhase = { 1, 1, 5, 5 };
-    int[] amountOfRunnersByPhase = { 0, 5, 0, 0 };
-    int[] amountOfGiantsByPhase = { 1, 1, 6, 3 };
-    int[] amountOfBosses = { 0, 0, 0, 1 };
+    int[] coefficient =              { 1, 1, 2, 2 };
+    int[] amountOfBagOfGoldByPhase = { 1, 1, 0, 5 };
+    int[] amountOfWarriosByPhase =   { 1, 1, 0, 5 };
+    int[] amountOfMagesByPhase =     { 1, 1, 0, 5 };
+    int[] amountOfRunnersByPhase =   { 0, 2, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 1, 0, 6, 3 };
+    int[] amountOfBosses =           { 0, 0, 0, 1 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -141,22 +141,21 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseTwo()
     {
-        runner.gameObject.SetActive(true);
+        runnerForAnimation.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
-        runner.Scream();
+        runnerForAnimation.Scream();
         await Task.Delay(4000);
         MainCamera.instance.towerLeft.SetActive(false);
         MainCamera.instance.cameraFrontRunner.SetActive(true);
-        runner.isWalking = true;
+        //runnerForAnimation.isWalking = true;    si activo esto se rompe y me tira que no es una instancia o algo asi.
         await Task.Delay(7000);
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
         PlayMusic();
         LoadEnemies();
         await Task.Delay(2000);
-        enemyManager.RemoveEnemyFromSentList(runner);
-        enemyManager.RemoveEnemiesInsideColliderList(runner);
-        runner.gameObject.SetActive(false);
+        enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
+        runnerForAnimation.gameObject.SetActive(false);
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         portals.TurnOffLeftPortal();
@@ -186,6 +185,9 @@ public class PhaseManager : MonoBehaviour
         //necromaner.Idle();
         MainCamera.instance.camera3PersonTowerRight.SetActive(false);
         MainCamera.instance.cameraNecromancer.SetActive(true);
+
+        LoadEnemies();
+        enemyManager.SendEnemiesRightPortal();
     }
 
 
