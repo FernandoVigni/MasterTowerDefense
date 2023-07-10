@@ -65,6 +65,7 @@ MonoBehaviour:
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
   recivedGoldInThisPhase: 0
+  mageMeshObject: {fileID: 6344625175868298934}
 --- !u!33 &8255083094660878121
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -250,6 +251,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a55b9810c9c6ac47b170fcc51baa1e7, type: 3}
+--- !u!1 &6344625175868298934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1977831345391580163, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4863335481109373621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6344625175868656330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1977831345391741055, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,

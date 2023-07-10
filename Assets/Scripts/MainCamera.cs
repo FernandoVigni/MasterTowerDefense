@@ -32,19 +32,32 @@ public class MainCamera : MonoBehaviour
     [Header("Phase Four")]
     public GameObject camera3PersonTowerRightPhaseThree;
 
-    public void TurnOffAllCameras() 
+    public void TurnOffPhaseOneCameras() 
     {
-       cameraBaseEndInChaman.SetActive(false);
-       cameraChamanBaseEndInPortals.SetActive(false);;
-       cameraChamanBaseEndInPortals.SetActive(false);;
-       towerLeft.SetActive(false);;
+        cameraBaseEndInChaman.SetActive(false);
+        cameraChamanBaseEndInPortals.SetActive(false);
+        portalsEndInChaman.SetActive(false);
+        cameraChamanEndInTowerLeft.SetActive(false);
+    }
 
+    public void TurnOffPhaseTwoCameras()
+    {
+        towerLeft.SetActive(false);
         cameraFrontRunner.SetActive(false);
         camera3PersonRunner.SetActive(false);
         cameraChamanAndPortal.SetActive(false);
-        camera3PersonTowerRight.SetActive(false);
     }
 
+    public void TurnOffPhaseThreeCameras()
+    {
+        camera3PersonTowerRight.SetActive(false); ;
+        cameraNecromancer.SetActive(false); ;
+    }
+
+    public void TurnOffPhaseFourCameras()
+    { 
+    
+    }
 
     public void SetOffCamerasPhaseOne() 
     {

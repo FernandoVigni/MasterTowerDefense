@@ -60,6 +60,7 @@ public class MainMenu : MonoBehaviour
 
     public async void Play()
     {
+        DestroyAllEnemies();
         //shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         //PhaseManager.instance.SetCurrentPhase0();
@@ -76,6 +77,15 @@ public class MainMenu : MonoBehaviour
         buttonOptions.SetActive(true);
         goldStatus.SetActive(true);
         Time.timeScale = 1f;
+    }
+
+    public void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
     }
 
     public void Pause()

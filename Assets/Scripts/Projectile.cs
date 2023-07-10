@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -10,6 +11,9 @@ public class Projectile : MonoBehaviour
     public float speed;
     public int damage;
     public bool translate = false;
+    public GameObject explosionOne;
+    public GameObject explosionTwo;
+    //public GameObject explosionTwo;
 
     void Update()
     {
@@ -53,6 +57,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StopMove();
+        InstantiateRandomExplosion();
         fireBallManager.MoveToInitialZone(this);
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         {
@@ -61,5 +66,39 @@ public class Projectile : MonoBehaviour
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
         }
+    }
+
+    public void InstantiateRandomExplosion()
+    {
+        int randomNumber = GenerateRandomNumber();
+
+        if (randomNumber == 1)
+        {
+            EploteFireBallOne();
+        }
+        else if (randomNumber == 2)
+        {
+            EploteFireBallTwo();
+        }
+    }
+
+    private int GenerateRandomNumber()
+    {
+        // Genera un número aleatorio entre 1 y 2
+        return Mathf.RoundToInt(UnityEngine.Random.Range(1f, 2f));
+    }
+
+    public async Task EploteFireBallOne() 
+    {
+        GameObject explosion = Instantiate(explosionOne, transform.position, Quaternion.identity);
+        await Task.Delay(2000);
+        Destroy(explosion);
+    }
+
+    public async Task EploteFireBallTwo()
+    {
+        GameObject explosion = Instantiate(explosionTwo, transform.position, Quaternion.identity);
+        await Task.Delay(2000);
+        Destroy(explosion);
     }
 }

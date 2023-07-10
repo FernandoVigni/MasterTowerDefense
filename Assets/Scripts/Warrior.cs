@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 
 public class Warrior : Enemy
 {
+    public GameObject gruntMeshObject;
+
     private void Start()
     {
         recalculateStatsWithTheCoefficient(coefficient);

@@ -38,11 +38,10 @@ public class Enemy : MonoBehaviour
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
-            if (distanceToTower > 250)
+            if (distanceToTower > 300)
             {
                 ReceibeDamage(1000000);
             }
-
             Walk();
         }
     }

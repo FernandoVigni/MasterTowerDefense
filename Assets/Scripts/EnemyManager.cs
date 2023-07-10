@@ -21,6 +21,11 @@ public class EnemyManager : MonoBehaviour
     public GameObject pointBLeftPortal;
     public GameObject pointARightPortal;
     public GameObject pointBRightPortal;
+
+    public Material WarriorLvl2Material;
+    public Material MageLvl2Material;
+    public Material GiantLvl2Material;
+
     public float coefficient;
     public float distanceToInstanciateEnemyToTower;
     public int delayToInstantiateEnemy;
@@ -38,12 +43,14 @@ public class EnemyManager : MonoBehaviour
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateEnemies.position, Quaternion.identity);
+        newWarriorEnemy.gruntMeshObject = newWarriorEnemy.transform.Find("GruntPBR/GruntMesh").gameObject;
         SetEnemy(newWarriorEnemy);
     }
 
     public void InstantiateMage()
     {
         Mage newMageEnemy = Instantiate(mage, positionToInstantiateEnemies.position, Quaternion.identity);
+        newMageEnemy.mageMeshObject = newMageEnemy.transform.Find("FreeLichHP/LichMesh").gameObject;
         SetEnemy(newMageEnemy);
     }
 
@@ -56,8 +63,42 @@ public class EnemyManager : MonoBehaviour
     public void InstantiateGiant()
     {
         Giant newGiantEnemy = Instantiate(giant, positionToInstantiateEnemies.position, Quaternion.identity);
+        newGiantEnemy.giantMeshObject = newGiantEnemy.transform.Find("GolemPrefab/Golem/1").gameObject;
         SetEnemy(newGiantEnemy);
     }
+
+
+    private void ApplyMaterialLvl2(Enemy enemy)
+    {
+        if (enemy is Warrior)
+        {
+            Warrior warriorEnemy = enemy as Warrior;
+            Renderer enemyRenderer = warriorEnemy.gruntMeshObject.GetComponent<Renderer>();
+            if (enemyRenderer != null)
+            {
+                enemyRenderer.material = WarriorLvl2Material;
+            }
+        }
+        else if (enemy is Mage)
+        {
+            Mage mageEnemy = enemy as Mage;
+            Renderer enemyRenderer = mageEnemy.mageMeshObject.GetComponent<Renderer>();
+            if (enemyRenderer != null)
+            {
+                enemyRenderer.material = MageLvl2Material;
+            }
+        }
+        else if (enemy is Giant)
+        {
+            Giant giantEnemy = enemy as Giant;
+            Renderer enemyRenderer = giantEnemy.giantMeshObject.GetComponent<Renderer>();
+            if (enemyRenderer != null)
+            {
+                enemyRenderer.material = GiantLvl2Material;
+            }
+        }
+    }
+
 
     // Stage List Methods
     public int GetAmmountOflistOfEnemiesToDefeatInThisPhase() 
@@ -84,6 +125,10 @@ public class EnemyManager : MonoBehaviour
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisPhase.Add(enemy);
+        if (enemy.coefficient == 2) 
+        {
+            ApplyMaterialLvl2(enemy);
+        }
     }
 
     // List Methods

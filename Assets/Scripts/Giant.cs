@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Giant : Enemy
 {
+    public GameObject giantMeshObject;
+
     void Start()
     {
         recalculateStatsWithTheCoefficient(coefficient);

@@ -59,11 +59,12 @@ MonoBehaviour:
   magicArmor: 10
   goldValueOnDeath: 1
   atackSpeed: 0
-  isWalking: 0
+  isWalking: 1
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
   recivedGoldInThisPhase: 0
+  gruntMeshObject: {fileID: 2247167338612007989}
 --- !u!33 &2621024165215467745
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -275,6 +276,12 @@ PrefabInstance:
 --- !u!4 &729056334033049167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5304911586177118974, guid: 176299a76ecfc7544b22a66fae200ac7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4864156035729401009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2247167338612007989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6678696330823270532, guid: 176299a76ecfc7544b22a66fae200ac7,
     type: 3}
   m_PrefabInstance: {fileID: 4864156035729401009}
   m_PrefabAsset: {fileID: 0}

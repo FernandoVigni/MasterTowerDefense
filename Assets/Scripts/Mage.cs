@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class Mage : Enemy
 {
+    public GameObject mageMeshObject;
     void Start()
     {
         recalculateStatsWithTheCoefficient(coefficient);

@@ -64,6 +64,7 @@ MonoBehaviour:
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
   recivedGoldInThisPhase: 0
+  giantMeshObject: {fileID: 4477165542818734006}
 --- !u!33 &7318535914152470964
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -241,6 +242,12 @@ PrefabInstance:
 --- !u!4 &4477165542818694020 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2463858990774815944, guid: e3001131c06476449b251b4552583227,
+    type: 3}
+  m_PrefabInstance: {fileID: 2023089187294203724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4477165542818734006 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2463858990775177466, guid: e3001131c06476449b251b4552583227,
     type: 3}
   m_PrefabInstance: {fileID: 2023089187294203724}
   m_PrefabAsset: {fileID: 0}

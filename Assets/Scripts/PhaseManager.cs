@@ -35,12 +35,12 @@ public class PhaseManager : MonoBehaviour
 
     //----------
     int[] coefficient =              { 1, 1, 2, 2 };
-    int[] amountOfBagOfGoldByPhase = { 1, 1, 0, 5 };
-    int[] amountOfWarriosByPhase =   { 1, 1, 0, 5 };
-    int[] amountOfMagesByPhase =     { 1, 1, 0, 5 };
-    int[] amountOfRunnersByPhase =   { 0, 2, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 1, 0, 6, 3 };
-    int[] amountOfBosses =           { 0, 0, 0, 1 };
+    int[] amountOfBagOfGoldByPhase = { 1, 1, 3, 5 };
+    int[] amountOfWarriosByPhase =   { 5, 3, 3, 5 };
+    int[] amountOfMagesByPhase =     { 3, 3, 3, 5 };
+    int[] amountOfRunnersByPhase =   { 0, 10, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 2, 0, 6, 3 };
+    int[] amountOfBosses =           { 0, 0, 0, 0 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -101,6 +101,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
 
@@ -141,6 +142,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        MainCamera.instance.TurnOffPhaseTwoCameras();
         runnerForAnimation.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
         runnerForAnimation.Scream();
@@ -169,6 +171,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        MainCamera.instance.TurnOffPhaseThreeCameras();
         enemiesPhaseOne.SetActive(true);
         enemiesPhaseTwo.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(false);
@@ -193,7 +196,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseFour()
     {
-
+        MainCamera.instance.TurnOffPhaseFourCameras();
     }
 
     public void SetCurrentPhase0()
