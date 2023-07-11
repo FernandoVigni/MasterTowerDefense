@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     public bool translate = false;
     public GameObject explosionOne;
     public GameObject explosionTwo;
-    //public GameObject explosionTwo;
 
     void Update()
     {
@@ -40,8 +39,7 @@ public class Projectile : MonoBehaviour
         translate = false;
     }
 
-    public void 
-        Move()
+    public void Move()
     {
         translate = false;
     }
@@ -51,7 +49,41 @@ public class Projectile : MonoBehaviour
         if (enemy == null)
             return;
 
-            transform.LookAt(enemy.transform.position);
+        transform.LookAt(enemy.transform.position);
+    }
+
+    public void InstantiateRandomExplosion()
+    {
+        int randomNumber = GenerateRandomNumber();
+
+        if (randomNumber == 1)
+        {
+            ExploteFireBallOne();
+        }
+        else if (randomNumber == 2)
+        {
+            ExploteFireBallTwo();
+        }
+    }
+
+    private int GenerateRandomNumber()
+    {
+        // Genera un número aleatorio entre 1 y 2
+        return Mathf.RoundToInt(UnityEngine.Random.Range(1f, 2f));
+    }
+
+    public async Task ExploteFireBallOne() 
+    {
+        GameObject explosion = Instantiate(explosionOne, transform.position, Quaternion.identity);
+        await Task.Delay(2000);
+        Destroy(explosion);
+    }
+
+    public async Task ExploteFireBallTwo()
+    {
+        GameObject explosion = Instantiate(explosionTwo, transform.position, Quaternion.identity);
+        await Task.Delay(2000);
+        Destroy(explosion);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,39 +98,5 @@ public class Projectile : MonoBehaviour
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
         }
-    }
-
-    public void InstantiateRandomExplosion()
-    {
-        int randomNumber = GenerateRandomNumber();
-
-        if (randomNumber == 1)
-        {
-            EploteFireBallOne();
-        }
-        else if (randomNumber == 2)
-        {
-            EploteFireBallTwo();
-        }
-    }
-
-    private int GenerateRandomNumber()
-    {
-        // Genera un número aleatorio entre 1 y 2
-        return Mathf.RoundToInt(UnityEngine.Random.Range(1f, 2f));
-    }
-
-    public async Task EploteFireBallOne() 
-    {
-        GameObject explosion = Instantiate(explosionOne, transform.position, Quaternion.identity);
-        await Task.Delay(2000);
-        Destroy(explosion);
-    }
-
-    public async Task EploteFireBallTwo()
-    {
-        GameObject explosion = Instantiate(explosionTwo, transform.position, Quaternion.identity);
-        await Task.Delay(2000);
-        Destroy(explosion);
     }
 }

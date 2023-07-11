@@ -84,6 +84,7 @@ public class ProphecyScreen : MonoBehaviour
         letsGoButtonVisible.SetActive(false);
         MainMenu.Instance.game.SetActive(true);
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
+        PhaseManager.instance.TurnOnRocksToDestroy();
         PhaseManager.instance.StartPhase();
     }    
 }

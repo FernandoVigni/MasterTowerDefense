@@ -53,7 +53,7 @@ MonoBehaviour:
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   life: 70
-  speed: 10
+  speed: 17
   physicalDamage: 0
   physicalArmor: 10
   magicDamage: 100

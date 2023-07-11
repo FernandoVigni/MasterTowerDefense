@@ -36,7 +36,6 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
-    
         enemyManager = FindAnyObjectByType<EnemyManager>();
         fireBallManager = FindAnyObjectByType<FireBallManager>();
 
