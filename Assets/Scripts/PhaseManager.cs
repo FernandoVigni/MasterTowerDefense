@@ -104,7 +104,6 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
-
         await Task.Delay(6000);
         meteorites.SetActive(true);
         await Task.Delay(3200);
@@ -137,7 +136,6 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         LoadEnemies();
         enemyManager.SendEnemiesLeftPortal();
-
     }
 
     public async Task ActivateAnimationPhaseTwo()
@@ -193,9 +191,9 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesRightPortal();
     }
 
-
     public async Task ActivateAnimationPhaseFour()
     {
+        MainCamera.instance.cameraNecromancer.SetActive(false);
         MainCamera.instance.TurnOffPhaseFourCameras();
     }
 

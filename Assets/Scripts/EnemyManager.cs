@@ -99,7 +99,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
     // Stage List Methods
     public int GetAmmountOflistOfEnemiesToDefeatInThisPhase() 
     {

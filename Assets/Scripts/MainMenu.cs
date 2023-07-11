@@ -12,13 +12,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject volumen;
     [SerializeField] private GameObject goldStatus;
     [SerializeField] private GameObject buttonOptions;
+    [SerializeField] public ProphecyScreen prophecyScreen;
     [SerializeField] public GameObject optionsInGameMenu;
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
     [SerializeField] public GameObject victory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
-    [SerializeField] public ProphecyScreen prophecyScreen;
     [SerializeField] public GameObject musicButtonOn;
     [SerializeField] public GameObject musicButtonOff;
     [SerializeField] public GameObject sfxButtonOn;
