@@ -25,6 +25,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject flashMeteorites;
     public GameObject DeathExplosion;
     public Runner runnerForAnimation;
+    public GameObject blueDragon;
     private Tower towerScript;
     public Necromancer necromaner;
     public int currentPhase;
@@ -101,6 +102,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        PhaseManager.instance.blueDragon.SetActive(false);
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
@@ -195,6 +197,9 @@ public class PhaseManager : MonoBehaviour
     {
         MainCamera.instance.cameraNecromancer.SetActive(false);
         MainCamera.instance.TurnOffPhaseFourCameras();
+        blueDragon.transform.position = new Vector3(240f, 22f, 300f);
+        blueDragon.SetActive(true);
+        MainCamera.instance.dragonCamera.SetActive(true);
     }
 
     public void SetCurrentPhase0()
@@ -224,7 +229,6 @@ public class PhaseManager : MonoBehaviour
                 break;
         }
     }
-
 
     public bool nextPhase() 
     {

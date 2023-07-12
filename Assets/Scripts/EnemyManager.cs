@@ -40,6 +40,11 @@ public class EnemyManager : MonoBehaviour
     public List<Enemy> listOfEnemiesToDefeatInThisPhase = new List<Enemy>();
     public List<Enemy> listOfEnemiesInsideTheTowerCollider = new List<Enemy>();
 
+    public void InstantiateBlueDragon() 
+    {
+    
+    }
+
     public void InstantiateWarrior()
     {
         Warrior newWarriorEnemy = Instantiate(warrior, positionToInstantiateEnemies.position, Quaternion.identity);

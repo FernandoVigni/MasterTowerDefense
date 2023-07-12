@@ -59,6 +59,8 @@ public class MainMenu : MonoBehaviour
 
     public async void Play()
     {
+
+        MainCamera.instance.TurnOffAllCameras();
         DestroyAllEnemies();
         //shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");

@@ -7,9 +7,14 @@ using UnityEngine.Timeline;
 
 public class MainCamera : MonoBehaviour
 {
+    private const float TARGET_ASPECT_RATIO = 9f / 16f; // Relación de aspecto objetivo (en este ejemplo, 9:16)
+    private const float TARGET_HEIGHT = 10f; // Altura de la cámara para la relación de aspecto objetivo
+
     public static MainCamera instance;
     private CinemachineBrain cinemachineBrain;
     public PlayableDirector timelineDirector;
+    public Tower tower;
+    private Camera cam;
 
     [Header("Phase One")]
     public GameObject cameraBaseEndInChaman;
@@ -30,7 +35,8 @@ public class MainCamera : MonoBehaviour
     public GameObject cameraNecromancer;
 
     [Header("Phase Four")]
-    public GameObject camera3PersonTowerRightPhaseThree;
+    public GameObject dragonCamera;
+    //public GameObject camera3PersonTowerRightPhaseThree;
 
     public void TurnOffPhaseOneCameras() 
     {
@@ -55,8 +61,16 @@ public class MainCamera : MonoBehaviour
     }
 
     public void TurnOffPhaseFourCameras()
-    { 
-    
+    {
+        dragonCamera.SetActive(false);
+    }
+
+    public void TurnOffAllCameras() 
+    {
+        TurnOffPhaseOneCameras();
+        TurnOffPhaseTwoCameras();
+        TurnOffPhaseThreeCameras();
+        TurnOffPhaseFourCameras();
     }
 
     public void SetOffCamerasPhaseOne() 
@@ -81,11 +95,6 @@ public class MainCamera : MonoBehaviour
         }
     }
 
-    private const float TARGET_ASPECT_RATIO = 9f / 16f; // Relación de aspecto objetivo (en este ejemplo, 9:16)
-    private const float TARGET_HEIGHT = 10f; // Altura de la cámara para la relación de aspecto objetivo
-
-    public Tower tower;
-    private Camera cam;
 
     void Start()
     {
