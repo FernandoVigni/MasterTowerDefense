@@ -39,9 +39,8 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfBagOfGoldByPhase = { 1, 1, 3, 5 };
     int[] amountOfWarriosByPhase =   { 5, 3, 3, 5 };
     int[] amountOfMagesByPhase =     { 3, 3, 3, 5 };
-    int[] amountOfRunnersByPhase =   { 0, 10, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 6, 3 };
-    int[] amountOfBosses =           { 0, 0, 0, 0 };
+    int[] amountOfRunnersByPhase =   { 0, 5, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 2, 0, 3, 3 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -102,7 +101,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
-        PhaseManager.instance.blueDragon.SetActive(false);
+
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
