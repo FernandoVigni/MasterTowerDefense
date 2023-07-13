@@ -102,7 +102,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
-        dragon.ResetDragon();
+        //dragon.ResetDragon();
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
