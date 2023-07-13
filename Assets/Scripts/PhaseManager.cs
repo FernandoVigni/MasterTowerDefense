@@ -32,6 +32,7 @@ public class PhaseManager : MonoBehaviour
     public float waveLimitTime;
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
+    public DragonController dragon;
 
 
     //----------
@@ -101,7 +102,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
-
+        dragon.ResetDragon();
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);

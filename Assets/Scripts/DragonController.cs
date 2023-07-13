@@ -4,9 +4,10 @@ public class DragonController : MonoBehaviour
 {
     public float speed; // Velocidad de movimiento del dragón
     public float rotationSpeed; // Velocidad de rotación del dragón
-    public int currentwayPoint;
+    public int currentWayPoint;
     public float objetiveDistance;
     public float actualDistance;
+    public GameObject snowThrower;
     public Vector3 direction;
     public Vector3[] wayPoints;
     Quaternion targetRotation;
@@ -20,6 +21,8 @@ public class DragonController : MonoBehaviour
     public Transform point6;
     public Transform point7;
     public Transform point8;
+    public Transform point9;
+    public Transform point10;
 
     private void Start()
     {
@@ -34,27 +37,46 @@ public class DragonController : MonoBehaviour
             new Vector3(point5.position.x,point5.position.y,point5.position.z),
             new Vector3(point6.position.x,point6.position.y,point6.position.z),
             new Vector3(point7.position.x,point7.position.y,point7.position.z),
-            new Vector3(point8.position.x,point8.position.y,point8.position.z)
+            new Vector3(point8.position.x,point8.position.y,point8.position.z),
+            new Vector3(point9.position.x,point9.position.y,point9.position.z),
+            new Vector3(point10.position.x,point10.position.y,point10.position.z)
         };
-
-        currentwayPoint = 1; 
+        currentWayPoint = 1; 
     }
 
     void Update()
     {
-        if (currentwayPoint < wayPoints.Length)
+        if (currentWayPoint < wayPoints.Length)
         {
-            SetDirection(wayPoints[currentwayPoint]);
+            SetDirection(wayPoints[currentWayPoint]);
             CalculateTargetRotation();
             ApplyGradualRotationTowardsTarget();
             MoveDragonForwardInCurrentDirection();
-            actualDistance = Vector3.Distance(transform.position, wayPoints[currentwayPoint]);
+            actualDistance = Vector3.Distance(transform.position, wayPoints[currentWayPoint]);
             // Comprobar si se ha alcanzado el waypoint actual
             if (actualDistance < objetiveDistance)
             {
-                currentwayPoint++; // Pasar al siguiente waypoint
+                currentWayPoint++; // Pasar al siguiente waypoint
             }
         }
+
+        if (currentWayPoint == 5 || currentWayPoint == 10)
+        {
+            snowThrower.SetActive(true);
+        }
+        else 
+        {
+            if (currentWayPoint == 6)
+            {
+                snowThrower.SetActive(false);
+            }
+        }
+    }
+
+    public void ResetDragon()
+    {
+        currentWayPoint = 1;
+        snowThrower.SetActive(false);
     }
 
     public void SetDirection(Vector3 objective)
