@@ -20,20 +20,17 @@ public class PhaseManager : MonoBehaviour
     public GameObject rightRocksToDestroy;
     public GameObject leftExplosion;
     public GameObject rightExplosion;
-    private GameObject game;
     public GameObject meteorites;
     public GameObject flashMeteorites;
     public GameObject DeathExplosion;
     public Runner runnerForAnimation;
     public GameObject blueDragon;
-    private Tower towerScript;
     public Necromancer necromaner;
     public int currentPhase;
     public float waveLimitTime;
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
     public DragonController dragon;
-
 
     //----------
     int[] coefficient =              { 1, 1, 2, 2 };
@@ -48,7 +45,6 @@ public class PhaseManager : MonoBehaviour
     //string[] songsNames = { "MainMenu","AnimationPhase0", "Phase0", "AnimationPhase1", "Phase1", "AnimationPhase2", "Phase2", "AnimationPhaseBoss", "PhaseBoss" };
 
     //----------
-
 
     private void Awake()
     {
@@ -129,7 +125,6 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
         MainCamera.instance.portalsEndInChaman.SetActive(true);
         await Task.Delay(4000);
- 
         PlayMusic();
         portals.TurnOnLeftPortal();
         await Task.Delay(2500);
