@@ -7,21 +7,31 @@ public class Tower : MonoBehaviour
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
     public Enemy objetive;
-    public float countDown;
+    public ExplosiveMine explosiveMinePrefabA;
+    public ExplosiveMine explosiveMinePrefabB;
+    public float countDownToShoot;
     public float countDownReset;
+    public float manualShoot;
     private float life;
     public float gold;
+    public float launchForce;
+    public int ammountOfMines;
+    public int secondsBetweenMines;
+
+    public Transform CornerA;
+    public Transform CornerB;
+    public Transform CornerC; 
+    public Transform CornerD;
+
+    private void Start()
+    {
+        ThrowExplosiveMines(ammountOfMines, secondsBetweenMines);
+    }
 
     void Update()
     {
-        countDown = countDown - Time.deltaTime;
-        /*
-        if (countDown < 2 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0 && Input.GetButtonDown("Shot"))
-        {
-            ShootNearestEnemy();
-        }*/
-
-        if (countDown < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
+        countDownToShoot = countDownToShoot - Time.deltaTime;
+        if (countDownToShoot < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
             Debug.Log("Disparando");
             ShootNearestEnemy();
@@ -30,10 +40,13 @@ public class Tower : MonoBehaviour
 
     public void ShootNearestEnemy()
     {
-        Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
-        countDown = countDownReset;
-        if (nearestEnemyInsideCollider != null) ;
-        Shoot(nearestEnemyInsideCollider);
+        if(countDownToShoot < manualShoot) 
+        { 
+            Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
+            countDownToShoot = countDownReset;
+            if (nearestEnemyInsideCollider != null);
+            Shoot(nearestEnemyInsideCollider);
+        }
     }
 
     public Enemy GetNearestEnemyInsideCollider()
@@ -80,5 +93,45 @@ public class Tower : MonoBehaviour
                 enemyManager.AddEnemyInsideColliderlist(enemy);
             }
         }            
+    }
+
+
+    // Método para lanzar repetidamente un objeto explosivo y realizar una explosión al colisionar
+    public void ThrowExplosiveMines(int count, float delayBetweenThrows)
+    {
+        StartCoroutine(ThrowMinesCoroutine(count, delayBetweenThrows));
+    }
+
+    private IEnumerator ThrowMinesCoroutine(int count, float delayBetweenThrows)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            yield return new WaitForSeconds(delayBetweenThrows);
+            Vector3 launchPosition = GetRandomPointBetweenCorners();
+            ExplosiveMine explosiveMine = Instantiate(explosiveMinePrefabB, launchPosition, Quaternion.identity);
+        }
+    }
+
+    public Vector3 GetRandomPointBetweenCorners()
+    {
+        Vector3 cornerAPosition = CornerA.position;
+        Vector3 cornerBPosition = CornerB.position;
+        Vector3 cornerCPosition = CornerC.position;
+        Vector3 cornerDPosition = CornerD.position;
+
+        float minX = Mathf.Min(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
+        float maxX = Mathf.Max(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
+
+        float minY = Mathf.Min(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
+        float maxY = Mathf.Max(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
+
+        float minZ = Mathf.Min(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
+        float maxZ = Mathf.Max(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
+
+        float randomX = Random.Range(minX, maxX);
+        float randomY = Random.Range(minY, maxY);
+        float randomZ = Random.Range(minZ, maxZ);
+
+        return new Vector3(randomX, randomY, randomZ);
     }
 }
