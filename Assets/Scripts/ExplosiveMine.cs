@@ -8,6 +8,8 @@ public class ExplosiveMine : MonoBehaviour
     private Rigidbody rb;
     private bool hasCollided = false; // Flag to track collision
     private Vector3 collisionPosition; // Variable to store the collision position
+    public GameObject explosion;
+    public GameObject auraBomb;
 
     private void Start()
     {
@@ -18,8 +20,17 @@ public class ExplosiveMine : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            auraBomb.SetActive(true);
             hasCollided = true; // Set the flag to true when colliding with the object tagged "Ground"
             collisionPosition = transform.position; // Store the position at the moment of collision
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Explode(); // Call the Explode method when colliding with the object tagged "Enemy"
         }
     }
 
@@ -38,5 +49,11 @@ public class ExplosiveMine : MonoBehaviour
             rb.angularVelocity = Vector3.zero;
             transform.position = collisionPosition;
         }
+    }
+
+    private void Explode()
+    {
+        explosion.SetActive(true);
+        Debug.Log("Explode!");
     }
 }
