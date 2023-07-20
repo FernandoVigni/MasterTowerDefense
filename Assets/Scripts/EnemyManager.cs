@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.ConstrainedExecution;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -121,7 +122,8 @@ public class EnemyManager : MonoBehaviour
     public void SetEnemy(Enemy enemy)
     {
         coefficient = PhaseManager.instance.GetCoefficient();
-        enemy.SetCoefficient(coefficient);  
+        enemy.SetCoefficient(coefficient);
+        enemy.lifeBar.SetMaxLife(enemy.maxLife);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisPhase.Add(enemy);

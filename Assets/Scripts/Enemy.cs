@@ -11,8 +11,10 @@ public class Enemy : MonoBehaviour
     public Action<Enemy> OnDeath;
     public Tower tower;
     private Animator animator;
+    public LifeBar lifeBar;
 
-    public float life;
+    public float currentLife;
+    public float maxLife;
     public float speed;
     public float physicalDamage;
     public float physicalArmor;
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour
             }
             Walk();
         }
+        lifeBar.SetCurrentLife(currentLife);
     }
 
     public void RunAnimation()
@@ -54,7 +57,7 @@ public class Enemy : MonoBehaviour
     public void recalculateStatsWithTheCoefficient(float coefficient)
     {
         goldValueOnDeath = (int)((float)goldValueOnDeath * coefficient);
-        life *= coefficient;
+        currentLife *= coefficient;
         speed *= coefficient;
         physicalDamage *= coefficient;
         magicDamage *= coefficient;
@@ -106,7 +109,7 @@ public class Enemy : MonoBehaviour
 
     private bool IsAlive()
     {
-        return life > 0;
+        return currentLife > 0;
     }
 
     public void SetCoefficient(float coefficient)
@@ -125,7 +128,7 @@ public class Enemy : MonoBehaviour
     public int recivedGoldInThisPhase;
     public void ReceibeDamage(int damage)
     {
-        life -= damage;
+        currentLife -= damage;
         if (!IsAlive() && !OnDeathWasExecuted)
         {
             recivedGoldInThisPhase += goldValueOnDeath;
