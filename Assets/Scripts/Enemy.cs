@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public Tower tower;
     private Animator animator;
     public LifeBar lifeBar;
+    public EnemyManager enemyManager;
 
     public float currentLife;
     public float maxLife;
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour
     public float magicArmor;
     public int goldValueOnDeath;
     public float atackSpeed;
-
+    public int recivedGoldInThisPhase;
     public bool isWalking;
     public float distanceToTower;
     public float coefficient;
@@ -32,11 +33,13 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         tower = FindObjectOfType<Tower>();
+        enemyManager = FindAnyObjectByType<EnemyManager>();
         //  animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        lifeBar.SetRemainingLifeToShow(currentLife);
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
@@ -46,7 +49,6 @@ public class Enemy : MonoBehaviour
             }
             Walk();
         }
-        lifeBar.SetCurrentLife(currentLife);
     }
 
     public void RunAnimation()
@@ -125,7 +127,7 @@ public class Enemy : MonoBehaviour
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
 
-    public int recivedGoldInThisPhase;
+
     public void ReceibeDamage(int damage)
     {
         currentLife -= damage;
@@ -134,6 +136,17 @@ public class Enemy : MonoBehaviour
             recivedGoldInThisPhase += goldValueOnDeath;
             OnDeathWasExecuted = true;
             OnDeath.Invoke(this);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Tower")
+        {
+            if (!enemyManager.IsCointaindInListOfEnemiesInsideTheTowerCollider(this))
+            {
+                enemyManager.AddEnemyInsideColliderlist(this);
+            }
         }
     }
 }

@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 4957418507740911613}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08870672, y: 0.04552971, z: 0.37}
+  m_LocalScale: {x: 0.04975697, y: 0.037753765, z: 0.37}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4957418509292049422}
@@ -115,7 +115,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeBar: {fileID: 4957418508400799621}
-  currentLife: 0
   maxLife: 0
 --- !u!1 &4957418508400799643
 GameObject:
@@ -188,9 +187,9 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!1 &4957418508513504360

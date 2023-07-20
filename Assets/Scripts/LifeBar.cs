@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class LifeBar : MonoBehaviour
 {
     public Image lifeBar;
-    public float currentLife;
     public float maxLife;
 
-    public void SetCurrentLife(float currentLife) 
+    public void SetRemainingLifeToShow(float currentLife) 
     {
-        currentLife = this.currentLife;
-        lifeBar.fillAmount = currentLife / maxLife;
+        float lifePerCent = currentLife / maxLife;
+        lifePerCent = -(lifePerCent - 100);
+        lifeBar.fillAmount = lifePerCent;
     }
 
     public void SetMaxLife(float maxLife) 
     {
-        maxLife = this.maxLife;
+        this.maxLife = maxLife;
     }
 }

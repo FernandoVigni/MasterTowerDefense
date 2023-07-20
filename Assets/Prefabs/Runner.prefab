@@ -53,20 +53,22 @@ MonoBehaviour:
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   lifeBar: {fileID: 8432391149036780279}
-  currentLife: 0
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+    type: 3}
+  currentLife: 25
   maxLife: 0
-  speed: 15
+  speed: 30
   physicalDamage: 20
   physicalArmor: 10
   magicDamage: 0
   magicArmor: 10
   goldValueOnDeath: 2
   atackSpeed: 0
+  recivedGoldInThisPhase: 0
   isWalking: 0
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
-  recivedGoldInThisPhase: 0
 --- !u!33 &8111173480128293153
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -201,6 +203,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.027566735
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.011899003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -242,7 +254,7 @@ PrefabInstance:
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}

@@ -10,7 +10,9 @@ public class DragonController : MonoBehaviour
     public GameObject snowThrower;
     public Vector3 direction;
     public Vector3[] wayPoints;
-    Quaternion targetRotation;
+    public EnemyManager enemyManager;
+    Quaternion targetRotation; 
+
 
     public Transform point0;
     public Transform point1;

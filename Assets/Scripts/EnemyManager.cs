@@ -123,7 +123,7 @@ public class EnemyManager : MonoBehaviour
     {
         coefficient = PhaseManager.instance.GetCoefficient();
         enemy.SetCoefficient(coefficient);
-        enemy.lifeBar.SetMaxLife(enemy.maxLife);
+        enemy.lifeBar.SetMaxLife(enemy.currentLife);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
         listOfEnemiesToDefeatInThisPhase.Add(enemy);
@@ -161,7 +161,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     // Collider List Methods
-    public bool IsCointaind(Enemy enemy) 
+    public bool IsCointaindInListOfEnemiesInsideTheTowerCollider(Enemy enemy) 
     {
         return listOfEnemiesInsideTheTowerCollider.Contains(enemy);
     }

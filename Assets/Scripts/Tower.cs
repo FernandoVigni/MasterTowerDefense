@@ -83,19 +83,6 @@ public class Tower : MonoBehaviour
         life -= damage;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy") 
-        {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (!enemyManager.IsCointaind(enemy)) 
-            {
-                enemyManager.AddEnemyInsideColliderlist(enemy);
-            }
-        }            
-    }
-
-
     // Método para lanzar repetidamente un objeto explosivo y realizar una explosión al colisionar
     public void ThrowExplosiveMines(int count, float delayBetweenThrows)
     {

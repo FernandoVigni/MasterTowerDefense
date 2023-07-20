@@ -54,7 +54,9 @@ MonoBehaviour:
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   lifeBar: {fileID: 3253950156182704294}
-  currentLife: 0
+  enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
+    type: 3}
+  currentLife: 70
   maxLife: 0
   speed: 17
   physicalDamage: 0
@@ -63,11 +65,11 @@ MonoBehaviour:
   magicArmor: 10
   goldValueOnDeath: 1
   atackSpeed: 0
+  recivedGoldInThisPhase: 0
   isWalking: 0
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
-  recivedGoldInThisPhase: 0
   mageMeshObject: {fileID: 6344625175868298934}
 --- !u!33 &8255083094660878121
 MeshFilter:
@@ -366,7 +368,7 @@ PrefabInstance:
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 7
+      value: 3.8
       objectReference: {fileID: 0}
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
