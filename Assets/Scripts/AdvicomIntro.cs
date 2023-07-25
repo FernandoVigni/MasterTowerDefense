@@ -8,14 +8,20 @@ public class AdvicomIntro : MonoBehaviour
     public Animator animator;
     public GameObject SkineEffectLogo;
     public GameObject mainMenuTurnOff;
-
+    public GameObject powerUpButton;
+    public GameObject powerUpminesDeploy;
+    public GameObject hyperBeamButton;
     // Start is called before the first frame update
     void Start()
     {
+        powerUpButton.SetActive(false);
+        powerUpminesDeploy.SetActive(false);
+        hyperBeamButton.SetActive(false);
         animator = GetComponent<Animator>();
         animator.SetBool("AdvicomFadeIn", true);
         ShineLogo();
         MainMenu.Instance.shoot.SetActive(false);
+
     }
 
     public async Task ShineLogo()
@@ -48,6 +54,7 @@ public class AdvicomIntro : MonoBehaviour
         await Task.Delay(3000);
         animator.SetBool("AdvicomFadeOut", false);
         SetBoolBlackBanckgroundFadeOutTrue();
+        MainMenu.Instance.HandleButtons();
     }
 
     public async Task SetBoolBlackBanckgroundFadeOutTrue()

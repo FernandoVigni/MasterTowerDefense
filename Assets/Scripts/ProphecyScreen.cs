@@ -12,7 +12,8 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GameObject letsGoButton;
     [SerializeField] public GameObject letsGoButtonVisible;
     [SerializeField] public GameObject SparksSystem;
-
+    [SerializeField] public GoldStatus goldStatus;
+    [SerializeField] public Tower tower;
 
     public Animator animator;
 
@@ -87,5 +88,14 @@ public class ProphecyScreen : MonoBehaviour
         MainMenu.Instance.prophecyScreen.gameObject.SetActive(false);
         PhaseManager.instance.TurnOnRocksToDestroy();
         PhaseManager.instance.StartPhase();
-    }    
+        ValidatePowerUpActive();
+    }
+
+    public void ValidatePowerUpActive()
+    {
+        if (goldStatus.GetPowerUpValue() == 1) 
+        {
+            tower.ActivatePowerUp();
+        }
+    }
 }

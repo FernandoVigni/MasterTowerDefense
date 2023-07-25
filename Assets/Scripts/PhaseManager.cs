@@ -31,13 +31,16 @@ public class PhaseManager : MonoBehaviour
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
     public DragonController dragon;
+    public GoldStatus goldStatus;
+
+    [SerializeField] public GameObject MinesDeploy;
 
     //----------
     int[] coefficient =              { 1, 1, 2, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 1, 3, 5 };
-    int[] amountOfWarriosByPhase =   { 5, 3, 3, 5 };
-    int[] amountOfMagesByPhase =     { 3, 3, 3, 5 };
-    int[] amountOfRunnersByPhase =   { 0, 5, 0, 0 };
+    int[] amountOfWarriosByPhase =   { 7, 6, 7, 7 };
+    int[] amountOfMagesByPhase =     { 5, 3, 4, 5 };
+    int[] amountOfRunnersByPhase =   { 0, 6, 0, 0 };
     int[] amountOfGiantsByPhase =    { 2, 0, 3, 3 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
@@ -98,7 +101,6 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
-        //dragon.ResetDragon();
         MainCamera.instance.TurnOffPhaseOneCameras();
         PhaseManager.instance.portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
@@ -166,6 +168,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+
         MainCamera.instance.TurnOffPhaseThreeCameras();
         enemiesPhaseOne.SetActive(true);
         enemiesPhaseTwo.SetActive(false);
@@ -186,6 +189,21 @@ public class PhaseManager : MonoBehaviour
 
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();
+        CheckMinesActives();
+    }
+
+
+
+    public void CheckMinesActives() 
+    {
+        if (goldStatus.minesDeployUpdate == 1)
+        {
+            MinesDeploy.SetActive(true);
+        }
+        else
+        {
+            MinesDeploy.SetActive(false);
+        }
     }
 
     public async Task ActivateAnimationPhaseFour()
@@ -195,6 +213,7 @@ public class PhaseManager : MonoBehaviour
         blueDragon.transform.position = new Vector3(240f, 22f, 300f);
         blueDragon.SetActive(true);
         MainCamera.instance.dragonCamera.SetActive(true);
+
     }
 
     public void SetCurrentPhase0()

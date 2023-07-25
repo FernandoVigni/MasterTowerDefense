@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
     public bool isWalking;
     public float distanceToTower;
     public float coefficient;
-
     public Vector3 scale;
 
     private void Awake()
@@ -126,7 +125,6 @@ public class Enemy : MonoBehaviour
 
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
-
 
     public void ReceibeDamage(int damage)
     {

@@ -95,14 +95,12 @@ public class MainCamera : MonoBehaviour
         }
     }
 
-
     void Start()
     {
         //ActivateCamera(camera1);
         cam = GetComponent<Camera>();
         SetCameraSize();
         timelineDirector = GetComponent<PlayableDirector>();
-
     }
 
     public void ActivateCamera(GameObject camera)

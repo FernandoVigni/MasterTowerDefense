@@ -7,8 +7,10 @@ public class Tower : MonoBehaviour
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
     public Enemy objetive;
+    public GameObject towerEffects;
     public ExplosiveMine explosiveMinePrefabA;
     public ExplosiveMine explosiveMinePrefabB;
+    public GoldStatus goldStatus;
     public float countDownToShoot;
     public float countDownReset;
     public float manualShoot;
@@ -23,9 +25,10 @@ public class Tower : MonoBehaviour
     public Transform CornerC; 
     public Transform CornerD;
 
-    private void Start()
+    public void ActivatePowerUp() 
     {
-        ThrowExplosiveMines(ammountOfMines, secondsBetweenMines);
+        manualShoot = 1.8f;
+        towerEffects.SetActive(true);
     }
 
     void Update()

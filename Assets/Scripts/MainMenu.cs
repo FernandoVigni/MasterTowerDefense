@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject contact;
     [SerializeField] private GameObject volumen;
-    [SerializeField] private GameObject goldStatus;
+    [SerializeField] private GoldStatus goldStatus;
     [SerializeField] private GameObject buttonOptions;
     [SerializeField] public ProphecyScreen prophecyScreen;
     [SerializeField] public GameObject optionsInGameMenu;
@@ -27,12 +27,17 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject saprksPlay;
     [SerializeField] public GameObject saprksLetsGoButton;
     [SerializeField] public GameObject shoot;
-    [SerializeField] public GameObject randomHability;
     [SerializeField] public GameObject magicCircles;
+    [SerializeField] public Tower tower;
+    [SerializeField] public GameObject updateButtons;
 
-    private EnemyManager enemyManager;
+   private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
     public static MainMenu Instance;
+
+    [SerializeField] public GameObject buttonPowerUp;
+    [SerializeField] public GameObject buttonMinesDeploy;
+    [SerializeField] public GameObject buttonHyperBeam;
 
     private void Awake()
     {
@@ -41,7 +46,7 @@ public class MainMenu : MonoBehaviour
 
         if (Instance == null)
         {
-            Instance = this;    
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -49,18 +54,78 @@ public class MainMenu : MonoBehaviour
             Destroy(gameObject);
         }
         buttonOptions.SetActive(false);
-        goldStatus.SetActive(false);
+        //goldStatus.gameObject.SetActive(false);
+    }
+
+    public void HandleButtons() 
+    {
+        updateButtons.SetActive(true);
+        if (goldStatus.GetPowerUpValue() != 1 )
+        {
+            buttonPowerUp.SetActive(true);
+        }
+        else
+        {
+            if (goldStatus.GetMinesDeployValue() != 1) 
+            {
+                buttonMinesDeploy.SetActive(true);
+            }
+            else
+            {
+                if (goldStatus.GetHyperBeamValue() != 1)
+                {
+                    buttonHyperBeam.SetActive(true);
+                }
+                else
+                {
+                    buttonPowerUp.SetActive(false);
+                    buttonMinesDeploy.SetActive(false);
+                    buttonHyperBeam.SetActive(false);
+                }
+            }
+        }
+    }
+    
+    public void ValidatePowerUpUpdate()
+    {
+        if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[0].cost && goldStatus.powerUpUpdated == 0) //si tengo oro y no esta mejorado el powerUp
+        {
+            goldStatus.SetPowerUpTrue(); //cambiar en lo guardado en el telefono que esta aprendida la hab
+            tower.ActivatePowerUp(); //prender las lucesitas y hacer el ataque mas rapido
+            buttonPowerUp.gameObject.SetActive(false); //apagar el boton
+            buttonMinesDeploy.SetActive(true); //prender el sigueinte  boton
+        }
+    }
+
+    public void ValidateMinesDeploy()
+    {
+        if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[1].cost && goldStatus.minesDeployUpdate == 0)
+        {
+            goldStatus.SetMinesDeployTrue();
+            buttonMinesDeploy.SetActive(false);
+            buttonHyperBeam.SetActive(true);
+        }
+    }
+
+    public void ValidateHyperBeam()
+    {
+        if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[2].cost && goldStatus.hyperBeamUpdate == 0)
+        {
+            goldStatus.SetHyperBeamTrue();
+            buttonHyperBeam.SetActive(false);
+        }
     }
 
     public void SetRenderCamera() 
     {
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
-
+    
     public async void Play()
     {
 
         MainCamera.instance.TurnOffAllCameras();
+        updateButtons.SetActive(false);
         DestroyAllEnemies();
         //shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
@@ -76,7 +141,7 @@ public class MainMenu : MonoBehaviour
         prophecyScreen.gameObject.SetActive(true);
         prophecyScreen.StartProphecyScene();
         buttonOptions.SetActive(true);
-        goldStatus.SetActive(true);
+        goldStatus.gameObject.SetActive(true);
         Time.timeScale = 1f;
     }
 
@@ -94,7 +159,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
-        goldStatus.SetActive(false);
         //shoot.SetActive(false);
         optionsInGameMenu.SetActive(true);
         menuOptions.SetActive(true);
@@ -105,7 +169,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
-        goldStatus.SetActive(true);
         //shoot.SetActive(true);
         Time.timeScale = 1f;
     }
@@ -141,7 +204,6 @@ public class MainMenu : MonoBehaviour
     public void CleanUiInGame() 
     {
         buttonOptions.SetActive(false);
-        goldStatus.SetActive(false);
     }
 
     private void CloseMenuesUi() 
@@ -167,12 +229,14 @@ public class MainMenu : MonoBehaviour
         //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
+
         EnterInMainMenu();
     }
 
     public void EnterInMainMenu()
     {
         Time.timeScale = 1f;
+        HandleButtons();
         CleanUiInGame();
         CloseMenuesUi();
         TurnOffScenario();
