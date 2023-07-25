@@ -26,12 +26,14 @@ public class PhaseManager : MonoBehaviour
     public Runner runnerForAnimation;
     public GameObject blueDragon;
     public Necromancer necromaner;
+    public GameObject necromanerScene;  
     public int currentPhase;
     public float waveLimitTime;
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
     public DragonController dragon;
     public GoldStatus goldStatus;
+    public GameObject orcShaman;
 
     [SerializeField] public GameObject MinesDeploy;
 
@@ -122,6 +124,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        necromanerScene.SetActive(false);
         MainCamera.instance.TurnOffPhaseOneCameras();
         portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
@@ -130,7 +133,9 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(3200);
         MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(true);
-        await Task.Delay(6000);
+        await Task.Delay(1500);
+        orcShaman.SetActive(false);
+        await Task.Delay(4500);
         leftExplosion.SetActive(true);
         await Task.Delay(600);
         leftRocksToDestroy.SetActive(false);
@@ -145,6 +150,7 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(2000);
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
+        orcShaman.SetActive(true);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
         MainCamera.instance.portalsEndInChaman.SetActive(true);
         await Task.Delay(4000);
@@ -156,6 +162,8 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         LoadEnemies();
         enemyManager.SendEnemiesLeftPortal();
+        await Task.Delay(1500);
+        orcShaman.SetActive(false);
     }
 
     public async Task ActivateAnimationPhaseTwo()
@@ -171,6 +179,7 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(7000);
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
+        orcShaman.SetActive(true);
         PlayMusic();
         LoadEnemies();
         await Task.Delay(2000);
@@ -178,10 +187,10 @@ public class PhaseManager : MonoBehaviour
         runnerForAnimation.gameObject.SetActive(false);
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
-        portals.TurnOffLeftPortal();
         await Task.Delay(1000);
         enemyManager.SendEnemiesRightPortal();
         await Task.Delay(3000);
+        orcShaman.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(5000);
@@ -189,14 +198,15 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
-
         MainCamera.instance.TurnOffPhaseThreeCameras();
+        necromanerScene.SetActive(true);
         enemiesPhaseOne.SetActive(true);
         enemiesPhaseTwo.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(false);
         MainCamera.instance.camera3PersonTowerRight.SetActive(true);
         //necromaner.Atack();
         await Task.Delay(3000);
+        necromanerScene.SetActive(false);
         DeathExplosion.SetActive(true);
         await Task.Delay(300);
         enemiesPhaseOne.SetActive(false);
