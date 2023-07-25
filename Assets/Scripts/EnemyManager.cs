@@ -227,6 +227,15 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesInsideTheTowerCollider.RemoveAll(Enemy => true);
     }
 
+    public void DestroyAllEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+    }
+
     //Others
     public int recivedGoldInThisPhase;
 

@@ -37166,7 +37166,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 11.139999, y: 11.25}
+  m_SizeDelta: {x: 1.9896, y: 1.3919}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &899470915
 MonoBehaviour:
@@ -45876,7 +45876,7 @@ GameObject:
   - component: {fileID: 1163123550}
   - component: {fileID: 1163123549}
   m_Layer: 0
-  m_Name: Background
+  m_Name: t
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71949,8 +71949,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754253849}
-  m_LocalRotation: {x: 0.005477617, y: -0.40983596, z: 0.002461163, w: 0.91213953}
-  m_LocalPosition: {x: 187.72243, y: 6.4286346, z: -166.72644}
+  m_LocalRotation: {x: 0.049239833, y: 0.6732713, z: -0.25115684, w: 0.6936869}
+  m_LocalPosition: {x: -49.60001, y: 84.90001, z: -152.40002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

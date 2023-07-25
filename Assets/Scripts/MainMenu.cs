@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
         }
         buttonOptions.SetActive(false);
         //goldStatus.gameObject.SetActive(false);
+        enemyManager.RemoveAllInStage();
     }
 
     public void HandleButtons() 
@@ -126,7 +127,7 @@ public class MainMenu : MonoBehaviour
 
         MainCamera.instance.TurnOffAllCameras();
         updateButtons.SetActive(false);
-        DestroyAllEnemies();
+        enemyManager.DestroyAllEnemies();
         //shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         //PhaseManager.instance.SetCurrentPhase0();
@@ -145,14 +146,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void DestroyAllEnemies()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in enemies)
-        {
-            Destroy(enemy);
-        }
-    }
+
 
     public void Pause()
     {
@@ -229,6 +223,7 @@ public class MainMenu : MonoBehaviour
         //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
+        enemyManager.DestroyAllEnemies();
 
         EnterInMainMenu();
     }

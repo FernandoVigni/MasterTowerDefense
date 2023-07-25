@@ -95,7 +95,8 @@ public class Enemy : MonoBehaviour
 
     public void LookTower()
     {
-        transform.LookAt(tower.GetTowerPosition());
+        if(tower != null)
+            transform.LookAt(tower.GetTowerPosition());
     }
 
     public void StartMove()
