@@ -90,7 +90,6 @@ public class Projectile : MonoBehaviour
     {
         StopMove();
         InstantiateRandomExplosion();
-        fireBallManager.MoveToInitialZone(this);
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         {
             if (other.gameObject.CompareTag("Enemy"))
@@ -98,5 +97,6 @@ public class Projectile : MonoBehaviour
                 other.GetComponent<Enemy>().ReceibeDamage(damage);
             }
         }
+        fireBallManager.MoveToInitialZone(this);
     }
 }

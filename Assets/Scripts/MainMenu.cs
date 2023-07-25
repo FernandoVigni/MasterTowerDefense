@@ -124,14 +124,11 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
-
         MainCamera.instance.TurnOffAllCameras();
         updateButtons.SetActive(false);
         enemyManager.DestroyAllEnemies();
-        //shoot.SetActive(false);
+        shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
-        //PhaseManager.instance.SetCurrentPhase0();
-        //Time.timeScale = 0f;
         loading.SetActive(true);
         magicCircles.SetActive(true);
         TurnOffSparksPlayButton();
@@ -143,17 +140,15 @@ public class MainMenu : MonoBehaviour
         prophecyScreen.StartProphecyScene();
         buttonOptions.SetActive(true);
         goldStatus.gameObject.SetActive(true);
+
         Time.timeScale = 1f;
     }
-
-
-
     public void Pause()
     {
         AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         buttonOptions.SetActive(false);
-        //shoot.SetActive(false);
+        shoot.SetActive(false);
         optionsInGameMenu.SetActive(true);
         menuOptions.SetActive(true);
     }
@@ -163,7 +158,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
-        //shoot.SetActive(true);
+        shoot.SetActive(true);
         Time.timeScale = 1f;
     }
 

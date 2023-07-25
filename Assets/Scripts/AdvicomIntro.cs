@@ -11,9 +11,12 @@ public class AdvicomIntro : MonoBehaviour
     public GameObject powerUpButton;
     public GameObject powerUpminesDeploy;
     public GameObject hyperBeamButton;
+    public EnemyManager enemyManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        enemyManager.DestroyAllEnemies();
         powerUpButton.SetActive(false);
         powerUpminesDeploy.SetActive(false);
         hyperBeamButton.SetActive(false);

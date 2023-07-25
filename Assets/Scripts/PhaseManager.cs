@@ -36,12 +36,28 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] public GameObject MinesDeploy;
 
     //----------
+    //Real Phases
+    /*
     int[] coefficient =              { 1, 1, 2, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 1, 3, 5 };
     int[] amountOfWarriosByPhase =   { 7, 6, 7, 7 };
     int[] amountOfMagesByPhase =     { 5, 3, 4, 5 };
     int[] amountOfRunnersByPhase =   { 0, 6, 0, 0 };
     int[] amountOfGiantsByPhase =    { 2, 0, 3, 3 };
+    */
+
+
+    
+    // Test phases
+    int[] coefficient =              { 1, 1, 2, 2 };
+    int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
+    int[] amountOfWarriosByPhase =   { 2, 2, 2, 2 };
+    int[] amountOfMagesByPhase =     { 2, 2, 2, 2 };
+    int[] amountOfRunnersByPhase =   { 0, 2, 0, 0 };
+    int[] amountOfGiantsByPhase =    { 1, 0, 2, 2 }; 
+
+
+    
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -68,6 +84,11 @@ public class PhaseManager : MonoBehaviour
     private void Start()
     {
         audioManager = FindAnyObjectByType<AudioManager>();
+        ResetPhase();
+    }
+
+    public void ResetPhase() 
+    {
         currentPhase = 0;
     }
 
@@ -102,7 +123,7 @@ public class PhaseManager : MonoBehaviour
     public async Task ActivateAnimationPhaseOne()
     {
         MainCamera.instance.TurnOffPhaseOneCameras();
-        PhaseManager.instance.portals.TurnOffPortals();
+        portals.TurnOffPortals();
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
         await Task.Delay(6000);
         meteorites.SetActive(true);
