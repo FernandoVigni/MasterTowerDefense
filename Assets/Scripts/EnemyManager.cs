@@ -123,9 +123,9 @@ public class EnemyManager : MonoBehaviour
     {
         coefficient = PhaseManager.instance.GetCoefficient();
         enemy.SetCoefficient(coefficient);
-        enemy.lifeBar.SetMaxLife(enemy.currentLife);
         enemy.isWalking = false;
         enemy.OnDeath += OnEnemyDeath;
+        enemy.SetMaxLife(enemy.currentLife);
         listOfEnemiesToDefeatInThisPhase.Add(enemy);
         if (enemy.coefficient == 2) 
         {

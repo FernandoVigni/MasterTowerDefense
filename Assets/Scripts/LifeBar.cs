@@ -5,25 +5,21 @@ using UnityEngine.UI;
 
 public class LifeBar : MonoBehaviour
 {
-    public Image lifeBar;
-    public float maxLife;
-
     private Transform mainCameraTransform;
+    private Slider slider;
+    public float lifePercentage;
 
     private void Start()
     {
         mainCameraTransform = Camera.main.transform;
+        slider = GetComponent<Slider>();  
     }
 
-    public void SetRemainingLifeToShow(float currentLife)
+    public void SetRemainingLifeToShow(float currentLife, float maxLife)
     {
-        float lifePercentage = currentLife / maxLife;
-        lifeBar.fillAmount = lifePercentage;
-    }
-
-    public void SetMaxLife(float maxLife)
-    {
-        this.maxLife = maxLife;
+        lifePercentage = currentLife / maxLife;
+        slider.value = lifePercentage;
+        //aplicar el % current para mostrar.
     }
 
     private void LateUpdate()

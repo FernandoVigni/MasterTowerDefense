@@ -38,16 +38,21 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        lifeBar.SetRemainingLifeToShow(currentLife);
+        lifeBar.SetRemainingLifeToShow(currentLife, maxLife);
         if (isWalking)
         {
             distanceToTower = CalculateDistanceToTower();
-            if (distanceToTower > 300)
+            if (distanceToTower > 350)
             {
                 ReceibeDamage(1000000);
             }
             Walk();
         }
+    }
+
+    public void SetMaxLife(float maxLife)
+    {
+        this.maxLife = maxLife;
     }
 
     public void RunAnimation()

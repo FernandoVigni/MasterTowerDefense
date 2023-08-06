@@ -38,6 +38,30 @@ public class MainCamera : MonoBehaviour
     public GameObject dragonCamera;
     //public GameObject camera3PersonTowerRightPhaseThree;
 
+    private void Awake()
+    {
+        cinemachineBrain = GetComponent<CinemachineBrain>();
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start()
+    {
+        Application.targetFrameRate = 30;
+        //ActivateCamera(camera1);
+        cam = GetComponent<Camera>();
+        SetCameraSize();
+        timelineDirector = GetComponent<PlayableDirector>();
+    }
+
     public void TurnOffPhaseOneCameras() 
     {
         cameraBaseEndInChaman.SetActive(false);
@@ -79,29 +103,7 @@ public class MainCamera : MonoBehaviour
         cameraChamanBaseEndInPortals.SetActive(false);
         towerLeft.SetActive(false);
     }
-    
-    private void Awake()
-    {
-        cinemachineBrain = GetComponent<CinemachineBrain>();
 
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    void Start()
-    {
-        //ActivateCamera(camera1);
-        cam = GetComponent<Camera>();
-        SetCameraSize();
-        timelineDirector = GetComponent<PlayableDirector>();
-    }
 
     public void ActivateCamera(GameObject camera)
     {

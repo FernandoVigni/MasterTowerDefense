@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
-using Unity.VisualScripting;
 
 public class MainMenu : MonoBehaviour
 {
@@ -31,7 +27,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public Tower tower;
     [SerializeField] public GameObject updateButtons;
 
-   private EnemyManager enemyManager;
+    private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
     public static MainMenu Instance;
 
