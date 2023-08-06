@@ -130,9 +130,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.2595756
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.3702122, z: 0}
 --- !u!54 &5516111858456654801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,6 +156,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8111173480128293152}
     m_Modifications:
+    - target: {fileID: 1177295913673453318, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.81014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177295913673453318, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.79098
+      objectReference: {fileID: 0}
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
       propertyPath: m_Pivot.x
@@ -283,8 +293,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1.5655018
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9617
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1.5800018
+      value: -2.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b2155739c25cce44bb760ae1d59057b, type: 3}

@@ -131,8 +131,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.82
+  m_Center: {x: 0, y: 1.57, z: 0}
 --- !u!54 &-6060687569082280662
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -416,6 +416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1.5800018
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b2155739c25cce44bb760ae1d59057b, type: 3}
