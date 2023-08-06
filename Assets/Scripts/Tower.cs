@@ -48,7 +48,7 @@ public class Tower : MonoBehaviour
             Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
             countDownToShoot = countDownReset;
             if (nearestEnemyInsideCollider != null);
-            Shoot(nearestEnemyInsideCollider);
+                Shoot(nearestEnemyInsideCollider);
         }
     }
 
