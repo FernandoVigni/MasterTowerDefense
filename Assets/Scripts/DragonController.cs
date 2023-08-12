@@ -8,6 +8,7 @@ public class DragonController : MonoBehaviour
     public float objetiveDistance;
     public float actualDistance;
     public GameObject snowThrower;
+    public GameObject snowEfect;
     public Vector3 direction;
     public Vector3[] wayPoints;
     public EnemyManager enemyManager;
@@ -65,12 +66,14 @@ public class DragonController : MonoBehaviour
         if (currentWayPoint == 5 || currentWayPoint == 10)
         {
             snowThrower.SetActive(true);
+            snowEfect.SetActive(true);
         }
         else 
         {
             if (currentWayPoint == 6)
             {
                 snowThrower.SetActive(false);
+                snowEfect.SetActive(false);
             }
         }
     }
@@ -79,6 +82,7 @@ public class DragonController : MonoBehaviour
     {
         currentWayPoint = 1;
         snowThrower.SetActive(false);
+        snowEfect.SetActive(false);
     }
 
     public void SetDirection(Vector3 objective)

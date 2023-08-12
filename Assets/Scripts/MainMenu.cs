@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GoldStatus goldStatus;
     [SerializeField] private GameObject buttonOptions;
     [SerializeField] public ProphecyScreen prophecyScreen;
-    [SerializeField] public GameObject optionsInGameMenu;
+    [SerializeField] public GameObject optionsButton; 
+    [SerializeField] public GameObject goldStatusBox;
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
     [SerializeField] public GameObject victory;
@@ -27,6 +28,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public Tower tower;
     [SerializeField] public GameObject updateButtons;
 
+
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
     public static MainMenu Instance;
@@ -39,6 +41,9 @@ public class MainMenu : MonoBehaviour
     {
         enemyManager = FindAnyObjectByType<EnemyManager>();
         fireBallManager = FindAnyObjectByType<FireBallManager>();
+
+        optionsButton.SetActive(false);
+        goldStatusBox.SetActive(false);
 
         if (Instance == null)
         {
@@ -143,9 +148,9 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
-        buttonOptions.SetActive(false);
+        optionsButton.SetActive(false);
+        goldStatusBox.SetActive(false);
         shoot.SetActive(false);
-        optionsInGameMenu.SetActive(true);
         menuOptions.SetActive(true);
     }
 
@@ -154,6 +159,8 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
+        optionsButton.SetActive(true);
+        goldStatusBox.SetActive(true);
         shoot.SetActive(true);
         Time.timeScale = 1f;
     }
@@ -210,6 +217,8 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        optionsButton.SetActive(false);
+        goldStatusBox.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();

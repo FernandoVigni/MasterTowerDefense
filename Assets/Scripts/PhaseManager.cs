@@ -48,7 +48,7 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
     int[] amountOfWarriosByPhase =   { 2, 2, 2, 2 };
     int[] amountOfMagesByPhase =     { 2, 2, 2, 2 };
-    int[] amountOfRunnersByPhase =   { 0, 2, 0, 0 };
+    int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
     int[] amountOfGiantsByPhase =    { 1, 0, 2, 2 }; 
 
 
@@ -158,6 +158,8 @@ public class PhaseManager : MonoBehaviour
         LoadEnemies();
         enemyManager.SendEnemiesLeftPortal();
         await Task.Delay(1500);
+        MainMenu.Instance.optionsButton.SetActive(true);
+        MainMenu.Instance.goldStatusBox.SetActive(true);
         orcShaman.SetActive(false);
     }
 
