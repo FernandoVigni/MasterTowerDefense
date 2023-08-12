@@ -36,7 +36,7 @@ public class ProphecyScreen : MonoBehaviour
     {
         await Task.Delay(1500);
         animator.SetBool("AppearTextOne", true);
-        await Task.Delay(3500);
+        await Task.Delay(2500);
         textOneVisible.SetActive(true);
         animator.SetBool("AppearTextOne", false);
         await PlayTextTwo();
@@ -65,7 +65,7 @@ public class ProphecyScreen : MonoBehaviour
     public async Task TurnOnLetsGoButton()
     {
         animator.SetBool("AppearLetsGoButton", true);
-        await Task.Delay(3500);
+        await Task.Delay(2000);
         letsGoButtonVisible.SetActive(true);
         SparksSystem.SetActive(true);
         animator.SetBool("AppearLetsGoButton", false);
@@ -78,7 +78,21 @@ public class ProphecyScreen : MonoBehaviour
         textThreeVisible.SetActive(false);
     }
 
+
     public void StartGame()
+    {
+        ManageSounds();
+    }
+
+    public async Task ManageSounds() 
+    {
+        AudioManager.Instance.PlaySFX("ProphecyScreenButton");
+        AudioManager.Instance.StopMusic();
+        await Task.Delay(2500);
+        ActivateStartFunctions();
+    }
+
+    public void ActivateStartFunctions() 
     {
         SetInvisibleTexts();
         SparksSystem.SetActive(false);

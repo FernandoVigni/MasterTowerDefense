@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     public float atackSpeed;
     public int recivedGoldInThisPhase;
     public bool isWalking;
+    public bool isAtacking;
     public float distanceToTower;
     public float coefficient;
     public Vector3 scale;
@@ -87,14 +88,16 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        if (distanceToTower > 55 && GetComponent<Mage>() == null)
+        if (distanceToTower > 55 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            isAtacking = true;
         }
 
         if (distanceToTower > 80 && GetComponent<Mage>() != null)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            isAtacking = true;
         }
     }
 

@@ -49,6 +49,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
+    }
+
+    public void StopSFX()
+    {
+        if (sfxSource.isPlaying)
+        {
+            sfxSource.Stop();
+        }
+    }
+
     public void ToggleMusic()
     {
         if (musicSource.volume <= 0)

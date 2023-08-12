@@ -16,6 +16,7 @@ public class AdvicomIntro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.PlayMusic("musicLogo");
         enemyManager.DestroyAllEnemies();
         powerUpButton.SetActive(false);
         powerUpminesDeploy.SetActive(false);
@@ -24,7 +25,6 @@ public class AdvicomIntro : MonoBehaviour
         animator.SetBool("AdvicomFadeIn", true);
         ShineLogo();
         MainMenu.Instance.shoot.SetActive(false);
-
     }
 
     public async Task ShineLogo()
@@ -37,7 +37,7 @@ public class AdvicomIntro : MonoBehaviour
     public async Task PlaySFXShineLogo()
     {
         await Task.Delay(1000);
-        AudioManager.Instance.PlaySFX("ShineLogo");
+        //AudioManager.Instance.PlaySFX("ShineLogo");
         AdvicomFadeOut();
     }
     public async Task AdvicomFadeOut()

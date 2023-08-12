@@ -86,10 +86,22 @@ public class Projectile : MonoBehaviour
         Destroy(explosion);
     }
 
+    private void PlayRandomExplosionSFX()
+    {
+        List<string> explosionSounds = new List<string> { "Explosion0", "Explosion1" };
+
+        int randomIndex = UnityEngine.Random.Range(0, explosionSounds.Count);
+        string selectedSound = explosionSounds[randomIndex];
+
+        AudioManager.Instance.PlaySFX(selectedSound);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         StopMove();
         InstantiateRandomExplosion();
+        PlayRandomExplosionSFX();
+
         if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
         {
             if (other.gameObject.CompareTag("Enemy"))
