@@ -117,6 +117,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        AudioManager.Instance.PlayMusic("Intro");
         necromanerScene.SetActive(false);
         orcShaman.SetActive(true);
         flashMeteorites.SetActive(false);
@@ -132,11 +133,13 @@ public class PhaseManager : MonoBehaviour
         orcShaman.SetActive(false);
         await Task.Delay(4500);
         leftExplosion.SetActive(true);
+        AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(600);
         leftRocksToDestroy.SetActive(false);
         await Task.Delay(1600);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(true);
+        AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(400);
         rightRocksToDestroy.SetActive(false);
         flashMeteorites.SetActive(true);
