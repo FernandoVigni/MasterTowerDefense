@@ -77,6 +77,7 @@ public class GoldStatus : MonoBehaviour
         float costHability0 = habilityHandler.HabilityList[0].cost;
         if (currentGold > costHability0)
         {
+            AudioManager.Instance.PlaySFX("HabilityCoinSpended");
             UseGold(costHability0);
             PlayerPrefs.SetFloat(variablePowerUp, 1f);
             PlayerPrefs.Save();
@@ -88,6 +89,7 @@ public class GoldStatus : MonoBehaviour
         float costHability1 = habilityHandler.HabilityList[1].cost;
         if (currentGold >= costHability1)
         {
+            AudioManager.Instance.PlaySFX("HabilityCoinSpended");
             UseGold(costHability1);
             PlayerPrefs.SetFloat(variableMinesDeploy, 1f);
             PlayerPrefs.Save();
@@ -99,6 +101,7 @@ public class GoldStatus : MonoBehaviour
         float costHability2 = habilityHandler.HabilityList[2].cost;
         if (currentGold >= costHability2)
         {
+            AudioManager.Instance.PlaySFX("HabilityCoinSpended");
             UseGold(costHability2);
             PlayerPrefs.SetFloat(variableHyperBeam, 1f);
             PlayerPrefs.Save();

@@ -12,9 +12,8 @@ public class DragonController : MonoBehaviour
     public Vector3 direction;
     public Vector3[] wayPoints;
     public EnemyManager enemyManager;
-    Quaternion targetRotation; 
-
-
+    Quaternion targetRotation;
+    public bool isFirstRoar;
     public Transform point0;
     public Transform point1;
     public Transform point2;
@@ -26,6 +25,16 @@ public class DragonController : MonoBehaviour
     public Transform point8;
     public Transform point9;
     public Transform point10;
+    public Transform dragonSpawnPoint;
+
+    public bool WayPointClearOne = false;
+    public bool WayPointClearTree = false;
+    public bool WayPointClearFour = false;
+    public bool WayPointClearFive = false;
+    public bool WayPointClearSix = false;
+    public bool WayPointClearSeven = false;
+    public bool WayPointClearTen = false;
+
 
     private void Start()
     {
@@ -67,6 +76,7 @@ public class DragonController : MonoBehaviour
         {
             snowThrower.SetActive(true);
             snowEfect.SetActive(true);
+            AudioManager.Instance.PlaySFX("FlameTrhrower");
         }
         else 
         {
@@ -76,13 +86,78 @@ public class DragonController : MonoBehaviour
                 snowEfect.SetActive(false);
             }
         }
+        FlySoundsSelector(); 
+    }
+
+    public void FlySoundsSelector() 
+    {
+        //Roar
+        if (currentWayPoint >= 2 && isFirstRoar == true)
+        {
+            isFirstRoar = false;
+            Roar();
+        }
+
+        //FlamenThrower
+        if (currentWayPoint == 5 && WayPointClearFive != true)
+        {
+            WayPointClearFive = true;
+            snowThrower.SetActive(true);
+            snowEfect.SetActive(true);
+            AudioManager.Instance.PlaySFX("FlameTrhrower");
+        }
+
+        if (currentWayPoint == 10 && WayPointClearTen != true)
+        {
+            WayPointClearTen = true;
+            snowThrower.SetActive(true);
+            snowEfect.SetActive(true);
+            AudioManager.Instance.PlaySFX("FlameTrhrower");
+        }
+
+
+        // Flutter
+        if (currentWayPoint == 1 && WayPointClearOne != true)
+        {
+            WayPointClearOne = true;
+            AudioManager.Instance.PlaySFX("Flutter");
+        }
+
+        if (currentWayPoint == 3 && WayPointClearTree != true)
+        {
+            WayPointClearTree = true;
+            AudioManager.Instance.PlaySFX("Flutter");
+        }
+
+
+        if (currentWayPoint == 6 && WayPointClearSix != true)
+        {
+            WayPointClearFive = true;
+            snowThrower.SetActive(false);
+            snowEfect.SetActive(false);
+        }
+
+
+        if (currentWayPoint == 7 && WayPointClearSeven != true)
+        {
+            WayPointClearSeven = true;
+            AudioManager.Instance.PlaySFX("Flutter");
+        }
+    }
+
+    public void Roar() 
+    {
+        AudioManager.Instance.PlaySFX("DragonRoar");
     }
 
     public void ResetDragon()
     {
+        this.gameObject.transform.position = dragonSpawnPoint.position;
+        isFirstRoar = true;
         currentWayPoint = 1;
         snowThrower.SetActive(false);
         snowEfect.SetActive(false);
+        this.gameObject.SetActive(false);
     }
 
     public void SetDirection(Vector3 objective)

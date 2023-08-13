@@ -134,7 +134,7 @@ public class AudioManager : MonoBehaviour
     public void SFXVolumen(float volume)
     {
         MainMenu.Instance.sfxButtonOff.SetActive(true);
-        sfxSource.mute = false;
+        sfxSource.mute = false; 
         sfxSource.volume = volume;
 
         if (volume <= 0)

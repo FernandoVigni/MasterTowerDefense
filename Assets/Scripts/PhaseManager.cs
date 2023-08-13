@@ -117,6 +117,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        dragon.ResetDragon();
+        //ResetDragon();
         AudioManager.Instance.PlayMusic("Intro");
         necromanerScene.SetActive(false);
         orcShaman.SetActive(true);
