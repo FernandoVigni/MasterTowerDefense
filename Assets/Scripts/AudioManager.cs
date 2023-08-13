@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource;
+    public AudioSource musicSource, sfxSource, sfxSource2, sfxSource3;
 
     private void Awake()
     {
@@ -46,6 +46,34 @@ public class AudioManager : MonoBehaviour
         {
             sfxSource.clip = sound.clip;
             sfxSource.Play();
+        }
+    }
+
+    public void PlaySFX2(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+        if (sound == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource2.clip = sound.clip;
+            sfxSource2.Play();
+        }
+    }
+
+    public void PlaySFX3(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+        if (sound == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource3.clip = sound.clip;
+            sfxSource3.Play();
         }
     }
 

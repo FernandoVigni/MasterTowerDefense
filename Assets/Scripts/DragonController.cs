@@ -71,21 +71,6 @@ public class DragonController : MonoBehaviour
                 currentWayPoint++; // Pasar al siguiente waypoint
             }
         }
-
-        if (currentWayPoint == 5 || currentWayPoint == 10)
-        {
-            snowThrower.SetActive(true);
-            snowEfect.SetActive(true);
-            AudioManager.Instance.PlaySFX("FlameTrhrower");
-        }
-        else 
-        {
-            if (currentWayPoint == 6)
-            {
-                snowThrower.SetActive(false);
-                snowEfect.SetActive(false);
-            }
-        }
         FlySoundsSelector(); 
     }
 
@@ -104,7 +89,7 @@ public class DragonController : MonoBehaviour
             WayPointClearFive = true;
             snowThrower.SetActive(true);
             snowEfect.SetActive(true);
-            AudioManager.Instance.PlaySFX("FlameTrhrower");
+            AudioManager.Instance.PlaySFX2("FlameTrhrower");
         }
 
         if (currentWayPoint == 10 && WayPointClearTen != true)
@@ -112,42 +97,39 @@ public class DragonController : MonoBehaviour
             WayPointClearTen = true;
             snowThrower.SetActive(true);
             snowEfect.SetActive(true);
-            AudioManager.Instance.PlaySFX("FlameTrhrower");
+            AudioManager.Instance.PlaySFX2("FlameTrhrower");
         }
-
 
         // Flutter
         if (currentWayPoint == 1 && WayPointClearOne != true)
         {
             WayPointClearOne = true;
-            AudioManager.Instance.PlaySFX("Flutter");
+            AudioManager.Instance.PlaySFX3("Flutter");
         }
 
         if (currentWayPoint == 3 && WayPointClearTree != true)
         {
             WayPointClearTree = true;
-            AudioManager.Instance.PlaySFX("Flutter");
+            AudioManager.Instance.PlaySFX3("Flutter");
         }
-
 
         if (currentWayPoint == 6 && WayPointClearSix != true)
         {
-            WayPointClearFive = true;
+            WayPointClearSix = true;
             snowThrower.SetActive(false);
             snowEfect.SetActive(false);
         }
 
-
         if (currentWayPoint == 7 && WayPointClearSeven != true)
         {
             WayPointClearSeven = true;
-            AudioManager.Instance.PlaySFX("Flutter");
+            AudioManager.Instance.PlaySFX3("Flutter");
         }
     }
 
     public void Roar() 
     {
-        AudioManager.Instance.PlaySFX("DragonRoar");
+        AudioManager.Instance.PlaySFX2("DragonRoar");
     }
 
     public void ResetDragon()

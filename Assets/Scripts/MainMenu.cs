@@ -144,6 +144,7 @@ public class MainMenu : MonoBehaviour
 
         Time.timeScale = 1f;
     }
+
     public void Pause()
     {
         AudioManager.Instance.PlaySFX("Button");
