@@ -77,6 +77,33 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+
+    public void PlaySFXExplosionOne(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+        if (sound == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource3.clip = sound.clip;
+            sfxSource3.Play();
+        }
+    }
+    public void PlaySFXExplosionTwo(string name)
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == name);
+        if (sound == null)
+        {
+            Debug.Log("Sound not found");
+        }
+        else
+        {
+            sfxSource3.clip = sound.clip;
+            sfxSource3.Play();
+        }
+    }
     public void StopMusic()
     {
         if (musicSource.isPlaying)

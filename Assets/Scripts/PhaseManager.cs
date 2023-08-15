@@ -54,7 +54,7 @@ public class PhaseManager : MonoBehaviour
 
     
 
-    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "PhaseBoss", "Victory", "Lose" };
+    string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
     //string[] songsNames = { "MainMenu","AnimationPhase0", "Phase0", "AnimationPhase1", "Phase1", "AnimationPhase2", "Phase2", "AnimationPhaseBoss", "PhaseBoss" };
 
@@ -138,7 +138,7 @@ public class PhaseManager : MonoBehaviour
         AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(600);
         leftRocksToDestroy.SetActive(false);
-        await Task.Delay(1600);
+        await Task.Delay(600);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
@@ -182,7 +182,7 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
         orcShaman.SetActive(true);
-        PlayMusic();
+        //PlayMusic();
         LoadEnemies();
         await Task.Delay(2000);
         enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
@@ -200,6 +200,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        PlayMusic();
         MainCamera.instance.TurnOffPhaseThreeCameras();
         necromanerScene.SetActive(true);
         enemiesPhaseOne.SetActive(true);
