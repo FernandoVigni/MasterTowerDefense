@@ -65,7 +65,7 @@ public class ProphecyScreen : MonoBehaviour
     public async Task TurnOnLetsGoButton()
     {
         animator.SetBool("AppearLetsGoButton", true);
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         letsGoButtonVisible.SetActive(true);
         SparksSystem.SetActive(true);
         animator.SetBool("AppearLetsGoButton", false);

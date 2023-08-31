@@ -26,6 +26,7 @@ public class DragonController : MonoBehaviour
     public Transform point9;
     public Transform point10;
     public Transform dragonSpawnPoint;
+    public GameObject GroundBurning;
 
     public bool WayPointClearOne = false;
     public bool WayPointClearTree = false;
@@ -89,6 +90,7 @@ public class DragonController : MonoBehaviour
             WayPointClearFive = true;
             snowThrower.SetActive(true);
             snowEfect.SetActive(true);
+            GroundBurning.SetActive(true);
             AudioManager.Instance.PlaySFX2("FlameTrhrower");
         }
 
@@ -134,6 +136,7 @@ public class DragonController : MonoBehaviour
 
     public void ResetDragon()
     {
+        GroundBurning.SetActive(false);
         this.gameObject.transform.position = dragonSpawnPoint.position;
         isFirstRoar = true;
         currentWayPoint = 1;

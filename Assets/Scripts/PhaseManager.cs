@@ -24,7 +24,7 @@ public class PhaseManager : MonoBehaviour
     public float waveLimitTime;
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
-    public DragonController dragon;
+    public DragonController dragonController;
     public GoldStatus goldStatus;
     public GameObject orcShaman;
 
@@ -117,7 +117,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
-        dragon.ResetDragon();
+        dragonController.ResetDragon();
         //ResetDragon();
         AudioManager.Instance.PlayMusic("Intro");
         necromanerScene.SetActive(false);
@@ -147,6 +147,7 @@ public class PhaseManager : MonoBehaviour
         flashMeteorites.SetActive(true);
         await Task.Delay(400);
         meteorites.SetActive(false);
+        AudioManager.Instance.PlaySFX("WindOutside");
         await Task.Delay(2000);
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
