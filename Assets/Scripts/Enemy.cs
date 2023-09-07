@@ -7,12 +7,15 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
+
+    public int randomNumberToSort;
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
     private Animator animator;
     public LifeBar lifeBar;
     public EnemyManager enemyManager;
+    System.Random random = new System.Random();
 
     public float currentLife;
     public float maxLife;
@@ -35,6 +38,7 @@ public class Enemy : MonoBehaviour
         tower = FindObjectOfType<Tower>();
         enemyManager = FindAnyObjectByType<EnemyManager>();
         //  animator = GetComponent<Animator>();
+        randomNumberToSort = random.Next(1, 10000);
     }
 
     void Update()

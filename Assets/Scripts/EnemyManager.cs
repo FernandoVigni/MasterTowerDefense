@@ -134,9 +134,9 @@ public class EnemyManager : MonoBehaviour
     }
 
     // List Methods
-    public void ShufleList(List<Enemy> list)
+    public void ShufleList()
     {
-        listOfEnemiesToDefeatInThisPhase.Sort((x, y) => UnityEngine.Random.Range(0, 2));
+         listOfEnemiesToDefeatInThisPhase.Sort((enemy1, enemy2) => enemy1.randomNumberToSort.CompareTo(enemy2.randomNumberToSort));
     }
 
     public void RemoveEnemyFromPhase(Enemy enemy) 
@@ -281,7 +281,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemiesInThisLevel > 0)
             {
-                ShufleList(listOfEnemiesToDefeatInThisPhase);
+                ShufleList();
                 Enemy enemy = GetFirstEnemyFromPhaseList();
 
                 if (enemy != null)
@@ -306,7 +306,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (enemiesInThisLevel > 0)
             {
-                ShufleList(listOfEnemiesToDefeatInThisPhase);
+                ShufleList();
                 Enemy enemy = GetFirstEnemyFromPhaseList();
 
                 if (enemy != null)

@@ -29,30 +29,14 @@ public class PhaseManager : MonoBehaviour
     public GameObject orcShaman;
 
     [SerializeField] public GameObject MinesDeploy;
-
-    //----------
-    //Real Phases
-    /*
-    int[] coefficient =              { 1, 1, 2, 2 };
-    int[] amountOfBagOfGoldByPhase = { 1, 1, 3, 5 };
-    int[] amountOfWarriosByPhase =   { 7, 6, 7, 7 };
-    int[] amountOfMagesByPhase =     { 5, 3, 4, 5 };
-    int[] amountOfRunnersByPhase =   { 0, 6, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 3, 3 };
-    */
-
-
-    
+   
     // Test phases
     int[] coefficient =              { 1, 1, 2, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
-    int[] amountOfWarriosByPhase =   { 2, 2, 2, 2 };
-    int[] amountOfMagesByPhase =     { 2, 2, 2, 2 };
+    int[] amountOfWarriosByPhase =   { 7, 2, 2, 2 };
+    int[] amountOfMagesByPhase =     { 2, 9, 2, 2 };
     int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 1, 0, 2, 2 }; 
-
-
-    
+    int[] amountOfGiantsByPhase =    { 2, 0, 4, 2 }; 
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
