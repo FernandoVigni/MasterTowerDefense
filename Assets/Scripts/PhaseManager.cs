@@ -156,14 +156,14 @@ public class PhaseManager : MonoBehaviour
     public async Task ActivateAnimationPhaseTwo()
     {
         MainCamera.instance.TurnOffPhaseTwoCameras();
-        runnerForAnimation.gameObject.SetActive(true);
+        //runnerForAnimation.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
-        runnerForAnimation.Scream();
+        //runnerForAnimation.Scream();
         await Task.Delay(4000);
         MainCamera.instance.towerLeft.SetActive(false);
         MainCamera.instance.cameraFrontRunner.SetActive(true);
         //runnerForAnimation.isWalking = true;    si activo esto se rompe y me tira que no es una instancia o algo asi.
-        await Task.Delay(7000);
+        await Task.Delay(4000);
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
         orcShaman.SetActive(true);
@@ -171,16 +171,18 @@ public class PhaseManager : MonoBehaviour
         LoadEnemies();
         await Task.Delay(2000);
         enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
-        runnerForAnimation.gameObject.SetActive(false);
+        //runnerForAnimation.gameObject.SetActive(false);
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         await Task.Delay(1000);
         enemyManager.SendEnemiesRightPortal();
-        await Task.Delay(3000);
-        orcShaman.SetActive(false);
+        await Task.Delay(4000);
+
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
-        await Task.Delay(5000);
+        await Task.Delay(1000);
+        orcShaman.SetActive(false);
+        await Task.Delay(4000);
     }
 
     public async Task ActivateAnimationPhaseThree()
@@ -204,6 +206,7 @@ public class PhaseManager : MonoBehaviour
         //necromaner.Idle();
         MainCamera.instance.camera3PersonTowerRight.SetActive(false);
         MainCamera.instance.cameraNecromancer.SetActive(true);
+        await Task.Delay(1500);
         necromanerScene.SetActive(false);
 
         LoadEnemies();
