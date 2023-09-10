@@ -101,8 +101,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        MainMenu.Instance.shoot.SetActive(false);
         dragonController.ResetDragon();
-        //ResetDragon();
         AudioManager.Instance.PlayMusic("Intro");
         necromanerScene.SetActive(false);
         orcShaman.SetActive(true);
@@ -155,29 +155,26 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        MainMenu.Instance.shoot.SetActive(false);
         MainCamera.instance.TurnOffPhaseTwoCameras();
-        //runnerForAnimation.gameObject.SetActive(true);
         MainCamera.instance.towerLeft.SetActive(true);
-        //runnerForAnimation.Scream();
         await Task.Delay(4000);
         MainCamera.instance.towerLeft.SetActive(false);
         MainCamera.instance.cameraFrontRunner.SetActive(true);
-        //runnerForAnimation.isWalking = true;    si activo esto se rompe y me tira que no es una instancia o algo asi.
         await Task.Delay(4000);
         MainCamera.instance.cameraFrontRunner.SetActive(false);
         MainCamera.instance.camera3PersonRunner.SetActive(true);
         orcShaman.SetActive(true);
-        //PlayMusic();
         LoadEnemies();
         await Task.Delay(2000);
-        enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
-        //runnerForAnimation.gameObject.SetActive(false);
+//        enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         await Task.Delay(1000);
         enemyManager.SendEnemiesRightPortal();
-        await Task.Delay(4000);
-
+        await Task.Delay(2000);
+        MainMenu.Instance.shoot.SetActive(true);
+        await Task.Delay(2000);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(1000);
@@ -187,6 +184,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        MainMenu.Instance.shoot.SetActive(false);
+        await Task.Delay(2000);
         PlayMusic();
         MainCamera.instance.TurnOffPhaseThreeCameras();
         necromanerScene.SetActive(true);
@@ -208,6 +207,7 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraNecromancer.SetActive(true);
         await Task.Delay(1500);
         necromanerScene.SetActive(false);
+        MainMenu.Instance.shoot.SetActive(true);
 
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();

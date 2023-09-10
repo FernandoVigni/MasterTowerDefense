@@ -22,11 +22,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject sfxButtonOff;
     [SerializeField] public GameObject game;
     [SerializeField] public GameObject saprksPlay;
+            [SerializeField] private GameObject playClickAnimation;
     [SerializeField] public GameObject saprksLetsGoButton;
     [SerializeField] public GameObject shoot;
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
     [SerializeField] public GameObject updateButtons;
+
 
 
     private EnemyManager enemyManager;
@@ -44,6 +46,7 @@ public class MainMenu : MonoBehaviour
 
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
+        playClickAnimation.SetActive(false);
 
         if (Instance == null)
         {
@@ -125,6 +128,8 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+        AudioManager.Instance.PlaySFX("PlaySFXPlayButton");
+        await Task.Delay(1500);
         MainCamera.instance.TurnOffAllCameras();
         updateButtons.SetActive(false);
         enemyManager.DestroyAllEnemies();
@@ -139,7 +144,7 @@ public class MainMenu : MonoBehaviour
         loading.SetActive(false);
         prophecyScreen.gameObject.SetActive(true);
         prophecyScreen.StartProphecyScene();
-        buttonOptions.SetActive(true);
+        buttonOptions.gameObject.SetActive(true);
         goldStatus.gameObject.SetActive(true);
 
         Time.timeScale = 1f;
@@ -225,7 +230,7 @@ public class MainMenu : MonoBehaviour
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
         enemyManager.DestroyAllEnemies();
-
+        TurnOffCLicPlayAnimation();
         EnterInMainMenu();
     }
 
@@ -239,6 +244,8 @@ public class MainMenu : MonoBehaviour
         TurnOnMainMenu();
         AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
+        prophecyScreen.TurnOffLetsGoAnimationOnCLick();
+        
     }
 
     public void Victory() 
@@ -266,6 +273,16 @@ public class MainMenu : MonoBehaviour
     public async Task TurnOnSparksPlayButton()
     {
         saprksPlay.SetActive(true);
+    }
+
+    public void StartCLicPlayAnimation() 
+    {
+        playClickAnimation.SetActive(true);
+    }
+
+    public void TurnOffCLicPlayAnimation()
+    {
+        playClickAnimation.SetActive(false);
     }
 
     public void Exit()

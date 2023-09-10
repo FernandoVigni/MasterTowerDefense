@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     public Sound[] musicSounds, sfxSounds;
-    public AudioSource musicSource, sfxSource, sfxSource2, sfxSource3;
+    public AudioSource musicSource, sfxSource, sfxSource2, sfxSource3, PlaySFXPlayButton;
 
     private void Awake()
     {
@@ -77,6 +77,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlaySFXCLicPlay()
+    {
+        Sound sound = Array.Find(sfxSounds, x => x.name == "PlaySFXPlayButton");
+        if (sound == null)
+        {
+            PlaySFXPlayButton.clip = sound.clip;
+            PlaySFXPlayButton.Play();
+        }
+    }
+
 
     public void PlaySFXExplosionOne(string name)
     {
@@ -91,6 +101,7 @@ public class AudioManager : MonoBehaviour
             sfxSource3.Play();
         }
     }
+
     public void PlaySFXExplosionTwo(string name)
     {
         Sound sound = Array.Find(sfxSounds, x => x.name == name);
@@ -203,4 +214,5 @@ public class AudioManager : MonoBehaviour
             MainMenu.Instance.sfxButtonOff.SetActive(false);
         }
     }
+
 }
