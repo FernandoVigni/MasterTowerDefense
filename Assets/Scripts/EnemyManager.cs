@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 
     public Warrior warrior;
     public Mage mage;
-    public Runner runner;
+    //public Runner runner;
     public Giant giant;
     public Boss boss;
 
@@ -56,11 +56,11 @@ public class EnemyManager : MonoBehaviour
         SetEnemy(newMageEnemy);
     }
 
-    public void InstantiateRunner()
+  /*  public void InstantiateRunner()
     {
         Runner newRunnerEnemy = Instantiate(runner, positionToInstantiateEnemies.position, Quaternion.identity);
         SetEnemy(newRunnerEnemy);
-    }
+    }*/
 
     public void InstantiateGiant()
     {

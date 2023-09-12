@@ -46,7 +46,7 @@ public class MainMenu : MonoBehaviour
 
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
-        playClickAnimation.SetActive(false);
+        //playClickAnimation.SetActive(false);
 
         if (Instance == null)
         {

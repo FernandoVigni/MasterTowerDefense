@@ -16,7 +16,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject meteorites;
     public GameObject flashMeteorites;
     public GameObject DeathExplosion;
-    public Runner runnerForAnimation;
+   // public Runner runnerForAnimation;
     public GameObject blueDragon;
     public Necromancer necromaner;
     public GameObject necromanerScene;  
@@ -28,6 +28,13 @@ public class PhaseManager : MonoBehaviour
     public GoldStatus goldStatus;
     public GameObject orcShaman;
 
+    public CanvaMovementObjet canvaLeverOneWhite;
+    public CanvaMovementObjet canvaLeverOneBlack;
+    public CanvaMovementObjet canvaLeverTwoWhite;
+    public CanvaMovementObjet canvaLeverTwoBlack;
+    public CanvaMovementObjet canvaLeverTreeWhite;
+    public CanvaMovementObjet canvaLeverTreeBlack;
+
     [SerializeField] public GameObject MinesDeploy;
    
     // Test phases
@@ -35,7 +42,7 @@ public class PhaseManager : MonoBehaviour
     int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
     int[] amountOfWarriosByPhase =   { 7, 2, 2, 2 };
     int[] amountOfMagesByPhase =     { 2, 9, 2, 2 };
-    int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
+    //int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
     int[] amountOfGiantsByPhase =    { 2, 0, 4, 2 }; 
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
@@ -46,7 +53,7 @@ public class PhaseManager : MonoBehaviour
 
     private void Awake()
     {
-        Runner runner = GetComponent<Runner>();
+        //Runner runner = GetComponent<Runner>();
         enemyManager = FindObjectOfType<EnemyManager>();
 
         if (instance == null)
@@ -101,6 +108,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        MainMenu.Instance.optionsButton.SetActive(false);
+        MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
         dragonController.ResetDragon();
         AudioManager.Instance.PlayMusic("Intro");
@@ -141,20 +150,27 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
+        canvaLeverOneWhite.gameObject.SetActive(true);
+        canvaLeverOneBlack.gameObject.SetActive(true);
+        canvaLeverOneWhite.FadeOutAndDeactivate();
+        canvaLeverOneBlack.FadeOutAndDeactivate();
         await Task.Delay(2500);
-        MainMenu.Instance.shoot.SetActive(true);
-        MainCamera.instance.portalsEndInChaman.SetActive(false);
-        MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         LoadEnemies();
-        enemyManager.SendEnemiesLeftPortal();
-        await Task.Delay(1500);
+        MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
+        MainCamera.instance.portalsEndInChaman.SetActive(false);
+        MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
+        enemyManager.SendEnemiesLeftPortal();
+        await Task.Delay(1500);
         orcShaman.SetActive(false);
+
     }
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        MainMenu.Instance.optionsButton.SetActive(false);
+        MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
         MainCamera.instance.TurnOffPhaseTwoCameras();
         MainCamera.instance.towerLeft.SetActive(true);
@@ -174,6 +190,8 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesRightPortal();
         await Task.Delay(2000);
         MainMenu.Instance.shoot.SetActive(true);
+        MainMenu.Instance.optionsButton.SetActive(true);
+        MainMenu.Instance.goldStatusBox.SetActive(true);
         await Task.Delay(2000);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
@@ -184,6 +202,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        MainMenu.Instance.optionsButton.SetActive(false);
+        MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
         await Task.Delay(2000);
         PlayMusic();
@@ -208,6 +228,8 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1500);
         necromanerScene.SetActive(false);
         MainMenu.Instance.shoot.SetActive(true);
+        MainMenu.Instance.optionsButton.SetActive(true);
+        MainMenu.Instance.goldStatusBox.SetActive(true);
 
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();
@@ -298,8 +320,8 @@ public class PhaseManager : MonoBehaviour
             for (int i = 0; i < amountOfGiantsByPhase[currentPhase]; i++)
             { enemyManager.InstantiateGiant(); }
 
-            for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
-            { enemyManager.InstantiateRunner(); }
+      //      for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
+        //    { enemyManager.InstantiateRunner(); }
 
             //enemyManager.SendEnemiesLeftPortal();
         }
