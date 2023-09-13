@@ -42,6 +42,12 @@ public class Tower : MonoBehaviour
         }
     }
 
+    public void RecibeDamage(float phisicalDamage, float magicDamage) 
+    {
+        float totalDamageToDeal = phisicalDamage + magicDamage;
+        this.life -= this.life - totalDamageToDeal;
+    }
+
     public void ShootNearestEnemy()
     {
         if(countDownToShoot < manualShoot) 

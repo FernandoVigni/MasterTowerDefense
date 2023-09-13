@@ -197,6 +197,8 @@ public class MainMenu : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
+        PhaseManager.instance.TurnOffLoseScreen();
+        PhaseManager.instance.TurnOffWinScreen();
     }
 
     public void CleanUiInGame() 
@@ -226,7 +228,6 @@ public class MainMenu : MonoBehaviour
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
-        //fireBallManager.RemoveAllFireballs();
         enemyManager.RemoveAllInCollider();
         enemyManager.RemoveAllInStage();
         enemyManager.DestroyAllEnemies();

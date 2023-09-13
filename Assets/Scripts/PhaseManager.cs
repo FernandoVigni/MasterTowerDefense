@@ -38,6 +38,8 @@ public class PhaseManager : MonoBehaviour
     public CanvaMovementObjet canvaLeverFinalWhite;
     public CanvaMovementObjet canvaLeverFinalBlack;
 
+    public GameObject winScreen;
+    public GameObject loseScreen;
 
     [SerializeField] public GameObject MinesDeploy;
    
@@ -154,7 +156,9 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
-        
+        TurnOnWinScreen();
+
+
         canvaLeverOneWhite.gameObject.SetActive(true);
         canvaLeverOneBlack.gameObject.SetActive(true);
         canvaLeverOneWhite.FadeOutAndDeactivate();
@@ -221,7 +225,6 @@ public class PhaseManager : MonoBehaviour
         enemiesPhaseTwo.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(false);
         MainCamera.instance.camera3PersonTowerRight.SetActive(true);
-        //necromaner.Atack();
         await Task.Delay(3000);
         DeathExplosion.SetActive(true);
         await Task.Delay(300);
@@ -230,7 +233,6 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1000);
         DeathExplosion.SetActive(false);
         await Task.Delay(3000);
-        //necromaner.Idle();
         MainCamera.instance.camera3PersonTowerRight.SetActive(false);
         MainCamera.instance.cameraNecromancer.SetActive(true);
         await Task.Delay(1500);
@@ -238,7 +240,6 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
-
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();
         canvaLeverThreeWhite.gameObject.SetActive(true);
@@ -247,8 +248,6 @@ public class PhaseManager : MonoBehaviour
         canvaLeverThreeBlack.FadeOutAndDeactivate();
         CheckMinesActives();
     }
-
-
 
     public void CheckMinesActives() 
     {
@@ -264,8 +263,6 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseFour()
     {
-
-
         MainCamera.instance.cameraNecromancer.SetActive(false);
         MainCamera.instance.TurnOffPhaseFourCameras();
         blueDragon.transform.position = BlueSpawnPosition.position;
@@ -323,6 +320,32 @@ public class PhaseManager : MonoBehaviour
     public float GetAmountBagOfGold() 
     {
         return amountOfBagOfGoldByPhase[currentPhase];
+    }
+
+    public void TurnOnWinScreen() 
+    {
+        MainMenu.Instance.shoot.SetActive(false);
+        winScreen.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
+    public void TurnOnLoseScreen()
+    {
+        MainMenu.Instance.shoot.SetActive(false);
+        loseScreen.SetActive(true);
+        Time.timeScale = 1f;
+    }
+
+    public void TurnOffWinScreen()
+    {
+        winScreen.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void TurnOffLoseScreen()
+    {
+        loseScreen.SetActive(false);
+        Time.timeScale = 1f;
     }
 
     public void LoadEnemies()
