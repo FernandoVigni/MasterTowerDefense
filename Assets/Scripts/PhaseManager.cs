@@ -136,13 +136,13 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(600);
         leftRocksToDestroy.SetActive(false);
         await Task.Delay(600);
-        leftExplosion.SetActive(false);
         rightExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(400);
         rightRocksToDestroy.SetActive(false);
         flashMeteorites.SetActive(true);
         await Task.Delay(400);
+        leftExplosion.SetActive(false);
         meteorites.SetActive(false);
         AudioManager.Instance.PlaySFX("WindOutside");
         await Task.Delay(2000);
@@ -205,7 +205,7 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(1000);
         orcShaman.SetActive(false);
-        await Task.Delay(4000);
+        await Task.Delay(1500);
     }
 
     public async Task ActivateAnimationPhaseThree()

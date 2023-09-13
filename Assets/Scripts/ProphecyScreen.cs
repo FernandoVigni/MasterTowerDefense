@@ -16,8 +16,6 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public Tower tower;
     [SerializeField] private GameObject LetsGoClickAnimation;
 
-
-
     public Animator animator;
 
     private void Start()
@@ -31,7 +29,6 @@ public class ProphecyScreen : MonoBehaviour
         LetsGoClickAnimation.SetActive(false);
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
-
     }
 
     public void StartProphecyScene()
@@ -84,7 +81,6 @@ public class ProphecyScreen : MonoBehaviour
         textTwoVisible.SetActive(false);
         textThreeVisible.SetActive(false);
     }
-
 
     public void StartGame()
     {
