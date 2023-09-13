@@ -68,7 +68,8 @@ public class Enemy : MonoBehaviour
     public void recalculateStatsWithTheCoefficient(float coefficient)
     {
         goldValueOnDeath = (int)((float)goldValueOnDeath * coefficient);
-        currentLife *= coefficient;
+        maxLife *= coefficient;
+        currentLife = maxLife;
         speed *= coefficient;
         physicalDamage *= coefficient;
         magicDamage *= coefficient;
