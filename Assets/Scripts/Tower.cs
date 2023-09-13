@@ -19,6 +19,7 @@ public class Tower : MonoBehaviour
     public float launchForce;
     public int ammountOfMines;
     public int secondsBetweenMines;
+    public GameObject FlashShootEffect;
 
     public Transform CornerA;
     public Transform CornerB;
@@ -78,6 +79,8 @@ public class Tower : MonoBehaviour
         if (objetive != null)
         {
             fireBallManager.ShootProjectile(objetive);
+            FlashShootEffect.SetActive(false);
+            FlashShootEffect.SetActive(true);
         }
     }
 

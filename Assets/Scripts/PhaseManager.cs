@@ -7,6 +7,7 @@ public class PhaseManager : MonoBehaviour
 
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
+    public Transform BlueSpawnPosition;
     private AudioManager audioManager;
     public PortalsManager portals;
     public GameObject leftRocksToDestroy;
@@ -32,8 +33,11 @@ public class PhaseManager : MonoBehaviour
     public CanvaMovementObjet canvaLeverOneBlack;
     public CanvaMovementObjet canvaLeverTwoWhite;
     public CanvaMovementObjet canvaLeverTwoBlack;
-    public CanvaMovementObjet canvaLeverTreeWhite;
-    public CanvaMovementObjet canvaLeverTreeBlack;
+    public CanvaMovementObjet canvaLeverThreeWhite;
+    public CanvaMovementObjet canvaLeverThreeBlack;
+    public CanvaMovementObjet canvaLeverFinalWhite;
+    public CanvaMovementObjet canvaLeverFinalBlack;
+
 
     [SerializeField] public GameObject MinesDeploy;
    
@@ -150,10 +154,12 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
+        
         canvaLeverOneWhite.gameObject.SetActive(true);
         canvaLeverOneBlack.gameObject.SetActive(true);
         canvaLeverOneWhite.FadeOutAndDeactivate();
         canvaLeverOneBlack.FadeOutAndDeactivate();
+
         await Task.Delay(2500);
         LoadEnemies();
         MainMenu.Instance.shoot.SetActive(true);
@@ -164,7 +170,6 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesLeftPortal();
         await Task.Delay(1500);
         orcShaman.SetActive(false);
-
     }
 
     public async Task ActivateAnimationPhaseTwo()
@@ -183,11 +188,14 @@ public class PhaseManager : MonoBehaviour
         orcShaman.SetActive(true);
         LoadEnemies();
         await Task.Delay(2000);
-//        enemyManager.RemoveEnemiesInsideColliderList(runnerForAnimation);
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         await Task.Delay(1000);
         enemyManager.SendEnemiesRightPortal();
+        canvaLeverTwoWhite.gameObject.SetActive(true);
+        canvaLeverTwoBlack.gameObject.SetActive(true);
+        canvaLeverTwoWhite.FadeOutAndDeactivate();
+        canvaLeverTwoBlack.FadeOutAndDeactivate();
         await Task.Delay(2000);
         MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
@@ -233,6 +241,10 @@ public class PhaseManager : MonoBehaviour
 
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();
+        canvaLeverThreeWhite.gameObject.SetActive(true);
+        canvaLeverThreeBlack.gameObject.SetActive(true);
+        canvaLeverThreeWhite.FadeOutAndDeactivate();
+        canvaLeverThreeBlack.FadeOutAndDeactivate();
         CheckMinesActives();
     }
 
@@ -252,12 +264,18 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseFour()
     {
+
+
         MainCamera.instance.cameraNecromancer.SetActive(false);
         MainCamera.instance.TurnOffPhaseFourCameras();
-        blueDragon.transform.position = new Vector3(240f, 22f, 300f);
+        blueDragon.transform.position = BlueSpawnPosition.position;
         blueDragon.SetActive(true);
         MainCamera.instance.dragonCamera.SetActive(true);
-
+        await Task.Delay(1500);
+        canvaLeverFinalWhite.gameObject.SetActive(true);
+        canvaLeverFinalBlack.gameObject.SetActive(true);
+        canvaLeverFinalWhite.FadeOutAndDeactivate();
+        canvaLeverFinalBlack.FadeOutAndDeactivate();
     }
 
     public void SetCurrentPhase0()
@@ -319,11 +337,6 @@ public class PhaseManager : MonoBehaviour
 
             for (int i = 0; i < amountOfGiantsByPhase[currentPhase]; i++)
             { enemyManager.InstantiateGiant(); }
-
-      //      for (int i = 0; i < amountOfRunnersByPhase[currentPhase]; i++)
-        //    { enemyManager.InstantiateRunner(); }
-
-            //enemyManager.SendEnemiesLeftPortal();
         }
     }
 }
