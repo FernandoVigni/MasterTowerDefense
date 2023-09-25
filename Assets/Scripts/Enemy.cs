@@ -7,7 +7,6 @@ using UnityEngine.UIElements;
 
 public class Enemy : MonoBehaviour
 {
-
     public int randomNumberToSort;
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
@@ -16,6 +15,8 @@ public class Enemy : MonoBehaviour
     public LifeBar lifeBar;
     public EnemyManager enemyManager;
     System.Random random = new System.Random();
+    public float resetTimeToAtack;
+    public float timeToAtack;
 
     public float currentLife;
     public float maxLife;
@@ -28,10 +29,15 @@ public class Enemy : MonoBehaviour
     public float atackSpeed;
     public int recivedGoldInThisPhase;
     public bool isWalking;
-    public bool isAtacking;
+    public bool isAtacking = false;
     public float distanceToTower;
     public float coefficient;
     public Vector3 scale;
+
+    public void AtackTower(float physicalDamage,float magicDamage) 
+    {
+        tower.GetDamage(physicalDamage, magicDamage);
+    }
 
     private void Awake()
     {
@@ -43,6 +49,13 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        timeToAtack -= Time.deltaTime;
+        if (isAtacking && timeToAtack <= 0) 
+        {
+            AtackTower(physicalDamage, magicDamage);
+            timeToAtack = resetTimeToAtack;
+        }
+
         lifeBar.SetRemainingLifeToShow(currentLife, maxLife);
         if (isWalking)
         {
@@ -58,11 +71,6 @@ public class Enemy : MonoBehaviour
     public void SetMaxLife(float maxLife)
     {
         this.maxLife = maxLife;
-    }
-
-    public void RunAnimation()
-    {
-        //animator.SetBool("Run", true);
     }
 
     public void recalculateStatsWithTheCoefficient(float coefficient)
@@ -96,7 +104,7 @@ public class Enemy : MonoBehaviour
         if (distanceToTower > 65 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            isAtacking = true;
+            isAtacking = false;
         }
 
         if (distanceToTower < 65 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
@@ -107,7 +115,7 @@ public class Enemy : MonoBehaviour
         if (distanceToTower > 110 && GetComponent<Mage>() != null)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            isAtacking = true;
+            isAtacking = false;
         }
 
         if (distanceToTower < 110 && GetComponent<Mage>() != null)

@@ -44,7 +44,7 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] public GameObject MinesDeploy;
    
     // Test phases
-    int[] coefficient =              { 1, 1, 2, 2 };
+    float[] coefficient =            { 1, 1.2f, 2, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
     int[] amountOfWarriosByPhase =   { 7, 2, 2, 2 };
     int[] amountOfMagesByPhase =     { 2, 9, 2, 2 };
@@ -90,7 +90,7 @@ public class PhaseManager : MonoBehaviour
         rightRocksToDestroy.SetActive(true);
     }
 
-    public int GetCoefficient()
+    public float GetCoefficient()
     {
         return coefficient[currentPhase];
     }
@@ -156,7 +156,7 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
-        TurnOnWinScreen();
+        //TurnOnWinScreen();
 
 
         canvaLeverOneWhite.gameObject.SetActive(true);

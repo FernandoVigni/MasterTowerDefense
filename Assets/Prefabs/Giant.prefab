@@ -50,15 +50,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e28dd6a5a763d4c86577b657d94898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomNumberToSort: 0
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
   lifeBar: {fileID: 4187168307138884795}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
+  resetTimeToAtack: 3
+  timeToAtack: 3
   currentLife: 200
   maxLife: 0
-  speed: 22
-  physicalDamage: 75
+  speed: 24
+  physicalDamage: 150
   physicalArmor: 10
   magicDamage: 0
   magicArmor: 10
@@ -66,6 +69,7 @@ MonoBehaviour:
   atackSpeed: 0
   recivedGoldInThisPhase: 0
   isWalking: 0
+  isAtacking: 0
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}

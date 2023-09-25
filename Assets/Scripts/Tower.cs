@@ -14,7 +14,7 @@ public class Tower : MonoBehaviour
     public float countDownToShoot;
     public float countDownReset;
     public float manualShoot;
-    private float life;
+    public float life;
     public float gold;
     public float launchForce;
     public int ammountOfMines;
@@ -25,6 +25,23 @@ public class Tower : MonoBehaviour
     public Transform CornerB;
     public Transform CornerC; 
     public Transform CornerD;
+
+    public void GetDamage(float physicalDamage, float magicDamage)
+    {
+        life -= (physicalDamage + magicDamage);
+        IsTowerDeath();
+    }
+
+    private bool IsTowerDeath()
+    {
+        if (life <= 0)
+        {   
+            // Ir a Pantalla Lose
+            return true; 
+        }
+        else return false;
+
+    }
 
     public void ActivatePowerUp() 
     {
@@ -133,4 +150,6 @@ public class Tower : MonoBehaviour
 
         return new Vector3(randomX, randomY, randomZ);
     }
+
+
 }

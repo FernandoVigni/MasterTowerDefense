@@ -24,9 +24,4 @@ public class Mage : Enemy
         // animacion de cargando energia
         magicDamage *= 3;
     }
-
-    public void EnergyBall() 
-    {
-        tower.ReciveDamage(magicDamage);
-    }
 }

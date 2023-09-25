@@ -2884,7 +2884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &117614330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14141,7 +14141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -14514,57 +14514,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 209936421}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &212323280
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 212323282}
-  - component: {fileID: 212323281}
-  m_Layer: 0
-  m_Name: GoldManager (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &212323281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212323280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 786487217}
-  habilityHandler: {fileID: 1436432142}
-  currentGold: 0
-  powerUpUpdated: 0
-  minesDeployUpdate: 0
-  hyperBeamUpdate: 0
-  shotSpeedAtackUpdate: 0
---- !u!4 &212323282
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212323280}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.285475, y: 29.135345, z: -3.028944}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213177715
 GameObject:
   m_ObjectHideFlags: 0
@@ -21893,6 +21842,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 353671828}
+  - component: {fileID: 353671829}
   m_Layer: 5
   m_Name: UpdateButtons
   m_TagString: Untagged
@@ -21923,6 +21873,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &353671829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353671827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f4745fbf27854f40b408b384d2ce519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  habilityHandler: {fileID: 1436432142}
+  powerUp: {fileID: 1472682293}
+  powerUpBlack: {fileID: 1673254467}
+  minesDelpoy: {fileID: 198335171}
+  minesDelpoyBlack: {fileID: 1454118528}
+  finalHit: {fileID: 2084280424}
+  finalHitBlack: {fileID: 1545577830}
 --- !u!1 &354425645
 GameObject:
   m_ObjectHideFlags: 0
@@ -25117,7 +25086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &488799186
 Transform:
   m_ObjectHideFlags: 0
@@ -25196,7 +25165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -25662,6 +25631,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
+        type: 3}
+      propertyPath: life
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a,
         type: 3}
@@ -26222,7 +26196,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -27085,7 +27059,7 @@ PrefabInstance:
     - target: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8176230078092200170, guid: 3355f6bfa6db8b24281b827de929694c,
         type: 3}
@@ -39509,8 +39483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 525447981}
-  habilityHandler: {fileID: 0}
+  textMeshColor: {fileID: 499445509}
+  textMeshBlack: {fileID: 525447981}
+  habilityHandler: {fileID: 1436432142}
   currentGold: 0
   powerUpUpdated: 0
   minesDeployUpdate: 0
@@ -40666,7 +40641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -43251,7 +43226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &905756955
 Transform:
   m_ObjectHideFlags: 0
@@ -49401,7 +49376,7 @@ MonoBehaviour:
   shoot: {fileID: 123248604}
   magicCircles: {fileID: 1775029186}
   tower: {fileID: 508425470}
-  updateButtons: {fileID: 353671827}
+  updateButtons: {fileID: 353671829}
   buttonPowerUp: {fileID: 607146582}
   buttonMinesDeploy: {fileID: 993820002}
   buttonHyperBeam: {fileID: 1101934125}
@@ -50267,7 +50242,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 15000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -59131,7 +59106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1377410501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -65654,7 +65629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -65936,7 +65911,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -66089,7 +66064,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 786487217}
+  textMeshColor: {fileID: 499445509}
+  textMeshBlack: {fileID: 525447981}
   habilityHandler: {fileID: 1436432142}
   currentGold: 0
   powerUpUpdated: 0
@@ -72293,7 +72269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -79627,7 +79603,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 200
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -86696,7 +86672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1874050228
 Transform:
   m_ObjectHideFlags: 0
@@ -89971,7 +89947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2008641180
 Transform:
   m_ObjectHideFlags: 0
@@ -90524,7 +90500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d42e386dc95e2f945af70da80d0cdb79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMesh: {fileID: 272363425}
+  textMeshColor: {fileID: 0}
+  textMeshBlack: {fileID: 0}
   habilityHandler: {fileID: 0}
   currentGold: 0
   powerUpUpdated: 0
@@ -90677,6 +90654,8 @@ MonoBehaviour:
   tower: {fileID: 508425470}
   lifeBar: {fileID: 1475001991}
   enemyManager: {fileID: 1916307011}
+  resetTimeToAtack: 0
+  timeToAtack: 0
   currentLife: 10000
   maxLife: 10000
   speed: 0
@@ -96725,7 +96704,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1500
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}

@@ -22,14 +22,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject sfxButtonOff;
     [SerializeField] public GameObject game;
     [SerializeField] public GameObject saprksPlay;
-            [SerializeField] private GameObject playClickAnimation;
+    [SerializeField] private GameObject playClickAnimation;
     [SerializeField] public GameObject saprksLetsGoButton;
     [SerializeField] public GameObject shoot;
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
-    [SerializeField] public GameObject updateButtons;
-
-
+    [SerializeField] public UpdateButtons updateButtons;
 
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
@@ -64,7 +62,9 @@ public class MainMenu : MonoBehaviour
 
     public void HandleButtons() 
     {
-        updateButtons.SetActive(true);
+        updateButtons.gameObject.SetActive(true);
+        updateButtons.SetValuesOfHabilities();
+
         if (goldStatus.GetPowerUpValue() != 1 )
         {
             buttonPowerUp.SetActive(true);
@@ -131,7 +131,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("PlaySFXPlayButton");
         await Task.Delay(1500);
         MainCamera.instance.TurnOffAllCameras();
-        updateButtons.SetActive(false);
+        updateButtons.gameObject.SetActive(false);
         enemyManager.DestroyAllEnemies();
         shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
