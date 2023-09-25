@@ -9,8 +9,8 @@ public class HabilityHandler : MonoBehaviour
     private void Start()
     {
         // Agregar habilidades a la lista desde el código.
-        HabilityList.Add(new Hability("PowerUp", 15));
-        HabilityList.Add(new Hability("ExplosiveMine", 35));
+        HabilityList.Add(new Hability("PowerUp", 10));
+        HabilityList.Add(new Hability("ExplosiveMine", 20));
         HabilityList.Add(new Hability("HyperBeam", 75));
     }
 

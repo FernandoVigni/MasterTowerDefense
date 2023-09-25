@@ -124,6 +124,7 @@ public class EnemyManager : MonoBehaviour
         coefficient = PhaseManager.instance.GetCoefficient();
         enemy.SetCoefficient(coefficient);
         enemy.isWalking = false;
+        //enemy.isAtacking = false;
         enemy.OnDeath += OnEnemyDeath;
         enemy.SetMaxLife(enemy.currentLife);
         listOfEnemiesToDefeatInThisPhase.Add(enemy);
@@ -293,7 +294,7 @@ public class EnemyManager : MonoBehaviour
                     enemy.StartMove();
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
-                    await Task.Delay(1500);
+                    await Task.Delay(2200);
                 }
             }
         }

@@ -111,7 +111,7 @@ public class GoldStatus : MonoBehaviour
         }
     }
 
-     public float GetPowerUpValue()
+    public float GetPowerUpValue()
     {
         return PlayerPrefs.GetFloat(variablePowerUp, 0f);
     }
@@ -120,7 +120,6 @@ public class GoldStatus : MonoBehaviour
     {
         return PlayerPrefs.GetFloat(variableManualShotSpeedAtack, 0f);
     }
-
 
     public float GetMinesDeployValue()
     {
@@ -135,6 +134,5 @@ public class GoldStatus : MonoBehaviour
     private float GetGoldAmmount()
     {
         return PlayerPrefs.GetFloat(variableGold, 0f);
-        Debug.Log(currentGold);
     }
 }

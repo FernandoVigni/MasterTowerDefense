@@ -44,7 +44,7 @@ public class PhaseManager : MonoBehaviour
     [SerializeField] public GameObject MinesDeploy;
    
     // Test phases
-    float[] coefficient =            { 1, 1.2f, 2, 2 };
+    float[] coefficient =            { 1.2f, 1.5f, 2, 2 };
     int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
     int[] amountOfWarriosByPhase =   { 7, 2, 2, 2 };
     int[] amountOfMagesByPhase =     { 2, 9, 2, 2 };
@@ -195,7 +195,7 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         await Task.Delay(1000);
-        enemyManager.SendEnemiesRightPortal();
+
         canvaLeverTwoWhite.gameObject.SetActive(true);
         canvaLeverTwoBlack.gameObject.SetActive(true);
         canvaLeverTwoWhite.FadeOutAndDeactivate();
@@ -204,6 +204,7 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
+        enemyManager.SendEnemiesRightPortal();
         await Task.Delay(2000);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);

@@ -101,13 +101,13 @@ public class Enemy : MonoBehaviour
 
     private void Walk()
     {
-        if (distanceToTower > 65 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
+        if (distanceToTower > 75 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             isAtacking = false;
         }
 
-        if (distanceToTower < 65 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
+        if (distanceToTower < 75 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             isAtacking = true;
         }
