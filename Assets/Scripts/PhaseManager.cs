@@ -45,11 +45,11 @@ public class PhaseManager : MonoBehaviour
    
     // Test phases
     float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
-    int[] amountOfBagOfGoldByPhase = { 1, 2, 10, 0 };
-    int[] amountOfWarriosByPhase =   { 7, 3, 8, 0 };
-    int[] amountOfMagesByPhase =     { 2, 9, 8, 0 };
+    int[] amountOfBagOfGoldByPhase = { 1, 2, 8, 0 };
+    int[] amountOfWarriosByPhase =   { 7, 3, 6, 0 };
+    int[] amountOfMagesByPhase =     { 2, 9, 6, 0 };
     //int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 8, 0 }; 
+    int[] amountOfGiantsByPhase =    { 2, 0, 6, 0 }; 
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -330,6 +330,7 @@ public class PhaseManager : MonoBehaviour
 
     public void TurnOnLoseScreen()
     {
+        MainMenu.Instance.TurnOffButtonMinesDeploy();
         ResetPhase();
         MainMenu.Instance.shoot.SetActive(false);
         loseScreen.SetActive(true);

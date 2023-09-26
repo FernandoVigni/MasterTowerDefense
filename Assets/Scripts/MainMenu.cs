@@ -50,7 +50,12 @@ public class MainMenu : MonoBehaviour
         tower.ResetFirstActivationOfMinesButton();
     }
 
-    
+    public void TurnOffButtonMinesDeploy()
+    {
+        buttonMinesDeployInGame.SetActive(false);
+    }
+
+
     public void TurnOnShootButton()
     {
         shoot.SetActive(true);
@@ -282,6 +287,7 @@ public class MainMenu : MonoBehaviour
 
     public void Lose() 
     {
+        TurnOffButtonMinesDeploy();
         lose.SetActive(true);
     }
 
