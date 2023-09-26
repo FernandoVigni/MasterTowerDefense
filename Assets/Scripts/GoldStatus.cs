@@ -6,9 +6,6 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class GoldStatus : MonoBehaviour
 {
-    [SerializeField]
-    public TextMeshProUGUI textMeshColor;
-    public TextMeshProUGUI textMeshBlack;
     public HabilityHandler habilityHandler;
     public float currentGold;
     private const string variableGold = "Gold";
@@ -37,7 +34,7 @@ public class GoldStatus : MonoBehaviour
 
     private void Start()
     {
-        RestartButtonsValues();
+        //RestartButtonsValues();
     }
     
     /* ----------------------------- */
@@ -49,8 +46,6 @@ public class GoldStatus : MonoBehaviour
         powerUpUpdated = GetPowerUpValue();
         minesDeployUpdate = GetMinesDeployValue();
         hyperBeamUpdate = GetHyperBeamValue();
-        textMeshColor.text = currentGold.ToString();
-        textMeshBlack.text = currentGold.ToString();
     }
 
 

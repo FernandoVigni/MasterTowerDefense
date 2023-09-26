@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
-{ 
+{
+    public GameObject towerFire;
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
     public Enemy objetive;
@@ -15,6 +16,7 @@ public class Tower : MonoBehaviour
     public float countDownReset;
     public float manualShoot;
     public float life;
+    public float maxlife;
     public float gold;
     public float launchForce;
     public int ammountOfMines;
@@ -32,15 +34,13 @@ public class Tower : MonoBehaviour
         IsTowerDeath();
     }
 
-    private bool IsTowerDeath()
+    private void IsTowerDeath()
     {
         if (life <= 0)
-        {   
-            // Ir a Pantalla Lose
-            return true; 
+        {
+            MainMenu.Instance.Pause();
+            MainMenu.Instance.Lose(); 
         }
-        else return false;
-
     }
 
     public void ActivatePowerUp() 
@@ -56,6 +56,11 @@ public class Tower : MonoBehaviour
         {
             Debug.Log("Disparando");
             ShootNearestEnemy();
+        }
+
+        if (life <= 3200) 
+        {
+            towerFire.SetActive(true);
         }
     }
 
@@ -150,6 +155,4 @@ public class Tower : MonoBehaviour
 
         return new Vector3(randomX, randomY, randomZ);
     }
-
-
 }

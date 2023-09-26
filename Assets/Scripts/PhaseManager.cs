@@ -114,6 +114,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        ResetPhase();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
@@ -332,6 +333,7 @@ public class PhaseManager : MonoBehaviour
 
     public void TurnOnLoseScreen()
     {
+        ResetPhase();
         MainMenu.Instance.shoot.SetActive(false);
         loseScreen.SetActive(true);
         Time.timeScale = 1f;

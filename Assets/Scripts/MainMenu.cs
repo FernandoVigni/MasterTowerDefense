@@ -41,6 +41,7 @@ public class MainMenu : MonoBehaviour
     {
         enemyManager = FindAnyObjectByType<EnemyManager>();
         fireBallManager = FindAnyObjectByType<FireBallManager>();
+        tower.towerFire.SetActive(false);
 
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
@@ -128,6 +129,8 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+        tower.life = tower.maxlife;
+        tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("PlaySFXPlayButton");
         await Task.Delay(1500);
         MainCamera.instance.TurnOffAllCameras();
@@ -195,6 +198,7 @@ public class MainMenu : MonoBehaviour
 
     public void CloseConfirmation() 
     {
+        tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
         PhaseManager.instance.TurnOffLoseScreen();
@@ -232,11 +236,13 @@ public class MainMenu : MonoBehaviour
         enemyManager.RemoveAllInStage();
         enemyManager.DestroyAllEnemies();
         TurnOffCLicPlayAnimation();
+        PhaseManager.instance.TurnOffLoseScreen();
         EnterInMainMenu();
     }
 
     public void EnterInMainMenu()
     {
+        tower.towerFire.SetActive(false);
         Time.timeScale = 1f;
         HandleButtons();
         CleanUiInGame();
@@ -246,7 +252,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
         prophecyScreen.TurnOffLetsGoAnimationOnCLick();
-        
     }
 
     public void Victory() 
