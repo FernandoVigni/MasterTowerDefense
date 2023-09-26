@@ -26,7 +26,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject enemiesPhaseOne;
     public GameObject enemiesPhaseTwo;
     public DragonController dragonController;
-    public GoldStatus goldStatus;
+    public GoldStatus goldManager;
     public GameObject orcShaman;
 
     public CanvaMovementObjet canvaLeverOneWhite;
@@ -41,15 +41,15 @@ public class PhaseManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
-    [SerializeField] public GameObject MinesDeploy;
+    //[SerializeField] public GameObject MinesDeploy;
    
     // Test phases
-    float[] coefficient =            { 1.2f, 1.5f, 2, 2 };
-    int[] amountOfBagOfGoldByPhase = { 1, 1, 2, 2 };
-    int[] amountOfWarriosByPhase =   { 7, 2, 2, 2 };
-    int[] amountOfMagesByPhase =     { 2, 9, 2, 2 };
+    float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
+    int[] amountOfBagOfGoldByPhase = { 1, 2, 10, 0 };
+    int[] amountOfWarriosByPhase =   { 7, 3, 8, 0 };
+    int[] amountOfMagesByPhase =     { 2, 9, 8, 0 };
     //int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 4, 2 }; 
+    int[] amountOfGiantsByPhase =    { 2, 0, 8, 0 }; 
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
     // PlaceHolders de , "AnimationPhase´s"
@@ -253,13 +253,10 @@ public class PhaseManager : MonoBehaviour
 
     public void CheckMinesActives() 
     {
-        if (goldStatus.minesDeployUpdate == 1)
+        if (goldManager.minesDeployUpdate == 1)
         {
-            MinesDeploy.SetActive(true);
-        }
-        else
-        {
-            MinesDeploy.SetActive(false);
+            MainMenu.Instance.TurnOnButtonMinesDeploy();
+            MainMenu.Instance.TurnOffshootButton();
         }
     }
 

@@ -34,7 +34,7 @@ public class GoldStatus : MonoBehaviour
 
     private void Start()
     {
-        //RestartButtonsValues();
+        RestartButtonsValues();
     }
     
     /* ----------------------------- */

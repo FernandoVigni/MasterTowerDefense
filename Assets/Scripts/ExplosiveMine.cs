@@ -36,7 +36,7 @@ public class ExplosiveMine : MonoBehaviour
                 enemyComponent.ReceibeDamage(minesDamage); 
             }
             Explode(); 
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -57,9 +57,10 @@ public class ExplosiveMine : MonoBehaviour
         }
     }
 
-    private void Explode()
+    public void Explode()
     {
         explosion.SetActive(true);
         Debug.Log("Explode!");
+        Destroy(this);
     }
 }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 public class MainMenu : MonoBehaviour
 {
+    public static MainMenu Instance;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject contact;
     [SerializeField] private GameObject volumen;
@@ -31,11 +32,29 @@ public class MainMenu : MonoBehaviour
 
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
-    public static MainMenu Instance;
+
 
     [SerializeField] public GameObject buttonPowerUp;
     [SerializeField] public GameObject buttonMinesDeploy;
     [SerializeField] public GameObject buttonHyperBeam;
+    [SerializeField] public GameObject buttonMinesDeployInGame;
+
+    public void TurnOffshootButton() 
+    {
+        shoot.SetActive(false);
+    }
+
+    public void TurnOnButtonMinesDeploy()
+    {
+        buttonMinesDeployInGame.SetActive(true);
+        tower.ResetFirstActivationOfMinesButton();
+    }
+
+    
+    public void TurnOnShootButton()
+    {
+        shoot.SetActive(true);
+    }
 
     private void Awake()
     {
@@ -129,6 +148,7 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+        buttonMinesDeploy.SetActive(false);
         enemyManager.RemoveAllLists();
         tower.life = tower.maxlife;
         tower.towerFire.SetActive(false);

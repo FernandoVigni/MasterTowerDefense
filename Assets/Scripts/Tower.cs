@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using static UnityEngine.UI.GridLayoutGroup;
 
 public class Tower : MonoBehaviour
 {
@@ -21,12 +23,25 @@ public class Tower : MonoBehaviour
     public float launchForce;
     public int ammountOfMines;
     public int secondsBetweenMines;
+    public bool firstActivation;
     public GameObject FlashShootEffect;
+    public GameObject minesDeployButton;
+    public GameObject effectMinesDeployButton;
 
     public Transform CornerA;
     public Transform CornerB;
     public Transform CornerC; 
     public Transform CornerD;
+
+    private void Awake()
+    {
+        effectMinesDeployButton.SetActive(false);
+    }
+
+    public void ResetFirstActivationOfMinesButton() 
+    {
+        firstActivation = true;
+    }
 
     public void GetDamage(float physicalDamage, float magicDamage)
     {
@@ -122,7 +137,22 @@ public class Tower : MonoBehaviour
     // Método para lanzar repetidamente un objeto explosivo y realizar una explosión al colisionar
     public void ThrowExplosiveMines()
     {
-        StartCoroutine(ThrowMinesCoroutine(ammountOfMines, secondsBetweenMines));
+        if (firstActivation) 
+        {
+            firstActivation = false;
+            StartCoroutine(ThrowMinesCoroutine(ammountOfMines, secondsBetweenMines));
+            effectMinesDeployButton.SetActive(true);
+            EndActionOfThrowExplosiveMines();
+        }
+
+    }
+
+    public async Task EndActionOfThrowExplosiveMines() 
+    {
+        await Task.Delay(2000);
+        minesDeployButton.SetActive(false);
+        MainMenu.Instance.TurnOnShootButton();
+        effectMinesDeployButton.SetActive(false);
     }
 
     private IEnumerator ThrowMinesCoroutine(int count, float delayBetweenThrows)
@@ -135,26 +165,53 @@ public class Tower : MonoBehaviour
         }
     }
 
+    /* public Vector3 GetRandomPointBetweenCorners()
+     {
+         Vector3 cornerAPosition = CornerA.position;
+         Vector3 cornerBPosition = CornerB.position;
+         Vector3 cornerCPosition = CornerC.position;
+         Vector3 cornerDPosition = CornerD.position;
+
+         float minX = Mathf.Min(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
+         float maxX = Mathf.Max(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
+
+         float minY = Mathf.Min(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
+         float maxY = Mathf.Max(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
+
+         float minZ = Mathf.Min(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
+         float maxZ = Mathf.Max(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
+
+         float randomX = Random.Range(minX, maxX);
+         float randomY = Random.Range(minY, maxY);
+         float randomZ = Random.Range(minZ, maxZ);
+
+         return new Vector3(randomX, randomY, randomZ);
+     }*/
+
     public Vector3 GetRandomPointBetweenCorners()
     {
-        Vector3 cornerAPosition = CornerA.position;
-        Vector3 cornerBPosition = CornerB.position;
-        Vector3 cornerCPosition = CornerC.position;
-        Vector3 cornerDPosition = CornerD.position;
+        // Obtén las posiciones de los cuatro corners en el espacio global
+        Vector3 cornerAPosition = CornerA.TransformPoint(Vector3.zero);
+        Vector3 cornerBPosition = CornerB.TransformPoint(Vector3.zero);
+        Vector3 cornerCPosition = CornerC.TransformPoint(Vector3.zero);
+        Vector3 cornerDPosition = CornerD.TransformPoint(Vector3.zero);
 
+        // Encuentra los valores mínimos y máximos en las coordenadas X, Y y Z
         float minX = Mathf.Min(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
         float maxX = Mathf.Max(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
-
         float minY = Mathf.Min(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
         float maxY = Mathf.Max(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
-
         float minZ = Mathf.Min(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
         float maxZ = Mathf.Max(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
 
+        // Genera puntos aleatorios dentro del rango de coordenadas X, Y y Z
         float randomX = Random.Range(minX, maxX);
         float randomY = Random.Range(minY, maxY);
         float randomZ = Random.Range(minZ, maxZ);
 
-        return new Vector3(randomX, randomY, randomZ);
+        // Crea un vector con las coordenadas aleatorias
+        Vector3 randomPoint = new Vector3(randomX, randomY, randomZ);
+
+        return randomPoint;
     }
 }
