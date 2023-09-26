@@ -8,6 +8,7 @@ public class ExplosiveMine : MonoBehaviour
     private Vector3 collisionPosition; // Variable to store the collision position
     public GameObject explosion;
     public GameObject auraBomb;
+    public float minesDamage = 500;
 
     private void Start()
     {
@@ -28,7 +29,14 @@ public class ExplosiveMine : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            Explode(); // Call the Explode method when colliding with the object tagged "Enemy"
+            Enemy enemyComponent = other.GetComponent<Enemy>();
+
+            if (enemyComponent != null)
+            {
+                enemyComponent.ReceibeDamage(minesDamage); 
+            }
+            Explode(); 
+            Destroy(gameObject, 1.5f);
         }
     }
 

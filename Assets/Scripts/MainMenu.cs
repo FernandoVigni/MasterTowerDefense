@@ -129,6 +129,7 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+        enemyManager.RemoveAllLists();
         tower.life = tower.maxlife;
         tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("PlaySFXPlayButton");
@@ -233,7 +234,7 @@ public class MainMenu : MonoBehaviour
         goldStatusBox.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         enemyManager.RemoveAllInCollider();
-        enemyManager.RemoveAllInStage();
+        enemyManager.RemoveAllLists();
         enemyManager.DestroyAllEnemies();
         TurnOffCLicPlayAnimation();
         PhaseManager.instance.TurnOffLoseScreen();

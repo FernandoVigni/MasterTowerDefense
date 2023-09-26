@@ -168,4 +168,13 @@ public class DragonController : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
         // Additional operations or actions for the dragon's forward movement
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("End"))
+        {
+            Time.timeScale = 0;
+            PhaseManager.instance.TurnOnLoseScreen();
+        }
+    }
 }

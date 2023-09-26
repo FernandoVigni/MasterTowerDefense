@@ -145,10 +145,30 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesToDefeatInThisPhase.Remove(enemy);
     }
 
+    public void RemoveAllLists() 
+    {
+        RemoveAllInStage();
+        RemoveAllInEnemiesSentList();
+        RemoveAllInlistOfEnemiesInsideTheTowerCollider();
+    }
+
     public void RemoveAllInStage()
     {
-        listOfEnemiesToDefeatInThisPhase.RemoveAll(Enemy => true);
+        listOfEnemiesToDefeatInThisPhase.Clear();
     }
+
+    public void RemoveAllInEnemiesSentList() 
+    {
+        enemiesSentList.Clear();
+    }
+
+
+    public void RemoveAllInlistOfEnemiesInsideTheTowerCollider()
+    {
+        listOfEnemiesInsideTheTowerCollider.Clear();
+    }
+
+
 
     // Enemies Sent List Method
     public void AddEnemyToSentList(Enemy enemy)
@@ -294,7 +314,7 @@ public class EnemyManager : MonoBehaviour
                     enemy.StartMove();
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
-                    await Task.Delay(2200);
+                    await Task.Delay(2000);
                 }
             }
         }

@@ -158,7 +158,7 @@ public class Enemy : MonoBehaviour
     //EJEMPLO POLIMORFISMO
     public virtual void BossScream() { }
 
-    public void ReceibeDamage(int damage)
+    public void ReceibeDamage(float damage)
     {
         currentLife -= damage;
         if (!IsAlive() && !OnDeathWasExecuted)

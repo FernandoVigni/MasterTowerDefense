@@ -117,10 +117,12 @@ public class Tower : MonoBehaviour
         life -= damage;
     }
 
+
+
     // Método para lanzar repetidamente un objeto explosivo y realizar una explosión al colisionar
-    public void ThrowExplosiveMines(int count, float delayBetweenThrows)
+    public void ThrowExplosiveMines()
     {
-        StartCoroutine(ThrowMinesCoroutine(count, delayBetweenThrows));
+        StartCoroutine(ThrowMinesCoroutine(ammountOfMines, secondsBetweenMines));
     }
 
     private IEnumerator ThrowMinesCoroutine(int count, float delayBetweenThrows)
