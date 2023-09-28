@@ -54,6 +54,7 @@ MonoBehaviour:
   randomNumberToSort: 0
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
+  animator: {fileID: 6344625175860880666}
   lifeBar: {fileID: 3253950156182704294}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
@@ -66,7 +67,7 @@ MonoBehaviour:
   physicalArmor: 10
   magicDamage: 100
   magicArmor: 10
-  goldValueOnDeath: 1
+  goldValueOnDeath: 2
   atackSpeed: 0
   recivedGoldInThisPhase: 0
   isWalking: 0
@@ -260,6 +261,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a55b9810c9c6ac47b170fcc51baa1e7, type: 3}
+--- !u!95 &6344625175860880666 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1977831345382213551, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4863335481109373621}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6344625175868298934 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1977831345391580163, guid: 0a55b9810c9c6ac47b170fcc51baa1e7,

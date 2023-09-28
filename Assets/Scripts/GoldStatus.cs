@@ -13,11 +13,13 @@ public class GoldStatus : MonoBehaviour
     private const string variableMinesDeploy = "MinesDeploy";
     private const string variableHyperBeam = "HyperBeam";
     private const string variableManualShotSpeedAtack = "ManualShotSpeedAtack";
+    private const string variableIsFirstProphecy = "isFirstProphecy";
 
     public float powerUpUpdated;
     public float minesDeployUpdate;
     public float hyperBeamUpdate;
     public float shotSpeedAtackUpdate;
+    public float isFirstProphecy;
 
     /* Reset de botones para pruebas */
 
@@ -29,6 +31,7 @@ public class GoldStatus : MonoBehaviour
         PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
         PlayerPrefs.SetFloat(variableHyperBeam, 0f);
         PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
+        PlayerPrefs.SetFloat(variableIsFirstProphecy, 0f);
         PlayerPrefs.Save();
     }
 
@@ -46,6 +49,7 @@ public class GoldStatus : MonoBehaviour
         powerUpUpdated = GetPowerUpValue();
         minesDeployUpdate = GetMinesDeployValue();
         hyperBeamUpdate = GetHyperBeamValue();
+        isFirstProphecy = GetIsFirstProphecyTrue();
     }
 
 
@@ -81,6 +85,19 @@ public class GoldStatus : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    public void SetIsFirstProphecyTrue() 
+    {
+        PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
+        PlayerPrefs.Save();
+    }
+
+    public float GetIsFirstProphecyTrue()
+    {
+        float isFirstProphecy = PlayerPrefs.GetFloat(variableIsFirstProphecy);
+        return isFirstProphecy;
+    }
+
 
     public void SetMinesDeployTrue()
     {

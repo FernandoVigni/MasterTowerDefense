@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public bool OnDeathWasExecuted = false;
     public Action<Enemy> OnDeath;
     public Tower tower;
-    private Animator animator;
+    public Animator animator;
     public LifeBar lifeBar;
     public EnemyManager enemyManager;
     System.Random random = new System.Random();
@@ -54,6 +54,11 @@ public class Enemy : MonoBehaviour
         {
             AtackTower(physicalDamage, magicDamage);
             timeToAtack = resetTimeToAtack;
+            if (!animator.GetBool("Atack"))
+            {
+                animator.SetBool("Run", false);
+                animator.SetBool("Atack", true);
+            }
         }
 
         lifeBar.SetRemainingLifeToShow(currentLife, maxLife);
@@ -110,6 +115,7 @@ public class Enemy : MonoBehaviour
         if (distanceToTower < 75 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             isAtacking = true;
+            //aqui el animator tiene que hacer el ataque
         }
 
         if (distanceToTower > 110 && GetComponent<Mage>() != null)
@@ -120,6 +126,7 @@ public class Enemy : MonoBehaviour
 
         if (distanceToTower < 110 && GetComponent<Mage>() != null)
         {
+            //aqui el animator tiene que hacer el ataque
             isAtacking = true;
         }
     }

@@ -33,6 +33,10 @@ public class ProphecyScreen : MonoBehaviour
 
     public void StartProphecyScene()
     {
+        if (goldStatus.GetIsFirstProphecyTrue() > 0)
+        {
+            letsGoButtonVisible.SetActive(true);
+        }
         PlayTextOne();
     }
 
@@ -64,6 +68,7 @@ public class ProphecyScreen : MonoBehaviour
         textThreeVisible.SetActive(true);
         animator.SetBool("AppearTextThree", false);
         TurnOnLetsGoButton();
+        goldStatus.SetIsFirstProphecyTrue();
     }
 
     public async Task TurnOnLetsGoButton()

@@ -39,6 +39,15 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject buttonHyperBeam;
     [SerializeField] public GameObject buttonMinesDeployInGame;
 
+    public void DestroyAllMines()
+    {
+        ExplosiveMine[] explosiveMines = FindObjectsOfType<ExplosiveMine>();
+        foreach (ExplosiveMine mine in explosiveMines)
+        {
+            Destroy(mine.gameObject);
+        }
+    }
+
     public void TurnOffshootButton() 
     {
         shoot.SetActive(false);
@@ -153,6 +162,7 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+        DestroyAllMines();
         buttonMinesDeploy.SetActive(false);
         enemyManager.RemoveAllLists();
         tower.life = tower.maxlife;
@@ -210,6 +220,7 @@ public class MainMenu : MonoBehaviour
     public void Home()
     {
         AudioManager.Instance.PlaySFX("Button");
+        shoot.SetActive(false);
         contact.SetActive(false);
         confirmation.SetActive(false);
         volumen.SetActive(false);
@@ -224,11 +235,13 @@ public class MainMenu : MonoBehaviour
 
     public void CloseConfirmation() 
     {
+        shoot.SetActive(false);
         tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
         PhaseManager.instance.TurnOffLoseScreen();
         PhaseManager.instance.TurnOffWinScreen();
+        DestroyAllMines();
     }
 
     public void CleanUiInGame() 
@@ -255,6 +268,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        DestroyAllMines();
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
@@ -268,6 +282,7 @@ public class MainMenu : MonoBehaviour
 
     public void EnterInMainMenu()
     {
+        DestroyAllMines();
         tower.towerFire.SetActive(false);
         Time.timeScale = 1f;
         HandleButtons();

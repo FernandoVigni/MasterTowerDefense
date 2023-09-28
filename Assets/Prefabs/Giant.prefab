@@ -53,6 +53,7 @@ MonoBehaviour:
   randomNumberToSort: 0
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
+  animator: {fileID: 4477165542826126454}
   lifeBar: {fileID: 4187168307138884795}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
@@ -257,6 +258,12 @@ Transform:
 --- !u!1 &4477165542818734006 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2463858990775177466, guid: e3001131c06476449b251b4552583227,
+    type: 3}
+  m_PrefabInstance: {fileID: 2023089187294203724}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4477165542826126454 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2463858990767924026, guid: e3001131c06476449b251b4552583227,
     type: 3}
   m_PrefabInstance: {fileID: 2023089187294203724}
   m_PrefabAsset: {fileID: 0}

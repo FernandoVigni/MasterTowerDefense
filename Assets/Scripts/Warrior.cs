@@ -11,7 +11,7 @@ public class Warrior : Enemy
     {
         recalculateStatsWithTheCoefficient(coefficient);
     }
-
+/*
     public async void Roar()
     {
         isWalking = false;
@@ -34,4 +34,5 @@ public class Warrior : Enemy
         float AxeAttackDamageIncresed = physicalDamage * 2;
         tower.ReciveDamage(AxeAttackDamageIncresed);
     }
+*/
 }

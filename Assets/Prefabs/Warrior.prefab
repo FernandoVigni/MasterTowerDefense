@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269638561396116175}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.505442, y: -1.1377006, z: -2.1915288}
+  m_LocalPosition: {x: 4.505442, y: 1.5, z: -2.1915288}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -53,6 +53,7 @@ MonoBehaviour:
   randomNumberToSort: 0
   OnDeathWasExecuted: 0
   tower: {fileID: 5661699225113837602, guid: 99c952bdec45907429ded744850f405a, type: 3}
+  animator: {fileID: 179143205144519630}
   lifeBar: {fileID: 2069935466056348912}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
@@ -65,7 +66,7 @@ MonoBehaviour:
   physicalArmor: 10
   magicDamage: 0
   magicArmor: 10
-  goldValueOnDeath: 1
+  goldValueOnDeath: 2
   atackSpeed: 0
   recivedGoldInThisPhase: 0
   isWalking: 1
@@ -282,6 +283,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 176299a76ecfc7544b22a66fae200ac7, type: 3}
+--- !u!95 &179143205144519630 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4754822569803728767, guid: 176299a76ecfc7544b22a66fae200ac7,
+    type: 3}
+  m_PrefabInstance: {fileID: 4864156035729401009}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &729056334033049167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5304911586177118974, guid: 176299a76ecfc7544b22a66fae200ac7,
@@ -394,7 +401,7 @@ PrefabInstance:
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.8
+      value: 4.68
       objectReference: {fileID: 0}
     - target: {fileID: 4957418507740911609, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}
@@ -420,6 +427,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6226000449092810508, guid: 6b2155739c25cce44bb760ae1d59057b,
         type: 3}

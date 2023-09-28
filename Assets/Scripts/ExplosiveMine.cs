@@ -36,7 +36,7 @@ public class ExplosiveMine : MonoBehaviour
                 enemyComponent.ReceibeDamage(minesDamage); 
             }
             Explode(); 
-            Destroy(gameObject, 2f);
+            Destroy(gameObject, 1.6f);
         }
     }
 
