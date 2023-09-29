@@ -15,6 +15,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
     [SerializeField] public GameObject victory;
+    [SerializeField] public GameObject afterFadeVictory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
     [SerializeField] public GameObject musicButtonOn;
@@ -29,6 +30,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
+    public bool isFinalAtackPresed;
 
 
 
@@ -42,6 +44,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject buttonMinesDeployInGame;
     [SerializeField] public GameObject buttonFinalAtackInGame;
 
+
+    public void SetFinalAtackTrue() 
+    {
+        isFinalAtackPresed = true;
+    }
+
+    public void SetFinalAtackFalse()
+    {
+        isFinalAtackPresed = false;
+    }
 
     public void TurnOnbuttonFinalAtackInGame() 
     {
@@ -176,10 +188,11 @@ public class MainMenu : MonoBehaviour
     
     public async void Play()
     {
+
         DestroyAllMines();
         buttonMinesDeploy.SetActive(false);
         enemyManager.RemoveAllLists();
-        tower.life = tower.maxlife;
+        tower.life = tower.maxLife;
         tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("PlaySFXPlayButton");
         await Task.Delay(1500);
@@ -310,9 +323,11 @@ public class MainMenu : MonoBehaviour
         prophecyScreen.TurnOffLetsGoAnimationOnCLick();
     }
 
-    public void Victory() 
+    public async Task Victory() 
     {
         victory.SetActive(true);
+        await Task.Delay(4000);
+        afterFadeVictory.SetActive(true);
     }
 
     public void Lose() 

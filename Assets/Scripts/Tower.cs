@@ -6,6 +6,7 @@ using static UnityEngine.UI.GridLayoutGroup;
 
 public class Tower : MonoBehaviour
 {
+    public LifeBar1 lifeBar1;
     public GameObject towerFire;
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
@@ -18,7 +19,7 @@ public class Tower : MonoBehaviour
     public float countDownReset;
     public float manualShoot;
     public float life;
-    public float maxlife;
+    public float maxLife;
     public float gold;
     public float launchForce;
     public int ammountOfMines;
@@ -30,16 +31,20 @@ public class Tower : MonoBehaviour
     public GameObject efectSparks;
     public GameObject midCore;
     public GameObject bigCore;
+    public GameObject finalCore;
+    public GameObject effectFinalAtackButton;
 
     public Transform CornerA;
     public Transform CornerB;
     public Transform CornerC;
     public Transform CornerD;
 
+
     public void ResetCore() 
     {
         midCore.SetActive(false);
         bigCore.SetActive(false);
+        finalCore.SetActive(false);
     }
 
     private void Awake()
@@ -75,6 +80,8 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
+        lifeBar1.SetRemainingLifeToShow(life, maxLife);
+
         countDownToShoot = countDownToShoot - Time.deltaTime;
         if (countDownToShoot < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
@@ -157,22 +164,29 @@ public class Tower : MonoBehaviour
     {
         MainCamera.instance.TurnOnWinDragonCamera();
         efectSparks.SetActive(true);
+        MainMenu.Instance.SetFinalAtackTrue();
         IncreseCoreSize();
+        effectFinalAtackButton.SetActive(true);
     }
 
     public async Task IncreseCoreSize() 
     {
-        await Task.Delay(2500);
+        await Task.Delay(2000);
         MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
+        await Task.Delay(2000);
+        effectFinalAtackButton.SetActive(false);
         midCore.SetActive(true);
-        await Task.Delay(2500);
+        await Task.Delay(2000);
         bigCore.SetActive(true);
+        await Task.Delay(2000);
+        finalCore.SetActive(true);
     }
 
     public async Task EndActionOfThrowExplosiveMines() 
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         minesDeployButton.SetActive(false);
+        await Task.Delay(1000);
         MainMenu.Instance.TurnOnShootButton();
         effectMinesDeployButton.SetActive(false);
     }

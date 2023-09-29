@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DragonController : MonoBehaviour
 {
+    public GoldStatus goldStatus;
     public float speed; // Velocidad de movimiento del dragón
     public float rotationSpeed; // Velocidad de rotación del dragón
     public int currentWayPoint;
@@ -171,10 +172,29 @@ public class DragonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("End"))
+        if (other.CompareTag("End") && !MainMenu.Instance.isFinalAtackPresed)
         {
             Time.timeScale = 0;
+            // aplicar el fade
             PhaseManager.instance.TurnOnLoseScreen();
+        }
+
+        if (other.CompareTag("End") && MainMenu.Instance.isFinalAtackPresed)
+        {
+            Time.timeScale = 0;
+            // aplicar el fade
+            PhaseManager.instance.TurnOnWinScreen();
+        }
+
+        if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1) 
+        {
+            MainMenu.Instance.TurnOnbuttonFinalAtackInGame();
+            MainMenu.Instance.shoot.SetActive(false);
+        }
+
+        if (other.CompareTag("TurnOffButton"))
+        {
+            MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
         }
     }
 }

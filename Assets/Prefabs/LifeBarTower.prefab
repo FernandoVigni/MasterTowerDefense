@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4957418507740911608}
   - component: {fileID: 6289893898049426533}
   m_Layer: 5
-  m_Name: LifeBar
+  m_Name: LifeBarTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -279,7 +279,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -1.5800056, y: 1.2000008}
+  m_AnchoredPosition: {x: -1.5800018, y: 1.2000008}
   m_SizeDelta: {x: 0.029, y: -19.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2217010581921982846

@@ -12,6 +12,8 @@ TagManager:
   - Game
   - enemy
   - End
+  - TurnOnButton
+  - TurnOffButton
   layers:
   - Default
   - TransparentFX

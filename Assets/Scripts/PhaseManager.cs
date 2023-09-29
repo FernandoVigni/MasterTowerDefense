@@ -18,7 +18,6 @@ public class PhaseManager : MonoBehaviour
     public GameObject meteorites;
     public GameObject flashMeteorites;
     public GameObject DeathExplosion;
-   // public Runner runnerForAnimation;
     public GameObject blueDragon;
     public Necromancer necromaner;
     public GameObject necromanerScene;  
@@ -43,25 +42,16 @@ public class PhaseManager : MonoBehaviour
     public GameObject winScreen;
     public GameObject loseScreen;
 
-    //[SerializeField] public GameObject MinesDeploy;
-   
-    // Test phases
     float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
     int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
-    int[] amountOfWarriosByPhase =   { 5, 3, 5, 0 };
-    int[] amountOfMagesByPhase =     { 2, 7, 5, 0 };
-    //int[] amountOfRunnersByPhase =   { 0, 0, 0, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 5, 0 }; 
+    int[] amountOfWarriosByPhase =   { 3, 3, 5, 0 };
+    int[] amountOfMagesByPhase =     { 2, 5, 5, 0 };
+    int[] amountOfGiantsByPhase =    { 2, 0, 5, 0 };
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
-    // PlaceHolders de , "AnimationPhase´s"
-    //string[] songsNames = { "MainMenu","AnimationPhase0", "Phase0", "AnimationPhase1", "Phase1", "AnimationPhase2", "Phase2", "AnimationPhaseBoss", "PhaseBoss" };
-
-    //----------
 
     private void Awake()
     {
-        //Runner runner = GetComponent<Runner>();
         enemyManager = FindObjectOfType<EnemyManager>();
 
         if (instance == null)
@@ -160,14 +150,10 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(4000);
         PlayMusic();
         portals.TurnOnLeftPortal();
-        //TurnOnWinScreen();
-
-
         canvaLeverOneWhite.gameObject.SetActive(true);
         canvaLeverOneBlack.gameObject.SetActive(true);
         canvaLeverOneWhite.FadeOutAndDeactivate();
         canvaLeverOneBlack.FadeOutAndDeactivate();
-
         await Task.Delay(2500);
         LoadEnemies();
         MainMenu.Instance.shoot.SetActive(true);
@@ -199,7 +185,6 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(1500);
         portals.TurnOnRightPortal();
         await Task.Delay(1000);
-
         canvaLeverTwoWhite.gameObject.SetActive(true);
         canvaLeverTwoBlack.gameObject.SetActive(true);
         canvaLeverTwoWhite.FadeOutAndDeactivate();
@@ -214,7 +199,6 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(1000);
         orcShaman.SetActive(false);
-        await Task.Delay(1500);
     }
 
     public async Task ActivateAnimationPhaseThree()
