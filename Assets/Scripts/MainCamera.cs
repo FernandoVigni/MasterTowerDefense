@@ -36,7 +36,7 @@ public class MainCamera : MonoBehaviour
 
     [Header("Phase Four")]
     public GameObject dragonCamera;
-    //public GameObject camera3PersonTowerRightPhaseThree;
+    public GameObject winDragonCamera;
 
     private void Awake()
     {
@@ -60,6 +60,16 @@ public class MainCamera : MonoBehaviour
         cam = GetComponent<Camera>();
         SetCameraSize();
         timelineDirector = GetComponent<PlayableDirector>();
+    }
+
+    public void TurnOnWinDragonCamera() 
+    {
+        winDragonCamera.SetActive(true);
+    }
+
+    public void TurnOffWinDragonCamera()
+    {
+        winDragonCamera.SetActive(false);
     }
 
     public void TurnOffPhaseOneCameras() 
@@ -87,6 +97,7 @@ public class MainCamera : MonoBehaviour
     public void TurnOffPhaseFourCameras()
     {
         dragonCamera.SetActive(false);
+        winDragonCamera.SetActive(false);
     }
 
     public void TurnOffAllCameras() 

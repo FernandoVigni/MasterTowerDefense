@@ -24,21 +24,30 @@ public class Tower : MonoBehaviour
     public int ammountOfMines;
     public int secondsBetweenMines;
     public bool firstActivation;
-    public GameObject FlashShootEffect;
+    public GameObject flashShootEffect;
     public GameObject minesDeployButton;
     public GameObject effectMinesDeployButton;
+    public GameObject efectSparks;
+    public GameObject midCore;
+    public GameObject bigCore;
 
     public Transform CornerA;
     public Transform CornerB;
-    public Transform CornerC; 
+    public Transform CornerC;
     public Transform CornerD;
+
+    public void ResetCore() 
+    {
+        midCore.SetActive(false);
+        bigCore.SetActive(false);
+    }
 
     private void Awake()
     {
         effectMinesDeployButton.SetActive(false);
     }
 
-    public void ResetFirstActivationOfMinesButton() 
+    public void ResetFirstActivationOfMinesButton()
     {
         firstActivation = true;
     }
@@ -54,11 +63,11 @@ public class Tower : MonoBehaviour
         if (life <= 0)
         {
             MainMenu.Instance.Pause();
-            MainMenu.Instance.Lose(); 
+            MainMenu.Instance.Lose();
         }
     }
 
-    public void ActivatePowerUp() 
+    public void ActivatePowerUp()
     {
         manualShoot = 1.8f;
         towerEffects.SetActive(true);
@@ -73,13 +82,13 @@ public class Tower : MonoBehaviour
             ShootNearestEnemy();
         }
 
-        if (life <= 3200) 
+        if (life <= 3200)
         {
             towerFire.SetActive(true);
         }
     }
 
-    public void RecibeDamage(float phisicalDamage, float magicDamage) 
+    public void RecibeDamage(float phisicalDamage, float magicDamage)
     {
         float totalDamageToDeal = phisicalDamage + magicDamage;
         this.life -= this.life - totalDamageToDeal;
@@ -87,12 +96,12 @@ public class Tower : MonoBehaviour
 
     public void ShootNearestEnemy()
     {
-        if(countDownToShoot < manualShoot) 
-        { 
+        if (countDownToShoot < manualShoot)
+        {
             Enemy nearestEnemyInsideCollider = GetNearestEnemyInsideCollider();
             countDownToShoot = countDownReset;
-            if (nearestEnemyInsideCollider != null);
-                Shoot(nearestEnemyInsideCollider);
+            if (nearestEnemyInsideCollider != null) ;
+            Shoot(nearestEnemyInsideCollider);
         }
     }
 
@@ -109,10 +118,10 @@ public class Tower : MonoBehaviour
             return IEnemy;
         }
         else
-        return null;
+            return null;
     }
 
-    public Vector3 GetTowerPosition() 
+    public Vector3 GetTowerPosition()
     {
         return transform.position;
     }
@@ -122,8 +131,8 @@ public class Tower : MonoBehaviour
         if (objetive != null)
         {
             fireBallManager.ShootProjectile(objetive);
-            FlashShootEffect.SetActive(false);
-            FlashShootEffect.SetActive(true);
+            flashShootEffect.SetActive(false);
+            flashShootEffect.SetActive(true);
         }
     }
 
@@ -132,19 +141,32 @@ public class Tower : MonoBehaviour
         life -= damage;
     }
 
-
-
     // Método para lanzar repetidamente un objeto explosivo y realizar una explosión al colisionar
     public void ThrowExplosiveMines()
     {
-        if (firstActivation) 
+        if (firstActivation)
         {
             firstActivation = false;
             StartCoroutine(ThrowMinesCoroutine(ammountOfMines, secondsBetweenMines));
             effectMinesDeployButton.SetActive(true);
             EndActionOfThrowExplosiveMines();
         }
+    }
 
+    public void ThrowFinalAtack()
+    {
+        MainCamera.instance.TurnOnWinDragonCamera();
+        efectSparks.SetActive(true);
+        IncreseCoreSize();
+    }
+
+    public async Task IncreseCoreSize() 
+    {
+        await Task.Delay(2500);
+        MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
+        midCore.SetActive(true);
+        await Task.Delay(2500);
+        bigCore.SetActive(true);
     }
 
     public async Task EndActionOfThrowExplosiveMines() 
@@ -164,29 +186,6 @@ public class Tower : MonoBehaviour
             ExplosiveMine explosiveMine = Instantiate(explosiveMinePrefabB, launchPosition, Quaternion.identity);
         }
     }
-
-    /* public Vector3 GetRandomPointBetweenCorners()
-     {
-         Vector3 cornerAPosition = CornerA.position;
-         Vector3 cornerBPosition = CornerB.position;
-         Vector3 cornerCPosition = CornerC.position;
-         Vector3 cornerDPosition = CornerD.position;
-
-         float minX = Mathf.Min(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
-         float maxX = Mathf.Max(cornerAPosition.x, cornerBPosition.x, cornerCPosition.x, cornerDPosition.x);
-
-         float minY = Mathf.Min(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
-         float maxY = Mathf.Max(cornerAPosition.y, cornerBPosition.y, cornerCPosition.y, cornerDPosition.y);
-
-         float minZ = Mathf.Min(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
-         float maxZ = Mathf.Max(cornerAPosition.z, cornerBPosition.z, cornerCPosition.z, cornerDPosition.z);
-
-         float randomX = Random.Range(minX, maxX);
-         float randomY = Random.Range(minY, maxY);
-         float randomZ = Random.Range(minZ, maxZ);
-
-         return new Vector3(randomX, randomY, randomZ);
-     }*/
 
     public Vector3 GetRandomPointBetweenCorners()
     {

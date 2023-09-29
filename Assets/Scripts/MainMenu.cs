@@ -30,6 +30,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
 
+
+
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
 
@@ -38,6 +40,18 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject buttonMinesDeploy;
     [SerializeField] public GameObject buttonHyperBeam;
     [SerializeField] public GameObject buttonMinesDeployInGame;
+    [SerializeField] public GameObject buttonFinalAtackInGame;
+
+
+    public void TurnOnbuttonFinalAtackInGame() 
+    {
+        buttonFinalAtackInGame.SetActive(true);
+    }
+
+    public void TurnOffbuttonFinalAtackInGame()
+    {
+        buttonFinalAtackInGame.SetActive(false);
+    }
 
     public void DestroyAllMines()
     {
@@ -226,11 +240,12 @@ public class MainMenu : MonoBehaviour
         volumen.SetActive(false);
         TurnOnSparksPlayButton();
     }
-
+    
     public void CheckReturnToMainMenu() 
     {
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(true);
+        tower.ResetCore();
     }
 
     public void CloseConfirmation() 

@@ -5,6 +5,7 @@ public class PhaseManager : MonoBehaviour
 {
     public static PhaseManager instance;
 
+    public Tower tower;
     public EnemyManager enemyManager;
     public Transform pointOfSpawnOfWave;
     public Transform BlueSpawnPosition;
@@ -116,6 +117,7 @@ public class PhaseManager : MonoBehaviour
     public async Task ActivateAnimationPhaseOne()
     {
         ResetPhase();
+        tower.ResetCore();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
