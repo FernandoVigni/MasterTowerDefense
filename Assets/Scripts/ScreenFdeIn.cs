@@ -9,6 +9,6 @@ public class ScreenFdeIn : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetBool("fadeIn", true);
+        //animator.SetBool("fadeIn", true);
     }
 }

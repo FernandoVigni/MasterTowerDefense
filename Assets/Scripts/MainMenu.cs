@@ -30,20 +30,16 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
+
     public bool isFinalAtackPresed;
-
-
-
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
-
 
     [SerializeField] public GameObject buttonPowerUp;
     [SerializeField] public GameObject buttonMinesDeploy;
     [SerializeField] public GameObject buttonHyperBeam;
     [SerializeField] public GameObject buttonMinesDeployInGame;
     [SerializeField] public GameObject buttonFinalAtackInGame;
-
 
     public void SetFinalAtackTrue() 
     {
@@ -267,8 +263,6 @@ public class MainMenu : MonoBehaviour
         tower.towerFire.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
-        PhaseManager.instance.TurnOffLoseScreen();
-        PhaseManager.instance.TurnOffWinScreen();
         DestroyAllMines();
     }
 
@@ -304,7 +298,6 @@ public class MainMenu : MonoBehaviour
         enemyManager.RemoveAllLists();
         enemyManager.DestroyAllEnemies();
         TurnOffCLicPlayAnimation();
-        PhaseManager.instance.TurnOffLoseScreen();
         EnterInMainMenu();
     }
 

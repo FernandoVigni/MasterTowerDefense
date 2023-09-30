@@ -31,7 +31,7 @@ public class GoldStatus : MonoBehaviour
         PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
         PlayerPrefs.SetFloat(variableHyperBeam, 0f);
         PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
-        PlayerPrefs.SetFloat(variableIsFirstProphecy, 0f);
+        PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
         PlayerPrefs.Save();
     }
 
@@ -40,9 +40,6 @@ public class GoldStatus : MonoBehaviour
         RestartButtonsValues();
     }
     
-    /* ----------------------------- */
-
-
     private void Update()
     {
         currentGold = GetGoldAmmount();

@@ -30,6 +30,10 @@ public class PhaseManager : MonoBehaviour
     public GameObject orcShaman;
     public bool isFirstProphecy;
     public GameObject VictoryFadeIn;
+    public GameObject VictoryFadeOut;
+    public GameObject VictoryScreen;
+    public GameObject loseScreen;
+    public GameObject WinScreen;
 
     public CanvaMovementObjet canvaLeverOneWhite;
     public CanvaMovementObjet canvaLeverOneBlack;
@@ -40,8 +44,17 @@ public class PhaseManager : MonoBehaviour
     public CanvaMovementObjet canvaLeverFinalWhite;
     public CanvaMovementObjet canvaLeverFinalBlack;
 
-    public GameObject winScreen;
-    public GameObject loseScreen;
+
+    public async Task TurnOnFadeInWinScreen() 
+    {
+        VictoryFadeIn.SetActive(true);
+        await Task.Delay(2000);
+        WinScreen.SetActive(true);
+        VictoryFadeOut.SetActive(true);
+        VictoryFadeIn.SetActive(false);
+        await Task.Delay(2000);
+        VictoryFadeOut.SetActive(false);
+    }
 
     float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
     int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
@@ -71,6 +84,17 @@ public class PhaseManager : MonoBehaviour
         audioManager = FindAnyObjectByType<AudioManager>();
         ResetPhase();
     }
+
+    public void TurnOnVictoryFadeOut() 
+    {
+        VictoryFadeOut.SetActive(true);
+    }
+    public void TurnOffVictoryFadeOut()
+    {
+        VictoryFadeOut.SetActive(false);
+    }
+
+    //VictoryFadeOut;
 
     public void ResetPhase() 
     {
@@ -315,34 +339,6 @@ public class PhaseManager : MonoBehaviour
     public float GetAmountBagOfGold() 
     {
         return amountOfBagOfGoldByPhase[currentPhase];
-    }
-
-    public void TurnOnWinScreen() 
-    {
-        MainMenu.Instance.shoot.SetActive(false);
-        winScreen.SetActive(true);
-        Time.timeScale = 1f;
-    }
-
-    public void TurnOnLoseScreen()
-    {
-        Time.timeScale = 0f;
-        MainMenu.Instance.TurnOffButtonMinesDeploy();
-        ResetPhase();
-        MainMenu.Instance.shoot.SetActive(false);
-        loseScreen.SetActive(true);
-    }
-
-    public void TurnOffWinScreen()
-    {
-        winScreen.SetActive(false);
-        Time.timeScale = 1f;
-    }
-
-    public void TurnOffLoseScreen()
-    {
-        loseScreen.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     public void LoadEnemies()

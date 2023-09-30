@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class DragonController : MonoBehaviour
@@ -170,32 +171,41 @@ public class DragonController : MonoBehaviour
         // Additional operations or actions for the dragon's forward movement
     }
 
+    public async Task FadeOutStart() 
+    {
+        await Task.Delay(2000);
+        PhaseManager.instance.TurnOnVictoryFadeOut();
+        PhaseManager.instance.VictoryFadeIn.SetActive(false);
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        // isFinalAtackPresed == false?
         if (other.CompareTag("End") && !MainMenu.Instance.isFinalAtackPresed)
         {
-            Time.timeScale = 0;
-            // aplicar el fade
-            //PhaseManager.instance.TurnOnLoseScreen();
-            PhaseManager.instance.VictoryFadeIn.SetActive(true);
+            Debug.Log("1");
+            //Time.timeScale = 0;
         }
 
+        // isFinalAtackPresed == true?
         if (other.CompareTag("End") && MainMenu.Instance.isFinalAtackPresed)
         {
-            Time.timeScale = 0;
-            // aplicar el fade
-            PhaseManager.instance.TurnOnWinScreen();
+            PhaseManager.instance.TurnOnFadeInWinScreen();
+            this.gameObject.SetActive(false);
         }
 
         if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1) 
         {
             MainMenu.Instance.TurnOnbuttonFinalAtackInGame();
             MainMenu.Instance.shoot.SetActive(false);
+            Debug.Log("3");
         }
 
         if (other.CompareTag("TurnOffButton"))
         {
             MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
+            Debug.Log("4");
         }
     }
 }
