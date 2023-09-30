@@ -176,7 +176,8 @@ public class DragonController : MonoBehaviour
         {
             Time.timeScale = 0;
             // aplicar el fade
-            PhaseManager.instance.TurnOnLoseScreen();
+            //PhaseManager.instance.TurnOnLoseScreen();
+            PhaseManager.instance.VictoryFadeIn.SetActive(true);
         }
 
         if (other.CompareTag("End") && MainMenu.Instance.isFinalAtackPresed)

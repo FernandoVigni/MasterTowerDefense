@@ -7,6 +7,7 @@ using static UnityEngine.UI.GridLayoutGroup;
 public class Tower : MonoBehaviour
 {
     public LifeBar1 lifeBar1;
+    public GameObject lifeBar1Canva;
     public GameObject towerFire;
     public FireBallManager fireBallManager;
     public EnemyManager enemyManager;
@@ -39,13 +40,23 @@ public class Tower : MonoBehaviour
     public Transform CornerC;
     public Transform CornerD;
 
-
     public void ResetCore() 
     {
         midCore.SetActive(false);
         bigCore.SetActive(false);
         finalCore.SetActive(false);
     }
+
+    public void TurnOffLifeBarCanva() 
+    {
+        lifeBar1Canva.SetActive(false);
+    }
+
+    public void TurnOnLifeBarCanva()
+    {
+        lifeBar1Canva.SetActive(true);
+    }
+
 
     private void Awake()
     {

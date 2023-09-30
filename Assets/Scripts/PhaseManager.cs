@@ -29,6 +29,7 @@ public class PhaseManager : MonoBehaviour
     public GoldStatus goldManager;
     public GameObject orcShaman;
     public bool isFirstProphecy;
+    public GameObject VictoryFadeIn;
 
     public CanvaMovementObjet canvaLeverOneWhite;
     public CanvaMovementObjet canvaLeverOneBlack;
@@ -106,7 +107,9 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+
         ResetPhase();
+        tower.TurnOffLifeBarCanva();
         tower.ResetCore();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
@@ -162,12 +165,14 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.portalsEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         enemyManager.SendEnemiesLeftPortal();
+        tower.TurnOnLifeBarCanva();
         await Task.Delay(1500);
         orcShaman.SetActive(false);
     }
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        tower.TurnOffLifeBarCanva();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
@@ -194,6 +199,7 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
         enemyManager.SendEnemiesRightPortal();
+        tower.TurnOnLifeBarCanva();
         await Task.Delay(2000);
         MainCamera.instance.camera3PersonRunner.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
@@ -203,6 +209,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseThree()
     {
+        tower.TurnOffLifeBarCanva();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
@@ -231,6 +238,7 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.goldStatusBox.SetActive(true);
         LoadEnemies();
         enemyManager.SendEnemiesRightPortal();
+        tower.TurnOnLifeBarCanva();
         canvaLeverThreeWhite.gameObject.SetActive(true);
         canvaLeverThreeBlack.gameObject.SetActive(true);
         canvaLeverThreeWhite.FadeOutAndDeactivate();
@@ -249,6 +257,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseFour()
     {
+        tower.TurnOffLifeBarCanva();
         MainCamera.instance.cameraNecromancer.SetActive(false);
         MainCamera.instance.TurnOffPhaseFourCameras();
         blueDragon.transform.position = BlueSpawnPosition.position;
