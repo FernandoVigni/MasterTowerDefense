@@ -77,6 +77,11 @@ public class DragonController : MonoBehaviour
         FlySoundsSelector(); 
     }
 
+    public void TurnOffDragon() 
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public void FlySoundsSelector() 
     {
         //Roar
@@ -181,18 +186,27 @@ public class DragonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("ShootOnPoint"))
+        {
+            MainMenu.Instance.TurnOnShootButton();
+        }
+
+        if (other.CompareTag("ShootOffPoint"))
+        {
+            MainMenu.Instance.TurnOffShootButton();
+        }
+
         // isFinalAtackPresed == false?
         if (other.CompareTag("End") && !MainMenu.Instance.isFinalAtackPresed)
         {
-            Debug.Log("1");
-            //Time.timeScale = 0;
+
+
         }
 
         // isFinalAtackPresed == true?
         if (other.CompareTag("End") && MainMenu.Instance.isFinalAtackPresed)
         {
-            PhaseManager.instance.TurnOnFadeInWinScreen();
-            this.gameObject.SetActive(false);
+
         }
 
         if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1) 

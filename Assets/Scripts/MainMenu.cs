@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject goldStatusBox;
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
-    [SerializeField] public GameObject victory;
     [SerializeField] public GameObject afterFadeVictory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject loading;
@@ -70,7 +69,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void TurnOffshootButton() 
+    public void TurnOffShootButton() 
     {
         shoot.SetActive(false);
     }
@@ -112,7 +111,6 @@ public class MainMenu : MonoBehaviour
             Destroy(gameObject);
         }
         buttonOptions.SetActive(false);
-        //goldStatus.gameObject.SetActive(false);
         enemyManager.RemoveAllInStage();
     }
 
@@ -298,6 +296,8 @@ public class MainMenu : MonoBehaviour
         enemyManager.RemoveAllLists();
         enemyManager.DestroyAllEnemies();
         TurnOffCLicPlayAnimation();
+        PhaseManager.instance.WinScreen.SetActive(false);
+        PhaseManager.instance.loseScreen.SetActive(false);
         EnterInMainMenu();
     }
 
@@ -314,13 +314,6 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
         prophecyScreen.TurnOffLetsGoAnimationOnCLick();
-    }
-
-    public async Task Victory() 
-    {
-        victory.SetActive(true);
-        await Task.Delay(4000);
-        afterFadeVictory.SetActive(true);
     }
 
     public void Lose() 

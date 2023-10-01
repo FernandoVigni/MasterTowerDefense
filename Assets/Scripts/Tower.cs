@@ -40,14 +40,31 @@ public class Tower : MonoBehaviour
     public Transform CornerC;
     public Transform CornerD;
 
-    public void ResetCore() 
+    void Update()
+    {
+        lifeBar1.SetRemainingLifeToShow(life, maxLife);
+
+        countDownToShoot = countDownToShoot - Time.deltaTime;
+        if (countDownToShoot < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
+        {
+            Debug.Log("Disparando");
+            ShootNearestEnemy();
+        }
+
+        if (life <= 3200)
+        {
+            towerFire.SetActive(true);
+        }
+    }
+
+    public void ResetCore()
     {
         midCore.SetActive(false);
         bigCore.SetActive(false);
         finalCore.SetActive(false);
     }
 
-    public void TurnOffLifeBarCanva() 
+    public void TurnOffLifeBarCanva()
     {
         lifeBar1Canva.SetActive(false);
     }
@@ -89,22 +106,6 @@ public class Tower : MonoBehaviour
         towerEffects.SetActive(true);
     }
 
-    void Update()
-    {
-        lifeBar1.SetRemainingLifeToShow(life, maxLife);
-
-        countDownToShoot = countDownToShoot - Time.deltaTime;
-        if (countDownToShoot < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
-        {
-            Debug.Log("Disparando");
-            ShootNearestEnemy();
-        }
-
-        if (life <= 3200)
-        {
-            towerFire.SetActive(true);
-        }
-    }
 
     public void RecibeDamage(float phisicalDamage, float magicDamage)
     {
