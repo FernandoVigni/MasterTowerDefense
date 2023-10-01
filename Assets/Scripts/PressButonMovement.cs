@@ -14,7 +14,7 @@ public class PressButonMovement : MonoBehaviour
 
     private void Start()
     {
-
+        initialPosition = myRectTransform.transform.localPosition;
     }
 
     public void ButtonPressed()
@@ -25,18 +25,8 @@ public class PressButonMovement : MonoBehaviour
     }
 
     private IEnumerator MoveUpAndDown()
-    {
-        // Move up
-        while (myRectTransform.localPosition.y < initialPosition.y + deltaY && !goUpDone)
-        {
-            Vector3 newPosition = myRectTransform.localPosition;
-            newPosition.y += speed * Time.deltaTime;
-            myRectTransform.localPosition = newPosition;
-            yield return null;
-        }
-        goUpDone = true;
-
-        // Move down
+    {       
+     /*   // Move down
         while (myRectTransform.localPosition.y > initialPosition.y && !goDownDone)
         {
             Vector3 newPosition = myRectTransform.localPosition;
@@ -44,6 +34,20 @@ public class PressButonMovement : MonoBehaviour
             myRectTransform.localPosition = newPosition;
             yield return null;
         }
-        goDownDone = true;
+        goDownDone = true;*/
+
+        // Move up
+        while (myRectTransform.localPosition.y > initialPosition.y - deltaY)
+        {
+            Vector3 newPosition = myRectTransform.localPosition;
+            newPosition.y -= speed * Time.deltaTime;
+            myRectTransform.localPosition = newPosition;
+            yield return null;
+        }
+        goUpDone = true;
+
+
+
+        myRectTransform.transform.localPosition = initialPosition;
     }
 }
