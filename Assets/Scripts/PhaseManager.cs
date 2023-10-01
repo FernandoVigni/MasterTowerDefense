@@ -45,6 +45,8 @@ public class PhaseManager : MonoBehaviour
     public CanvaMovementObjet canvaLeverFinalWhite;
     public CanvaMovementObjet canvaLeverFinalBlack;
 
+    public float cooldownDuration; 
+    private float cooldownTimer;
 
     public async Task TurnOnFadeInWinScreen() 
     {
@@ -99,6 +101,20 @@ public class PhaseManager : MonoBehaviour
     {
         audioManager = FindAnyObjectByType<AudioManager>();
         ResetPhase();
+    }
+
+    private void Update()
+    {
+        if (cooldownTimer > 0.0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+
+            // Asegúrate de que el contador no sea negativo.
+            if (cooldownTimer < 0.0f)
+            {
+                cooldownTimer = 0.0f;
+            }
+        }
     }
 
     public void TurnOnVictoryFadeOut() 
@@ -187,13 +203,14 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(400);
         rightRocksToDestroy.SetActive(false);
         flashMeteorites.SetActive(true);
-        skipAnimation.SetActive(false);
+
         await Task.Delay(400);
         leftExplosion.SetActive(false);
         meteorites.SetActive(false);
         AudioManager.Instance.PlaySFX("WindOutside");
         if (!shouldContinueAnimation) return;
         await Task.Delay(2000);
+        skipAnimation.SetActive(false);
         if (!shouldContinueAnimation) return;
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
@@ -234,7 +251,6 @@ public class PhaseManager : MonoBehaviour
         FadeInFadeOut();
         shouldContinueAnimation = false;
         MainCamera.instance.TurnOffPhaseOneCameras();
-        skipAnimation.SetActive(false);
         ResetPhase();
         tower.TurnOffLifeBarCanva();
         tower.ResetCore();
@@ -272,6 +288,7 @@ public class PhaseManager : MonoBehaviour
         rightExplosion.SetActive(false);
         shouldContinueAnimation = false;
         await Task.Delay(1500);
+        SkipAnimation();
         MainCamera.instance.TurnOffPhaseOneCameras();
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
         await Task.Delay(1500);
@@ -280,6 +297,19 @@ public class PhaseManager : MonoBehaviour
         orcShaman.SetActive(false);
 
     }
+
+    //    public float cooldownDuration = 5.0f; // Duración en segundos del enfriamiento
+    //  private float cooldownTimer = 0.0f;
+
+    public void SkipAnimation()
+    {
+        if (cooldownTimer <= 0.0f)
+        {
+            skipAnimation.SetActive(false);
+            cooldownTimer = cooldownDuration;
+        }
+    }
+
 
     public async Task FadeInFadeOut() 
     {

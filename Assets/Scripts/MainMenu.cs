@@ -196,6 +196,7 @@ public class MainMenu : MonoBehaviour
         shoot.SetActive(false);
         AudioManager.Instance.PlaySFX("Button");
         loading.SetActive(true);
+        MainMenu.Instance.TurnOffContactAndVolumen();
         magicCircles.SetActive(true);
         TurnOffSparksPlayButton();
         mainMenu.SetActive(false);
@@ -262,6 +263,12 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
         DestroyAllMines();
+    }
+
+    public void TurnOffContactAndVolumen() 
+    {
+        contact.SetActive(false);
+        volumen.SetActive(false);
     }
 
     public void CleanUiInGame() 
