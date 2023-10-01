@@ -168,8 +168,10 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(6000);
         meteorites.SetActive(true);
         await Task.Delay(3200);
+        if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(true);
+        if (!shouldContinueAnimation) return;
         await Task.Delay(1500);
         if (!shouldContinueAnimation) return;
         orcShaman.SetActive(false);
@@ -196,6 +198,7 @@ public class PhaseManager : MonoBehaviour
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
         orcShaman.SetActive(true);
+        if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
         MainCamera.instance.portalsEndInChaman.SetActive(true);
         if (!shouldContinueAnimation) return;
@@ -214,8 +217,10 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
+        if (!shouldContinueAnimation) return;
         MainCamera.instance.portalsEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
+        if (!shouldContinueAnimation) return;
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
         await Task.Delay(1500);
@@ -225,6 +230,7 @@ public class PhaseManager : MonoBehaviour
 
     public void SkipAnimationPhaseOne() 
     {
+        meteorites.SetActive(false);
         FadeInFadeOut();
         shouldContinueAnimation = false;
         MainCamera.instance.TurnOffPhaseOneCameras();
@@ -261,6 +267,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task EndOfSkipAnimation() 
     {
+        meteorites.SetActive(false);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(false);
         shouldContinueAnimation = false;
@@ -271,6 +278,7 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
         orcShaman.SetActive(false);
+
     }
 
     public async Task FadeInFadeOut() 
@@ -282,10 +290,12 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(2000);
         dragonController.TurnOffDragon();
         VictoryFadeOut.SetActive(false);
+        meteorites.SetActive(false);
     }
 
     public async Task ActivateAnimationPhaseTwo()
     {
+        meteorites.SetActive(false);
         tower.TurnOffLifeBarCanva();
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);

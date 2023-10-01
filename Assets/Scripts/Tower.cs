@@ -34,6 +34,7 @@ public class Tower : MonoBehaviour
     public GameObject bigCore;
     public GameObject finalCore;
     public GameObject effectFinalAtackButton;
+    public PhaseManager phaseManager;
 
     public Transform CornerA;
     public Transform CornerB;
@@ -48,6 +49,7 @@ public class Tower : MonoBehaviour
         if (countDownToShoot < 0 && enemyManager.GetAmmountOflistOfEnemiesInsideTheTowerCollider() > 0)
         {
             Debug.Log("Disparando");
+            phaseManager.meteorites.SetActive(false);
             ShootNearestEnemy();
         }
 
