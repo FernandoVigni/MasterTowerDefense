@@ -26656,6 +26656,7 @@ GameObject:
   - component: {fileID: 272363946}
   - component: {fileID: 272363945}
   - component: {fileID: 272363944}
+  - component: {fileID: 272363947}
   m_Layer: 5
   m_Name: Button Lets Go
   m_TagString: Untagged
@@ -26743,6 +26744,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 272363947}
+        m_TargetAssemblyTypeName: PressButonMovement, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &272363945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26781,6 +26794,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272363942}
   m_CullTransparentMesh: 1
+--- !u!114 &272363947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272363942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793a0e4b2af7be4b9e1b08252f3cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRectTransform: {fileID: 272363943}
+  deltaY: 15
+  speed: 250
+  goDownDone: 0
+  goUpDone: 0
 --- !u!1 &273958316
 GameObject:
   m_ObjectHideFlags: 0
@@ -50137,6 +50167,7 @@ GameObject:
   - component: {fileID: 738949599}
   - component: {fileID: 738949598}
   - component: {fileID: 738949597}
+  - component: {fileID: 738949600}
   m_Layer: 5
   m_Name: Button Play
   m_TagString: Untagged
@@ -50237,6 +50268,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 738949600}
+        m_TargetAssemblyTypeName: PressButonMovement, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &738949598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50275,6 +50318,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738949595}
   m_CullTransparentMesh: 1
+--- !u!114 &738949600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738949595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793a0e4b2af7be4b9e1b08252f3cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRectTransform: {fileID: 738949596}
+  deltaY: 15
+  speed: 250
+  goDownDone: 0
+  goUpDone: 0
 --- !u!1 &740810551
 GameObject:
   m_ObjectHideFlags: 0
@@ -108349,6 +108409,7 @@ GameObject:
   - component: {fileID: 1585851463}
   - component: {fileID: 1585851462}
   - component: {fileID: 1585851461}
+  - component: {fileID: 1585851464}
   m_Layer: 5
   m_Name: Button Lets GoVisible
   m_TagString: Untagged
@@ -108448,6 +108509,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1585851464}
+        m_TargetAssemblyTypeName: ProphecyScreen, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1585851464}
+        m_TargetAssemblyTypeName: PressButonMovement, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1585851462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108486,6 +108571,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585851459}
   m_CullTransparentMesh: 1
+--- !u!114 &1585851464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585851459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793a0e4b2af7be4b9e1b08252f3cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRectTransform: {fileID: 1585851460}
+  deltaY: 15
+  speed: 250
+  goDownDone: 0
+  goUpDone: 0
 --- !u!1 &1586906508
 GameObject:
   m_ObjectHideFlags: 0
@@ -143149,6 +143251,7 @@ GameObject:
   - component: {fileID: 2113916342}
   - component: {fileID: 2113916341}
   - component: {fileID: 2113916340}
+  - component: {fileID: 2113916343}
   m_Layer: 5
   m_Name: Button Contact
   m_TagString: Untagged
@@ -143235,6 +143338,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2113916343}
+        m_TargetAssemblyTypeName: PressButonMovement, Assembly-CSharp
+        m_MethodName: ButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2113916341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143273,6 +143388,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113916338}
   m_CullTransparentMesh: 1
+--- !u!114 &2113916343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113916338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5793a0e4b2af7be4b9e1b08252f3cf0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRectTransform: {fileID: 2113916339}
+  deltaY: 15
+  speed: 1
+  goDownDone: 0
+  goUpDone: 0
 --- !u!1 &2114542983
 GameObject:
   m_ObjectHideFlags: 0

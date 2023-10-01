@@ -5,8 +5,8 @@ using UnityEngine;
 public class PressButonMovement : MonoBehaviour
 {
     public RectTransform myRectTransform;
-    public float deltaY = 15f; // Distance to move up and down
-    public float speed = 1f; // Movement speed
+    public float deltaY; // Distance to move up and down
+    public float speed; // Movement speed
     public bool goDownDone;
     public bool goUpDone;
 
@@ -45,9 +45,6 @@ public class PressButonMovement : MonoBehaviour
             yield return null;
         }
         goUpDone = true;
-
-
-
         myRectTransform.transform.localPosition = initialPosition;
     }
 }
