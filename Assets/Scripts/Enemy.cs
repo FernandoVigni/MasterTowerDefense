@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
             if (!animator.GetBool("Atack"))
             {
                 animator.SetBool("Run", false);
-                animator.SetBool("Atack", true);
+                animator.SetBool("Atack 0", true);
             }
         }
 
@@ -110,11 +110,13 @@ public class Enemy : MonoBehaviour
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             isAtacking = false;
+            isWalking = true;
         }
 
         if (distanceToTower < 75 && (GetComponent<Giant>() != null || GetComponent<Warrior>() != null))
         {
             isAtacking = true;
+            isWalking = false;
             //aqui el animator tiene que hacer el ataque
         }
 
@@ -122,12 +124,14 @@ public class Enemy : MonoBehaviour
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
             isAtacking = false;
+            isWalking = true;
         }
 
         if (distanceToTower < 110 && GetComponent<Mage>() != null)
         {
             //aqui el animator tiene que hacer el ataque
             isAtacking = true;
+            isWalking = false;
         }
     }
 

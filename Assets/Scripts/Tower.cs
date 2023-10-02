@@ -192,7 +192,9 @@ public class Tower : MonoBehaviour
         midCore.SetActive(true);
         await Task.Delay(2000);
         bigCore.SetActive(true);
+        midCore.SetActive(false);
         await Task.Delay(2000);
+        bigCore.SetActive(false);
         finalCore.SetActive(true);
     }
 

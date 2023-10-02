@@ -35,9 +35,17 @@ public class ProphecyScreen : MonoBehaviour
     {
         if (goldStatus.GetIsFirstProphecyTrue() > 0)
         {
-            letsGoButtonVisible.SetActive(true);
+            SetAllProphecyScreenOn();
         }
         PlayTextOne();
+    }
+
+    public void SetAllProphecyScreenOn() 
+    {
+        letsGoButtonVisible.SetActive(true);
+        textOneVisible.SetActive(true);
+        textTwoVisible.SetActive(true);
+        textThreeVisible.SetActive(true);
     }
 
     public async Task PlayTextOne()

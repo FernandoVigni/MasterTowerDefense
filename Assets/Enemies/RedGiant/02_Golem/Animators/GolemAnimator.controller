@@ -466,7 +466,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: Atack
+    m_ConditionEvent: Atack 0
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Run
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2573024078950161114}
@@ -608,6 +611,12 @@ AnimatorController:
     m_DefaultBool: 1
     m_Controller: {fileID: 0}
   - m_Name: Atack 0
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Idle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -811,8 +820,14 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: Run
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atack 0
+    m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IdleAction
+    m_ConditionEvent: Idle
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6097758786043349347}
@@ -1108,13 +1123,13 @@ AnimatorStateMachine:
     m_Position: {x: 250, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6097758786043349347}
-    m_Position: {x: -10, y: 390, z: 0}
+    m_Position: {x: 0, y: 350, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4868682006408822525}
     m_Position: {x: 260, y: 550, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2573024078950161114}
-    m_Position: {x: 530, y: 520, z: 0}
+    m_Position: {x: 540, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5439396353022816703}
     m_Position: {x: 550, y: 430, z: 0}
@@ -1159,7 +1174,7 @@ AnimatorStateMachine:
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: 230, y: 410, z: 0}
+  m_AnyStatePosition: {x: 250, y: 450, z: 0}
   m_EntryPosition: {x: 270, y: 110, z: 0}
   m_ExitPosition: {x: 260, y: 50, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

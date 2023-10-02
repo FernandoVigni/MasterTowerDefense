@@ -182,6 +182,7 @@ public class PhaseManager : MonoBehaviour
         if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
         await Task.Delay(6000);
+        if (!shouldContinueAnimation) return;
         meteorites.SetActive(true);
         await Task.Delay(3200);
         if (!shouldContinueAnimation) return;
