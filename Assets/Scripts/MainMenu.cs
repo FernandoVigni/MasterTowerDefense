@@ -365,6 +365,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
         prophecyScreen.TurnOffLetsGoAnimationOnCLick();
+        PhaseManager.instance.fadeInOut.SetActive(false);
     }
 
     public void Lose() 

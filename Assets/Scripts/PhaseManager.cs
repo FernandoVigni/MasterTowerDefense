@@ -47,7 +47,7 @@ public class PhaseManager : MonoBehaviour
 
     public float cooldownDuration; 
     private float cooldownTimer;
-
+    public GameObject fadeInOut;
     public async Task TurnOnFadeInWinScreen() 
     {
         VictoryFadeIn.SetActive(true);
@@ -108,8 +108,6 @@ public class PhaseManager : MonoBehaviour
         if (cooldownTimer > 0.0f)
         {
             cooldownTimer -= Time.deltaTime;
-
-            // Asegúrate de que el contador no sea negativo.
             if (cooldownTimer < 0.0f)
             {
                 cooldownTimer = 0.0f;
@@ -193,6 +191,8 @@ public class PhaseManager : MonoBehaviour
         if (!shouldContinueAnimation) return;
         orcShaman.SetActive(false);
         await Task.Delay(4500);
+        skipAnimation.SetActive(false);
+        if (!shouldContinueAnimation) return;
         leftExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(600);
@@ -249,6 +249,8 @@ public class PhaseManager : MonoBehaviour
 
     public void SkipAnimationPhaseOne() 
     {
+        fadeInOut.SetActive(false);
+        fadeInOut.SetActive(true);
         meteorites.SetActive(false);
         FadeInFadeOut();
         shouldContinueAnimation = false;
@@ -267,6 +269,7 @@ public class PhaseManager : MonoBehaviour
         meteorites.SetActive(false);
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
+        skipAnimation.SetActive(false);
         orcShaman.SetActive(true);
         PlayMusic();
         portals.TurnOnLeftPortal();
@@ -297,11 +300,8 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
         orcShaman.SetActive(false);
-
+        fadeInOut.SetActive(false);
     }
-
-    //    public float cooldownDuration = 5.0f; // Duración en segundos del enfriamiento
-    //  private float cooldownTimer = 0.0f;
 
     public void SkipAnimation()
     {
