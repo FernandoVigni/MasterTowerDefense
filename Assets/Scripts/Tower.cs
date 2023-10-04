@@ -30,6 +30,7 @@ public class Tower : MonoBehaviour
     public GameObject minesDeployButton;
     public GameObject effectMinesDeployButton;
     public GameObject efectSparks;
+    public GameObject basicCore;
     public GameObject midCore;
     public GameObject bigCore;
     public GameObject finalCore;
@@ -187,14 +188,18 @@ public class Tower : MonoBehaviour
     {
         await Task.Delay(2000);
         MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         effectFinalAtackButton.SetActive(false);
         midCore.SetActive(true);
-        await Task.Delay(2000);
-        bigCore.SetActive(true);
+        await Task.Delay(1000);
+        basicCore.SetActive(false);
+        await Task.Delay(1000);
+        bigCore.SetActive(true); 
+        await Task.Delay(1000);
         midCore.SetActive(false);
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         bigCore.SetActive(false);
+        await Task.Delay(1000);
         finalCore.SetActive(true);
     }
 

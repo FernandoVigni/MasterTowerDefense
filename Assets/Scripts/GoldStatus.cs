@@ -26,7 +26,7 @@ public class GoldStatus : MonoBehaviour
     public void RestartButtonsValues() 
     {
         //PlayerPrefs.SetFloat(variableGold, 15000);
-        PlayerPrefs.SetFloat(variableGold, 150);
+        PlayerPrefs.SetFloat(variableGold, 20);
         PlayerPrefs.SetFloat(variablePowerUp, 0f);
         PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
         PlayerPrefs.SetFloat(variableHyperBeam, 0f);

@@ -10,7 +10,7 @@ public class HabilityHandler : MonoBehaviour
     {
         // Agregar habilidades a la lista desde el código.
         HabilityList.Add(new Hability("PowerUp", 5));
-        HabilityList.Add(new Hability("ExplosiveMine", 15));
+        HabilityList.Add(new Hability("ExplosiveMine", 16));
         HabilityList.Add(new Hability("HyperBeam",70));
     }
 
@@ -24,5 +24,17 @@ public class HabilityHandler : MonoBehaviour
             this.name = name;
             this.cost = cost;
         }
+    }
+
+    public int GetHabilityCostByName(string habilityName)
+    {
+        foreach (Hability hability in HabilityList)
+        {
+            if (hability.name == habilityName)
+            {
+                return hability.cost;
+            }
+        }
+        return 100000;
     }
 }

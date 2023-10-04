@@ -33,6 +33,11 @@ public class MainMenu : MonoBehaviour
     public bool isFinalAtackPresed;
     private EnemyManager enemyManager;
     private FireBallManager fireBallManager;
+    public HabilityHandler habilityHandler;
+    public GameObject EffectPowerUp;
+    public GameObject EffectMines;
+    public GameObject EffectFinalAtack;
+
 
     [SerializeField] public GameObject buttonPowerUp;
     [SerializeField] public GameObject buttonMinesDeploy;
@@ -85,7 +90,6 @@ public class MainMenu : MonoBehaviour
         buttonMinesDeployInGame.SetActive(false);
     }
 
-
     public void TurnOnShootButton()
     {
         shoot.SetActive(true);
@@ -122,18 +126,30 @@ public class MainMenu : MonoBehaviour
         if (goldStatus.GetPowerUpValue() != 1 )
         {
             buttonPowerUp.SetActive(true);
+            if (goldStatus.currentGold > habilityHandler.GetHabilityCostByName("PowerUp")) 
+            {
+                EffectPowerUp.SetActive(true);
+            }
         }
         else
         {
             if (goldStatus.GetMinesDeployValue() != 1) 
             {
                 buttonMinesDeploy.SetActive(true);
+                if (goldStatus.currentGold > habilityHandler.GetHabilityCostByName("ExplosiveMine"))
+                {
+                    EffectMines.SetActive(true);
+                }
             }
             else
             {
                 if (goldStatus.GetHyperBeamValue() != 1)
                 {
                     buttonHyperBeam.SetActive(true);
+                    if (goldStatus.currentGold > habilityHandler.GetHabilityCostByName("HyperBeam"))
+                    {
+                        EffectFinalAtack.SetActive(true);
+                    }
                 }
                 else
                 {
@@ -179,9 +195,37 @@ public class MainMenu : MonoBehaviour
     {
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
-    
+
     public async void Play()
     {
+        if (goldStatus.GetPowerUpValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("PowerUp"))
+        {
+            EffectPowerUp.SetActive(true);
+            return;
+        }
+        else 
+        {
+            EffectPowerUp.SetActive(false);
+        }
+        if (goldStatus.GetMinesDeployValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("ExplosiveMine") && goldStatus.GetPowerUpValue() == 1) 
+        {
+            EffectMines.SetActive(true);
+            return;
+        }
+        else
+        {
+            EffectMines.SetActive(false);
+        }
+
+        if (goldStatus.GetHyperBeamValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("HyperBeam") && goldStatus.GetMinesDeployValue() == 1 && goldStatus.GetPowerUpValue() == 1) 
+        {
+            EffectFinalAtack.SetActive(true);
+            return;
+        }
+        else
+        {
+            EffectFinalAtack.SetActive(false);
+        }
 
         DestroyAllMines();
         buttonMinesDeploy.SetActive(false);
@@ -348,6 +392,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartCLicPlayAnimation() 
     {
+        playClickAnimation.SetActive(false);
         playClickAnimation.SetActive(true);
     }
 

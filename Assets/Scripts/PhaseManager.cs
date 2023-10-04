@@ -210,6 +210,7 @@ public class PhaseManager : MonoBehaviour
         meteorites.SetActive(false);
         AudioManager.Instance.PlaySFX("WindOutside");
         if (!shouldContinueAnimation) return;
+        skipAnimation.SetActive(false);
         await Task.Delay(2000);
         skipAnimation.SetActive(false);
         if (!shouldContinueAnimation) return;

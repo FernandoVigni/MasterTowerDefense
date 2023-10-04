@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
     public float distanceToTower;
     public float coefficient;
     public Vector3 scale;
+    public GameObject meleHit;
+    public GameObject rangeHit;
 
     public void AtackTower(float physicalDamage,float magicDamage) 
     {
@@ -53,6 +55,10 @@ public class Enemy : MonoBehaviour
         if (isAtacking && timeToAtack <= 0) 
         {
             AtackTower(physicalDamage, magicDamage);
+
+            meleHit.SetActive(true);
+
+
             timeToAtack = resetTimeToAtack;
             if (!animator.GetBool("Atack"))
             {
@@ -71,6 +77,26 @@ public class Enemy : MonoBehaviour
             }
             Walk();
         }
+    }
+
+    public void ActivateAtackAnimation()
+    {
+        // validar si este objeto tiene el Script "Warrior" o "Giant" si lo tiene hacer XXXXXX
+
+        // Validar si este objeto tiene el Script "Mage" si lo tiene hacer YYYYYYY
+
+        if (GetComponent<Warrior>() != null || GetComponent<Giant>() != null)
+        {
+            meleHit.SetActive(false);
+            meleHit.SetActive(true);
+        }
+        
+      /*  if (GetComponent<Mage>() != null)
+        {
+            rangeHit.SetActive(false);
+            rangeHit.SetActive(true);
+        }
+      */
     }
 
     public void SetMaxLife(float maxLife)
