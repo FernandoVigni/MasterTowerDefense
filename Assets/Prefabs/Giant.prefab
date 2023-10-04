@@ -58,12 +58,12 @@ MonoBehaviour:
   lifeBar: {fileID: 4187168307138884795}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
-  resetTimeToAtack: 3
-  timeToAtack: 3
+  resetTimeToAtack: 0.8
+  timeToAtack: 0.8
   currentLife: 200
   maxLife: 0
   speed: 24
-  physicalDamage: 150
+  physicalDamage: 35
   physicalArmor: 10
   magicDamage: 0
   magicArmor: 10
@@ -75,8 +75,7 @@ MonoBehaviour:
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
-  meleHit: {fileID: 4161141892086631454}
-  rangeHit: {fileID: 4161141892086631454}
+  AtackEfect: {fileID: 4161141892086631454}
   giantMeshObject: {fileID: 4477165542818734006}
 --- !u!33 &7318535914152470964
 MeshFilter:

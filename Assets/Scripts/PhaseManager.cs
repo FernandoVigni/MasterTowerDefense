@@ -374,6 +374,8 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.TurnOffPhaseThreeCameras();
         necromanerScene.SetActive(true);
         enemiesPhaseOne.SetActive(true);
+        necromaner.AllIdle();
+
         enemiesPhaseTwo.SetActive(false);
         MainCamera.instance.cameraChamanAndPortal.SetActive(false);
         MainCamera.instance.camera3PersonTowerRight.SetActive(true);
@@ -382,6 +384,7 @@ public class PhaseManager : MonoBehaviour
         await Task.Delay(300);
         enemiesPhaseOne.SetActive(false);
         enemiesPhaseTwo.SetActive(true);
+        necromaner.AllIdle();
         await Task.Delay(1000);
         DeathExplosion.SetActive(false);
         await Task.Delay(3000);

@@ -75,9 +75,7 @@ MonoBehaviour:
   distanceToTower: 0
   coefficient: 0
   scale: {x: 0, y: 0, z: 0}
-  meleHit: {fileID: 3921228789257299512}
-  rangeHit: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
-    type: 3}
+  AtackEfect: {fileID: 3921228789257299512}
   gruntMeshObject: {fileID: 2247167338612007989}
 --- !u!33 &2621024165215467745
 MeshFilter:

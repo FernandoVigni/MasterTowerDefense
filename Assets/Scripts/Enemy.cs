@@ -33,12 +33,13 @@ public class Enemy : MonoBehaviour
     public float distanceToTower;
     public float coefficient;
     public Vector3 scale;
-    public GameObject meleHit;
-    public GameObject rangeHit;
+    public GameObject AtackEfect;
 
     public void AtackTower(float physicalDamage,float magicDamage) 
     {
         tower.GetDamage(physicalDamage, magicDamage);
+        AtackEfect.SetActive(false);
+        AtackEfect.SetActive(true);
     }
 
     private void Awake()
@@ -55,9 +56,6 @@ public class Enemy : MonoBehaviour
         if (isAtacking && timeToAtack <= 0) 
         {
             AtackTower(physicalDamage, magicDamage);
-
-            meleHit.SetActive(true);
-
 
             timeToAtack = resetTimeToAtack;
             if (!animator.GetBool("Atack"))
@@ -87,8 +85,8 @@ public class Enemy : MonoBehaviour
 
         if (GetComponent<Warrior>() != null || GetComponent<Giant>() != null)
         {
-            meleHit.SetActive(false);
-            meleHit.SetActive(true);
+            AtackEfect.SetActive(false);
+            AtackEfect.SetActive(true);
         }
         
       /*  if (GetComponent<Mage>() != null)
