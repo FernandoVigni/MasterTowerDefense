@@ -29,8 +29,6 @@ public class PhaseManager : MonoBehaviour
     public GoldStatus goldManager;
     public GameObject orcShaman;
     public bool isFirstProphecy;
-    public GameObject VictoryFadeIn;
-    public GameObject VictoryFadeOut;
     public GameObject loseScreen;
     public GameObject WinScreen;
     public GameObject skipAnimation;
@@ -44,35 +42,23 @@ public class PhaseManager : MonoBehaviour
     public CanvaMovementObjet canvaLeverThreeBlack;
     public CanvaMovementObjet canvaLeverFinalWhite;
     public CanvaMovementObjet canvaLeverFinalBlack;
-
     public float cooldownDuration; 
     private float cooldownTimer;
-    public GameObject fadeInOut;
-    public async Task TurnOnFadeInWinScreen() 
-    {
-        VictoryFadeIn.SetActive(true);
-        await Task.Delay(2000);
-        WinScreen.SetActive(true);
-        VictoryFadeOut.SetActive(true);
-        VictoryFadeIn.SetActive(false);
-        this.gameObject.SetActive(false);
-        await Task.Delay(2000);
-        dragonController.TurnOffDragon();
-        VictoryFadeOut.SetActive(false);
-    }
+    public GameObject loseFadeInOut;
+    public GameObject winFadeInOut;
 
-    public async Task TurnOnFadeInLoseScreen()
-    {
-        VictoryFadeIn.SetActive(true);
-        await Task.Delay(2000);
-        loseScreen.SetActive(true);
-        VictoryFadeOut.SetActive(true);
-        VictoryFadeIn.SetActive(false);
-        this.gameObject.SetActive(false);
-        await Task.Delay(2000);
-        dragonController.TurnOffDragon();
-        VictoryFadeOut.SetActive(false);
-    }
+    /* public async Task TurnOnFadeInLoseScreen()
+     {
+         VictoryFadeIn.SetActive(true);
+         await Task.Delay(2000);
+         loseScreen.SetActive(true);
+         VictoryFadeOut.SetActive(true);
+         VictoryFadeIn.SetActive(false);
+         this.gameObject.SetActive(false);
+         await Task.Delay(2000);
+         dragonController.TurnOffDragon();
+         VictoryFadeOut.SetActive(false);
+     }*/
 
     float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
     int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
@@ -115,17 +101,6 @@ public class PhaseManager : MonoBehaviour
         }
     }
 
-    public void TurnOnVictoryFadeOut() 
-    {
-        VictoryFadeOut.SetActive(true);
-    }
-    public void TurnOffVictoryFadeOut()
-    {
-        VictoryFadeOut.SetActive(false);
-    }
-
-    //VictoryFadeOut;
-
     public void ResetPhase() 
     {
         currentPhase = 0;
@@ -161,6 +136,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        tower.firstEndGame = true;
         shouldContinueAnimation = true;
         skipAnimation.SetActive(true);
         ResetPhase();
@@ -249,10 +225,9 @@ public class PhaseManager : MonoBehaviour
 
     public void SkipAnimationPhaseOne() 
     {
-        fadeInOut.SetActive(false);
-        fadeInOut.SetActive(true);
+        loseFadeInOut.SetActive(false);
+        loseFadeInOut.SetActive(true);
         meteorites.SetActive(false);
-        FadeInFadeOut();
         shouldContinueAnimation = false;
         MainCamera.instance.TurnOffPhaseOneCameras();
         ResetPhase();
@@ -300,7 +275,7 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
         orcShaman.SetActive(false);
-        fadeInOut.SetActive(false);
+        loseFadeInOut.SetActive(false);
     }
 
     public void SkipAnimation()
@@ -312,18 +287,6 @@ public class PhaseManager : MonoBehaviour
         }
     }
 
-
-    public async Task FadeInFadeOut() 
-    {
-        VictoryFadeIn.SetActive(true);
-        await Task.Delay(2000);
-        VictoryFadeOut.SetActive(true);
-        VictoryFadeIn.SetActive(false);
-        await Task.Delay(2000);
-        dragonController.TurnOffDragon();
-        VictoryFadeOut.SetActive(false);
-        meteorites.SetActive(false);
-    }
 
     public async Task ActivateAnimationPhaseTwo()
     {

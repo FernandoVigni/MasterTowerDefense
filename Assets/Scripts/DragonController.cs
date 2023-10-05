@@ -176,14 +176,6 @@ public class DragonController : MonoBehaviour
         // Additional operations or actions for the dragon's forward movement
     }
 
-    public async Task FadeOutStart() 
-    {
-        await Task.Delay(2000);
-        PhaseManager.instance.TurnOnVictoryFadeOut();
-        PhaseManager.instance.VictoryFadeIn.SetActive(false);
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ShootOnPoint"))

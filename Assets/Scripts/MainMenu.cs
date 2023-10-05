@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject confirmation;
     [SerializeField] public GameObject afterFadeVictory;
     [SerializeField] public GameObject lose;
+    [SerializeField] public GameObject win;
     [SerializeField] public GameObject loading;
     [SerializeField] public GameObject musicButtonOn;
     [SerializeField] public GameObject musicButtonOff;
@@ -29,6 +30,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
+    public GameObject loseFadeInOut;
+    public GameObject winFadeInOut;
 
     public bool isFinalAtackPresed;
     private EnemyManager enemyManager;
@@ -354,6 +357,7 @@ public class MainMenu : MonoBehaviour
 
     public void EnterInMainMenu()
     {
+        loseFadeInOut.SetActive(false);
         DestroyAllMines();
         tower.towerFire.SetActive(false);
         Time.timeScale = 1f;
@@ -365,13 +369,29 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlayMusic("MainMenu");
         TurnOnSparksPlayButton();
         prophecyScreen.TurnOffLetsGoAnimationOnCLick();
-        PhaseManager.instance.fadeInOut.SetActive(false);
+        PhaseManager.instance.loseFadeInOut.SetActive(false);
     }
 
-    public void Lose() 
+    public async Task Lose() 
     {
+        TurnOffShootButton();
         TurnOffButtonMinesDeploy();
         lose.SetActive(true);
+        await Task.Delay(1500);
+        loseFadeInOut.SetActive(false);
+        Time.timeScale = 0f;
+    }
+
+    public async Task Win()
+    {
+        winFadeInOut.SetActive(true);
+        TurnOffShootButton();
+        TurnOffButtonMinesDeploy();
+        await Task.Delay(2000);
+        win.SetActive(true);
+        await Task.Delay(1000);
+        winFadeInOut.SetActive(false);
+        Time.timeScale = 0f;
     }
 
     public void Volumen() 

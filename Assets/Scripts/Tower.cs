@@ -36,7 +36,7 @@ public class Tower : MonoBehaviour
     public GameObject finalCore;
     public GameObject effectFinalAtackButton;
     public PhaseManager phaseManager;
-
+    public bool firstEndGame;
     public Transform CornerA;
     public Transform CornerB;
     public Transform CornerC;
@@ -81,6 +81,7 @@ public class Tower : MonoBehaviour
     private void Awake()
     {
         effectMinesDeployButton.SetActive(false);
+        firstEndGame = true;
     }
 
     public void ResetFirstActivationOfMinesButton()
@@ -94,11 +95,16 @@ public class Tower : MonoBehaviour
         IsTowerDeath();
     }
 
-    private void IsTowerDeath()
+    private async Task IsTowerDeath()
     {
-        if (life <= 0)
+        if (life <= 0 && firstEndGame)
         {
-            MainMenu.Instance.Pause();
+            firstEndGame = false;
+            MainMenu.Instance.loseFadeInOut.SetActive(false);
+            MainMenu.Instance.loseFadeInOut.SetActive(true);
+            Debug.Log("Ahora Uno");
+            await Task.Delay(2000);
+            Debug.Log("Ahora Uno");
             MainMenu.Instance.Lose();
         }
     }
@@ -201,6 +207,8 @@ public class Tower : MonoBehaviour
         bigCore.SetActive(false);
         await Task.Delay(1000);
         finalCore.SetActive(true);
+        await Task.Delay(1500);
+        MainMenu.Instance.Win();
     }
 
     public async Task EndActionOfThrowExplosiveMines() 
