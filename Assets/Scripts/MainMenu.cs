@@ -374,10 +374,12 @@ public class MainMenu : MonoBehaviour
 
     public async Task Lose() 
     {
+        loseFadeInOut.SetActive(true);
         TurnOffShootButton();
         TurnOffButtonMinesDeploy();
+        await Task.Delay(2000);
         lose.SetActive(true);
-        await Task.Delay(1500);
+        await Task.Delay(1000);
         loseFadeInOut.SetActive(false);
         Time.timeScale = 0f;
     }

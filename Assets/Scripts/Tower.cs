@@ -100,11 +100,6 @@ public class Tower : MonoBehaviour
         if (life <= 0 && firstEndGame)
         {
             firstEndGame = false;
-            MainMenu.Instance.loseFadeInOut.SetActive(false);
-            MainMenu.Instance.loseFadeInOut.SetActive(true);
-            Debug.Log("Ahora Uno");
-            await Task.Delay(2000);
-            Debug.Log("Ahora Uno");
             MainMenu.Instance.Lose();
         }
     }
