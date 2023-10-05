@@ -191,7 +191,7 @@ public class DragonController : MonoBehaviour
         // isFinalAtackPresed == false?
         if (other.CompareTag("End") && !MainMenu.Instance.isFinalAtackPresed)
         {
-
+            MainMenu.Instance.Win();
 
         }
 
@@ -201,11 +201,10 @@ public class DragonController : MonoBehaviour
 
         }
 
-        if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1) 
+        if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1 && !MainMenu.Instance.isFinalAtackPresed) 
         {
             MainMenu.Instance.TurnOnbuttonFinalAtackInGame();
             MainMenu.Instance.shoot.SetActive(false);
-            Debug.Log("3");
         }
 
         if (other.CompareTag("TurnOffButton"))
