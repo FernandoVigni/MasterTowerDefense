@@ -101,6 +101,7 @@ public class Tower : MonoBehaviour
         {
             firstEndGame = false;
             MainMenu.Instance.Lose();
+            //MainMenu.Instance.Win();
         }
     }
 

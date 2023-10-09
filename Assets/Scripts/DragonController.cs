@@ -181,6 +181,7 @@ public class DragonController : MonoBehaviour
         if (other.CompareTag("ShootOnPoint"))
         {
             MainMenu.Instance.TurnOnShootButton();
+            MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
         }
 
         if (other.CompareTag("ShootOffPoint"))
@@ -188,21 +189,21 @@ public class DragonController : MonoBehaviour
             MainMenu.Instance.TurnOffShootButton();
         }
 
-        // isFinalAtackPresed == false?
-        if (other.CompareTag("End") && !MainMenu.Instance.isFinalAtackPresed)
+        if (other.CompareTag("End") && MainMenu.Instance.isFinalAtackPresed)
         {
             MainMenu.Instance.Win();
         }
 
-        if (other.CompareTag("TurnOnButton") && goldStatus.hyperBeamUpdate == 1 && !MainMenu.Instance.isFinalAtackPresed) 
+        if (other.CompareTag("FinalAtackTurnOnButton") && goldStatus.hyperBeamUpdate == 1 && !MainMenu.Instance.isFinalAtackPresed) 
         {
             MainMenu.Instance.TurnOnbuttonFinalAtackInGame();
-            MainMenu.Instance.shoot.SetActive(false);
+            MainMenu.Instance.TurnOffShootButton();
         }
 
-        if (other.CompareTag("TurnOffButton"))
+        if (other.CompareTag("FinalAtackTurnOffButton"))
         {
             MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
+            MainMenu.Instance.TurnOnShootButton();
         }
     }
 }

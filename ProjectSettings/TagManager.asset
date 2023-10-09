@@ -16,6 +16,8 @@ TagManager:
   - TurnOffButton
   - ShootOffPoint
   - ShootOnPoint
+  - FinalAtackTurnOnButton
+  - FinalAtackTurnOffButton
   layers:
   - Default
   - TransparentFX
