@@ -58,8 +58,8 @@ MonoBehaviour:
   lifeBar: {fileID: 3253950156182704294}
   enemyManager: {fileID: 5695652255115263879, guid: 992480639b9afff4caf2db5856740484,
     type: 3}
-  resetTimeToAtack: 1.15
-  timeToAtack: 1.15
+  resetTimeToAtack: 1
+  timeToAtack: 1
   currentLife: 70
   maxLife: 0
   speed: 20

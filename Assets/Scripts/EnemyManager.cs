@@ -168,8 +168,6 @@ public class EnemyManager : MonoBehaviour
         listOfEnemiesInsideTheTowerCollider.Clear();
     }
 
-
-
     // Enemies Sent List Method
     public void AddEnemyToSentList(Enemy enemy)
     {
@@ -295,6 +293,17 @@ public class EnemyManager : MonoBehaviour
         enemy.DestroyEnemy();
     }
 
+    public bool sendingEnemies = true;
+
+    public void PauseSendingEnemies(bool pause)
+    {
+        sendingEnemies = pause;
+    }
+    public void RestartSendingEnemies(bool pause)
+    {
+        sendingEnemies = pause;
+    }
+
     public async void SendEnemiesLeftPortal()
     {
         int enemiesInThisLevel = GetAmmountOflistOfEnemiesToDefeatInThisPhase();
@@ -314,6 +323,10 @@ public class EnemyManager : MonoBehaviour
                     enemy.StartMove();
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
+                    while (!sendingEnemies || Time.timeScale == 0)
+                    {
+                        await Task.Yield();
+                    }
                     await Task.Delay(2000);
                 }
             }

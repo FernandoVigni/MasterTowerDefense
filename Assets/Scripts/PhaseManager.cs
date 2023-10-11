@@ -47,24 +47,13 @@ public class PhaseManager : MonoBehaviour
     public GameObject loseFadeInOut;
     public GameObject winFadeInOut;
 
-    /* public async Task TurnOnFadeInLoseScreen()
-     {
-         VictoryFadeIn.SetActive(true);
-         await Task.Delay(2000);
-         loseScreen.SetActive(true);
-         VictoryFadeOut.SetActive(true);
-         VictoryFadeIn.SetActive(false);
-         this.gameObject.SetActive(false);
-         await Task.Delay(2000);
-         dragonController.TurnOffDragon();
-         VictoryFadeOut.SetActive(false);
-     }*/
-
+    //Definitive Matrix
     float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
     int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
     int[] amountOfWarriosByPhase =   { 3, 3, 5, 0 };
     int[] amountOfMagesByPhase =     { 2, 5, 5, 0 };
     int[] amountOfGiantsByPhase =    { 2, 0, 5, 0 };
+
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
 
@@ -136,10 +125,11 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        tower.basicCore.SetActive(true);
+        tower.finalBigCore.SetActive(true);
         MainMenu.Instance.SetFinalAtackFalse();
         tower.firstEndGame = true;
         shouldContinueAnimation = true;
-        skipAnimation.SetActive(true);
         ResetPhase();
         tower.TurnOffLifeBarCanva();
         tower.ResetCore();
@@ -156,7 +146,9 @@ public class PhaseManager : MonoBehaviour
         portals.TurnOffPortals();
         if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
-        await Task.Delay(6000);
+        await Task.Delay(3000);
+        skipAnimation.SetActive(true);
+        await Task.Delay(3000);
         if (!shouldContinueAnimation) return;
         meteorites.SetActive(true);
         await Task.Delay(3200);
@@ -173,22 +165,25 @@ public class PhaseManager : MonoBehaviour
         leftExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(600);
+        if (!shouldContinueAnimation) return;
         leftRocksToDestroy.SetActive(false);
         await Task.Delay(600);
         if (!shouldContinueAnimation) return;
         rightExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
         await Task.Delay(400);
+        if (!shouldContinueAnimation) return;
         rightRocksToDestroy.SetActive(false);
         flashMeteorites.SetActive(true);
-
         await Task.Delay(400);
+        if (!shouldContinueAnimation) return;
         leftExplosion.SetActive(false);
         meteorites.SetActive(false);
         AudioManager.Instance.PlaySFX("WindOutside");
         if (!shouldContinueAnimation) return;
         skipAnimation.SetActive(false);
         await Task.Delay(2000);
+        if (!shouldContinueAnimation) return;
         skipAnimation.SetActive(false);
         if (!shouldContinueAnimation) return;
         flashMeteorites.SetActive(false);
@@ -220,8 +215,8 @@ public class PhaseManager : MonoBehaviour
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
         await Task.Delay(1500);
+        if (!shouldContinueAnimation) return;
         orcShaman.SetActive(false);
-
     }
 
     public void SkipAnimationPhaseOne() 
@@ -258,7 +253,6 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
         MainCamera.instance.portalsEndInChaman.SetActive(false);
-
         EndOfSkipAnimation();
     }
 
@@ -316,8 +310,6 @@ public class PhaseManager : MonoBehaviour
         canvaLeverTwoBlack.FadeOutAndDeactivate();
         await Task.Delay(2000);
         MainMenu.Instance.shoot.SetActive(true);
-        MainMenu.Instance.optionsButton.SetActive(true);
-        MainMenu.Instance.goldStatusBox.SetActive(true);
         enemyManager.SendEnemiesRightPortal();
         tower.TurnOnLifeBarCanva();
         await Task.Delay(2000);
@@ -325,6 +317,8 @@ public class PhaseManager : MonoBehaviour
         MainCamera.instance.cameraChamanAndPortal.SetActive(true);
         await Task.Delay(1000);
         orcShaman.SetActive(false);
+        MainMenu.Instance.optionsButton.SetActive(true);
+        MainMenu.Instance.goldStatusBox.SetActive(true);
     }
 
     public async Task ActivateAnimationPhaseThree()

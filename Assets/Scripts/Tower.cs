@@ -33,7 +33,7 @@ public class Tower : MonoBehaviour
     public GameObject basicCore;
     public GameObject midCore;
     public GameObject bigCore;
-    public GameObject finalCore;
+    public GameObject finalBigCore;
     public GameObject effectFinalAtackButton;
     public PhaseManager phaseManager;
     public bool firstEndGame;
@@ -64,7 +64,7 @@ public class Tower : MonoBehaviour
     {
         midCore.SetActive(false);
         bigCore.SetActive(false);
-        finalCore.SetActive(false);
+        finalBigCore.SetActive(false);
         efectSparks.SetActive(false);
     }
 
@@ -203,9 +203,8 @@ public class Tower : MonoBehaviour
         await Task.Delay(1500);
         bigCore.SetActive(false);
         await Task.Delay(2000);
-        finalCore.SetActive(true);
+        finalBigCore.SetActive(true);
         await Task.Delay(2000);
-        MainMenu.Instance.Win();
     }
 
     public async Task EndActionOfThrowExplosiveMines() 

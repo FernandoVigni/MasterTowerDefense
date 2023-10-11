@@ -14,7 +14,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject goldStatusBox;
     [SerializeField] public GameObject menuOptions;
     [SerializeField] public GameObject confirmation;
-    [SerializeField] public GameObject afterFadeVictory;
     [SerializeField] public GameObject lose;
     [SerializeField] public GameObject win;
     [SerializeField] public GameObject loading;
@@ -266,6 +265,7 @@ public class MainMenu : MonoBehaviour
 
     public void Pause()
     {
+        enemyManager.PauseSendingEnemies(true);
         AudioManager.Instance.PlaySFX("Button");
         Time.timeScale = 0f;
         optionsButton.SetActive(false);
@@ -276,6 +276,7 @@ public class MainMenu : MonoBehaviour
 
     public void Resume()
     {
+        enemyManager.RestartSendingEnemies(true);
         AudioManager.Instance.PlaySFX("Button");
         menuOptions.SetActive(false);
         buttonOptions.SetActive(true);
@@ -343,6 +344,9 @@ public class MainMenu : MonoBehaviour
 
     private void TurnOnMainMenu() 
     {
+        win.SetActive(false);
+        lose.SetActive(false);
+        Time.timeScale = 1;
         mainMenu.SetActive(true);
         TurnOnSparksPlayButton();
     }
@@ -364,6 +368,8 @@ public class MainMenu : MonoBehaviour
 
     public void EnterInMainMenu()
     {
+        lose.SetActive(false);
+        win.SetActive(false);
         loseFadeInOut.SetActive(false);
         DestroyAllMines();
         tower.towerFire.SetActive(false);
