@@ -65,6 +65,7 @@ public class Tower : MonoBehaviour
         midCore.SetActive(false);
         bigCore.SetActive(false);
         finalCore.SetActive(false);
+        efectSparks.SetActive(false);
     }
 
     public void TurnOffLifeBarCanva()
@@ -188,7 +189,7 @@ public class Tower : MonoBehaviour
 
     public async Task IncreseCoreSize() 
     {
-        await Task.Delay(2000);
+        await Task.Delay(1000);
         MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
         await Task.Delay(1000);
         effectFinalAtackButton.SetActive(false);
@@ -197,13 +198,13 @@ public class Tower : MonoBehaviour
         basicCore.SetActive(false);
         await Task.Delay(1000);
         bigCore.SetActive(true); 
-        await Task.Delay(1000);
-        midCore.SetActive(false);
-        await Task.Delay(1000);
-        bigCore.SetActive(false);
-        await Task.Delay(1000);
-        finalCore.SetActive(true);
         await Task.Delay(1500);
+        midCore.SetActive(false);
+        await Task.Delay(1500);
+        bigCore.SetActive(false);
+        await Task.Delay(2000);
+        finalCore.SetActive(true);
+        await Task.Delay(2000);
         MainMenu.Instance.Win();
     }
 

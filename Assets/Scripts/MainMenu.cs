@@ -316,6 +316,7 @@ public class MainMenu : MonoBehaviour
         AudioManager.Instance.PlaySFX("Button");
         confirmation.SetActive(false);
         DestroyAllMines();
+        Time.timeScale = 1f;
     }
 
     public void TurnOffContactAndVolumen() 

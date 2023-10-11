@@ -31,6 +31,8 @@ public class ExplosiveMine : MonoBehaviour
         {
             Enemy enemyComponent = other.GetComponent<Enemy>();
 
+            AudioManager.Instance.PlaySFX("Explosion0");
+
             if (enemyComponent != null)
             {
                 enemyComponent.ReceibeDamage(minesDamage); 
