@@ -136,6 +136,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        MainMenu.Instance.SetFinalAtackFalse();
         tower.firstEndGame = true;
         shouldContinueAnimation = true;
         skipAnimation.SetActive(true);

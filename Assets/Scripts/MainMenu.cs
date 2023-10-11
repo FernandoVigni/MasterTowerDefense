@@ -41,6 +41,9 @@ public class MainMenu : MonoBehaviour
     public GameObject EffectMines;
     public GameObject EffectFinalAtack;
 
+    public PressButonMovement pressButonMovementPowerUp;
+    public PressButonMovement pressButonMovementMinesDeploy;
+    public PressButonMovement pressButonMovementFinalAtack;
 
     [SerializeField] public GameObject buttonPowerUp;
     [SerializeField] public GameObject buttonMinesDeploy;
@@ -199,10 +202,12 @@ public class MainMenu : MonoBehaviour
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
 
+
     public async void Play()
     {
         if (goldStatus.GetPowerUpValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("PowerUp"))
         {
+            pressButonMovementPowerUp.StartRightMove();
             EffectPowerUp.SetActive(true);
             return;
         }
@@ -212,6 +217,7 @@ public class MainMenu : MonoBehaviour
         }
         if (goldStatus.GetMinesDeployValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("ExplosiveMine") && goldStatus.GetPowerUpValue() == 1) 
         {
+            pressButonMovementMinesDeploy.StartRightMove();
             EffectMines.SetActive(true);
             return;
         }
@@ -219,9 +225,9 @@ public class MainMenu : MonoBehaviour
         {
             EffectMines.SetActive(false);
         }
-
         if (goldStatus.GetHyperBeamValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("HyperBeam") && goldStatus.GetMinesDeployValue() == 1 && goldStatus.GetPowerUpValue() == 1) 
         {
+            pressButonMovementFinalAtack.StartRightMove();
             EffectFinalAtack.SetActive(true);
             return;
         }

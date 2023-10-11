@@ -5,10 +5,12 @@ using UnityEngine;
 public class PressButonMovement : MonoBehaviour
 {
     public RectTransform myRectTransform;
-    public float deltaY; // Distance to move up and down
-    public float speed; // Movement speed
+    public float deltaY;
+    public float deltaX;
+    public float speed;
     public bool goDownDone;
     public bool goUpDone;
+    public bool goRightDone;
 
     private Vector3 initialPosition;
 
@@ -26,17 +28,6 @@ public class PressButonMovement : MonoBehaviour
 
     private IEnumerator MoveUpAndDown()
     {       
-     /*   // Move down
-        while (myRectTransform.localPosition.y > initialPosition.y && !goDownDone)
-        {
-            Vector3 newPosition = myRectTransform.localPosition;
-            newPosition.y -= speed * Time.deltaTime;
-            myRectTransform.localPosition = newPosition;
-            yield return null;
-        }
-        goDownDone = true;*/
-
-        // Move up
         while (myRectTransform.localPosition.y > initialPosition.y - deltaY)
         {
             Vector3 newPosition = myRectTransform.localPosition;
@@ -46,5 +37,24 @@ public class PressButonMovement : MonoBehaviour
         }
         goUpDone = true;
         myRectTransform.transform.localPosition = initialPosition;
+    }
+
+    public IEnumerator MoveRightAndLeft() 
+    {
+        goRightDone = false;
+        while (myRectTransform.localPosition.x > initialPosition.x - deltaX)
+        {
+            Vector3 newPosition = myRectTransform.localPosition;
+            newPosition.x -= speed * Time.deltaTime;
+            myRectTransform.localPosition = newPosition;
+            yield return null;
+        }
+        goRightDone = true;
+        myRectTransform.transform.localPosition = initialPosition;
+    }
+
+    public void StartRightMove() 
+    {
+        StartCoroutine(MoveRightAndLeft());
     }
 }
