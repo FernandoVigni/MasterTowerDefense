@@ -52,7 +52,7 @@ public class PressButonMovement : MonoBehaviour
         goRightDone = true;
         myRectTransform.transform.localPosition = initialPosition;
     }
-
+   
     public void StartRightMove() 
     {
         StartCoroutine(MoveRightAndLeft());
