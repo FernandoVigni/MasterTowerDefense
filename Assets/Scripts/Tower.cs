@@ -191,20 +191,20 @@ public class Tower : MonoBehaviour
     {
         await Task.Delay(1000);
         MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
-        await Task.Delay(1000);
+        await Task.Delay(500);
         effectFinalAtackButton.SetActive(false);
         midCore.SetActive(true);
-        await Task.Delay(1000);
+        await Task.Delay(500);
         basicCore.SetActive(false);
-        await Task.Delay(1000);
+        await Task.Delay(500);
         bigCore.SetActive(true); 
-        await Task.Delay(1500);
+        await Task.Delay(500);
         midCore.SetActive(false);
-        await Task.Delay(1500);
-        bigCore.SetActive(false);
-        await Task.Delay(2000);
+        await Task.Delay(500);
         finalBigCore.SetActive(true);
-        await Task.Delay(2000);
+        await Task.Delay(500);
+        bigCore.SetActive(false);
+        await Task.Delay(500);
     }
 
     public async Task EndActionOfThrowExplosiveMines() 

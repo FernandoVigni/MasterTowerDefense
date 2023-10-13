@@ -34,6 +34,10 @@ public class PhaseManager : MonoBehaviour
     public GameObject skipAnimation;
     public bool shouldContinueAnimation;
 
+
+
+
+
     public CanvaMovementObjet canvaLeverOneWhite;
     public CanvaMovementObjet canvaLeverOneBlack;
     public CanvaMovementObjet canvaLeverTwoWhite;
@@ -48,11 +52,18 @@ public class PhaseManager : MonoBehaviour
     public GameObject winFadeInOut;
 
     //Definitive Matrix
-    float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
+    /*    float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
+        int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
+        int[] amountOfWarriosByPhase =   { 3, 3, 5, 0 };
+        int[] amountOfMagesByPhase =     { 2, 5, 5, 0 };
+        int[] amountOfGiantsByPhase =    { 2, 0, 5, 0 };
+    */
+
+    float[] coefficient = { 1.2f, 1.5f, 2, 0 };
     int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
-    int[] amountOfWarriosByPhase =   { 3, 3, 5, 0 };
-    int[] amountOfMagesByPhase =     { 2, 5, 5, 0 };
-    int[] amountOfGiantsByPhase =    { 2, 0, 5, 0 };
+    int[] amountOfWarriosByPhase = { 1, 0, 0, 0 };
+    int[] amountOfMagesByPhase = { 0, 1, 0, 0 };
+    int[] amountOfGiantsByPhase = { 0, 0, 1, 0 };
 
 
     string[] songsNames = { "MainMenu", "Phase0", "Phase1", "Phase2", "Phase3", "Victory", "Lose" };
@@ -70,6 +81,21 @@ public class PhaseManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ResetLevelsLabels()
+    {
+        canvaLeverOneWhite.gameObject.SetActive(false);
+        canvaLeverOneBlack.gameObject.SetActive(false);
+
+        canvaLeverTwoWhite.gameObject.SetActive(false);
+        canvaLeverTwoBlack.gameObject.SetActive(false);
+
+        canvaLeverThreeWhite.gameObject.SetActive(false);
+        canvaLeverThreeBlack.gameObject.SetActive(false);
+
+        canvaLeverFinalWhite.gameObject.SetActive(false);
+        canvaLeverFinalBlack.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -125,6 +151,8 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        MainMenu.Instance.firstWin = true;
+        ResetLevelsLabels();
         tower.basicCore.SetActive(true);
         tower.finalBigCore.SetActive(true);
         MainMenu.Instance.SetFinalAtackFalse();

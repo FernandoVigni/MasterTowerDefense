@@ -31,6 +31,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public UpdateButtons updateButtons;
     public GameObject loseFadeInOut;
     public GameObject winFadeInOut;
+    public bool firstWin;
 
     public bool isFinalAtackPresed;
     private EnemyManager enemyManager;
@@ -399,14 +400,19 @@ public class MainMenu : MonoBehaviour
 
     public async Task Win()
     {
+
         winFadeInOut.SetActive(true);
         TurnOffShootButton();
         TurnOffButtonMinesDeploy();
         await Task.Delay(2000);
-        win.SetActive(true);
-        await Task.Delay(1000);
+        if(firstWin)
+        {
+            win.SetActive(true);
+            firstWin = false;
+            await Task.Delay(1000);
+            Time.timeScale = 0f;
+        }
         winFadeInOut.SetActive(false);
-        Time.timeScale = 0f;
     }
 
     public void Volumen() 

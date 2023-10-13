@@ -352,6 +352,10 @@ public class EnemyManager : MonoBehaviour
                     enemy.StartMove();
                     RemoveEnemyFromPhase(enemy);
                     AddEnemyToSentList(enemy);
+                    while (!sendingEnemies || Time.timeScale == 0)
+                    {
+                        await Task.Yield();
+                    }
                     await Task.Delay(1500);
                 }
             }

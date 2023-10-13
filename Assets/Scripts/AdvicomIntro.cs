@@ -17,6 +17,8 @@ public class AdvicomIntro : MonoBehaviour
     void Start()
     {
         Time.timeScale = 1.0f;
+        MainMenu.Instance.lose.SetActive(false);
+        MainMenu.Instance.win.SetActive(false);
         AudioManager.Instance.PlayMusic("musicLogo");
         enemyManager.DestroyAllEnemies();
         powerUpButton.SetActive(false);
