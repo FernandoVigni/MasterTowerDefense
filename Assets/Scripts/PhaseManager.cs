@@ -34,10 +34,6 @@ public class PhaseManager : MonoBehaviour
     public GameObject skipAnimation;
     public bool shouldContinueAnimation;
 
-
-
-
-
     public CanvaMovementObjet canvaLeverOneWhite;
     public CanvaMovementObjet canvaLeverOneBlack;
     public CanvaMovementObjet canvaLeverTwoWhite;
@@ -52,7 +48,7 @@ public class PhaseManager : MonoBehaviour
     public GameObject winFadeInOut;
 
     //Definitive Matrix
-    /*    float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
+        /*float[] coefficient =            { 1.2f, 1.5f, 2, 0 };
         int[] amountOfBagOfGoldByPhase = { 10, 2, 8, 0 };
         int[] amountOfWarriosByPhase =   { 3, 3, 5, 0 };
         int[] amountOfMagesByPhase =     { 2, 5, 5, 0 };
@@ -151,6 +147,7 @@ public class PhaseManager : MonoBehaviour
 
     public async Task ActivateAnimationPhaseOne()
     {
+        dragonController.ResetWayPoints();
         MainMenu.Instance.firstWin = true;
         ResetLevelsLabels();
         tower.basicCore.SetActive(true);

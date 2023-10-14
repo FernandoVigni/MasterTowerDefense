@@ -396,11 +396,11 @@ public class MainMenu : MonoBehaviour
         await Task.Delay(1000);
         loseFadeInOut.SetActive(false);
         Time.timeScale = 0f;
+        MainMenu.Instance.TurnOffShootButton();
     }
 
     public async Task Win()
     {
-
         winFadeInOut.SetActive(true);
         TurnOffShootButton();
         TurnOffButtonMinesDeploy();
@@ -413,6 +413,7 @@ public class MainMenu : MonoBehaviour
             Time.timeScale = 0f;
         }
         winFadeInOut.SetActive(false);
+        MainMenu.Instance.TurnOffShootButton();
     }
 
     public void Volumen() 

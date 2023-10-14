@@ -39,6 +39,17 @@ public class DragonController : MonoBehaviour
     public bool WayPointClearTen = false;
 
 
+    public void ResetWayPoints()
+    {
+        WayPointClearOne = false;
+        WayPointClearTree = false;
+        WayPointClearFour = false;
+        WayPointClearFive = false;
+        WayPointClearSix = false;
+        WayPointClearSeven = false;
+        WayPointClearTen = false;
+    }
+
     private void Start()
     {
         // Carga los puntos de destino en el array
@@ -178,7 +189,7 @@ public class DragonController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("ShootOnPoint"))
+        if (other.CompareTag("ShootOnPoint") && !MainMenu.Instance.isFinalAtackPresed)
         {
             MainMenu.Instance.TurnOnShootButton();
             MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
@@ -194,8 +205,14 @@ public class DragonController : MonoBehaviour
             MainMenu.Instance.Win();
         }
 
+        if (other.CompareTag("EndLose") && !MainMenu.Instance.isFinalAtackPresed && WayPointClearSeven)
+        {
+            MainMenu.Instance.Lose();
+        }
+
         if (other.CompareTag("FinalAtackTurnOnButton") && goldStatus.hyperBeamUpdate == 1 && !MainMenu.Instance.isFinalAtackPresed) 
         {
+            MainMenu.Instance.TurnOffShootButton();
             MainMenu.Instance.TurnOnbuttonFinalAtackInGame();
             MainMenu.Instance.TurnOffShootButton();
         }

@@ -18,6 +18,7 @@ TagManager:
   - ShootOnPoint
   - FinalAtackTurnOnButton
   - FinalAtackTurnOffButton
+  - EndLose
   layers:
   - Default
   - TransparentFX

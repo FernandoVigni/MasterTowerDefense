@@ -14,17 +14,32 @@ public class GoldStatus : MonoBehaviour
     private const string variableHyperBeam = "HyperBeam";
     private const string variableManualShotSpeedAtack = "ManualShotSpeedAtack";
     private const string variableIsFirstProphecy = "isFirstProphecy";
+    private const string variableFirstTimeGame = "firstTimeGame";
 
     public float powerUpUpdated;
     public float minesDeployUpdate;
     public float hyperBeamUpdate;
     public float shotSpeedAtackUpdate;
     public float isFirstProphecy;
+    public float firstTimeGame;
 
     /* Reset de botones para pruebas */
 
+    public void SetInitialsValues() 
+    {
+        PlayerPrefs.SetFloat(variableGold, 150);
+        PlayerPrefs.SetFloat(variablePowerUp, 0f);
+        PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
+        PlayerPrefs.SetFloat(variableHyperBeam, 0f);
+        PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
+        PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
+        PlayerPrefs.SetFloat(variableFirstTimeGame, 1);
+        PlayerPrefs.Save(); 
+    }
+
     public void RestartButtonsValues() 
     {
+        /*
         //PlayerPrefs.SetFloat(variableGold, 15000);
         PlayerPrefs.SetFloat(variableGold, 150);
         PlayerPrefs.SetFloat(variablePowerUp, 0f);
@@ -33,13 +48,25 @@ public class GoldStatus : MonoBehaviour
         PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
         PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
         PlayerPrefs.Save();
+        */
     }
 
     private void Start()
     {
-        RestartButtonsValues();
+        SetInitialsValues();
+       /* if (GetIsFirstGame() == 0) 
+        {
+            SetInitialsValues();
+        }*/
     }
-    
+
+    public float GetIsFirstGame()
+    {
+        float isFirstGame = PlayerPrefs.GetFloat(variableFirstTimeGame);
+        return isFirstProphecy;
+    }
+
+
     private void Update()
     {
         currentGold = GetGoldAmmount();
@@ -48,7 +75,6 @@ public class GoldStatus : MonoBehaviour
         hyperBeamUpdate = GetHyperBeamValue();
         isFirstProphecy = GetIsFirstProphecyTrue();
     }
-
 
     public void SetAtackSpeedIncreased() 
     {

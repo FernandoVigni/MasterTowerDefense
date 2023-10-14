@@ -102,7 +102,7 @@ public class Projectile : MonoBehaviour
         InstantiateRandomExplosion();
         PlayRandomExplosionSFX();
 
-        if (other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Ground"))
+        if (other.gameObject.CompareTag("Enemy") /*|| other.gameObject.CompareTag("Ground")*/)
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
