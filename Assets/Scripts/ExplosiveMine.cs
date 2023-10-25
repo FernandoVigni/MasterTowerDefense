@@ -19,7 +19,7 @@ public class ExplosiveMine : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            auraBomb.SetActive(true);
+            //auraBomb.SetActive(true);
             hasCollided = true; // Set the flag to true when colliding with the object tagged "Ground"
             collisionPosition = transform.position; // Store the position at the moment of collision
         }
