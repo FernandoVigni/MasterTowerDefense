@@ -15,42 +15,39 @@ public class ProphecyScreen : MonoBehaviour
     [SerializeField] public GoldStatus goldStatus;
     [SerializeField] public Tower tower;
     [SerializeField] private GameObject LetsGoClickAnimation;
+    [SerializeField] public GameObject prophecyScreen;
+    public bool isClickedStart;
 
     public Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        textOneVisible.SetActive(false);
-        textTwoVisible.SetActive(false);
-        textThreeVisible.SetActive(false);
-        letsGoButtonVisible.SetActive(false);
-        SparksSystem.SetActive(false);
         LetsGoClickAnimation.SetActive(false);
+        SparksSystem.SetActive(false);
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
     }
 
-    public void StartProphecyScene()
-    {
-        if (goldStatus.GetIsFirstProphecyTrue() > 0)
-        {
-            SetAllProphecyScreenOn();
-        }
-        PlayTextOne();
-    }
-
     public void SetAllProphecyScreenOn() 
     {
-        letsGoButtonVisible.SetActive(true);
         textOneVisible.SetActive(true);
         textTwoVisible.SetActive(true);
         textThreeVisible.SetActive(true);
+        letsGoButtonVisible.SetActive(true);
+    }
+
+    public void ResetAnimationTexts() 
+    {
+        animator.SetBool("AppearTextOne", false);
+        animator.SetBool("AppearTextTwo", false);
+        animator.SetBool("AppearTextThree", false);
+        animator.SetBool("AppearLetsGoButton", false);
     }
 
     public async Task PlayTextOne()
     {
-        await Task.Delay(1500);
+        await Task.Delay(500);
         animator.SetBool("AppearTextOne", true);
         await Task.Delay(2500);
         textOneVisible.SetActive(true);
@@ -97,7 +94,11 @@ public class ProphecyScreen : MonoBehaviour
 
     public void StartGame()
     {
-        ManageSounds();
+        if (!isClickedStart) 
+        {
+            isClickedStart = true;
+            ManageSounds();
+        }
     }
 
     public async Task ManageSounds() 

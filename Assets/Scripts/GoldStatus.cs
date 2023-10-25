@@ -27,45 +27,32 @@ public class GoldStatus : MonoBehaviour
 
     public void SetInitialsValues() 
     {
-        PlayerPrefs.SetFloat(variableGold, 150);
+        PlayerPrefs.SetFloat(variableGold, 0);
         PlayerPrefs.SetFloat(variablePowerUp, 0f);
         PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
         PlayerPrefs.SetFloat(variableHyperBeam, 0f);
         PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
-        PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
-        PlayerPrefs.SetFloat(variableFirstTimeGame, 1);
+        PlayerPrefs.SetFloat(variableIsFirstProphecy, 0f);
+        PlayerPrefs.SetFloat(variableFirstTimeGame, 0f);
         PlayerPrefs.Save(); 
-    }
-
-    public void RestartButtonsValues() 
-    {
-        /*
-        //PlayerPrefs.SetFloat(variableGold, 15000);
-        PlayerPrefs.SetFloat(variableGold, 150);
-        PlayerPrefs.SetFloat(variablePowerUp, 0f);
-        PlayerPrefs.SetFloat(variableMinesDeploy, 0f);
-        PlayerPrefs.SetFloat(variableHyperBeam, 0f);
-        PlayerPrefs.SetFloat(variableManualShotSpeedAtack, 1.5f);
-        PlayerPrefs.SetFloat(variableIsFirstProphecy, 1f);
-        PlayerPrefs.Save();
-        */
     }
 
     private void Start()
     {
-        SetInitialsValues();
-       /* if (GetIsFirstGame() == 0) 
+        float firstGameFloat = GetIsFirstGame();
+        firstGameFloat = 0;
+
+        if (firstGameFloat == 0) 
         {
             SetInitialsValues();
-        }*/
+        }
     }
 
     public float GetIsFirstGame()
     {
-        float isFirstGame = PlayerPrefs.GetFloat(variableFirstTimeGame);
-        return isFirstProphecy;
+        float firstTimeGame = PlayerPrefs.GetFloat(variableFirstTimeGame);
+        return firstTimeGame;
     }
-
 
     private void Update()
     {
@@ -74,6 +61,7 @@ public class GoldStatus : MonoBehaviour
         minesDeployUpdate = GetMinesDeployValue();
         hyperBeamUpdate = GetHyperBeamValue();
         isFirstProphecy = GetIsFirstProphecyTrue();
+        firstTimeGame = GetIsFirstGame();
     }
 
     public void SetAtackSpeedIncreased() 
@@ -115,12 +103,17 @@ public class GoldStatus : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public void SetIsFirstGameTrue()
+    {
+        PlayerPrefs.SetFloat(variableFirstTimeGame, 1f);
+        PlayerPrefs.Save();
+    }
+
     public float GetIsFirstProphecyTrue()
     {
         float isFirstProphecy = PlayerPrefs.GetFloat(variableIsFirstProphecy);
         return isFirstProphecy;
     }
-
 
     public void SetMinesDeployTrue()
     {
@@ -153,7 +146,7 @@ public class GoldStatus : MonoBehaviour
 
     public float GetVariableManualShotSpeedAtack()
     {
-        return PlayerPrefs.GetFloat(variableManualShotSpeedAtack, 0f);
+        return shotSpeedAtackUpdate;
     }
 
     public float GetMinesDeployValue()

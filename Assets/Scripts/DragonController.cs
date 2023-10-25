@@ -207,6 +207,7 @@ public class DragonController : MonoBehaviour
 
         if (other.CompareTag("EndLose") && !MainMenu.Instance.isFinalAtackPresed && WayPointClearSeven)
         {
+            MainMenu.Instance.TurnOffbuttonFinalAtackInGame();
             MainMenu.Instance.Lose();
         }
 

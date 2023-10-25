@@ -276,7 +276,7 @@ AnimatorStateMachine:
     m_Position: {x: 580, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2970030794933219533}
-    m_Position: {x: 350, y: 140, z: 0}
+    m_Position: {x: 350, y: 130, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4684120175692569457}
     m_Position: {x: 480, y: 330, z: 0}
@@ -318,6 +318,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: AppearLetsGoButton
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: AllTextsAndButton
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

@@ -29,6 +29,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject magicCircles;
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
+    [SerializeField] public GameObject prophecyScreenObject;
+
+    public PressButonMovement GoldUi;
     public GameObject loseFadeInOut;
     public GameObject winFadeInOut;
     public bool firstWin;
@@ -166,9 +169,14 @@ public class MainMenu : MonoBehaviour
             }
         }
     }
-    
+
     public void ValidatePowerUpUpdate()
     {
+        if (goldStatus.currentGold < goldStatus.habilityHandler.HabilityList[0].cost) //si tengo oro y no esta mejorado el powerUp
+        {
+            GoldUi.MoveRightAndLeft();
+        }
+
         if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[0].cost && goldStatus.powerUpUpdated == 0) //si tengo oro y no esta mejorado el powerUp
         {
             goldStatus.SetPowerUpTrue(); //cambiar en lo guardado en el telefono que esta aprendida la hab
@@ -180,6 +188,11 @@ public class MainMenu : MonoBehaviour
 
     public void ValidateMinesDeploy()
     {
+        if (goldStatus.currentGold < goldStatus.habilityHandler.HabilityList[1].cost) //si tengo oro y no esta mejorado el powerUp
+        {
+            GoldUi.MoveRightAndLeft();
+        }
+
         if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[1].cost && goldStatus.minesDeployUpdate == 0)
         {
             goldStatus.SetMinesDeployTrue();
@@ -190,6 +203,11 @@ public class MainMenu : MonoBehaviour
 
     public void ValidateHyperBeam()
     {
+        if (goldStatus.currentGold <= goldStatus.habilityHandler.HabilityList[2].cost && goldStatus.powerUpUpdated == 0) //si tengo oro y no esta mejorado el powerUp
+        {
+            GoldUi.MoveRightAndLeft();
+        }
+
         if (goldStatus.currentGold >= goldStatus.habilityHandler.HabilityList[2].cost && goldStatus.hyperBeamUpdate == 0)
         {
             goldStatus.SetHyperBeamTrue();
@@ -202,9 +220,9 @@ public class MainMenu : MonoBehaviour
         GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceCamera;
     }
 
-
     public async void Play()
     {
+        goldStatus.SetIsFirstGameTrue();
         if (goldStatus.GetPowerUpValue() == 0 && goldStatus.currentGold > habilityHandler.GetHabilityCostByName("PowerUp"))
         {
             pressButonMovementPowerUp.StartRightMove();
@@ -236,6 +254,7 @@ public class MainMenu : MonoBehaviour
             EffectFinalAtack.SetActive(false);
         }
 
+        StartCLicPlayAnimation();
         DestroyAllMines();
         buttonMinesDeploy.SetActive(false);
         enemyManager.RemoveAllLists();
@@ -256,8 +275,21 @@ public class MainMenu : MonoBehaviour
         await Task.Delay(5500);
         magicCircles.SetActive(false);
         loading.SetActive(false);
+        prophecyScreenObject.SetActive(true);
         prophecyScreen.gameObject.SetActive(true);
-        prophecyScreen.StartProphecyScene();
+
+        if (goldStatus.GetIsFirstProphecyTrue() == 0)
+        {
+            prophecyScreenObject.SetActive(true);
+            prophecyScreen.PlayTextOne();
+        }
+
+        if (goldStatus.GetIsFirstProphecyTrue() == 1)
+        {
+            prophecyScreenObject.SetActive(true);
+            prophecyScreen.SetAllProphecyScreenOn();
+        }
+
         buttonOptions.gameObject.SetActive(true);
         goldStatus.gameObject.SetActive(true);
 
@@ -354,6 +386,7 @@ public class MainMenu : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        prophecyScreen.isClickedStart = false;
         DestroyAllMines();
         optionsButton.SetActive(false);
         goldStatusBox.SetActive(false);
@@ -369,6 +402,8 @@ public class MainMenu : MonoBehaviour
 
     public void EnterInMainMenu()
     {
+        prophecyScreen.isClickedStart = false;
+        
         lose.SetActive(false);
         win.SetActive(false);
         loseFadeInOut.SetActive(false);
@@ -388,6 +423,7 @@ public class MainMenu : MonoBehaviour
 
     public async Task Lose() 
     {
+        prophecyScreen.isClickedStart = false;
         loseFadeInOut.SetActive(true);
         TurnOffShootButton();
         TurnOffButtonMinesDeploy();
@@ -401,6 +437,7 @@ public class MainMenu : MonoBehaviour
 
     public async Task Win()
     {
+        prophecyScreen.isClickedStart = false;
         winFadeInOut.SetActive(true);
         TurnOffShootButton();
         TurnOffButtonMinesDeploy();
