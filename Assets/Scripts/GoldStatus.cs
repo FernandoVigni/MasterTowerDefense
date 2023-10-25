@@ -40,7 +40,7 @@ public class GoldStatus : MonoBehaviour
     private void Start()
     {
         float firstGameFloat = GetIsFirstGame();
-        firstGameFloat = 0;
+        //firstGameFloat = 0;
 
         if (firstGameFloat == 0) 
         {
