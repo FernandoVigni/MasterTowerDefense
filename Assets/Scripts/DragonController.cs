@@ -10,7 +10,7 @@ public class DragonController : MonoBehaviour
     public float objetiveDistance;
     public float actualDistance;
     public GameObject snowThrower;
-    public GameObject snowEfect;
+    //public GameObject snowEfect;
     public Vector3 direction;
     public Vector3[] wayPoints;
     public EnemyManager enemyManager;
@@ -107,7 +107,7 @@ public class DragonController : MonoBehaviour
         {
             WayPointClearFive = true;
             snowThrower.SetActive(true);
-            snowEfect.SetActive(true);
+            //snowEfect.SetActive(true);
             GroundBurning.SetActive(true);
             AudioManager.Instance.PlaySFX2("FlameTrhrower");
         }
@@ -116,7 +116,7 @@ public class DragonController : MonoBehaviour
         {
             WayPointClearTen = true;
             snowThrower.SetActive(true);
-            snowEfect.SetActive(true);
+            //snowEfect.SetActive(true);
             AudioManager.Instance.PlaySFX2("FlameTrhrower");
         }
 
@@ -137,7 +137,7 @@ public class DragonController : MonoBehaviour
         {
             WayPointClearSix = true;
             snowThrower.SetActive(false);
-            snowEfect.SetActive(false);
+            //snowEfect.SetActive(false);
         }
 
         if (currentWayPoint == 7 && WayPointClearSeven != true)
@@ -159,7 +159,7 @@ public class DragonController : MonoBehaviour
         isFirstRoar = true;
         currentWayPoint = 1;
         snowThrower.SetActive(false);
-        snowEfect.SetActive(false);
+        //snowEfect.SetActive(false);
         this.gameObject.SetActive(false);
     }
 
