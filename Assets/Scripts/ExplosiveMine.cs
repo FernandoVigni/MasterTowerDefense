@@ -7,7 +7,7 @@ public class ExplosiveMine : MonoBehaviour
     private bool hasCollided = false; // Flag to track collision
     private Vector3 collisionPosition; // Variable to store the collision position
     public GameObject explosion;
-    public GameObject auraBomb;
+   //public GameObject auraBomb;
     public float minesDamage = 500;
 
     private void Start()
@@ -19,7 +19,8 @@ public class ExplosiveMine : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            //auraBomb.SetActive(true);
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            rb.constraints = RigidbodyConstraints.FreezeRotationY;
             hasCollided = true; // Set the flag to true when colliding with the object tagged "Ground"
             collisionPosition = transform.position; // Store the position at the moment of collision
         }
@@ -38,7 +39,7 @@ public class ExplosiveMine : MonoBehaviour
                 enemyComponent.ReceibeDamage(minesDamage); 
             }
             Explode(); 
-            Destroy(gameObject, 1.6f);
+            Destroy(gameObject, 1.4f);
         }
     }
 
@@ -63,6 +64,6 @@ public class ExplosiveMine : MonoBehaviour
     {
         explosion.SetActive(true);
         Debug.Log("Explode!");
-        Destroy(this);
+        //Destroy(this);
     }
 }

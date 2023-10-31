@@ -1,9 +1,12 @@
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
 public class PhaseManager : MonoBehaviour
 {
     public static PhaseManager instance;
+
+
 
     public Tower tower;
     public EnemyManager enemyManager;
@@ -32,7 +35,10 @@ public class PhaseManager : MonoBehaviour
     public GameObject loseScreen;
     public GameObject WinScreen;
     public GameObject skipAnimation;
-    public bool shouldContinueAnimation;
+    public bool endPhaseOneActions;
+    private CancellationToken cancellationToken;
+    private CancellationTokenSource sharedCancellationTokenSource;
+
 
     public CanvaMovementObjet canvaLeverOneWhite;
     public CanvaMovementObjet canvaLeverOneBlack;
@@ -94,11 +100,18 @@ public class PhaseManager : MonoBehaviour
 
         canvaLeverFinalWhite.gameObject.SetActive(false);
         canvaLeverFinalBlack.gameObject.SetActive(false);
+
+
+
     }
 
     private void Start()
     {
         audioManager = FindAnyObjectByType<AudioManager>();
+        // Crea un token de cancelación que estará vinculado al ciclo de vida de este objeto.
+        cancellationToken = new CancellationToken();
+        sharedCancellationTokenSource = new CancellationTokenSource();
+        cancellationToken = sharedCancellationTokenSource.Token;
         ResetPhase();
     }
 
@@ -147,8 +160,9 @@ public class PhaseManager : MonoBehaviour
         audioManager.PlayMusic(name);
     }
 
-    public async Task ActivateAnimationPhaseOne()
+    public async Task ActivateAnimationPhaseOne(CancellationToken cancellationToken)
     {
+        if (cancellationToken.IsCancellationRequested){return;}
         dragonController.ResetWayPoints();
         MainMenu.Instance.firstWin = true;
         ResetLevelsLabels();
@@ -156,7 +170,6 @@ public class PhaseManager : MonoBehaviour
         tower.finalBigCore.SetActive(true);
         MainMenu.Instance.SetFinalAtackFalse();
         tower.firstEndGame = true;
-        shouldContinueAnimation = true;
         ResetPhase();
         tower.TurnOffLifeBarCanva();
         tower.ResetCore();
@@ -164,95 +177,87 @@ public class PhaseManager : MonoBehaviour
         MainMenu.Instance.goldStatusBox.SetActive(false);
         MainMenu.Instance.shoot.SetActive(false);
         dragonController.ResetDragon();
-        if (!shouldContinueAnimation) return;
         AudioManager.Instance.PlayMusic("Intro");
         necromanerScene.SetActive(false);
         orcShaman.SetActive(true);
         flashMeteorites.SetActive(false);
         MainCamera.instance.TurnOffPhaseOneCameras();
         portals.TurnOffPortals();
-        if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraBaseEndInChaman.SetActive(true);
-        await Task.Delay(3000);
-        skipAnimation.SetActive(true);
-        await Task.Delay(3000);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(3000, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
+        //skipAnimation.SetActive(true);
+        await Task.Delay(3000, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         meteorites.SetActive(true);
-        await Task.Delay(3200);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(3200, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         MainCamera.instance.cameraBaseEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(true);
-        if (!shouldContinueAnimation) return;
-        await Task.Delay(1500);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(1500, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         orcShaman.SetActive(false);
-        await Task.Delay(4500);
+        await Task.Delay(4500, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         skipAnimation.SetActive(false);
-        if (!shouldContinueAnimation) return;
         leftExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
-        await Task.Delay(600);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(600, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         leftRocksToDestroy.SetActive(false);
-        await Task.Delay(600);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(600, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         rightExplosion.SetActive(true);
         AudioManager.Instance.PlaySFX("Explosion0");
-        await Task.Delay(400);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(400, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         rightRocksToDestroy.SetActive(false);
         flashMeteorites.SetActive(true);
-        await Task.Delay(400);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(400, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         leftExplosion.SetActive(false);
         meteorites.SetActive(false);
         AudioManager.Instance.PlaySFX("WindOutside");
-        if (!shouldContinueAnimation) return;
         skipAnimation.SetActive(false);
-        await Task.Delay(2000);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(2000, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         skipAnimation.SetActive(false);
-        if (!shouldContinueAnimation) return;
         flashMeteorites.SetActive(false);
         rightExplosion.SetActive(false);
         orcShaman.SetActive(true);
-        if (!shouldContinueAnimation) return;
         MainCamera.instance.cameraChamanBaseEndInPortals.SetActive(false);
         MainCamera.instance.portalsEndInChaman.SetActive(true);
-        if (!shouldContinueAnimation) return;
-        await Task.Delay(4000);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(4000, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         PlayMusic();
         portals.TurnOnLeftPortal();
         canvaLeverOneWhite.gameObject.SetActive(true);
         canvaLeverOneBlack.gameObject.SetActive(true);
         canvaLeverOneWhite.FadeOutAndDeactivate();
         canvaLeverOneBlack.FadeOutAndDeactivate();
-        if (!shouldContinueAnimation) return;
-        await Task.Delay(2500);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(2500, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         LoadEnemies();
         MainMenu.Instance.shoot.SetActive(true);
         MainMenu.Instance.optionsButton.SetActive(true);
         MainMenu.Instance.goldStatusBox.SetActive(true);
-        if (!shouldContinueAnimation) return;
         MainCamera.instance.portalsEndInChaman.SetActive(false);
         MainCamera.instance.cameraChamanEndInTowerLeft.SetActive(true);
-        if (!shouldContinueAnimation) return;
         enemyManager.SendEnemiesLeftPortal();
         tower.TurnOnLifeBarCanva();
-        await Task.Delay(1500);
-        if (!shouldContinueAnimation) return;
+        await Task.Delay(1500, cancellationToken);
+        if (cancellationToken.IsCancellationRequested) { return; }
         orcShaman.SetActive(false);
     }
 
+
     public void SkipAnimationPhaseOne() 
     {
+
         skipAnimation.SetActive(false);
         loseFadeInOut.SetActive(false);
         loseFadeInOut.SetActive(true);
         meteorites.SetActive(false);
-        shouldContinueAnimation = false;
         MainCamera.instance.TurnOffPhaseOneCameras();
         ResetPhase();
         tower.TurnOffLifeBarCanva();
@@ -291,7 +296,6 @@ public class PhaseManager : MonoBehaviour
         meteorites.SetActive(false);
         leftExplosion.SetActive(false);
         rightExplosion.SetActive(false);
-        shouldContinueAnimation = false;
         await Task.Delay(1500);
         SkipAnimation();
         MainCamera.instance.TurnOffPhaseOneCameras();
@@ -422,12 +426,12 @@ public class PhaseManager : MonoBehaviour
         currentPhase = 0;
     }
 
-    public void StartPhase() 
+    public async Task StartPhase() 
     {
         switch (currentPhase)
         {
             case 0:
-                ActivateAnimationPhaseOne();
+                ActivateAnimationPhaseOne(cancellationToken);
                 break;
             case 1:
                 ActivateAnimationPhaseTwo();

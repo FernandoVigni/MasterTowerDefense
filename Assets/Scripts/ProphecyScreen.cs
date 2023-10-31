@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class ProphecyScreen : MonoBehaviour
     public bool isClickedStart;
 
     public Animator animator;
+    private CancellationTokenSource cancellationTokenSource;
+
 
     private void Start()
     {
@@ -27,6 +30,8 @@ public class ProphecyScreen : MonoBehaviour
         SparksSystem.SetActive(false);
         MainMenu.Instance.optionsButton.SetActive(false);
         MainMenu.Instance.goldStatusBox.SetActive(false);
+        // Crea un token de cancelación que estará vinculado al ciclo de vida de este objeto.
+        cancellationTokenSource = new CancellationTokenSource();
     }
 
     public void SetAllProphecyScreenOn() 
@@ -45,45 +50,45 @@ public class ProphecyScreen : MonoBehaviour
         animator.SetBool("AppearLetsGoButton", false);
     }
 
-    public async Task PlayTextOne()
+    public async Task PlayTextOne(CancellationToken cancellationToken)
     {
-        await Task.Delay(500);
+        await Task.Delay(500, cancellationToken);
         animator.SetBool("AppearTextOne", true);
-        await Task.Delay(2500);
+        await Task.Delay(2500, cancellationToken);
         textOneVisible.SetActive(true);
         animator.SetBool("AppearTextOne", false);
-        await PlayTextTwo();
+        await PlayTextTwo(cancellationToken);
     }
 
-    public async Task PlayTextTwo()
+    public async Task PlayTextTwo(CancellationToken cancellationToken)
     {
         animator.SetBool("AppearTextTwo", true);
-        await Task.Delay(1500);
-
-        await Task.Delay(1500);
+        await Task.Delay(1500, cancellationToken);
+        await Task.Delay(1500, cancellationToken);
         textTwoVisible.SetActive(true);
         animator.SetBool("AppearTextTwo", false);
-        await PlayTextThree();
+        await PlayTextThree(cancellationToken);
     }
 
-    public async Task PlayTextThree()
+    public async Task PlayTextThree(CancellationToken cancellationToken)
     {
         animator.SetBool("AppearTextThree", true);
-        await Task.Delay(2500);
+        await Task.Delay(2500, cancellationToken);
         textThreeVisible.SetActive(true);
         animator.SetBool("AppearTextThree", false);
-        TurnOnLetsGoButton();
+        TurnOnLetsGoButton(cancellationToken);
         goldStatus.SetIsFirstProphecyTrue();
     }
 
-    public async Task TurnOnLetsGoButton()
+    public async Task TurnOnLetsGoButton(CancellationToken cancellationToken)
     {
         animator.SetBool("AppearLetsGoButton", true);
-        await Task.Delay(1000);
+        await Task.Delay(1000, cancellationToken);
         letsGoButtonVisible.SetActive(true);
         SparksSystem.SetActive(true);
         animator.SetBool("AppearLetsGoButton", false);
     }
+
 
     public void SetInvisibleTexts()
     {
@@ -92,20 +97,24 @@ public class ProphecyScreen : MonoBehaviour
         textThreeVisible.SetActive(false);
     }
 
-    public void StartGame()
+    public async void StartGame()
     {
-        if (!isClickedStart) 
+        if (!isClickedStart)
         {
             isClickedStart = true;
-            ManageSounds();
+            try
+            {
+                await ManageSounds(cancellationTokenSource.Token);
+            }
+            catch (TaskCanceledException){}
         }
     }
 
-    public async Task ManageSounds() 
+    public async Task ManageSounds(CancellationToken cancellationToken)
     {
         AudioManager.Instance.PlaySFX("ProphecyScreenButton");
         AudioManager.Instance.StopMusic();
-        await Task.Delay(2500);
+        await Task.Delay(2500, cancellationToken);
         ActivateStartFunctions();
     }
 

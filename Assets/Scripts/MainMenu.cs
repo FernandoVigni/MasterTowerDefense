@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Threading.Tasks;
+using System.Threading;
 
 public class MainMenu : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public Tower tower;
     [SerializeField] public UpdateButtons updateButtons;
     [SerializeField] public GameObject prophecyScreenObject;
+    private CancellationToken cancellationToken;
+
 
     public PressButonMovement GoldUi;
     public GameObject loseFadeInOut;
@@ -106,6 +109,7 @@ public class MainMenu : MonoBehaviour
 
     private void Awake()
     {
+        cancellationToken = new CancellationToken();
         enemyManager = FindAnyObjectByType<EnemyManager>();
         fireBallManager = FindAnyObjectByType<FireBallManager>();
         tower.towerFire.SetActive(false);
@@ -281,7 +285,7 @@ public class MainMenu : MonoBehaviour
         if (goldStatus.GetIsFirstProphecyTrue() == 0)
         {
             prophecyScreenObject.SetActive(true);
-            prophecyScreen.PlayTextOne();
+            prophecyScreen.PlayTextOne(cancellationToken);
         }
 
         if (goldStatus.GetIsFirstProphecyTrue() == 1)
